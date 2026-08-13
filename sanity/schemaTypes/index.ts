@@ -7,6 +7,7 @@ import blogPost from './blogPost'
 import servicePage from './servicePage'
 import caseStudy from './caseStudy'
 import faq from './faq'
+import industryPage from './industryPage'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
@@ -19,5 +20,6 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     servicePage,
     caseStudy,
     faq,
+    industryPage,
   ],
 }
