@@ -1,0 +1,242 @@
+/* ── Header ─────────────────────────────────────────────────── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #E4E4E4;
+}
+
+.headerInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+/* ── Logo ───────────────────────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logoImg {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font: 800 17px 'Montserrat', sans-serif;
+  letter-spacing: 0.04em;
+  color: #101010;
+}
+
+/* ── Desktop Nav ────────────────────────────────────────────── */
+.desktopNav {
+  display: none;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+
+@media (min-width: 1080px) {
+  .desktopNav {
+    display: flex;
+  }
+}
+
+.navLink {
+  font: 500 14px 'Poppins', sans-serif;
+  color: #101010;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.navLink:hover {
+  color: #1A6AFF;
+}
+
+/* ── Actions ────────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.ctaBtn {
+  font: 600 14px 'Montserrat', sans-serif;
+  background: #1A6AFF;
+  color: #fff;
+  padding: 11px 20px;
+  border-radius: 5px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.ctaBtn:hover {
+  background: #144FC0;
+  color: #fff;
+}
+
+.hamburger {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #E4E4E4;
+  background: #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hamburgerLines {
+  width: 16px;
+}
+
+.hamburgerLine {
+  height: 1.5px;
+  background: #101010;
+  margin-bottom: 4px;
+}
+
+.hamburgerLine:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Mobile Menu ────────────────────────────────────────────── */
+.mobileMenu {
+  border-top: 1px solid #E4E4E4;
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #fff;
+}
+
+.mobileLink {
+  font: 500 15px 'Poppins', sans-serif;
+  color: #101010;
+  text-decoration: none;
+}
+
+.mobileLink:hover {
+  color: #1A6AFF;
+}
+
+.mobileCta {
+  font: 600 14px 'Montserrat', sans-serif;
+  background: #1A6AFF;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 6px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.mobileCta:hover {
+  background: #144FC0;
+  color: #fff;
+}
+
+/* ── Mega Menu ──────────────────────────────────────────────── */
+.megaMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-bottom: 1px solid #E4E4E4;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+.megaMenuInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+}
+
+.megaMenuColumns {
+  flex: 1 1 500px;
+  min-width: 280px;
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.megaMenuColumn {
+  min-width: 200px;
+}
+
+.columnTitle {
+  font: 600 12px 'Montserrat', sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a86;
+  margin-bottom: 16px;
+}
+
+.columnItems {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.columnItem {
+  font: 400 14px 'Poppins', sans-serif;
+  color: #101010;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.columnItem:hover {
+  color: #1A6AFF;
+}
+
+.megaMenuSidebar {
+  flex: 1 1 280px;
+  min-width: 240px;
+  border-left: 1px solid #E4E4E4;
+  padding-left: 40px;
+}
+
+.megaMenuBlurb {
+  font: 400 15px/1.6 'Poppins', sans-serif;
+  color: #5C5C5C;
+  margin-bottom: 20px;
+}
+
+.megaMenuCta {
+  font: 600 13px 'Montserrat', sans-serif;
+  color: #fff;
+  background: #1A6AFF;
+  padding: 12px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.megaMenuCta:hover {
+  background: #144FC0;
+}

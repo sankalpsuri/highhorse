@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#FAFAF9; }
+  * { box-sizing:border-box; }
+  a { color:#1A6AFF; text-decoration:none; }
+  a:hover { color:#144FC0; }
+  ::selection { background:#1A6AFF; color:#fff; }
+  input, textarea { font-family:'Poppins',sans-serif; }
+  input:focus, textarea:focus { outline:none; border-color:#1A6AFF; }
+  input::placeholder, textarea::placeholder { color:#b4b4b0; }
+</style>
+</helmet>
+
+<div style="font-family:'Poppins',sans-serif;color:#101010;background:#FAFAF9;min-height:100vh">
+
+  <div style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E4E4" onMouseLeave="{{ clearActiveMenu }}">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:76px">
+      <a href="./High Horse Homepage.dc.html" style="display:flex;align-items:center;gap:10px;color:#101010">
+        <img src="./assets/hh-logo.png" alt="High Horse" style="width:26px;height:26px;object-fit:contain;flex-shrink:0">
+        <span style="font:800 17px 'Montserrat',sans-serif;letter-spacing:0.04em">HIGH HORSE</span>
+      </a>
+      <sc-if value="{{ wideNav }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:26px;flex-wrap:nowrap;justify-content:flex-end;flex:0 0 auto">
+          <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="4">
+            <a href="{{ link.href }}" onMouseEnter="{{ link.onEnter }}" style="font:500 14px 'Poppins',sans-serif;color:#101010;white-space:nowrap">{{ link.label }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+      <div style="display:flex;align-items:center;gap:16px;flex-shrink:0">
+        <a href="./Contact.dc.html" style="font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;padding:11px 20px;border-radius:5px;white-space:nowrap">Find Your Search Opportunity</a>
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width:40px;height:40px;border:1px solid #E4E4E4;background:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0">
+          <div style="width:16px">
+            <div style="height:1.5px;background:#101010;margin-bottom:4px"></div>
+            <div style="height:1.5px;background:#101010;margin-bottom:4px"></div>
+            <div style="height:1.5px;background:#101010"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="border-top:1px solid #E4E4E4;padding:16px 32px;display:flex;flex-direction:column;gap:14px;background:#fff">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="4">
+          <a href="{{ link.href }}" onClick="{{ closeMenu }}" style="font:500 15px 'Poppins',sans-serif;color:#101010">{{ link.label }}</a>
+        </sc-for>
+        <a href="./Contact.dc.html" onClick="{{ closeMenu }}" style="font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;padding:12px 20px;border-radius:5px;text-align:center;margin-top:6px">Find Your Search Opportunity</a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ activeMenuData }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #E4E4E4;box-shadow:0 16px 32px rgba(0,0,0,0.08)">
+        <div style="max-width:1280px;margin:0 auto;padding:40px 32px;display:flex;gap:56px;flex-wrap:wrap">
+          <div style="flex:1 1 500px;min-width:280px;display:flex;gap:48px;flex-wrap:wrap">
+            <sc-for list="{{ activeMenuData.columns }}" as="col" hint-placeholder-count="2">
+              <div style="min-width:200px">
+                <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#8a8a86;margin-bottom:16px">{{ col.title }}</div>
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <sc-for list="{{ col.items }}" as="it" hint-placeholder-count="5">
+                    <a href="{{ it.href }}" onClick="{{ clearActiveMenu }}" style="font:400 14px 'Poppins',sans-serif;color:#101010">{{ it.label }}</a>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex:1 1 280px;min-width:240px;border-left:1px solid #E4E4E4;padding-left:40px">
+            <div style="font:400 15px/1.6 'Poppins',sans-serif;color:#5C5C5C;margin-bottom:20px">{{ activeMenuData.blurb }}</div>
+            <a href="{{ activeMenuData.cta.href }}" onClick="{{ clearActiveMenu }}" style="font:600 13px 'Montserrat',sans-serif;color:#fff;background:#1A6AFF;padding:12px 20px;border-radius:5px;display:inline-block">{{ activeMenuData.cta.label }}</a>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:64px 32px 96px;display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start">
+
+    <div style="flex:1 1 300px;min-width:280px;max-width:360px">
+      <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#1A6AFF;margin-bottom:16px">Find your search opportunity</div>
+      <h1 style="font:700 clamp(1.7rem,2.6vw,2.3rem)/1.2 'Montserrat',sans-serif;margin:0 0 18px;text-wrap:pretty">Tell us about your business.</h1>
+      <p style="font:400 15px/1.7 'Poppins',sans-serif;color:#5C5C5C;margin:0 0 32px;text-wrap:pretty">Four short steps, about two minutes. We use your answers to review your category and search presence before we speak, so the first call is specific rather than generic.</p>
+      <div style="border-top:1px solid #E4E4E4;padding-top:24px;display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ stepList }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="{{ s.dotStyle }}">{{ s.mark }}</div>
+            <div style="{{ s.labelStyle }}">{{ s.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="border-top:1px solid #E4E4E4;margin-top:28px;padding-top:22px;font:400 13px/1.7 'Poppins',sans-serif;color:#8a8a86">Prefer email? <a href="mailto:hello@highhorse.in">hello@highhorse.in</a></div>
+    </div>
+
+    <div style="flex:1 1 480px;min-width:320px">
+      <div style="background:#fff;border:1px solid #E4E4E4;border-radius:10px;box-shadow:0 14px 34px rgba(16,16,16,0.06);overflow:hidden">
+
+        <div style="height:3px;background:#EFEFEE">
+          <div style="{{ progressStyle }}"></div>
+        </div>
+
+        <div style="padding:34px 34px 30px">
+          <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+                <div style="font:600 11px 'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#8a8a86">{{ stepCounter }}</div>
+                <div style="font:400 12px 'Poppins',sans-serif;color:#b4b4b0">{{ optionalNote }}</div>
+              </div>
+              <h2 style="font:700 21px/1.35 'Montserrat',sans-serif;margin:0 0 6px;text-wrap:pretty">{{ stepTitle }}</h2>
+              <p style="font:400 14px/1.6 'Poppins',sans-serif;color:#5C5C5C;margin:0 0 26px;text-wrap:pretty">{{ stepSub }}</p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;gap:10px">
+              <sc-for list="{{ goalOptions }}" as="o" hint-placeholder-count="5">
+                <div onClick="{{ o.onClick }}" style="{{ o.style }}">
+                  <div style="{{ o.boxStyle }}">{{ o.tick }}</div>
+                  <div style="flex:1">
+                    <div style="font:600 14px 'Montserrat',sans-serif;margin-bottom:2px">{{ o.label }}</div>
+                    <div style="font:400 12.5px/1.5 'Poppins',sans-serif;color:#8a8a86">{{ o.desc }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;gap:18px">
+              <div>
+                <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:7px">Company name</div>
+                <input value="{{ company }}" onChange="{{ onCompany }}" placeholder="High Horse Pvt Ltd" style="width:100%;font:400 14px 'Poppins',sans-serif;padding:13px 15px;border:1px solid #E4E4E4;border-radius:6px;background:#fff;color:#101010">
+              </div>
+              <div>
+                <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:7px">Website</div>
+                <input value="{{ website }}" onChange="{{ onWebsite }}" placeholder="www.yourcompany.com" style="width:100%;font:400 14px 'Poppins',sans-serif;padding:13px 15px;border:1px solid #E4E4E4;border-radius:6px;background:#fff;color:#101010">
+              </div>
+              <div>
+                <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:7px">What do you sell, and to whom?</div>
+                <textarea value="{{ offering }}" onChange="{{ onOffering }}" rows="3" placeholder="Insulating varnish to transformer manufacturers across North India" style="width:100%;font:400 14px/1.6 'Poppins',sans-serif;padding:13px 15px;border:1px solid #E4E4E4;border-radius:6px;background:#fff;color:#101010;resize:vertical"></textarea>
+              </div>
+              <div>
+                <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:9px">Where do your customers search from?</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <sc-for list="{{ regionOptions }}" as="r" hint-placeholder-count="4">
+                    <div onClick="{{ r.onClick }}" style="{{ r.style }}">{{ r.label }}</div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;gap:24px">
+              <div>
+                <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:9px">Current monthly marketing spend</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <sc-for list="{{ spendOptions }}" as="o" hint-placeholder-count="5">
+                    <div onClick="{{ o.onClick }}" style="{{ o.style }}">{{ o.label }}</div>
+                  </sc-for>
+                </div>
+              </div>
+              <div>
+                <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:9px">When would you want to start?</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <sc-for list="{{ timelineOptions }}" as="o" hint-placeholder-count="4">
+                    <div onClick="{{ o.onClick }}" style="{{ o.style }}">{{ o.label }}</div>
+                  </sc-for>
+                </div>
+              </div>
+              <div>
+                <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:7px">What is the one result that would make this worth it?</div>
+                <textarea value="{{ outcome }}" onChange="{{ onOutcome }}" rows="3" placeholder="A steady flow of qualified enquiries from India and the Gulf, at a cost we can defend" style="width:100%;font:400 14px/1.6 'Poppins',sans-serif;padding:13px 15px;border:1px solid #E4E4E4;border-radius:6px;background:#fff;color:#101010;resize:vertical"></textarea>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;gap:18px">
+              <div style="display:flex;gap:14px;flex-wrap:wrap">
+                <div style="flex:1 1 180px">
+                  <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:7px">Full name</div>
+                  <input value="{{ name }}" onChange="{{ onName }}" placeholder="Sankalp Suri" style="width:100%;font:400 14px 'Poppins',sans-serif;padding:13px 15px;border:1px solid #E4E4E4;border-radius:6px;background:#fff;color:#101010">
+                </div>
+                <div style="flex:1 1 180px">
+                  <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:7px">Role</div>
+                  <input value="{{ role }}" onChange="{{ onRole }}" placeholder="Founder" style="width:100%;font:400 14px 'Poppins',sans-serif;padding:13px 15px;border:1px solid #E4E4E4;border-radius:6px;background:#fff;color:#101010">
+                </div>
+              </div>
+              <div>
+                <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:7px">Work email</div>
+                <input value="{{ email }}" onChange="{{ onEmail }}" placeholder="you@company.com" style="{{ emailStyle }}">
+                <sc-if value="{{ emailError }}" hint-placeholder-val="{{ false }}">
+                  <div style="font:400 12px 'Poppins',sans-serif;color:#C6392F;margin-top:6px">Please enter a valid work email so we can send the review.</div>
+                </sc-if>
+              </div>
+              <div>
+                <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#5C5C5C;margin-bottom:7px">Phone <span style="color:#b4b4b0;font-weight:400">(optional)</span></div>
+                <input value="{{ phone }}" onChange="{{ onPhone }}" placeholder="+91" style="width:100%;font:400 14px 'Poppins',sans-serif;padding:13px 15px;border:1px solid #E4E4E4;border-radius:6px;background:#fff;color:#101010">
+              </div>
+              <div style="background:#FAFAF9;border:1px solid #EFEFEE;border-radius:7px;padding:16px 18px">
+                <div style="font:600 11px 'Montserrat',sans-serif;letter-spacing:0.07em;text-transform:uppercase;color:#8a8a86;margin-bottom:10px">Your answers so far</div>
+                <sc-for list="{{ summary }}" as="row" hint-placeholder-count="4">
+                  <div style="display:flex;gap:14px;padding:5px 0;font:400 13px/1.5 'Poppins',sans-serif">
+                    <div style="width:112px;flex-shrink:0;color:#8a8a86">{{ row.k }}</div>
+                    <div style="flex:1;color:#101010">{{ row.v }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+            <div style="text-align:center;padding:26px 0 14px">
+              <div style="width:52px;height:52px;border-radius:50%;background:#EAF1FF;color:#1A6AFF;display:flex;align-items:center;justify-content:center;font:700 22px 'Montserrat',sans-serif;margin:0 auto 20px">✓</div>
+              <h2 style="font:700 22px/1.3 'Montserrat',sans-serif;margin:0 0 12px">Thanks{{ thanksName }}. We have what we need to start.</h2>
+              <p style="font:400 14.5px/1.7 'Poppins',sans-serif;color:#5C5C5C;margin:0 auto 26px;max-width:400px;text-wrap:pretty">We will review your category, competitors and current search presence, then come back within two working days with one specific opportunity worth acting on.</p>
+              <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+                <a href="./High Horse Homepage.dc.html" style="font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;padding:13px 24px;border-radius:5px">Back to site</a>
+                <div onClick="{{ restart }}" style="font:600 14px 'Montserrat',sans-serif;color:#101010;border:1px solid #E4E4E4;padding:13px 24px;border-radius:5px;cursor:pointer;background:#fff">Send another</div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+          <div style="border-top:1px solid #EFEFEE;padding:18px 34px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff">
+            <div onClick="{{ back }}" style="{{ backStyle }}">Back</div>
+            <div style="display:flex;align-items:center;gap:16px">
+              <div style="font:400 12.5px 'Poppins',sans-serif;color:#b4b4b0">{{ hint }}</div>
+              <div onClick="{{ next }}" style="{{ nextStyle }}">{{ nextLabel }}</div>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = {
+    step: 0, goals: [], company: '', website: '', offering: '', region: '',
+    spend: '', timeline: '', outcome: '', name: '', role: '', email: '', phone: '',
+    emailError: false, done: false, menuOpen: false, activeMenu: null, vw: null,
+  };
+
+  H = './High Horse Homepage.dc.html';
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  }
+
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+
+  toggleMenu = () => this.setState(s => ({ menuOpen: !s.menuOpen }));
+  closeMenu = () => this.setState({ menuOpen: false });
+  clearActiveMenu = () => this.setState({ activeMenu: null });
+
+  navDefs = [
+    { label: 'Who We Are', href: '#founder' },
+    { label: 'What We Do', href: '#capabilities' },
+    { label: 'Case Studies', href: '#case-studies' },
+    { label: 'Learn With Us', href: '#capabilities' },
+  ];
+
+  megaMenus = [
+    {
+      blurb: 'Led by Sankalp Suri, with direct senior involvement in strategy and results.',
+      columns: [{ title: 'About High Horse', items: [
+        { label: 'Company', href: '#founder' },
+        { label: 'Careers', href: './Contact.dc.html' },
+        { label: 'Partnership', href: './Contact.dc.html' },
+      ] }],
+      cta: { label: 'About High Horse', href: '#founder' },
+    },
+    {
+      blurb: 'Everything we offer, across finding demand, capturing it, and building the systems that convert it.',
+      columns: [
+        { title: 'Search Intelligence', items: [
+          { label: 'AEO / GEO', href: '#capabilities' },
+          { label: 'Voice SEO', href: '#capabilities' },
+          { label: 'SEO', href: '#capabilities' },
+          { label: 'Content Marketing', href: '#capabilities' },
+        ] },
+        { title: 'Performance Marketing', items: [
+          { label: 'Search Ads', href: '#capabilities' },
+          { label: 'Shopping Ads', href: '#capabilities' },
+          { label: 'PPC Ads', href: '#capabilities' },
+          { label: 'Visual Ads', href: '#capabilities' },
+          { label: 'Retargeting', href: '#capabilities' },
+        ] },
+        { title: 'Experience & Systems', items: [
+          { label: 'UI/UX', href: '#capabilities' },
+          { label: 'Website Development', href: '#capabilities' },
+          { label: 'Marketplace Optimisation', href: '#capabilities' },
+          { label: 'Workflow Automation', href: '#capabilities' },
+        ] },
+      ],
+      cta: { label: 'View Capabilities', href: '#capabilities' },
+    },
+    null,
+    {
+      blurb: 'Practical tools and writing for teams running their own search programmes.',
+      columns: [{ title: 'Resources', items: [
+        { label: 'Calculator', href: './Contact.dc.html' },
+        { label: 'Tutorials', href: './Contact.dc.html' },
+        { label: 'Guides', href: './Contact.dc.html' },
+        { label: 'Templates', href: './Contact.dc.html' },
+        { label: 'Insights', href: './Contact.dc.html' },
+        { label: 'Blog', href: './Contact.dc.html' },
+      ] }],
+      cta: { label: 'Talk to Us', href: './Contact.dc.html' },
+    },
+  ];
+
+  abs(href) { return href.startsWith('#') ? this.H + href : href; }
+
+  navVals() {
+    const menu = this.state.activeMenu == null ? null : this.megaMenus[this.state.activeMenu];
+    return {
+      wideNav: (this.state.vw ?? 1440) >= 1080,
+      menuOpen: this.state.menuOpen,
+      toggleMenu: this.toggleMenu,
+      closeMenu: this.closeMenu,
+      clearActiveMenu: this.clearActiveMenu,
+      navLinks: this.navDefs.map((l, i) => ({
+        label: l.label,
+        href: this.abs(l.href),
+        onEnter: () => this.setState({ activeMenu: this.megaMenus[i] ? i : null }),
+      })),
+      activeMenuData: menu && {
+        blurb: menu.blurb,
+        cta: { label: menu.cta.label, href: this.abs(menu.cta.href) },
+        columns: menu.columns.map(c => ({ title: c.title, items: c.items.map(it => ({ label: it.label, href: this.abs(it.href) })) })),
+      },
+    };
+  }
+
+  steps = [
+    { label: 'Your priority', title: 'What do you want search to do for you?', sub: 'Pick everything that applies. This shapes what we look at first.' },
+    { label: 'Your business', title: 'Who are you and what do you sell?', sub: 'Enough context for us to look at your category properly.' },
+    { label: 'Scale and timing', title: 'Where are you today?', sub: 'Ranges are fine. We use this to judge what is realistic.' },
+    { label: 'Your details', title: 'Where should we send the review?', sub: 'One named person on your side, so nothing gets lost.' },
+  ];
+
+  goalDefs = [
+    { id: 'paid', label: 'Get more from paid search', desc: 'Spend is running but qualified leads are flat.' },
+    { id: 'organic', label: 'Rank and get cited in AI answers', desc: 'SEO, AEO/GEO and content that gets found.' },
+    { id: 'convert', label: 'Convert the traffic I already have', desc: 'Visitors arrive, few enquire or buy.' },
+    { id: 'build', label: 'Build the website or store properly', desc: 'UI/UX, development, marketplace optimisation.' },
+    { id: 'unsure', label: 'Not sure yet — show me where the loss is', desc: 'Start with a review of the whole search picture.' },
+  ];
+
+  regions = ['India', 'GCC / Middle East', 'US / Europe', 'Global'];
+  spends = ['Under ₹1L / month', '₹1–5L / month', '₹5–15L / month', '₹15L+ / month', 'Nothing yet'];
+  timelines = ['Immediately', 'Within a month', 'This quarter', 'Just exploring'];
+
+  set = (k) => (e) => this.setState({ [k]: e.target.value, emailError: false });
+
+  toggleGoal = (id) => () => this.setState(s => ({
+    goals: s.goals.includes(id) ? s.goals.filter(g => g !== id) : s.goals.concat(id),
+  }));
+
+  pick = (k, v) => () => this.setState({ [k]: v });
+
+  canAdvance() {
+    const s = this.state;
+    if (s.step === 0) return s.goals.length > 0;
+    if (s.step === 1) return s.company.trim() !== '';
+    if (s.step === 2) return s.spend !== '';
+    return s.name.trim() !== '' && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s.email.trim());
+  }
+
+  next = () => {
+    if (!this.canAdvance()) {
+      if (this.state.step === 3) this.setState({ emailError: true });
+      return;
+    }
+    if (this.state.step === 3) { this.setState({ done: true }); return; }
+    this.setState(s => ({ step: s.step + 1 }));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  back = () => { if (this.state.step > 0) this.setState(s => ({ step: s.step - 1 })); };
+
+  restart = () => this.setState({
+    step: 0, goals: [], company: '', website: '', offering: '', region: '',
+    spend: '', timeline: '', outcome: '', name: '', role: '', email: '', phone: '',
+    emailError: false, done: false,
+  });
+
+  chip(label, active, onClick) {
+    return {
+      label, onClick,
+      style: `font:500 13px 'Poppins',sans-serif;padding:9px 15px;border-radius:22px;cursor:pointer;user-select:none;transition:all 0.15s;border:1px solid ${active ? '#1A6AFF' : '#E4E4E4'};background:${active ? '#EAF1FF' : '#fff'};color:${active ? '#1A6AFF' : '#5C5C5C'};`,
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const done = s.done;
+    const ok = this.canAdvance();
+    const pct = done ? 100 : ((s.step) / 4) * 100 + 12;
+
+    return {
+      ...this.navVals(),
+      isDone: done, notDone: !done,
+      isStep1: !done && s.step === 0, isStep2: !done && s.step === 1,
+      isStep3: !done && s.step === 2, isStep4: !done && s.step === 3,
+      progressStyle: `height:3px;width:${pct}%;background:#1A6AFF;transition:width 0.35s ease;`,
+      stepCounter: `Step ${s.step + 1} of 4`,
+      stepTitle: this.steps[s.step].title,
+      stepSub: this.steps[s.step].sub,
+      optionalNote: s.step === 2 ? 'Ranges are fine' : '',
+      stepList: this.steps.map((st, i) => {
+        const active = !done && i === s.step;
+        const complete = done || i < s.step;
+        return {
+          label: st.label,
+          mark: complete ? '✓' : String(i + 1),
+          dotStyle: `width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font:600 11px 'Montserrat',sans-serif;border:1.5px solid ${complete || active ? '#1A6AFF' : '#E4E4E4'};background:${complete ? '#1A6AFF' : '#fff'};color:${complete ? '#fff' : active ? '#1A6AFF' : '#b4b4b0'};`,
+          labelStyle: `font:${active ? 600 : 400} 13.5px 'Poppins',sans-serif;color:${active ? '#101010' : complete ? '#5C5C5C' : '#b4b4b0'};`,
+        };
+      }),
+
+      goalOptions: this.goalDefs.map(g => {
+        const on = s.goals.includes(g.id);
+        return {
+          label: g.label, desc: g.desc, tick: on ? '✓' : '',
+          onClick: this.toggleGoal(g.id),
+          style: `display:flex;gap:13px;align-items:flex-start;padding:15px 16px;border-radius:7px;cursor:pointer;user-select:none;transition:all 0.15s;border:1px solid ${on ? '#1A6AFF' : '#E4E4E4'};background:${on ? '#F5F8FF' : '#fff'};`,
+          boxStyle: `width:19px;height:19px;border-radius:4px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font:700 11px 'Montserrat',sans-serif;color:#fff;border:1.5px solid ${on ? '#1A6AFF' : '#d8d8d4'};background:${on ? '#1A6AFF' : '#fff'};`,
+        };
+      }),
+
+      regionOptions: this.regions.map(r => this.chip(r, s.region === r, this.pick('region', r))),
+      spendOptions: this.spends.map(v => this.chip(v, s.spend === v, this.pick('spend', v))),
+      timelineOptions: this.timelines.map(v => this.chip(v, s.timeline === v, this.pick('timeline', v))),
+
+      company: s.company, website: s.website, offering: s.offering, outcome: s.outcome,
+      name: s.name, role: s.role, email: s.email, phone: s.phone,
+      onCompany: this.set('company'), onWebsite: this.set('website'), onOffering: this.set('offering'),
+      onOutcome: this.set('outcome'), onName: this.set('name'), onRole: this.set('role'),
+      onEmail: this.set('email'), onPhone: this.set('phone'),
+      emailError: s.emailError,
+      emailStyle: `width:100%;font:400 14px 'Poppins',sans-serif;padding:13px 15px;border:1px solid ${s.emailError ? '#C6392F' : '#E4E4E4'};border-radius:6px;background:#fff;color:#101010;`,
+
+      summary: [
+        { k: 'Priority', v: s.goals.length ? this.goalDefs.filter(g => s.goals.includes(g.id)).map(g => g.label).join(', ') : '—' },
+        { k: 'Company', v: s.company || '—' },
+        { k: 'Market', v: s.region || '—' },
+        { k: 'Spend', v: s.spend || '—' },
+        { k: 'Timing', v: s.timeline || '—' },
+      ],
+
+      thanksName: s.name.trim() ? ', ' + s.name.trim().split(' ')[0] : '',
+      hint: ok ? '' : ['Pick at least one', 'Company name needed', 'Pick a spend range', 'Name and email needed'][s.step],
+      nextLabel: s.step === 3 ? 'Send it' : 'Continue',
+      nextStyle: `font:600 14px 'Montserrat',sans-serif;padding:12px 26px;border-radius:5px;cursor:pointer;user-select:none;transition:all 0.15s;background:${ok ? '#1A6AFF' : '#C9D8F6'};color:#fff;`,
+      backStyle: `font:500 13.5px 'Poppins',sans-serif;color:#8a8a86;cursor:pointer;user-select:none;visibility:${s.step === 0 ? 'hidden' : 'visible'};`,
+      next: this.next, back: this.back, restart: this.restart,
+    };
+  }
+}
+</script>
+</body>
+</html>

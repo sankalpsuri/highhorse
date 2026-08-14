@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin:0; background:#FFFFFF; }
+  * { box-sizing:border-box; }
+  a { color:#1A6AFF; text-decoration:none; }
+  a:hover { color:#144FC0; }
+  ::selection { background:#1A6AFF; color:#fff; }
+</style>
+</helmet>
+
+<div style="font-family:'Poppins',sans-serif;color:#101010;background:#FFFFFF;overflow-x:hidden">
+
+<!-- NAV -->
+<div style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E4E4" onMouseLeave="{{ clearActiveMenu }}">
+  <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:76px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="./assets/hh-logo.png" alt="High Horse" style="width:26px;height:26px;object-fit:contain;flex-shrink:0">
+      <span style="font:800 17px 'Montserrat',sans-serif;letter-spacing:0.04em">HIGH HORSE</span>
+    </div>
+    <sc-if value="{{ wideNav }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:26px;flex-wrap:nowrap;justify-content:flex-end;flex:0 0 auto">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="4">
+          <a href="{{ link.href }}" onMouseEnter="{{ link.onEnter }}" style="font:500 14px 'Poppins',sans-serif;color:#101010;white-space:nowrap">{{ link.label }}</a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:16px;flex-shrink:0">
+      <a href="./Contact.dc.html" style="font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;padding:11px 20px;border-radius:5px;white-space:nowrap">Find Your Search Opportunity</a>
+      <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width:40px;height:40px;border:1px solid #E4E4E4;background:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0">
+        <div style="width:16px">
+          <div style="height:1.5px;background:#101010;margin-bottom:4px"></div>
+          <div style="height:1.5px;background:#101010;margin-bottom:4px"></div>
+          <div style="height:1.5px;background:#101010"></div>
+        </div>
+      </button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:1px solid #E4E4E4;padding:16px 32px;display:flex;flex-direction:column;gap:14px;background:#fff">
+      <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+        <a href="{{ link.href }}" onClick="{{ closeMenu }}" style="font:500 15px 'Poppins',sans-serif;color:#101010">{{ link.label }}</a>
+      </sc-for>
+      <a href="./Contact.dc.html" onClick="{{ closeMenu }}" style="font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;padding:12px 20px;border-radius:5px;text-align:center;margin-top:6px">Find Your Search Opportunity</a>
+    </div>
+  </sc-if>
+  <sc-if value="{{ activeMenuData }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #E4E4E4;box-shadow:0 16px 32px rgba(0,0,0,0.08)">
+      <div style="max-width:1280px;margin:0 auto;padding:40px 32px;display:flex;gap:56px;flex-wrap:wrap">
+        <div style="flex:1 1 500px;min-width:280px;display:flex;gap:48px;flex-wrap:wrap">
+          <sc-for list="{{ activeMenuData.columns }}" as="col" hint-placeholder-count="2">
+            <div style="min-width:200px">
+              <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#8a8a86;margin-bottom:16px">{{ col.title }}</div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ col.items }}" as="it" hint-placeholder-count="5">
+                  <a href="{{ it.href }}" onClick="{{ clearActiveMenu }}" style="font:400 14px 'Poppins',sans-serif;color:#101010">{{ it.label }}</a>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="flex:1 1 280px;min-width:240px;border-left:1px solid #E4E4E4;padding-left:40px">
+          <div style="font:400 15px/1.6 'Poppins',sans-serif;color:#5C5C5C;margin-bottom:20px">{{ activeMenuData.blurb }}</div>
+          <a href="{{ activeMenuData.cta.href }}" onClick="{{ clearActiveMenu }}" style="font:600 13px 'Montserrat',sans-serif;color:#fff;background:#1A6AFF;padding:12px 20px;border-radius:5px;display:inline-block">{{ activeMenuData.cta.label }}</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+<!-- HERO -->
+<div style="position:relative;overflow:hidden">
+  <div style="position:absolute;top:-140px;right:-120px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(26,106,255,0.16),rgba(26,106,255,0) 68%);pointer-events:none"></div>
+  <div style="position:absolute;top:220px;right:340px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,178,84,0.16),rgba(255,178,84,0) 68%);pointer-events:none"></div>
+  <div style="max-width:1280px;margin:0 auto;padding:88px 32px 96px;display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start;position:relative">
+  <div style="flex:1 1 480px;min-width:320px">
+    <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#1A6AFF;margin-bottom:20px">Search Marketing Agency</div>
+    <h1 style="font:800 clamp(2.6rem,4.4vw,4.2rem)/1.06 'Montserrat',sans-serif;margin:0 0 24px;letter-spacing:-0.01em">Turn Search <span style="color:#1A6AFF;text-decoration:underline">Intent</span> Into <span style="color:#1A6AFF;text-decoration:underline">Revenue</span>.</h1>
+    
+    <p style="font:400 17px/1.6 'Poppins',sans-serif;color:#5C5C5C;max-width:520px;margin:0 0 32px">Right now, people are searching for what you sell. We make sure they find you, turn that demand into leads and sales, and show you exactly how much revenue it produced.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px">
+      <a href="./Contact.dc.html" style="font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;padding:15px 26px;border-radius:5px">Find Your Search Opportunity</a>
+      <a href="#how-we-work" style="font:600 14px 'Montserrat',sans-serif;background:#fff;color:#101010;border:1px solid #101010;padding:15px 26px;border-radius:5px">See How We Work</a>
+    </div>
+    <p style="font:400 13px 'Poppins',sans-serif;color:#8a8a86;margin:0 0 20px">For established businesses with real search demand and serious growth ambitions.</p>
+    <div style="display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,0.6);backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5);border:1px solid rgba(255,255,255,0.8);border-radius:100px;padding:8px 18px 8px 10px;box-shadow:0 6px 20px rgba(16,16,16,0.07),inset 0 1px 0 rgba(255,255,255,0.9)">
+      <img src="./assets/google-partner-badge.png" alt="Google Partner" style="width:64px">
+      <span style="font:500 12.5px 'Poppins',sans-serif;color:#5C5C5C">Certified Google Partner</span>
+    </div>
+  </div>
+  <div style="flex:1 1 420px;min-width:320px;max-width:520px">
+    <div style="background:rgba(255,255,255,0.62);backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);border:1px solid rgba(255,255,255,0.75);border-radius:18px;box-shadow:0 18px 44px rgba(16,16,16,0.10),inset 0 1px 0 rgba(255,255,255,0.9);padding:22px 22px 18px">
+      <div style="font:700 15px 'Montserrat',sans-serif;color:#101010;margin-bottom:12px">Capture demand in</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+        <sc-for list="{{ engineTabs }}" as="tab" hint-placeholder-count="3">
+          <div onClick="{{ tab.onClick }}" style="{{ tab.style }}">
+            <img src="{{ tab.src }}" alt="{{ tab.label }}" style="height:15px;width:15px;object-fit:contain;flex-shrink:0">
+            <span>{{ tab.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,0.9);border-radius:26px;padding:13px 18px;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 2px 10px rgba(16,16,16,0.05),inset 0 1px 0 rgba(255,255,255,0.95)">
+        <div style="width:16px;height:16px;border:1.8px solid #8a8a86;border-radius:50%;flex-shrink:0;position:relative">
+          <div style="position:absolute;right:-5px;bottom:-4px;width:7px;height:1.8px;background:#8a8a86;transform:rotate(45deg)"></div>
+        </div>
+        <div style="font:400 15px/1.4 'Poppins',sans-serif;color:#101010;flex:1;min-height:21px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ typedText }}<span style="{{ caretStyle }}"></span></div>
+      </div>
+      <div style="margin-top:16px;border-top:1px solid #EFEFEE;padding-top:14px">
+        <div style="font:600 11px 'Montserrat',sans-serif;letter-spacing:0.07em;text-transform:uppercase;color:#8a8a86;margin-bottom:10px">Who gets found here?</div>
+        <sc-for list="{{ resultRows }}" as="row" hint-placeholder-count="3">
+          <div style="{{ row.style }}">
+            <div style="width:22px;height:22px;border-radius:4px;background:#F0F0EF;flex-shrink:0"></div>
+            <div style="flex:1;min-width:0">
+              <div style="{{ row.barStyle }}"></div>
+              <div style="height:6px;width:45%;background:#F0F0EF;border-radius:3px;margin-top:6px"></div>
+            </div>
+            <div style="{{ row.tagStyle }}">{{ row.tag }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="font:400 12.5px 'Poppins',sans-serif;color:#8a8a86;margin-top:14px;padding-left:2px">This is where the decision starts—across paid, organic, Maps and AI answers.</div>
+  </div>
+  </div>
+</div>
+
+<!-- PROOF BAND -->
+<div style="border-top:1px solid #E4E4E4;border-bottom:1px solid #E4E4E4;background:#fff">
+  <div style="max-width:1280px;margin:0 auto;padding:0 32px">
+    <div style="{{ proofGridStyle }}">
+    <sc-for list="{{ proofPoints }}" as="p" hint-placeholder-count="4">
+      <div style="background:#fff;padding:34px 28px">
+        <div style="font:700 clamp(1.5rem,2vw,1.9rem)/1 'Montserrat',sans-serif;color:#101010;margin-bottom:10px">{{ p.figure }}</div>
+        <div style="font:400 13.5px/1.55 'Poppins',sans-serif;color:#5C5C5C;text-wrap:pretty">{{ p.label }}</div>
+      </div>
+    </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDIES -->
+<div id="case-studies" style="max-width:1280px;margin:0 auto;padding:96px 32px">
+  <div style="display:flex;gap:40px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;margin-bottom:44px">
+    <div style="flex:1 1 560px;min-width:300px">
+      <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#1A6AFF;margin-bottom:18px">Evidence over claims</div>
+      <h2 style="font:700 clamp(1.8rem,2.6vw,2.5rem)/1.2 'Montserrat',sans-serif;margin:0;max-width:680px;text-wrap:pretty">Search and digital growth work across industries.</h2>
+    </div>
+    <a href="./Contact.dc.html" style="font:600 13px 'Montserrat',sans-serif;color:#1A6AFF;border:1px solid #1A6AFF;padding:12px 20px;border-radius:5px;white-space:nowrap">Talk About Your Category</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;align-items:start">
+    <sc-for list="{{ caseStudies }}" as="c" hint-placeholder-count="9">
+      <a href="#case-studies" style="border:1px solid #E4E4E4;border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column;color:inherit;transition:box-shadow 0.2s,transform 0.2s" style-hover="box-shadow:0 14px 30px rgba(16,16,16,0.09);transform:translateY(-3px);border-color:#d3ddf2">
+        <div style="width:100%;background:#F5F5F4;border-bottom:1px solid #EFEFEE;aspect-ratio:{{ c.ratio }}">
+          <img src="{{ c.img }}" alt="{{ c.name }}" style="width:100%;height:100%;object-fit:contain;display:block">
+        </div>
+        <div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1">
+          <div style="font:600 11px 'Montserrat',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#1A6AFF">{{ c.sector }}</div>
+          <div style="font:700 15px 'Montserrat',sans-serif">{{ c.name }}</div>
+          <div style="font:400 13.5px/1.55 'Poppins',sans-serif;color:#5C5C5C;text-wrap:pretty">{{ c.blurb }}</div>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<div style="background:#F5F5F4;border-top:1px solid #E4E4E4;border-bottom:1px solid #E4E4E4">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px">
+    <div style="display:flex;gap:64px;flex-wrap:wrap;margin-bottom:56px">
+      <div style="flex:1 1 460px;min-width:300px">
+        <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#1A6AFF;margin-bottom:18px">The opportunity already exists</div>
+        <h2 style="font:700 clamp(1.8rem,2.6vw,2.5rem)/1.2 'Montserrat',sans-serif;margin:0;max-width:640px;text-wrap:pretty">Your customers are searching. The question is who captures them.</h2>
+      </div>
+      <div style="flex:1 1 420px;min-width:300px">
+        <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#5C5C5C;margin:0 0 14px">Every day, customers search for products, services, solutions and alternatives. Some reach your business. Others are captured by competitors, marketplaces, aggregators, paid results, Maps listings or AI answers.</p>
+        <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#5C5C5C;margin:0">The problem is rarely just "more traffic." It is understanding where valuable demand is being lost—and what stops it from becoming qualified business.</p>
+      </div>
+    </div>
+    <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#8a8a86;margin-bottom:20px">Search performance breaks in five places</div>
+    <div style="{{ leaksGridStyle }}">
+      <sc-for list="{{ leaks }}" as="leak" hint-placeholder-count="5">
+        <div style="background:#fff;padding:30px 26px">
+          <div style="width:32px;height:32px;border:1.5px solid #1A6AFF;border-radius:5px;display:flex;align-items:center;justify-content:center;font:700 13px 'Montserrat',sans-serif;color:#1A6AFF;margin-bottom:18px">{{ leak.n }}</div>
+          <div style="font:600 15.5px 'Montserrat',sans-serif;margin-bottom:9px">{{ leak.title }}</div>
+          <div style="font:400 14px/1.6 'Poppins',sans-serif;color:#5C5C5C;margin-bottom:12px;text-wrap:pretty">{{ leak.desc }}</div>
+          <div style="font:400 12px/1.5 'Poppins',sans-serif;color:#8a8a86;border-top:1px solid #E4E4E4;padding-top:12px">{{ leak.signal }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- THE APPROACH + CAPABILITIES -->
+<div id="how-we-work">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px">
+    <div style="display:flex;gap:64px;flex-wrap:wrap;margin-bottom:48px">
+      <div style="flex:1 1 460px;min-width:300px">
+        <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#1A6AFF;margin-bottom:18px">How we work</div>
+        <h2 style="font:700 clamp(1.8rem,2.6vw,2.5rem)/1.2 'Montserrat',sans-serif;margin:0;max-width:600px;text-wrap:pretty">Understand broadly. Solve narrowly.</h2>
+      </div>
+      <div style="flex:1 1 420px;min-width:300px">
+        <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#5C5C5C;margin:0 0 14px">We do not begin by selling SEO, Google Ads or a predefined package. We first understand the market, product, customer, competition and commercial model.</p>
+        <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#5C5C5C;margin:0">Then we identify the search problems most likely to affect qualified demand, acquisition efficiency and revenue.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:0;flex-wrap:wrap;border-top:1px solid #E4E4E4;margin-bottom:72px">
+      <sc-for list="{{ steps }}" as="step" hint-placeholder-count="6">
+        <div onMouseEnter="{{ step.onEnter }}" style="{{ step.wrapStyle }}">
+          <div style="{{ step.numStyle }}">{{ step.n }}</div>
+          <div style="font:600 14px 'Montserrat',sans-serif;margin-bottom:8px">{{ step.title }}</div>
+          <div style="font:400 13px/1.55 'Poppins',sans-serif;color:#5C5C5C;text-wrap:pretty">{{ step.desc }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div id="capabilities" style="display:flex;gap:64px;flex-wrap:wrap;margin-bottom:40px;align-items:flex-end">
+      <div style="flex:1 1 460px;min-width:300px">
+        <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#1A6AFF;margin-bottom:18px">Search, connected properly</div>
+        <h2 style="font:700 clamp(1.8rem,2.6vw,2.5rem)/1.2 'Montserrat',sans-serif;margin:0;max-width:640px;text-wrap:pretty">The complete search journey—not disconnected services.</h2>
+      </div>
+      <div style="flex:0 1 380px;min-width:280px;display:flex;gap:20px">
+        <div style="flex:1;border:1px solid #E4E4E4;border-radius:5px;overflow:hidden">
+          <div style="width:100%;aspect-ratio:16/10;background:#F5F5F4">
+            <img src="./assets/visual-paid-search.jpg" alt="Paid Search across channels" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div style="padding:12px 14px;font:400 12px/1.5 'Poppins',sans-serif;color:#5C5C5C">Paid Search — Google, Meta and other high-intent channels.</div>
+        </div>
+        <div style="flex:1;border:1px solid #E4E4E4;border-radius:5px;overflow:hidden">
+          <div style="width:100%;aspect-ratio:16/10;background:#F5F5F4">
+            <img src="./assets/visual-ai-search.jpg" alt="AI Search visibility" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div style="padding:12px 14px;font:400 12px/1.5 'Poppins',sans-serif;color:#5C5C5C">AI Search — Google results and AI answer engines.</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border:1px solid #E4E4E4;border-radius:5px;overflow:hidden">
+      <sc-for list="{{ capabilities }}" as="cap" hint-placeholder-count="4">
+        <div style="padding:36px 32px;border-right:1px solid #E4E4E4;border-bottom:1px solid #E4E4E4">
+          <div style="font:700 18px 'Montserrat',sans-serif;margin-bottom:10px">{{ cap.title }}</div>
+          <div style="font:400 14px/1.6 'Poppins',sans-serif;color:#5C5C5C;margin-bottom:18px;text-wrap:pretty">{{ cap.desc }}</div>
+          <sc-for list="{{ cap.points }}" as="pt" hint-placeholder-count="4">
+            <div style="display:flex;gap:10px;align-items:baseline;margin-bottom:8px">
+              <div style="width:5px;height:5px;background:#1A6AFF;flex-shrink:0;margin-top:6px"></div>
+              <div style="font:400 13.5px/1.5 'Poppins',sans-serif;color:#101010">{{ pt }}</div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ cap.note }}" hint-placeholder-val="{{ false }}">
+            <div style="font:400 12px/1.5 'Poppins',sans-serif;color:#8a8a86;margin-top:14px;border-top:1px solid #E4E4E4;padding-top:12px">{{ cap.note }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT CHANGES (dark) -->
+<div style="background:#0A0A0A;color:#F5F5F4">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px">
+    <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#5B9BFF;margin-bottom:18px">What changes</div>
+    <h2 style="font:700 clamp(1.8rem,2.6vw,2.5rem)/1.2 'Montserrat',sans-serif;margin:0 0 48px;max-width:680px;text-wrap:pretty">More qualified business from the demand that already exists.</h2>
+    <div style="display:flex;gap:64px;flex-wrap:wrap;margin-bottom:56px">
+      <div style="flex:1 1 460px;min-width:300px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 32px">
+        <sc-for list="{{ outcomes }}" as="o" hint-placeholder-count="6">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:6px;height:6px;background:#5B9BFF;margin-top:8px;flex-shrink:0"></div>
+            <div style="font:400 15px/1.5 'Poppins',sans-serif;text-wrap:pretty">{{ o }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="flex:1 1 340px;min-width:280px;border:1px solid #2b2b2b;border-radius:5px;padding:28px">
+        <div style="font:600 18px/1.5 'Montserrat',sans-serif;text-wrap:pretty">Rankings, clicks and traffic are useful only when they contribute to a commercial outcome.</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <sc-for list="{{ outcomeChain }}" as="node" hint-placeholder-count="4">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="border:1px solid #2b2b2b;border-radius:5px;padding:12px 18px;font:500 13px 'Poppins',sans-serif;white-space:nowrap">{{ node.label }}</div>
+          <sc-if value="{{ node.hasArrow }}" hint-placeholder-val="{{ false }}">
+            <div style="width:22px;height:0;border-top:1.5px dashed #5B9BFF"></div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- WHO WE ARE + WHO IT IS FOR -->
+<div id="founder" style="background:#F5F5F4;border-top:1px solid #E4E4E4;border-bottom:1px solid #E4E4E4">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px">
+    <div style="display:flex;gap:56px;flex-wrap:wrap;align-items:center;margin-bottom:72px">
+      <div style="flex:1 1 300px;min-width:260px;max-width:340px">
+        <image-slot id="founder-photo" shape="rounded" radius="5" placeholder="Founder photo — Sankalp Suri" style="width:100%;height:400px"></image-slot>
+      </div>
+      <div style="flex:1 1 480px;min-width:300px">
+        <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#1A6AFF;margin-bottom:18px">Who we are</div>
+        <h2 style="font:700 clamp(1.7rem,2.4vw,2.2rem)/1.25 'Montserrat',sans-serif;margin:0 0 20px;text-wrap:pretty">Direct strategy. Clear accountability.</h2>
+        <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#5C5C5C;margin:0 0 14px">High Horse is led by Sankalp Suri.</p>
+        <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#5C5C5C;margin:0 0 28px;text-wrap:pretty">Clients work with a team built around search strategy, execution and measurement, with direct senior involvement in understanding the business, setting priorities and reviewing results.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px 28px;margin-bottom:28px">
+          <sc-for list="{{ founderPoints }}" as="pt" hint-placeholder-count="5">
+            <div style="display:flex;gap:10px;align-items:baseline">
+              <div style="width:5px;height:5px;background:#1A6AFF;flex-shrink:0;margin-top:6px"></div>
+              <div style="font:400 14px/1.5 'Poppins',sans-serif">{{ pt }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <h3 style="font:700 clamp(1.4rem,2vw,1.8rem)/1.3 'Montserrat',sans-serif;margin:0 0 28px;max-width:680px;text-wrap:pretty">Built for serious businesses—not every business.</h3>
+    <div style="display:flex;gap:1px;flex-wrap:wrap;background:#E4E4E4;border:1px solid #E4E4E4;border-radius:5px;overflow:hidden">
+      <div style="flex:1 1 380px;min-width:300px;background:#fff;padding:36px 32px">
+        <div style="font:700 15px 'Montserrat',sans-serif;color:#1A6AFF;margin-bottom:20px">A Good Fit</div>
+        <sc-for list="{{ fitGood }}" as="item" hint-placeholder-count="7">
+          <div style="display:flex;gap:12px;align-items:baseline;margin-bottom:14px">
+            <div style="font:700 14px 'Montserrat',sans-serif;color:#1A6AFF">✓</div>
+            <div style="font:400 14.5px/1.5 'Poppins',sans-serif;text-wrap:pretty">{{ item }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="flex:1 1 380px;min-width:300px;background:#fff;padding:36px 32px">
+        <div style="font:700 15px 'Montserrat',sans-serif;color:#8a8a86;margin-bottom:20px">Probably Not a Fit</div>
+        <sc-for list="{{ fitBad }}" as="item" hint-placeholder-count="7">
+          <div style="display:flex;gap:12px;align-items:baseline;margin-bottom:14px">
+            <div style="font:700 14px 'Montserrat',sans-serif;color:#8a8a86">✕</div>
+            <div style="font:400 14.5px/1.5 'Poppins',sans-serif;color:#5C5C5C;text-wrap:pretty">{{ item }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div>
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px;display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start">
+    <div style="flex:1 1 320px;min-width:280px;max-width:400px">
+      <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#1A6AFF;margin-bottom:18px">Before you enquire</div>
+      <h2 style="font:700 clamp(1.7rem,2.4vw,2.2rem)/1.25 'Montserrat',sans-serif;margin:0 0 20px;text-wrap:pretty">The questions we get asked first.</h2>
+      <p style="font:400 15px/1.7 'Poppins',sans-serif;color:#5C5C5C;margin:0 0 24px;text-wrap:pretty">If something here is not answered, ask it directly and we will give you a straight response.</p>
+      <a href="./Contact.dc.html" style="font:600 14px 'Montserrat',sans-serif;color:#101010;border-bottom:1.5px solid #1A6AFF">Ask your question</a>
+    </div>
+    <div style="flex:1 1 520px;min-width:300px;border-top:1px solid #E4E4E4">
+      <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid #E4E4E4">
+          <div onClick="{{ q.onClick }}" style="display:flex;gap:24px;align-items:baseline;justify-content:space-between;padding:22px 4px;cursor:pointer;user-select:none">
+            <div style="font:600 16px/1.45 'Montserrat',sans-serif;text-wrap:pretty">{{ q.question }}</div>
+            <div style="{{ q.iconStyle }}">+</div>
+          </div>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+            <div style="font:400 15px/1.75 'Poppins',sans-serif;color:#5C5C5C;padding:0 60px 26px 4px;text-wrap:pretty">{{ q.answer }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div id="opportunity" style="background:#1A6AFF;color:#fff;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-160px;left:-80px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.22),rgba(255,255,255,0) 70%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-200px;right:-60px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(120,180,255,0.35),rgba(120,180,255,0) 70%);pointer-events:none"></div>
+  <div style="max-width:1080px;margin:0 auto;padding:100px 32px;position:relative">
+    <div style="background:rgba(255,255,255,0.10);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,0.22);border-radius:20px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);padding:56px 48px;display:flex;gap:56px;flex-wrap:wrap">
+      <div style="flex:1 1 400px;min-width:300px">
+        <h2 style="font:700 clamp(1.9rem,3vw,2.6rem)/1.2 'Montserrat',sans-serif;margin:0 0 20px;text-wrap:pretty">Find out what your business may be missing across search.</h2>
+        <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#dbe6ff;margin:0 0 32px;max-width:460px;text-wrap:pretty">We review your business, category, customers and current search presence to identify one meaningful opportunity worth investigating—and whether High Horse is the right fit.</p>
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:24px">
+          <a href="./Contact.dc.html" style="font:600 14px 'Montserrat',sans-serif;background:#fff;color:#1A6AFF;padding:16px 30px;border-radius:5px">Find Your Search Opportunity</a>
+          <a href="#how-we-work" style="font:500 14px 'Poppins',sans-serif;color:#fff;border-bottom:1px solid rgba(255,255,255,0.5)">See How We Work</a>
+        </div>
+        <p style="font:400 13px/1.6 'Poppins',sans-serif;color:#c3d5ff;margin:0">No guaranteed rankings. No generic packages. No forced recommendation.</p>
+      </div>
+      <div style="flex:1 1 320px;min-width:280px">
+        <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.07em;text-transform:uppercase;color:#c3d5ff;margin-bottom:18px">This may include</div>
+        <sc-for list="{{ opportunityItems }}" as="item" hint-placeholder-count="6">
+          <div style="display:flex;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.16)">
+            <div style="width:5px;height:5px;background:#fff;flex-shrink:0;margin-top:7px"></div>
+            <div style="font:400 14px/1.55 'Poppins',sans-serif;text-wrap:pretty">{{ item }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="background:#0A0A0A;color:#F5F5F4">
+  <div style="max-width:1280px;margin:0 auto;padding:64px 32px 40px;display:flex;gap:56px;flex-wrap:wrap;justify-content:space-between">
+    <div style="flex:1 1 260px;min-width:220px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <img src="./assets/hh-logo.png" alt="High Horse" style="width:22px;height:22px;object-fit:contain;filter:invert(1) brightness(2)">
+        <span style="font:800 15px 'Montserrat',sans-serif;letter-spacing:0.04em">HIGH HORSE</span>
+      </div>
+      <div style="font:400 14px 'Poppins',sans-serif;color:#9a9a97">We turn intent into revenue.</div>
+      <div style="font:400 12px 'Poppins',sans-serif;color:#6a6a67;margin-top:20px;letter-spacing:0.06em;text-transform:uppercase">Search Marketing Agency</div>
+      <img src="./assets/google-partner-badge.png" alt="Google Partner" style="width:96px;margin-top:20px;border-radius:5px">
+    </div>
+    <div style="flex:1 1 180px;min-width:160px">
+      <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#6a6a67;margin-bottom:16px">Navigate</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ footerNav }}" as="link" hint-placeholder-count="6">
+          <a href="{{ link.href }}" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">{{ link.label }}</a>
+        </sc-for>
+      </div>
+    </div>
+    <div style="flex:1 1 180px;min-width:160px">
+      <div style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:#6a6a67;margin-bottom:16px">Connect</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">LinkedIn</a>
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">YouTube</a>
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">Privacy Policy</a>
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:0 auto;padding:20px 32px;border-top:1px solid #232323;font:400 12px 'Poppins',sans-serif;color:#5a5a57">© 2026 High Horse. Contact: hello@highhorse.example</div>
+</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { menuOpen: false, activeStep: 0, activeMenu: null, engine: 0, typed: '', caretOn: true, vw: null, openFaq: 0 };
+
+  engines = [
+    { label: 'Google', src: './assets/logo-google.webp' },
+    { label: 'Perplexity', src: './assets/logo-perplexity.webp' },
+    { label: 'ChatGPT', src: './assets/logo-chatgpt.png' },
+    { label: 'Gemini', src: './assets/logo-gemini.webp' },
+    { label: 'Claude', src: './assets/logo-claude.png' },
+  ];
+
+  queries = [
+    'best crm for real estate agents',
+    'industrial insulating varnish supplier near me',
+    'company formation consultants in dubai cost',
+    'is it worth hiring an seo agency for b2b',
+    'play school admission fees in gurgaon',
+    'top rated ready meals delivered india',
+    'alternatives to hubspot for small teams',
+    'moving and cleaning services same day',
+  ];
+
+  componentDidMount() {
+    this.qi = 0; this.ci = 0; this.phase = 'type';
+    this.tick = () => {
+      const q = this.queries[this.qi];
+      if (this.phase === 'type') {
+        this.ci++;
+        this.setState({ typed: q.slice(0, this.ci) });
+        if (this.ci >= q.length) { this.phase = 'hold'; this.timer = setTimeout(this.tick, 1500); return; }
+        this.timer = setTimeout(this.tick, 45 + Math.random() * 55);
+      } else if (this.phase === 'hold') {
+        this.phase = 'erase';
+        this.timer = setTimeout(this.tick, 250);
+      } else {
+        this.ci -= 2;
+        if (this.ci <= 0) {
+          this.ci = 0;
+          this.qi = (this.qi + 1) % this.queries.length;
+          this.phase = 'type';
+          this.setState({ typed: '', engine: this.qi % this.engines.length });
+          this.timer = setTimeout(this.tick, 400);
+          return;
+        }
+        this.setState({ typed: q.slice(0, this.ci) });
+        this.timer = setTimeout(this.tick, 22);
+      }
+    };
+    this.onResize = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    this.timer = setTimeout(this.tick, 600);
+    this.blink = setInterval(() => this.setState(s => ({ caretOn: !s.caretOn })), 530);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+    clearInterval(this.blink);
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  proofs = [
+    { figure: '50+', label: 'Businesses grown globally, across nine industries and four continents.' },
+    { figure: '₹12Cr+', label: 'Ad spend managed and measured through to qualified leads and revenue.' },
+    { figure: 'Google Partner', label: 'Certified on the platform where most high-intent search happens.' },
+    { figure: 'Paid, organic, AI', label: 'One team across ads, SEO, AEO/GEO, Maps and marketplaces.' },
+  ];
+
+  faqDefs = [
+    {
+      question: 'What does working with High Horse cost?',
+      answer: 'There is no fixed package or rate card. Cost depends on the size of the search opportunity, how much of the work is paid media versus organic and technical, and how much needs building before results are possible. We tell you the number, and the reasoning behind it, before you commit to anything.',
+    },
+    {
+      question: 'How long before we see results?',
+      answer: 'Paid search can produce qualified enquiries within weeks, because you are buying demand that already exists. Organic and AI visibility compound over months, not days. We say up front which of the two your opportunity depends on, so you are not waiting on a timeline nobody explained.',
+    },
+    {
+      question: 'What does the engagement actually look like?',
+      answer: 'You work with a team built around search strategy, execution and measurement, with direct senior involvement in understanding the business, setting priorities and reviewing results. One owner, direct communication, and reporting that connects search activity to leads, sales and revenue rather than to activity.',
+    },
+    {
+      question: 'Do you work with businesses in my industry?',
+      answer: 'We have run programmes across industrial manufacturing, B2B electronics, e-commerce, education, hospitality, consultancy and local services, in India, the Gulf and beyond. The category matters less than whether real search demand exists in it, which is the first thing we check.',
+    },
+    {
+      question: 'What if there is not much search demand for what we sell?',
+      answer: 'Then we say so. Before proposing any work, we determine whether meaningful search demand exists, where the strongest opportunity is, and whether High Horse is the right fit. If search is not where your growth will come from, that is a more useful answer than a campaign.',
+    },
+  ];
+
+  caseStudies = [
+    { ratio: '4/3', img: './assets/case-5mtd.jpg', name: '5 Minutes to Delhi', sector: 'E-commerce · Ready Meals', blurb: 'Seamless digital transformation across web and marketplace.' },
+    { ratio: '4/3', img: './assets/case-bawa.jpg', name: 'Bawa Polymers', sector: 'Industrial Manufacturing', blurb: "Boosting Bawa's online presence in the insulating varnish industry." },
+    { ratio: '1572/772', img: './assets/case-gurukul.jpg', name: 'Gurukul', sector: 'Education · Play School', blurb: "Building Gurukul's digital presence with SEO and clear brand storytelling." },
+    { ratio: '1572/772', img: './assets/case-easyaccess.jpg', name: 'Easy Access Management Consultancies', sector: 'Business Consultancy', blurb: 'Consistent lead generation for business setup in Dubai, UAE.' },
+    { ratio: '4/3', img: './assets/case-visioworld.jpg', name: 'Visioworld (Speedex)', sector: 'Consumer Electronics', blurb: 'Website and marketplace optimisation driving top search rankings.' },
+    { ratio: '1572/772', img: './assets/case-antharaaah.jpg', name: 'Antharaaah Nature Stay', sector: 'Hospitality', blurb: 'SEO-optimised websites to seamless booking funnels that drive conversions.' },
+    { ratio: '1572/772', img: './assets/case-fech.jpg', name: 'FECH Moving & Cleaning', sector: 'Local Services', blurb: 'Taking FECH to the top search results for moving and cleaning.' },
+    { ratio: '4/3', img: './assets/case-partyrack.jpg', name: 'Party Rack', sector: 'E-commerce · Party Supplies', blurb: 'Helped Party Rack start from scratch and go online.' },
+    { ratio: '4/3', img: './assets/case-setmi.jpg', name: 'Setmi India', sector: 'B2B Industrial Electronics', blurb: "Powering Setmi India's sales journey." },
+  ];
+
+  megaMenus = [
+    {
+      blurb: 'Led by Sankalp Suri, with direct senior involvement in strategy and results.',
+      columns: [{ title: 'About High Horse', items: [
+        { label: 'Company', href: '#founder' },
+        { label: 'Careers', href: './Contact.dc.html' },
+        { label: 'Partnership', href: './Contact.dc.html' },
+      ] }],
+      cta: { label: 'About High Horse', href: '#founder' },
+    },
+    {
+      blurb: 'Everything we offer, across finding demand, capturing it, and building the systems that convert it.',
+      columns: [
+        { title: 'Search Intelligence', items: [
+          { label: 'AEO / GEO', href: '#capabilities' },
+          { label: 'Voice SEO', href: '#capabilities' },
+          { label: 'SEO', href: '#capabilities' },
+          { label: 'Content Marketing', href: '#capabilities' },
+        ] },
+        { title: 'Performance Marketing', items: [
+          { label: 'Search Ads', href: '#capabilities' },
+          { label: 'Shopping Ads', href: '#capabilities' },
+          { label: 'PPC Ads', href: '#capabilities' },
+          { label: 'Visual Ads', href: '#capabilities' },
+          { label: 'Retargeting', href: '#capabilities' },
+        ] },
+        { title: 'Experience & Systems', items: [
+          { label: 'UI/UX', href: '#capabilities' },
+          { label: 'Website Development', href: '#capabilities' },
+          { label: 'Marketplace Optimisation', href: '#capabilities' },
+          { label: 'Workflow Automation', href: '#capabilities' },
+        ] },
+      ],
+      cta: { label: 'View Capabilities', href: '#capabilities' },
+    },
+    null,
+    {
+      blurb: 'Practical tools and writing for teams running their own search programmes.',
+      columns: [{ title: 'Resources', items: [
+        { label: 'Calculator', href: './Contact.dc.html' },
+        { label: 'Tutorials', href: './Contact.dc.html' },
+        { label: 'Guides', href: './Contact.dc.html' },
+        { label: 'Templates', href: './Contact.dc.html' },
+        { label: 'Insights', href: './Contact.dc.html' },
+        { label: 'Blog', href: './Contact.dc.html' },
+      ] }],
+      cta: { label: 'Talk to Us', href: './Contact.dc.html' },
+    },
+  ];
+
+  navLinks = [
+    { label: 'Who We Are', href: '#founder' },
+    { label: 'What We Do', href: '#capabilities' },
+    { label: 'Case Studies', href: '#case-studies' },
+    { label: 'Learn With Us', href: './Contact.dc.html' },
+  ];
+
+  footerNav = [
+    { label: 'How We Work', href: '#how-we-work' },
+    { label: 'Paid Search', href: '#capabilities' },
+    { label: 'Organic + AI Search', href: '#capabilities' },
+    { label: 'Case Studies', href: '#case-studies' },
+    { label: 'About', href: '#founder' },
+    { label: 'Contact', href: './Contact.dc.html' },
+  ];
+
+  heroSteps = [
+    { n: '1', title: 'Customer Search', sub: '"best crm for real estate"' },
+    { n: '2', title: 'Search Visibility', sub: 'Organic · Paid · Maps · AI answer' },
+    { n: '3', title: 'Website / Landing Experience', sub: 'Where the click lands' },
+    { n: '4', title: 'Qualified Lead', sub: 'Enquiry, call or form' },
+    { n: '5', title: 'Sale', sub: 'Lead becomes a customer' },
+    { n: '6', title: 'Revenue', sub: 'Measurable commercial result' },
+  ];
+
+  demandBarsRaw = [
+    { label: 'Demand available', w: '100%' },
+    { label: 'Demand captured', w: '64%' },
+    { label: 'Demand converted', w: '38%' },
+    { label: 'Demand measured', w: '22%' },
+  ];
+
+  leaksRaw = [
+    { n: '01', title: 'Visibility Leak', desc: 'You do not appear when valuable customers search.', signal: 'Signal: competitors rank for your highest-intent terms.' },
+    { n: '02', title: 'Spend Leak', desc: 'Budget is spent on searches that do not create qualified business.', signal: 'Signal: spend rising, qualified leads flat.' },
+    { n: '03', title: 'Conversion Leak', desc: 'People visit but do not enquire, call or buy.', signal: 'Signal: healthy traffic, low enquiries.' },
+    { n: '04', title: 'Follow-up Leak', desc: 'Search-generated leads are not handled quickly or consistently.', signal: 'Signal: slow response, inconsistent handling.' },
+    { n: '05', title: 'Measurement Leak', desc: 'Marketing activity cannot be connected clearly to sales and revenue.', signal: 'Signal: no clear line from spend to revenue.' },
+  ];
+
+  stepsRaw = [
+    { n: '01', title: 'Understand the Business', desc: 'Market, product, customers, competitors and economics.' },
+    { n: '02', title: 'Map Search Demand', desc: 'What people search, why they search and which searches matter commercially.' },
+    { n: '03', title: 'Find the Leaks', desc: 'Visibility, spend, conversion, follow-up and measurement.' },
+    { n: '04', title: 'Prioritise the Opportunity', desc: 'Focus on the actions with the strongest commercial potential.' },
+    { n: '05', title: 'Execute and Improve', desc: 'Paid, organic, local, AI search and conversion improvements.' },
+    { n: '06', title: 'Measure the Result', desc: 'Search → lead → qualified opportunity → sale → revenue.' },
+  ];
+
+  capabilities = [
+    { title: 'Paid Search', desc: 'Capture high-intent demand while reducing wasted spend.', points: ['Google Ads', 'Search-term analysis', 'Campaign efficiency', 'Shopping where relevant', 'Lead-quality optimisation'], note: null },
+    { title: 'Organic Search', desc: 'Build lasting visibility around the problems, products and services customers search for.', points: ['SEO strategy', 'Technical SEO', 'Search-led content', 'Local SEO', 'Google Business Profile'], note: null },
+    { title: 'AI Search', desc: 'Improve how the business is understood and surfaced across emerging answer engines.', points: ['AI visibility analysis', 'Answer-focused content', 'Entity and authority improvement', 'Citation monitoring'], note: 'AI citations and visibility are never guaranteed.' },
+    { title: 'Content Marketing and Engineering', desc: 'The material that earns organic rankings and gets cited in AI answers, built and structured to be found.', points: ['Search-led content strategy', 'Content built for SEO and AEO/GEO', 'Structured data and content architecture', 'Content distribution', 'Refreshing content that has stopped performing'], note: null },
+    { title: 'Conversion and Measurement', desc: 'Turn search traffic into qualified business and show what produced it.', points: ['Search-focused landing experiences', 'Conversion optimisation', 'Call, form and WhatsApp tracking', 'Qualified-lead tracking', 'Revenue attribution where possible'], note: null },
+  ];
+
+  outcomes = [
+    'Capture more customers already searching',
+    'Reduce wasted advertising spend',
+    'Convert more existing traffic',
+    'Improve qualified lead quality',
+    'Lower acquisition inefficiency',
+    'Understand what creates sales and revenue',
+  ];
+
+  outcomeChainRaw = ['Demand captured', 'Conversion improved', 'Waste reduced', 'Revenue measured'];
+
+  opportunityItems = [
+    'A competitor capturing valuable searches',
+    'A paid-search spending leak',
+    'A missing organic or local opportunity',
+    'A weak conversion path',
+    'A measurement gap',
+    'An underserved product, service or location',
+  ];
+
+  fitGood = ['Real search demand', 'Established or properly funded', 'Strong product or service economics', 'Serious marketing investment', 'Decision-maker access', 'Ability to handle additional demand', 'Willingness to measure real business results'];
+  fitBad = ['Looking for the cheapest SEO package', 'No clear marketing budget', 'Expecting guaranteed rankings or revenue', 'Wants every marketing service under one small retainer', 'Refuses tracking or sales-data access', 'Has little meaningful search demand', 'Cannot manage additional enquiries'];
+
+
+
+  founderPoints = ['Business context before campaigns', 'Honest recommendations', 'Clear ownership', 'Direct communication', 'Revenue over activity'];
+
+  aiLogos = [
+    { label: 'ChatGPT', src: './assets/logo-chatgpt.png' },
+    { label: 'Perplexity', src: './assets/logo-perplexity.webp' },
+    { label: 'Google', src: './assets/logo-google.webp' },
+    { label: 'Gemini', src: './assets/logo-gemini.webp' },
+    { label: 'Claude', src: './assets/logo-claude.png' },
+  ];
+
+  renderVals() {
+    const demandBars = this.demandBarsRaw.map(b => ({
+      label: b.label,
+      style: `height:100%;width:${b.w};background:#1A6AFF;border-radius:5px;`,
+    }));
+
+    const steps = this.stepsRaw.map((s, i) => {
+      const active = i === this.state.activeStep;
+      return {
+        ...s,
+        wrapStyle: `flex:1 1 220px;min-width:180px;padding:24px 20px;border-right:1px solid #E4E4E4;border-top:2px solid ${active ? '#1A6AFF' : 'transparent'};cursor:pointer;background:${active ? '#fff' : 'transparent'};transition:background 0.15s;`,
+        numStyle: `font:700 22px 'Montserrat',sans-serif;color:${active ? '#1A6AFF' : '#c8c8c4'};margin-bottom:14px;`,
+        onEnter: () => this.setState({ activeStep: i }),
+      };
+    });
+
+    const navLinks = this.navLinks.map((l, i) => ({ ...l, onEnter: () => this.setState({ activeMenu: i }) }));
+
+    const outcomeChain = this.outcomeChainRaw.map((label, i) => ({
+      label,
+      hasArrow: i < this.outcomeChainRaw.length - 1,
+    }));
+
+    return {
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      activeMenuData: this.state.activeMenu !== null ? this.megaMenus[this.state.activeMenu] : null,
+      clearActiveMenu: () => this.setState({ activeMenu: null }),
+      navLinks,
+      footerNav: this.footerNav,
+      heroSteps: this.heroSteps,
+      demandBars,
+      leaks: this.leaksRaw,
+      steps,
+      setActiveStep: (i) => this.setState({ activeStep: i }),
+      capabilities: this.capabilities,
+      outcomes: this.outcomes,
+      outcomeChain,
+      opportunityItems: this.opportunityItems,
+      fitGood: this.fitGood,
+      fitBad: this.fitBad,
+      founderPoints: this.founderPoints,
+      aiLogos: this.aiLogos,
+      wideNav: (this.state.vw ?? 1440) >= 1080,
+      caseStudies: this.caseStudies,
+      proofPoints: this.proofs,
+      leaksGridStyle: `display:grid;gap:1px;background:#E4E4E4;border:1px solid #E4E4E4;border-radius:5px;overflow:hidden;grid-template-columns:repeat(${(this.state.vw ?? 1440) >= 1180 ? 5 : (this.state.vw ?? 1440) >= 700 ? 1 : 1},1fr);`,
+      faqs: this.faqDefs.map((q, i) => {
+        const open = this.state.openFaq === i;
+        return {
+          question: q.question, answer: q.answer, open,
+          onClick: () => this.setState(s => ({ openFaq: s.openFaq === i ? null : i })),
+          iconStyle: `font:300 22px 'Poppins',sans-serif;color:#1A6AFF;line-height:1;flex-shrink:0;transition:transform 0.2s;transform:rotate(${open ? 45 : 0}deg);`,
+        };
+      }),
+      proofGridStyle: `display:grid;gap:1px;background:#EFEFEE;grid-template-columns:repeat(${(this.state.vw ?? 1440) >= 1000 ? 4 : (this.state.vw ?? 1440) >= 560 ? 2 : 1},1fr);`,
+      typedText: this.state.typed,
+      caretStyle: `display:inline-block;width:1.5px;height:16px;background:#1A6AFF;margin-left:2px;vertical-align:-2px;opacity:${this.state.caretOn ? 1 : 0};`,
+      engineTabs: this.engines.map((e, i) => {
+        const on = i === this.state.engine;
+        return {
+          label: e.label,
+          src: e.src,
+          onClick: () => this.setState({ engine: i }),
+          style: `display:flex;align-items:center;gap:6px;font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.03em;padding:6px 11px;border-radius:20px;cursor:pointer;white-space:nowrap;border:1px solid ${on ? '#1A6AFF' : '#E4E4E4'};color:${on ? '#101010' : '#8a8a86'};background:${on ? '#EAF1FF' : '#fff'};transition:all 0.15s;`,
+        };
+      }),
+      resultRows: [0, 1, 2].map(i => {
+        const you = i === 1;
+        return {
+          style: 'display:flex;gap:12px;align-items:center;padding:9px 0;' + (i < 2 ? 'border-bottom:1px solid #F5F5F4;' : ''),
+          barStyle: `height:8px;width:${[72, 60, 50][i]}%;background:${you ? '#1A6AFF' : '#E8E8E6'};border-radius:4px;`,
+          tag: you ? 'You' : 'Competitor',
+          tagStyle: `font:600 10px 'Montserrat',sans-serif;letter-spacing:0.05em;text-transform:uppercase;padding:4px 8px;border-radius:3px;flex-shrink:0;color:${you ? '#1A6AFF' : '#a0a09c'};background:${you ? '#EAF1FF' : '#F5F5F4'};`,
+        };
+      }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

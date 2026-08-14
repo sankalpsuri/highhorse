@@ -1,0 +1,485 @@
+/* ── Contact Page ───────────────────────────────────────────── */
+.page {
+  font-family: 'Poppins', sans-serif;
+  color: #101010;
+  background: #fafaf9;
+  min-height: 100vh;
+}
+
+.layout {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 64px 32px 96px;
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* ── Sidebar ───────────────────────────────────────────────── */
+.sidebar {
+  flex: 1 1 300px;
+  min-width: 280px;
+  max-width: 360px;
+}
+
+.sidebarLabel {
+  font: 600 12px 'Montserrat', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1a6aff;
+  margin-bottom: 16px;
+}
+
+.sidebarHeading {
+  font: 700 clamp(1.7rem, 2.6vw, 2.3rem)/1.2 'Montserrat', sans-serif;
+  margin: 0 0 18px;
+  text-wrap: pretty;
+}
+
+.sidebarText {
+  font: 400 15px/1.7 'Poppins', sans-serif;
+  color: #5c5c5c;
+  margin: 0 0 32px;
+  text-wrap: pretty;
+}
+
+.stepIndicator {
+  border-top: 1px solid #e4e4e4;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.stepRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.stepDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 11px 'Montserrat', sans-serif;
+  border: 1.5px solid #e4e4e4;
+  background: #fff;
+  color: #b4b4b0;
+}
+
+.stepDotActive {
+  border-color: #1a6aff;
+  color: #1a6aff;
+}
+
+.stepDotComplete {
+  border-color: #1a6aff;
+  background: #1a6aff;
+  color: #fff;
+}
+
+.stepLabel {
+  font: 400 13.5px 'Poppins', sans-serif;
+  color: #b4b4b0;
+}
+
+.stepLabelActive {
+  font-weight: 600;
+  color: #101010;
+}
+
+.stepLabelComplete {
+  color: #5c5c5c;
+}
+
+.emailFallback {
+  border-top: 1px solid #e4e4e4;
+  margin-top: 28px;
+  padding-top: 22px;
+  font: 400 13px/1.7 'Poppins', sans-serif;
+  color: #8a8a86;
+}
+
+.emailFallback a {
+  color: #1a6aff;
+  text-decoration: none;
+}
+
+/* ── Form Card ─────────────────────────────────────────────── */
+.formArea {
+  flex: 1 1 480px;
+  min-width: 320px;
+}
+
+.formCard {
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
+  box-shadow: 0 14px 34px rgba(16, 16, 16, 0.06);
+  overflow: hidden;
+}
+
+.progressTrack {
+  height: 3px;
+  background: #efefee;
+}
+
+.progressBar {
+  height: 3px;
+  background: #1a6aff;
+  transition: width 0.35s ease;
+}
+
+.formBody {
+  padding: 34px 34px 30px;
+}
+
+/* ── Step Header ───────────────────────────────────────────── */
+.stepHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.stepCounter {
+  font: 600 11px 'Montserrat', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a86;
+}
+
+.optionalNote {
+  font: 400 12px 'Poppins', sans-serif;
+  color: #b4b4b0;
+}
+
+.stepTitle {
+  font: 700 21px/1.35 'Montserrat', sans-serif;
+  margin: 0 0 6px;
+  text-wrap: pretty;
+}
+
+.stepSub {
+  font: 400 14px/1.6 'Poppins', sans-serif;
+  color: #5c5c5c;
+  margin: 0 0 26px;
+  text-wrap: pretty;
+}
+
+/* ── Goal Cards (Step 1) ───────────────────────────────────── */
+.goalGrid {
+  display: grid;
+  gap: 10px;
+}
+
+.goalCard {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  padding: 15px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s;
+  border: 1px solid #e4e4e4;
+  background: #fff;
+}
+
+.goalCardSelected {
+  border-color: #1a6aff;
+  background: #f5f8ff;
+}
+
+.goalCheckbox {
+  width: 19px;
+  height: 19px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 11px 'Montserrat', sans-serif;
+  color: #fff;
+  border: 1.5px solid #d8d8d4;
+  background: #fff;
+}
+
+.goalCheckboxSelected {
+  border-color: #1a6aff;
+  background: #1a6aff;
+}
+
+.goalLabel {
+  font: 600 14px 'Montserrat', sans-serif;
+  margin-bottom: 2px;
+}
+
+.goalDesc {
+  font: 400 12.5px/1.5 'Poppins', sans-serif;
+  color: #8a8a86;
+}
+
+/* ── Form Fields ───────────────────────────────────────────── */
+.fieldGrid {
+  display: grid;
+  gap: 18px;
+}
+
+.fieldLabel {
+  font: 600 12px 'Montserrat', sans-serif;
+  letter-spacing: 0.04em;
+  color: #5c5c5c;
+  margin-bottom: 7px;
+}
+
+.fieldLabelChip {
+  composes: fieldLabel;
+  margin-bottom: 9px;
+}
+
+.input {
+  width: 100%;
+  font: 400 14px 'Poppins', sans-serif;
+  padding: 13px 15px;
+  border: 1px solid #e4e4e4;
+  border-radius: 6px;
+  background: #fff;
+  color: #101010;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #1a6aff;
+}
+
+.input::placeholder {
+  color: #b4b4b0;
+}
+
+.inputError {
+  border-color: #c6392f;
+}
+
+.textarea {
+  composes: input;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.errorText {
+  font: 400 12px 'Poppins', sans-serif;
+  color: #c6392f;
+  margin-top: 6px;
+}
+
+.optionalTag {
+  color: #b4b4b0;
+  font-weight: 400;
+}
+
+/* ── Chips ─────────────────────────────────────────────────── */
+.chipRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font: 500 13px 'Poppins', sans-serif;
+  padding: 9px 15px;
+  border-radius: 22px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s;
+  border: 1px solid #e4e4e4;
+  background: #fff;
+  color: #5c5c5c;
+}
+
+.chipActive {
+  border-color: #1a6aff;
+  background: #eaf1ff;
+  color: #1a6aff;
+}
+
+/* ── Name Row ──────────────────────────────────────────────── */
+.nameRow {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.nameField {
+  flex: 1 1 180px;
+}
+
+/* ── Summary Card ──────────────────────────────────────────── */
+.summaryCard {
+  background: #fafaf9;
+  border: 1px solid #efefee;
+  border-radius: 7px;
+  padding: 16px 18px;
+}
+
+.summaryLabel {
+  font: 600 11px 'Montserrat', sans-serif;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #8a8a86;
+  margin-bottom: 10px;
+}
+
+.summaryRow {
+  display: flex;
+  gap: 14px;
+  padding: 5px 0;
+  font: 400 13px/1.5 'Poppins', sans-serif;
+}
+
+.summaryKey {
+  width: 112px;
+  flex-shrink: 0;
+  color: #8a8a86;
+}
+
+.summaryVal {
+  flex: 1;
+  color: #101010;
+}
+
+/* ── Done State ────────────────────────────────────────────── */
+.doneWrap {
+  text-align: center;
+  padding: 26px 0 14px;
+}
+
+.doneIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #eaf1ff;
+  color: #1a6aff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 22px 'Montserrat', sans-serif;
+  margin: 0 auto 20px;
+}
+
+.doneHeading {
+  font: 700 22px/1.3 'Montserrat', sans-serif;
+  margin: 0 0 12px;
+}
+
+.doneText {
+  font: 400 14.5px/1.7 'Poppins', sans-serif;
+  color: #5c5c5c;
+  margin: 0 auto 26px;
+  max-width: 400px;
+  text-wrap: pretty;
+}
+
+.doneCtas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.doneBtn {
+  font: 600 14px 'Montserrat', sans-serif;
+  background: #1a6aff;
+  color: #fff;
+  padding: 13px 24px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.doneBtn:hover {
+  background: #144fc0;
+  color: #fff;
+}
+
+.doneBtnSecondary {
+  font: 600 14px 'Montserrat', sans-serif;
+  color: #101010;
+  border: 1px solid #e4e4e4;
+  padding: 13px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.doneBtnSecondary:hover {
+  background: #f5f5f4;
+}
+
+/* ── Form Footer ───────────────────────────────────────────── */
+.formFooter {
+  border-top: 1px solid #efefee;
+  padding: 18px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #fff;
+}
+
+.backBtn {
+  font: 500 13.5px 'Poppins', sans-serif;
+  color: #8a8a86;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.backBtnHidden {
+  visibility: hidden;
+}
+
+.footerRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hint {
+  font: 400 12.5px 'Poppins', sans-serif;
+  color: #b4b4b0;
+}
+
+.nextBtn {
+  font: 600 14px 'Montserrat', sans-serif;
+  padding: 12px 26px;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s;
+  background: #1a6aff;
+  color: #fff;
+  border: none;
+}
+
+.nextBtnDisabled {
+  background: #c9d8f6;
+}
+
+.nextBtn:not(.nextBtnDisabled):hover {
+  background: #144fc0;
+}
+
+/* ── Scale step ────────────────────────────────────────────── */
+.scaleGrid {
+  display: grid;
+  gap: 24px;
+}

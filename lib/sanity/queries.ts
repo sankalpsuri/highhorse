@@ -115,3 +115,24 @@ export const faqsByPageQuery = groq`
     category
   }
 `
+
+// ── Homepage sections ─────────────────────────────────────────
+
+export const homeFeaturedCaseStudiesQuery = groq`
+  *[_type == "caseStudy" && featured == true] | order(publishedAt desc)[0...9]{
+    _id,
+    clientName,
+    "slug": slug.current,
+    industry,
+    summary,
+    coverImage
+  }
+`
+
+export const homeGeneralFaqsQuery = groq`
+  *[_type == "faq" && category == "general"] | order(order asc){
+    _id,
+    question,
+    answer
+  }
+`

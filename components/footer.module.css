@@ -1,0 +1,111 @@
+/* ── Footer ─────────────────────────────────────────────────── */
+.footer {
+  background: #0A0A0A;
+  color: #F5F5F4;
+}
+
+.footerInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 32px 40px;
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ── Brand Column ───────────────────────────────────────────── */
+.brand {
+  flex: 1 1 260px;
+  min-width: 220px;
+}
+
+.brandLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.brandLogoImg {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: invert(1) brightness(2);
+}
+
+.brandLogoText {
+  font: 800 15px 'Montserrat', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.tagline {
+  font: 400 14px 'Poppins', sans-serif;
+  color: #9a9a97;
+}
+
+.subtext {
+  font: 400 12px 'Poppins', sans-serif;
+  color: #6a6a67;
+  margin-top: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.badge {
+  width: 96px;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+/* ── Link Columns ───────────────────────────────────────────── */
+.col {
+  flex: 1 1 180px;
+  min-width: 160px;
+}
+
+.colTitle {
+  font: 600 12px 'Montserrat', sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6a6a67;
+  margin-bottom: 16px;
+}
+
+.colLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.colLink {
+  font: 400 14px 'Poppins', sans-serif;
+  color: #d4d4d1;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.colLink:hover {
+  color: #fff;
+}
+
+/* ── Bottom Bar ─────────────────────────────────────────────── */
+.bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 32px;
+  border-top: 1px solid #232323;
+  font: 400 12px 'Poppins', sans-serif;
+  color: #5a5a57;
+}
+
+.bottomLink {
+  color: #5a5a57;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.bottomLink:hover {
+  color: #9a9a97;
+}

@@ -65,6 +65,13 @@ export default defineType({
       type: 'array',
       of: [{type: 'reference', to: [{type: 'servicePage'}]}],
     }),
+    defineField({
+      name: 'featured',
+      title: 'Featured on homepage',
+      type: 'boolean',
+      description: 'Show this case study in the homepage grid (max 9 shown).',
+      initialValue: false,
+    }),
     defineField({name: 'publishedAt', title: 'Published at', type: 'datetime'}),
     defineField({name: 'seo', title: 'SEO', type: 'seo'}),
   ],
