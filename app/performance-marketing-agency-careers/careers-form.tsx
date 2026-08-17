@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback, useRef } from 'react'
+import { submitCareerApplication } from './actions'
 import styles from './careers.module.css'
 
 const COUNTRY_CODES = [
@@ -52,6 +53,8 @@ interface FormState {
   resume: File | null
   uniqueValue: string
   resumeError: string
+  submitError: string
+  submitting: boolean
   submitted: boolean
   errors: Record<string, boolean>
 }
@@ -66,6 +69,8 @@ const initial: FormState = {
   resume: null,
   uniqueValue: '',
   resumeError: '',
+  submitError: '',
+  submitting: false,
   submitted: false,
   errors: {},
 }
@@ -122,12 +127,39 @@ export function CareersForm() {
     return Object.keys(errors).length === 0
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validate()) return
 
-    // TODO: Wire up form submission here once the destination (email, ATS, or CRM) is decided.
-    // Form data: s.name, s.countryCode, s.phone, s.employmentType, s.experience, s.jobRole, s.resume, s.uniqueValue
-    setS((prev) => ({ ...prev, submitted: true }))
+    setS((prev) => ({ ...prev, submitting: true, submitError: '' }))
+
+    try {
+      const fd = new FormData()
+      fd.append('name', s.name)
+      fd.append('countryCode', s.countryCode)
+      fd.append('phone', s.phone)
+      fd.append('employmentType', s.employmentType)
+      fd.append('experience', s.experience)
+      fd.append('jobRole', s.jobRole)
+      fd.append('uniqueValue', s.uniqueValue)
+      if (s.resume) fd.append('resume', s.resume)
+
+      const result = await submitCareerApplication(fd)
+      if (!result.success) {
+        setS((prev) => ({
+          ...prev,
+          submitting: false,
+          submitError: result.error || 'Something went wrong. Please try again.',
+        }))
+        return
+      }
+      setS((prev) => ({ ...prev, submitting: false, submitted: true }))
+    } catch {
+      setS((prev) => ({
+        ...prev,
+        submitting: false,
+        submitError: 'Could not reach the server. Please check your connection and try again.',
+      }))
+    }
   }
 
   if (s.submitted) {
@@ -286,8 +318,17 @@ export function CareersForm() {
         />
       </div>
 
-      <button type="button" className={styles.submitBtn} onClick={handleSubmit}>
-        Submit Application
+      {s.submitError && (
+        <div className={styles.errorText}>{s.submitError}</div>
+      )}
+
+      <button
+        type="button"
+        className={styles.submitBtn}
+        onClick={handleSubmit}
+        disabled={s.submitting}
+      >
+        {s.submitting ? 'Submitting…' : 'Submit Application'}
       </button>
     </div>
   )

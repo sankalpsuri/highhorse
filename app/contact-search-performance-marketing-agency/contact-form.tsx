@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
+import { submitContactForm } from './actions'
 import styles from './contact.module.css'
 
 const stepDefs = [
@@ -38,6 +39,8 @@ interface FormState {
   email: string
   phone: string
   emailError: boolean
+  submitError: string
+  submitting: boolean
   done: boolean
 }
 
@@ -56,6 +59,8 @@ const initial: FormState = {
   email: '',
   phone: '',
   emailError: false,
+  submitError: '',
+  submitting: false,
   done: false,
 }
 
@@ -86,15 +91,44 @@ export function ContactForm() {
     return s.name.trim() !== '' && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s.email.trim())
   }
 
-  const next = () => {
+  const next = async () => {
     if (!canAdvance()) {
       if (s.step === 3) setS((prev) => ({ ...prev, emailError: true }))
       return
     }
     if (s.step === 3) {
-      // TODO: Wire up form submission here once the destination (email vs. CRM) is decided.
-      // The form data is in `s` — goals, company, website, offering, region, spend, timeline, outcome, name, role, email, phone.
-      setS((prev) => ({ ...prev, done: true }))
+      setS((prev) => ({ ...prev, submitting: true, submitError: '' }))
+      try {
+        const result = await submitContactForm({
+          goals: s.goals,
+          company: s.company,
+          website: s.website,
+          offering: s.offering,
+          region: s.region,
+          spend: s.spend,
+          timeline: s.timeline,
+          outcome: s.outcome,
+          name: s.name,
+          role: s.role,
+          email: s.email,
+          phone: s.phone,
+        })
+        if (!result.success) {
+          setS((prev) => ({
+            ...prev,
+            submitting: false,
+            submitError: result.error || 'Something went wrong. Please try again.',
+          }))
+          return
+        }
+        setS((prev) => ({ ...prev, submitting: false, done: true }))
+      } catch {
+        setS((prev) => ({
+          ...prev,
+          submitting: false,
+          submitError: 'Could not reach the server. Please check your connection and try again.',
+        }))
+      }
       return
     }
     setS((prev) => ({ ...prev, step: prev.step + 1 }))
@@ -386,17 +420,22 @@ export function ContactForm() {
                   type="button"
                   className={`${styles.backBtn} ${s.step === 0 ? styles.backBtnHidden : ''}`}
                   onClick={back}
+                  disabled={s.submitting}
                 >
                   Back
                 </button>
                 <div className={styles.footerRight}>
-                  {hint && <div className={styles.hint}>{hint}</div>}
+                  {s.submitError && (
+                    <div className={styles.errorText}>{s.submitError}</div>
+                  )}
+                  {hint && !s.submitError && <div className={styles.hint}>{hint}</div>}
                   <button
                     type="button"
-                    className={`${styles.nextBtn} ${!ok ? styles.nextBtnDisabled : ''}`}
+                    className={`${styles.nextBtn} ${!ok || s.submitting ? styles.nextBtnDisabled : ''}`}
                     onClick={next}
+                    disabled={s.submitting}
                   >
-                    {s.step === 3 ? 'Send it' : 'Continue'}
+                    {s.submitting ? 'Sending…' : s.step === 3 ? 'Send it' : 'Continue'}
                   </button>
                 </div>
               </div>
