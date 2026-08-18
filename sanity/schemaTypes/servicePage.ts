@@ -1,5 +1,5 @@
 import {defineType, defineField} from 'sanity'
- 
+
 export default defineType({
   name: 'servicePage',
   title: 'Service Page',
@@ -26,8 +26,6 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
-    defineField({name: 'heroHeadline', title: 'Hero headline', type: 'string'}),
-    defineField({name: 'heroSubheadline', title: 'Hero subheadline', type: 'text', rows: 2}),
     defineField({
       name: 'summary',
       title: 'Summary',
@@ -36,34 +34,17 @@ export default defineType({
       description: 'Short description used in nav previews and cards.',
     }),
     defineField({
-      name: 'processSteps',
-      title: 'Process steps',
+      name: 'pageBuilder',
+      title: 'Page Builder',
       type: 'array',
       of: [
-        {
-          type: 'object',
-          fields: [
-            {name: 'stepTitle', title: 'Step title', type: 'string'},
-            {name: 'stepDescription', title: 'Step description', type: 'text', rows: 2},
-          ],
-        },
+        {type: 'heroSection'},
+        {type: 'textImageSection'},
+        {type: 'cardGridSection'},
+        {type: 'ctaSection'},
+        {type: 'statsSection'},
       ],
     }),
-    defineField({
-      name: 'resultsStats',
-      title: 'Results / stats',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {name: 'value', title: 'Value', type: 'string', description: 'e.g. "38%"'},
-            {name: 'label', title: 'Label', type: 'string', description: 'e.g. "avg. increase in organic traffic"'},
-          ],
-        },
-      ],
-    }),
-    defineField({name: 'body', title: 'Full description', type: 'blockContent'}),
     defineField({
       name: 'relatedCaseStudies',
       title: 'Related case studies',
@@ -76,7 +57,6 @@ export default defineType({
       type: 'array',
       of: [{type: 'reference', to: [{type: 'faq'}]}],
     }),
-    defineField({name: 'ctaText', title: 'CTA button text', type: 'string', initialValue: 'Get in touch'}),
     defineField({name: 'seo', title: 'SEO', type: 'seo'}),
   ],
   preview: {

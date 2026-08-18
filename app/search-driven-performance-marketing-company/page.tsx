@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
-import { existsSync, readFileSync, readdirSync } from 'fs'
+import { existsSync, readdirSync } from 'fs'
 import { join, extname } from 'path'
 import styles from './company.module.css'
 
@@ -14,99 +15,84 @@ export const metadata: Metadata = {
  * ASSET CONFIG
  *
  * Every icon, banner, and logo slot on this page is driven by this
- * single object. To swap an asset, change the filename here —
+ * single object. To swap an asset, change the path string here —
  * don't edit the component JSX.
  *
- * Filenames are relative to  assets/  (project root).
+ * Paths are relative to public/ (served at the root URL).
+ * Drop files into  public/assets/  and reference as  /assets/filename.
  * If a referenced file doesn't exist yet, a placeholder box renders
  * instead of a broken image.
  * ────────────────────────────────────────────────────────────────────── */
 const ASSETS = {
   // Section 2 — Mission / Vision / Aim icons
-  missionIcon: 'mission-icon.svg',
-  visionIcon: 'vision-icon.svg',
-  aimIcon: 'aim-icon.svg',
+  missionIcon: '/assets/mission-icon.svg',
+  visionIcon: '/assets/vision-icon.svg',
+  aimIcon: '/assets/aim-icon.svg',
 
   // Section 5 — What We Do cards
-  searchIntelIcon: 'search-intel-icon.svg',
-  performanceIcon: 'performance-icon.svg',
-  experienceIcon: 'experience-icon.svg',
+  searchIntelIcon: '/assets/search-intel-icon.svg',
+  performanceIcon: '/assets/performance-icon.svg',
+  experienceIcon: '/assets/experience-icon.svg',
 
   // Section 4 — Our Story banner
-  storyBanner: 'story-banner.jpg',
+  storyBanner: '/assets/story-banner.jpg',
 
   // Section 6 — Thinking banner
-  thinkingBanner: 'thinking-banner.jpg',
+  thinkingBanner: '/assets/thinking-banner.jpg',
 
   // Section 7 — Founder banner
-  founderBanner: 'founder-banner.jpg',
+  founderBanner: '/assets/founder-banner.jpg',
 
   // Section 8 — Industry card images
-  industryFinance: 'industry-finance.jpg',
-  industryEcommerce: 'industry-ecommerce.jpg',
-  industryHealthcare: 'industry-healthcare.jpg',
-  industryEducation: 'industry-education.jpg',
-  industryTravel: 'industry-travel.jpg',
-  industryLogistics: 'industry-logistics.jpg',
-  industryRealEstate: 'industry-real-estate.jpg',
-  industrySaas: 'industry-saas.jpg',
+  industryFinance: '/assets/industry-finance.jpg',
+  industryEcommerce: '/assets/industry-ecommerce.jpg',
+  industryHealthcare: '/assets/industry-healthcare.jpg',
+  industryEducation: '/assets/industry-education.jpg',
+  industryTravel: '/assets/industry-travel.jpg',
+  industryLogistics: '/assets/industry-logistics.jpg',
+  industryRealEstate: '/assets/industry-real-estate.jpg',
+  industrySaas: '/assets/industry-saas.jpg',
 }
 
-/* ── Asset Helpers ───────────────────────────────────────────────────── */
+/* ── Helpers ──────────────────────────────────────────────────────────── */
 
-const ASSETS_DIR = join(process.cwd(), 'assets')
-const CLIENT_LOGOS_DIR = join(ASSETS_DIR, 'client-logos')
+const IMAGE_EXTS = new Set(['.svg', '.png', '.jpg', '.jpeg', '.webp'])
 
-const MIME_TYPES: Record<string, string> = {
-  '.svg': 'image/svg+xml',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.webp': 'image/webp',
+function fileExists(src: string): boolean {
+  return existsSync(join(process.cwd(), 'public', src))
 }
 
-function assetDataUri(filename: string): string | null {
-  const abs = join(ASSETS_DIR, filename)
-  if (!existsSync(abs)) return null
-  const ext = extname(abs).toLowerCase()
-  const mime = MIME_TYPES[ext]
-  if (!mime) return null
-  const data = readFileSync(abs)
-  return `data:${mime};base64,${data.toString('base64')}`
-}
-
-function getClientLogos(): { name: string; dataUri: string }[] {
-  if (!existsSync(CLIENT_LOGOS_DIR)) return []
-  return readdirSync(CLIENT_LOGOS_DIR)
-    .filter((f) => Object.keys(MIME_TYPES).includes(extname(f).toLowerCase()))
+function getClientLogos(): { name: string; src: string }[] {
+  const dir = join(process.cwd(), 'public', 'assets', 'client-logos')
+  if (!existsSync(dir)) return []
+  return readdirSync(dir)
+    .filter((f) => IMAGE_EXTS.has(extname(f).toLowerCase()))
     .sort()
-    .map((f) => {
-      const abs = join(CLIENT_LOGOS_DIR, f)
-      const ext = extname(f).toLowerCase()
-      const mime = MIME_TYPES[ext]!
-      const data = readFileSync(abs)
-      const name = f.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ')
-      return { name, dataUri: `data:${mime};base64,${data.toString('base64')}` }
-    })
+    .map((f) => ({
+      name: f.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+      src: `/assets/client-logos/${f}`,
+    }))
 }
 
 /* ── Components ──────────────────────────────────────────────────────── */
 
 function AssetImage({
-  filename,
+  src,
   alt,
   slot,
+  width,
+  height,
   className,
 }: {
-  filename: string
+  src: string
   alt: string
   slot: string
+  width: number
+  height: number
   className?: string
 }) {
-  const dataUri = assetDataUri(filename)
-  if (dataUri) {
-    /* eslint-disable-next-line @next/next/no-img-element */
-    return <img src={dataUri} alt={alt} className={`${styles.assetImg} ${className ?? ''}`} />
+  if (fileExists(src)) {
+    return <Image src={src} alt={alt} width={width} height={height} className={className} />
   }
   return (
     <div className={`${styles.placeholder} ${className ?? ''}`}>
@@ -115,13 +101,11 @@ function AssetImage({
   )
 }
 
-function BannerImage({ filename, alt, slot }: { filename: string; alt: string; slot: string }) {
-  const dataUri = assetDataUri(filename)
-  if (dataUri) {
+function BannerImage({ src, alt, slot }: { src: string; alt: string; slot: string }) {
+  if (fileExists(src)) {
     return (
       <div className={styles.bannerWrap}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={dataUri} alt={alt} className={styles.bannerImg} />
+        <Image src={src} alt={alt} fill className={styles.bannerImg} />
       </div>
     )
   }
@@ -162,7 +146,7 @@ const missionCards = [
     icon: ASSETS.missionIcon,
     slot: 'missionIcon',
     title: 'Our Mission',
-    body: 'Our mission is to help brands grow through smarter visibility, better systems, and performance-driven execution. We aim to simplify digital growth for businesses by combining search, AI, advertising, and automation into strategies that produce measurable results. We don’t believe businesses should waste time guessing what works. Our focus is on building reliable growth systems that help brands scale with clarity, consistency, and confidence.',
+    body: 'Our mission is to help brands grow through smarter visibility, better systems, and performance-driven execution. We aim to simplify digital growth for businesses by combining search, AI, advertising, and automation into strategies that produce measurable results. We don\'t believe businesses should waste time guessing what works. Our focus is on building reliable growth systems that help brands scale with clarity, consistency, and confidence.',
   },
   {
     icon: ASSETS.visionIcon,
@@ -222,11 +206,11 @@ const industries = [
 const whyBullets = [
   'We measure success by revenue, not by rankings or impressions.',
   'We combine SEO, paid media, AI visibility, websites, and automation into one connected system.',
-  'We don’t outsource — every deliverable is produced by our in-house team.',
+  'We don\'t outsource — every deliverable is produced by our in-house team.',
   'We start with data and search intelligence, not assumptions.',
   'We build for compounding returns — systems that get stronger over time, not campaigns that expire.',
   'We work as an extension of your team, not as an outside vendor.',
-  'We are transparent about what’s working, what isn’t, and where the opportunity is.',
+  'We are transparent about what\'s working, what isn\'t, and where the opportunity is.',
   'We prioritize fewer clients and deeper partnerships over volume.',
   'We invest in understanding your business, your customers, and your competitive landscape before we build anything.',
   'We are a certified Google Partner with hands-on experience across India and the GCC.',
@@ -268,9 +252,11 @@ export default function CompanyPage() {
             <div key={c.title} className={styles.mvaCard}>
               <div className={styles.mvaIconWrap}>
                 <AssetImage
-                  filename={c.icon}
+                  src={c.icon}
                   alt={c.title}
                   slot={c.slot}
+                  width={28}
+                  height={28}
                   className={styles.mvaIconImg}
                 />
               </div>
@@ -290,14 +276,24 @@ export default function CompanyPage() {
               <div className={styles.marqueeTrack}>
                 {clientLogos.map((logo, i) => (
                   <div key={i} className={styles.marqueeLogo}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={logo.dataUri} alt={logo.name} className={styles.marqueeLogoImg} />
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      width={140}
+                      height={48}
+                      className={styles.marqueeLogoImg}
+                    />
                   </div>
                 ))}
                 {clientLogos.map((logo, i) => (
                   <div key={`dup-${i}`} className={styles.marqueeLogo} aria-hidden="true">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={logo.dataUri} alt="" className={styles.marqueeLogoImg} />
+                    <Image
+                      src={logo.src}
+                      alt=""
+                      width={140}
+                      height={48}
+                      className={styles.marqueeLogoImg}
+                    />
                   </div>
                 ))}
               </div>
@@ -305,7 +301,7 @@ export default function CompanyPage() {
           ) : (
             <div className={styles.logoEmpty}>
               <span className={styles.placeholderLabel}>
-                Drop client logo files into assets/client-logos/
+                Drop client logo files into public/assets/client-logos/
               </span>
             </div>
           )}
@@ -343,7 +339,7 @@ export default function CompanyPage() {
             </p>
           </div>
           <div className={styles.twoColMedia}>
-            <BannerImage filename={ASSETS.storyBanner} alt="Our story" slot="storyBanner" />
+            <BannerImage src={ASSETS.storyBanner} alt="Our story" slot="storyBanner" />
           </div>
         </div>
       </section>
@@ -361,9 +357,11 @@ export default function CompanyPage() {
               <div key={c.title} className={styles.mvaCard}>
                 <div className={styles.mvaIconWrap}>
                   <AssetImage
-                    filename={c.icon}
+                    src={c.icon}
                     alt={c.title}
                     slot={c.slot}
+                    width={28}
+                    height={28}
                     className={styles.mvaIconImg}
                   />
                 </div>
@@ -380,7 +378,7 @@ export default function CompanyPage() {
         <div className={styles.twoCol}>
           <div className={styles.twoColMedia}>
             <BannerImage
-              filename={ASSETS.thinkingBanner}
+              src={ASSETS.thinkingBanner}
               alt="The thinking behind every successful brand"
               slot="thinkingBanner"
             />
@@ -445,7 +443,7 @@ export default function CompanyPage() {
               </div>
             </div>
             <div className={styles.twoColMedia}>
-              <BannerImage filename={ASSETS.founderBanner} alt="Sankalp Suri" slot="founderBanner" />
+              <BannerImage src={ASSETS.founderBanner} alt="Sankalp Suri" slot="founderBanner" />
             </div>
           </div>
         </div>
@@ -463,9 +461,11 @@ export default function CompanyPage() {
             <div key={ind.title} className={styles.industryCard}>
               <div className={styles.industryImgWrap}>
                 <AssetImage
-                  filename={ind.img}
+                  src={ind.img}
                   alt={ind.title}
                   slot={ind.slot}
+                  width={400}
+                  height={200}
                   className={styles.industryImg}
                 />
               </div>

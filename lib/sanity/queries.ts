@@ -26,15 +26,51 @@ export const servicePageQuery = groq`
     title,
     "slug": slug.current,
     section,
-    heroHeadline,
-    heroSubheadline,
     summary,
-    processSteps[]{ stepTitle, stepDescription },
-    resultsStats[]{ value, label },
-    body,
-    relatedCaseStudies[]->{ clientName, "slug": slug.current, industry, summary, coverImage },
-    relatedFaqs[]->{ question, answer, order },
-    ctaText,
+    pageBuilder[]{
+      _type,
+      _key,
+      _type == "heroSection" => {
+        badgeText,
+        headline,
+        subheadline,
+        ctaText,
+        ctaLink,
+        heroImage
+      },
+      _type == "textImageSection" => {
+        heading,
+        bodyText,
+        bullets,
+        closingText,
+        image,
+        imagePosition
+      },
+      _type == "cardGridSection" => {
+        heading,
+        subtext,
+        cards[]{
+          _key,
+          icon,
+          title,
+          description,
+          bullets
+        }
+      },
+      _type == "ctaSection" => {
+        heading,
+        bodyText,
+        ctaText,
+        ctaLink
+      },
+      _type == "statsSection" => {
+        heading,
+        bodyText,
+        stats[]{ _key, value, label }
+      }
+    },
+    relatedCaseStudies[]->{ clientName, "slug": slug.current, industry, summary, coverImage, results[]{ value, label } },
+    relatedFaqs[]->{ _id, question, answer, order },
     seo
   }
 `
@@ -69,7 +105,7 @@ export const industryPageQuery = groq`
     challenges[]{ challengeTitle, challengeDescription },
     body,
     relatedServices[]->{ title, "slug": slug.current, summary },
-    relatedCaseStudies[]->{ clientName, "slug": slug.current, industry, summary, coverImage },
+    relatedCaseStudies[]->{ clientName, "slug": slug.current, industry, summary, coverImage, results[]{ value, label } },
     ctaText,
     seo
   }

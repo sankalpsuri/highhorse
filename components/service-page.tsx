@@ -1,167 +1,155 @@
 import Link from 'next/link'
 import { PortableTextBody } from '@/components/portable-text-body'
+import { HeroSection } from '@/components/sections/hero-section'
+import { TextImageSection } from '@/components/sections/text-image-section'
+import { CardGridSection } from '@/components/sections/card-grid-section'
+import { CtaSection } from '@/components/sections/cta-section'
+import { StatsSection } from '@/components/sections/stats-section'
+import { FaqAccordion } from '@/components/faq-accordion'
 
 interface ServicePageProps {
   data: {
+    _id: string
     title: string
-    heroHeadline?: string
-    heroSubheadline?: string
     summary?: string
-    processSteps?: { stepTitle: string; stepDescription: string }[]
-    resultsStats?: { value: string; label: string }[]
-    body?: any[]
+    pageBuilder?: any[]
     relatedCaseStudies?: {
       clientName: string
       slug: string
       industry?: string
       summary?: string
+      results?: { value: string; label: string }[]
     }[]
-    relatedFaqs?: { question: string; answer: any[]; order?: number }[]
-    ctaText?: string
+    relatedFaqs?: { _id: string; question: string; answer: any; order?: number }[]
+  }
+}
+
+function PageBuilderSection({ block }: { block: any }) {
+  switch (block._type) {
+    case 'heroSection':
+      return <HeroSection {...block} />
+    case 'textImageSection':
+      return <TextImageSection {...block} />
+    case 'cardGridSection':
+      return <CardGridSection {...block} />
+    case 'ctaSection':
+      return <CtaSection {...block} />
+    case 'statsSection':
+      return <StatsSection {...block} />
+    default:
+      return null
   }
 }
 
 export function ServicePage({ data }: ServicePageProps) {
   return (
-    <article className="mx-auto max-w-4xl px-6 py-16">
-      {/* Hero */}
-      <header className="mb-16">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-zinc-500">
-          {data.title}
-        </p>
-        {data.heroHeadline && (
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
-            {data.heroHeadline}
-          </h1>
-        )}
-        {data.heroSubheadline && (
-          <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-            {data.heroSubheadline}
-          </p>
-        )}
-      </header>
+    <article>
+      {data.pageBuilder?.map((block) => (
+        <PageBuilderSection key={block._key} block={block} />
+      ))}
 
-      {/* Summary */}
-      {data.summary && (
-        <section className="mb-12">
-          <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
-            {data.summary}
-          </p>
-        </section>
-      )}
-
-      {/* Results stats */}
-      {data.resultsStats && data.resultsStats.length > 0 && (
-        <section className="mb-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {data.resultsStats.map((stat, i) => (
-            <div
-              key={i}
-              className="rounded-lg border border-zinc-200 p-6 dark:border-zinc-800"
-            >
-              <p className="text-3xl font-bold text-zinc-900 dark:text-zinc-50">
-                {stat.value}
-              </p>
-              <p className="mt-1 text-sm text-zinc-500">{stat.label}</p>
-            </div>
-          ))}
-        </section>
-      )}
-
-      {/* Process steps */}
-      {data.processSteps && data.processSteps.length > 0 && (
-        <section className="mb-16">
-          <h2 className="mb-8 text-2xl font-bold text-zinc-900 dark:text-zinc-50">
-            Our process
-          </h2>
-          <ol className="space-y-6">
-            {data.processSteps.map((step, i) => (
-              <li key={i} className="flex gap-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-sm font-bold text-white dark:bg-zinc-100 dark:text-zinc-900">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">
-                    {step.stepTitle}
-                  </h3>
-                  <p className="mt-1 text-zinc-600 dark:text-zinc-400">
-                    {step.stepDescription}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
-
-      {/* Body */}
-      {data.body && (
-        <section className="mb-16">
-          <PortableTextBody value={data.body} />
-        </section>
-      )}
-
-      {/* Related case studies */}
       {data.relatedCaseStudies && data.relatedCaseStudies.length > 0 && (
-        <section className="mb-16">
-          <h2 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-zinc-50">
-            Related case studies
-          </h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {data.relatedCaseStudies.map((cs) => (
-              <Link
-                key={cs.slug}
-                href={`/${cs.slug}`}
-                className="block rounded-lg border border-zinc-200 p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
-              >
-                <p className="font-semibold text-zinc-900 dark:text-zinc-50">
-                  {cs.clientName}
-                </p>
-                {cs.industry && (
-                  <p className="mt-1 text-xs uppercase tracking-wider text-zinc-500">
-                    {cs.industry}
+        <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
+          <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+            <h2 style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 700,
+              fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+              lineHeight: 1.2,
+              margin: '0 0 16px',
+              color: '#111111',
+            }}>
+              How Our Strategies Turned Search Demand Into Revenue
+            </h2>
+            <p style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 16,
+              lineHeight: 1.7,
+              color: '#5c5c5c',
+              maxWidth: 680,
+              margin: '0 0 48px',
+            }}>
+              SEO strategies convert search demand into measurable revenue by attracting high-intent traffic, improving conversions, and delivering consistent business growth.
+            </p>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+              gap: 24,
+            }}>
+              {data.relatedCaseStudies.map((cs) => (
+                <Link
+                  key={cs.slug}
+                  href={`/${cs.slug}`}
+                  style={{
+                    display: 'block',
+                    background: '#fff',
+                    border: '1px solid #E4E4E4',
+                    borderRadius: 6,
+                    padding: '28px 24px',
+                    textDecoration: 'none',
+                    color: 'inherit',
+                  }}
+                >
+                  <p style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 17,
+                    color: '#111111',
+                    margin: '0 0 16px',
+                  }}>
+                    {cs.clientName}
                   </p>
-                )}
-                {cs.summary && (
-                  <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                    {cs.summary}
-                  </p>
-                )}
-              </Link>
-            ))}
+                  {cs.results && cs.results.length > 0 && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                      {cs.results.slice(0, 3).map((r, i) => (
+                        <div key={i}>
+                          <span style={{
+                            fontFamily: "'Montserrat', sans-serif",
+                            fontWeight: 800,
+                            fontSize: 22,
+                            color: '#111111',
+                          }}>
+                            {r.value}
+                          </span>
+                          <span style={{
+                            fontFamily: "'Poppins', sans-serif",
+                            fontSize: 13,
+                            color: '#5c5c5c',
+                            marginLeft: 8,
+                          }}>
+                            {r.label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      {/* FAQs */}
       {data.relatedFaqs && data.relatedFaqs.length > 0 && (
-        <section className="mb-16">
-          <h2 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-zinc-50">
-            Frequently asked questions
-          </h2>
-          <dl className="space-y-6">
-            {data.relatedFaqs.map((faq, i) => (
-              <div key={i}>
-                <dt className="font-semibold text-zinc-900 dark:text-zinc-50">
-                  {faq.question}
-                </dt>
-                <dd className="mt-2 text-zinc-600 dark:text-zinc-400">
-                  <PortableTextBody value={faq.answer} />
-                </dd>
-              </div>
-            ))}
-          </dl>
+        <section style={{
+          background: '#F5F5F4',
+          borderTop: '1px solid #E4E4E4',
+        }}>
+          <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+            <h2 style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 700,
+              fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+              lineHeight: 1.2,
+              margin: '0 0 32px',
+              color: '#111111',
+            }}>
+              Frequently asked questions
+            </h2>
+            <FaqAccordion faqs={data.relatedFaqs} />
+          </div>
         </section>
       )}
-
-      {/* CTA */}
-      <section className="text-center">
-        <Link
-          href="/contact"
-          className="inline-block rounded-full bg-zinc-900 px-8 py-3 font-semibold text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
-        >
-          {data.ctaText || 'Get in touch'}
-        </Link>
-      </section>
     </article>
   )
 }

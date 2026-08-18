@@ -8,12 +8,22 @@ import servicePage from './servicePage'
 import caseStudy from './caseStudy'
 import faq from './faq'
 import industryPage from './industryPage'
+import heroSection from './heroSection'
+import textImageSection from './textImageSection'
+import cardGridSection from './cardGridSection'
+import ctaSection from './ctaSection'
+import statsSection from './statsSection'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
     // reusable objects
     blockContent,
     seo,
+    heroSection,
+    textImageSection,
+    cardGridSection,
+    ctaSection,
+    statsSection,
     // documents
     author,
     blogPost,
