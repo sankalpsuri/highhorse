@@ -1064,6 +1064,7 @@
 
 .faqQuestionText {
   font: 600 16px/1.45 'Montserrat', sans-serif;
+  color: #111111;
   text-wrap: pretty;
 }
 

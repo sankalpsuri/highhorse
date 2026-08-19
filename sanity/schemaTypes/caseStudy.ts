@@ -16,6 +16,14 @@ export default defineType({
     defineField({name: 'logo', title: 'Client logo', type: 'image'}),
     defineField({name: 'coverImage', title: 'Cover image', type: 'image', options: {hotspot: true}}),
     defineField({
+      name: 'resultImages',
+      title: 'Result images',
+      type: 'array',
+      of: [{type: 'image', options: {hotspot: true}}],
+      validation: (Rule) => Rule.max(3),
+      description: 'Up to 3 proof screenshots (e.g. SERP rankings, analytics).',
+    }),
+    defineField({
       name: 'industry',
       title: 'Industry',
       type: 'string',

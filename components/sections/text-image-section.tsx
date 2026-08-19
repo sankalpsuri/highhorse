@@ -24,20 +24,15 @@ export function TextImageSection({ heading, bodyText, bullets, closingText, imag
   const bulletsBlock = bullets && bullets.length > 0 && (
     <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0' }}>
       {bullets.map((bullet, i) => (
-        <li key={i} style={{ display: 'flex', gap: 12, alignItems: 'baseline', marginBottom: 10 }}>
-          <span style={{
-            width: 5,
-            height: 5,
-            background: '#1A6AFF',
-            flexShrink: 0,
-            marginTop: 7,
-            display: 'inline-block',
-          }} />
+        <li key={i} style={{
+          padding: '12px 0',
+          borderBottom: '1px solid #E4E4E4',
+        }}>
           <span style={{
             fontFamily: "'Poppins', sans-serif",
             fontSize: 15,
             lineHeight: 1.6,
-            color: '#8a8a86',
+            color: '#5c5c5c',
           }}>
             {bullet}
           </span>

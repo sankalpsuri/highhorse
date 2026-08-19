@@ -8,6 +8,20 @@ export default defineType({
     defineField({name: 'heading', title: 'Heading', type: 'string'}),
     defineField({name: 'subtext', title: 'Subtext', type: 'text', rows: 3}),
     defineField({
+      name: 'style',
+      title: 'Style',
+      type: 'string',
+      options: {list: [{title: 'Default', value: 'default'}, {title: 'Dashed border', value: 'dashed'}]},
+      initialValue: 'default',
+    }),
+    defineField({
+      name: 'background',
+      title: 'Background',
+      type: 'string',
+      options: {list: [{title: 'Default', value: 'default'}, {title: 'Cream', value: 'cream'}]},
+      initialValue: 'default',
+    }),
+    defineField({
       name: 'cards',
       title: 'Cards',
       type: 'array',
@@ -18,6 +32,19 @@ export default defineType({
             defineField({name: 'icon', title: 'Icon', type: 'image', options: {hotspot: true}}),
             defineField({name: 'title', title: 'Title', type: 'string'}),
             defineField({name: 'description', title: 'Description', type: 'text', rows: 3}),
+            defineField({
+              name: 'badgeColor',
+              title: 'Badge color',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Mint', value: 'mint'},
+                  {title: 'Peach', value: 'peach'},
+                  {title: 'Lavender', value: 'lavender'},
+                  {title: 'Gray', value: 'gray'},
+                ],
+              },
+            }),
             defineField({
               name: 'bullets',
               title: 'Bullet points',

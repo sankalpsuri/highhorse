@@ -8,6 +8,13 @@ export default defineType({
     defineField({name: 'heading', title: 'Heading', type: 'string'}),
     defineField({name: 'bodyText', title: 'Body text', type: 'text', rows: 3}),
     defineField({
+      name: 'layout',
+      title: 'Layout',
+      type: 'string',
+      options: {list: [{title: 'Grid', value: 'grid'}, {title: 'Scattered', value: 'scattered'}]},
+      initialValue: 'grid',
+    }),
+    defineField({
       name: 'stats',
       title: 'Stats',
       type: 'array',

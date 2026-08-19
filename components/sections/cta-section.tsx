@@ -6,11 +6,14 @@ interface CtaSectionProps {
   bodyText?: any[]
   ctaText?: string
   ctaLink?: string
+  variant?: string
 }
 
-export function CtaSection({ heading, bodyText, ctaText, ctaLink }: CtaSectionProps) {
+export function CtaSection({ heading, bodyText, ctaText, ctaLink, variant }: CtaSectionProps) {
+  const bg = variant === 'tan' ? '#FAF3EB' : '#F5F5F4'
+
   return (
-    <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
+    <section style={{ background: bg, borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
         {heading && (
           <h2 style={{

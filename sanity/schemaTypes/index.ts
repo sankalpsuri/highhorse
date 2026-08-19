@@ -13,6 +13,9 @@ import textImageSection from './textImageSection'
 import cardGridSection from './cardGridSection'
 import ctaSection from './ctaSection'
 import statsSection from './statsSection'
+import processStepsSection from './processStepsSection'
+import imageGallerySection from './imageGallerySection'
+import clientProofSection from './clientProofSection'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
@@ -24,6 +27,9 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     cardGridSection,
     ctaSection,
     statsSection,
+    processStepsSection,
+    imageGallerySection,
+    clientProofSection,
     // documents
     author,
     blogPost,

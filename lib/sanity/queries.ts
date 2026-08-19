@@ -27,6 +27,7 @@ export const servicePageQuery = groq`
     "slug": slug.current,
     section,
     summary,
+    accentStyle,
     pageBuilder[]{
       _type,
       _key,
@@ -36,24 +37,27 @@ export const servicePageQuery = groq`
         subheadline,
         ctaText,
         ctaLink,
-        heroImage
+        heroImage{ ..., asset-> }
       },
       _type == "textImageSection" => {
         heading,
         bodyText,
         bullets,
         closingText,
-        image,
+        image{ ..., asset-> },
         imagePosition
       },
       _type == "cardGridSection" => {
         heading,
         subtext,
+        style,
+        background,
         cards[]{
           _key,
-          icon,
+          icon{ ..., asset-> },
           title,
           description,
+          badgeColor,
           bullets
         }
       },
@@ -61,15 +65,31 @@ export const servicePageQuery = groq`
         heading,
         bodyText,
         ctaText,
-        ctaLink
+        ctaLink,
+        variant
       },
       _type == "statsSection" => {
         heading,
         bodyText,
+        layout,
         stats[]{ _key, value, label }
+      },
+      _type == "processStepsSection" => {
+        heading,
+        subtext,
+        steps[]{ _key, stepTitle, stepDescription }
+      },
+      _type == "imageGallerySection" => {
+        heading,
+        bodyText,
+        images[]{ _key, image{ ..., asset-> }, caption }
+      },
+      _type == "clientProofSection" => {
+        heading,
+        bodyText
       }
     },
-    relatedCaseStudies[]->{ clientName, "slug": slug.current, industry, summary, coverImage, results[]{ value, label } },
+    relatedCaseStudies[]->{ clientName, "slug": slug.current, industry, summary, logo{ ..., asset-> }, coverImage{ ..., asset-> }, resultImages[]{ ..., asset-> }, results[]{ value, label } },
     relatedFaqs[]->{ _id, question, answer, order },
     seo
   }
@@ -80,8 +100,9 @@ export const caseStudyQuery = groq`
     _id,
     clientName,
     "slug": slug.current,
-    logo,
-    coverImage,
+    logo{ ..., asset-> },
+    coverImage{ ..., asset-> },
+    resultImages[]{ ..., asset-> },
     industry,
     summary,
     challenge,
@@ -105,7 +126,7 @@ export const industryPageQuery = groq`
     challenges[]{ challengeTitle, challengeDescription },
     body,
     relatedServices[]->{ title, "slug": slug.current, summary },
-    relatedCaseStudies[]->{ clientName, "slug": slug.current, industry, summary, coverImage, results[]{ value, label } },
+    relatedCaseStudies[]->{ clientName, "slug": slug.current, industry, summary, logo{ ..., asset-> }, coverImage{ ..., asset-> }, resultImages[]{ ..., asset-> }, results[]{ value, label } },
     ctaText,
     seo
   }
@@ -116,8 +137,8 @@ export const blogPostQuery = groq`
     _id,
     title,
     "slug": slug.current,
-    author->{ name, role, image },
-    mainImage,
+    author->{ name, role, image{ ..., asset-> } },
+    mainImage{ ..., asset-> },
     categories,
     publishedAt,
     excerpt,
@@ -133,11 +154,11 @@ export const blogListingQuery = groq`
     _id,
     title,
     "slug": slug.current,
-    mainImage,
+    mainImage{ ..., asset-> },
     categories,
     publishedAt,
     excerpt,
-    author->{ name, image }
+    author->{ name, image{ ..., asset-> } }
   }
 `
 
@@ -161,7 +182,7 @@ export const homeFeaturedCaseStudiesQuery = groq`
     "slug": slug.current,
     industry,
     summary,
-    coverImage
+    coverImage{ ..., asset-> }
   }
 `
 

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { FcGoogle } from 'react-icons/fc'
 import { urlFor } from '@/lib/sanity/client'
 
 interface HeroSectionProps {
@@ -28,6 +29,7 @@ export function HeroSection({ badgeText, headline, subheadline, ctaText, ctaLink
             marginBottom: 28,
             boxShadow: '0 4px 12px rgba(16,16,16,0.06)',
           }}>
+            <FcGoogle style={{ fontSize: 18, flexShrink: 0 }} />
             <span style={{ font: "500 12.5px 'Poppins', sans-serif", color: '#5c5c5c' }}>{badgeText}</span>
           </div>
         )}

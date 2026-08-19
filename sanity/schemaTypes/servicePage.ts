@@ -34,6 +34,18 @@ export default defineType({
       description: 'Short description used in nav previews and cards.',
     }),
     defineField({
+      name: 'accentStyle',
+      title: 'Accent style',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Brand (single blue accent)', value: 'brand'},
+          {title: 'Multi (rainbow badges & card backgrounds)', value: 'multi'},
+        ],
+      },
+      description: 'Controls badge colors and case-study card backgrounds. Defaults to "brand" if unset.',
+    }),
+    defineField({
       name: 'pageBuilder',
       title: 'Page Builder',
       type: 'array',
@@ -43,6 +55,9 @@ export default defineType({
         {type: 'cardGridSection'},
         {type: 'ctaSection'},
         {type: 'statsSection'},
+        {type: 'processStepsSection'},
+        {type: 'imageGallerySection'},
+        {type: 'clientProofSection'},
       ],
     }),
     defineField({
