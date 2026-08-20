@@ -8,6 +8,7 @@ interface StatsSectionProps {
   heading?: string
   bodyText?: string
   layout?: string
+  theme?: string
   stats?: Stat[]
 }
 
@@ -19,8 +20,165 @@ const circleOffsets = [
   { marginTop: -30, marginLeft: 24 },
 ]
 
-export function StatsSection({ heading, bodyText, layout, stats }: StatsSectionProps) {
+export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsSectionProps) {
   const isScattered = layout === 'scattered'
+  const isSplit = layout === 'split'
+  const isDark = theme === 'dark'
+
+  if (isSplit) {
+    return (
+      <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 44, alignItems: 'center' }}>
+          <div>
+            {heading && (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                lineHeight: 1.26,
+                margin: '0 0 14px',
+                color: '#111111',
+              }}>
+                {heading}
+              </h2>
+            )}
+            {bodyText && (
+              <p style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: 15,
+                lineHeight: 1.7,
+                color: '#5c5c5c',
+                margin: 0,
+              }}>
+                {bodyText}
+              </p>
+            )}
+          </div>
+          {stats && stats.length > 0 && (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 14,
+            }}>
+              {stats.map((stat, i) => (
+                <div key={stat._key || i} style={{
+                  background: '#fff',
+                  border: '1px solid #E4E4E4',
+                  borderRadius: 14,
+                  padding: '20px 16px',
+                  boxShadow: '0 8px 20px -16px rgba(10,20,40,0.3)',
+                }}>
+                  {stat.value && (
+                    <p style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 800,
+                      fontSize: 24,
+                      lineHeight: 1.1,
+                      margin: '0 0 6px',
+                      color: '#1A6AFF',
+                    }}>
+                      {stat.value}
+                    </p>
+                  )}
+                  {stat.label && (
+                    <p style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: 12.5,
+                      lineHeight: 1.4,
+                      color: '#5c5c5c',
+                      margin: 0,
+                    }}>
+                      {stat.label}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  if (isDark) {
+    return (
+      <section>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+          <div style={{
+            background: '#111111',
+            borderRadius: 24,
+            padding: '56px 40px',
+            color: '#fff',
+          }}>
+            {heading && (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                lineHeight: 1.2,
+                margin: '0 0 16px',
+                color: '#fff',
+              }}>
+                {heading}
+              </h2>
+            )}
+            {bodyText && (
+              <p style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: 16,
+                lineHeight: 1.7,
+                color: '#8a8a86',
+                maxWidth: 680,
+                margin: '0 0 48px',
+              }}>
+                {bodyText}
+              </p>
+            )}
+            {stats && stats.length > 0 && (
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(4, 1fr)',
+                gap: 18,
+              }}>
+                {stats.map((stat, i) => (
+                  <div key={stat._key || i} style={{
+                    background: 'rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    borderRadius: 14,
+                    padding: '22px 18px',
+                  }}>
+                    {stat.value && (
+                      <p style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontWeight: 800,
+                        fontSize: 30,
+                        lineHeight: 1.1,
+                        margin: '0 0 8px',
+                        color: '#1A6AFF',
+                      }}>
+                        {stat.value}
+                      </p>
+                    )}
+                    {stat.label && (
+                      <p style={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontSize: 13,
+                        lineHeight: 1.4,
+                        color: '#8a8a86',
+                        margin: 0,
+                      }}>
+                        {stat.label}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>

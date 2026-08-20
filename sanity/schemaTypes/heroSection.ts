@@ -11,6 +11,20 @@ export default defineType({
     defineField({name: 'ctaText', title: 'CTA button text', type: 'string'}),
     defineField({name: 'ctaLink', title: 'CTA link', type: 'string', description: 'Internal path or external URL'}),
     defineField({name: 'heroImage', title: 'Hero image', type: 'image', options: {hotspot: true}}),
+    defineField({
+      name: 'textAlign',
+      title: 'Text alignment',
+      type: 'string',
+      options: {list: [{title: 'Left', value: 'left'}, {title: 'Center', value: 'center'}]},
+      initialValue: 'left',
+    }),
+    defineField({
+      name: 'badgeStyle',
+      title: 'Badge style',
+      type: 'string',
+      options: {list: [{title: 'Google Partner', value: 'partner'}, {title: 'Eyebrow', value: 'eyebrow'}]},
+      initialValue: 'partner',
+    }),
   ],
   preview: {
     select: {title: 'headline'},

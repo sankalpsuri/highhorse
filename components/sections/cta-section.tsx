@@ -7,14 +7,16 @@ interface CtaSectionProps {
   ctaText?: string
   ctaLink?: string
   variant?: string
+  textAlign?: string
 }
 
-export function CtaSection({ heading, bodyText, ctaText, ctaLink, variant }: CtaSectionProps) {
+export function CtaSection({ heading, bodyText, ctaText, ctaLink, variant, textAlign }: CtaSectionProps) {
   const bg = variant === 'tan' ? '#FAF3EB' : '#F5F5F4'
+  const centered = textAlign === 'center'
 
   return (
     <section style={{ background: bg, borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', textAlign: centered ? 'center' as const : 'left' as const }}>
         {heading && (
           <h2 style={{
             fontFamily: "'Montserrat', sans-serif",
@@ -23,15 +25,14 @@ export function CtaSection({ heading, bodyText, ctaText, ctaLink, variant }: Cta
             lineHeight: 1.2,
             margin: '0 0 24px',
             color: '#111111',
-            textAlign: 'left' as const,
           }}>
             {heading}
           </h2>
         )}
         {bodyText && (
           <div style={{
-            maxWidth: 800,
-            marginBottom: 40,
+            maxWidth: centered ? 560 : 800,
+            margin: centered ? '0 auto 40px' : '0 0 40px',
             color: '#5c5c5c',
             fontFamily: "'Poppins', sans-serif",
             fontSize: 16,

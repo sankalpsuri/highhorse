@@ -16,6 +16,11 @@ import statsSection from './statsSection'
 import processStepsSection from './processStepsSection'
 import imageGallerySection from './imageGallerySection'
 import clientProofSection from './clientProofSection'
+import portfolioMasonryGrid from './portfolioMasonryGrid'
+import challengeGridSection from './challengeGridSection'
+import checklistSection from './checklistSection'
+import portfolioShowcaseSection from './portfolioShowcaseSection'
+import techSliderSection from './techSliderSection'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
@@ -30,6 +35,11 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     processStepsSection,
     imageGallerySection,
     clientProofSection,
+    portfolioMasonryGrid,
+    challengeGridSection,
+    checklistSection,
+    portfolioShowcaseSection,
+    techSliderSection,
     // documents
     author,
     blogPost,

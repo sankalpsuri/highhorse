@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Development | High Horse</title>
+<style>
+  :root{
+    --ink:#0B0F19;
+    --blue:#0A5CFF;
+    --slate:#4B5568;
+    --line:#E7E9EE;
+    --mint-bg:#E9F7EE;   --mint-icon:#2FAE60;
+    --peach-bg:#FDECE0;  --peach-icon:#E8874A;
+    --lav-bg:#F1E9FB;    --lav-icon:#8A5CDB;
+    --gray-bg:#EFF1F5;   --gray-icon:#4B5568;
+    --paper:#FAFAF9;
+    --radius:16px;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Poppins','Inter',sans-serif;letter-spacing:-0.02em;color:var(--ink);text-align:left;}
+  p{text-align:left;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;
+    font-weight:600;font-size:15px;padding:15px 28px;border-radius:999px;border:none;cursor:pointer;
+    transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+  }
+  .btn:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(10,92,255,.55);}
+  section{padding:80px 0;}
+  .section-head{max-width:680px;margin-bottom:36px;text-align:left;}
+  .section-head h2{font-size:clamp(24px,3vw,32px);font-weight:700;line-height:1.22;text-align:left;}
+  .section-head p{color:var(--slate);margin-top:14px;font-size:15.5px;text-align:left;}
+
+  /* ============ 1 — HERO ============ */
+  .hero{padding:72px 32px 0;}
+  .hero-inner{max-width:720px;text-align:left;}
+  .hero h1{font-size:clamp(28px,4.2vw,44px);line-height:1.16;font-weight:700;text-align:left;}
+  .hero p{max-width:600px;margin:20px 0 30px;color:var(--slate);font-size:16px;text-align:left;}
+  .hero-art{
+    margin-top:44px;border:1px solid var(--blue);border-radius:14px;overflow:hidden;
+    background:linear-gradient(160deg,#F3F5FB,#E9EDF7);position:relative;padding:40px 32px;
+    display:flex;align-items:center;justify-content:center;min-height:340px;
+  }
+  .hero-art .bg-text{
+    position:absolute;font-size:clamp(44px,9vw,110px);font-weight:800;color:rgba(11,15,25,.06);
+    letter-spacing:-0.03em;white-space:nowrap;
+  }
+  .hero-figure{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:16px;}
+  .hero-person{
+    width:150px;height:230px;border-radius:70px 70px 20px 20px;
+    background:linear-gradient(160deg,#E8B896,#D99B78);position:relative;
+  }
+  .float-card{
+    background:#fff;border-radius:12px;padding:10px 12px;box-shadow:0 14px 28px -14px rgba(10,20,40,.35);
+    font-size:11px;font-weight:700;position:absolute;
+  }
+  .fc-1{top:6%;left:2%;width:110px;}
+  .fc-2{top:2%;right:4%;width:130px;}
+  .fc-3{bottom:14%;left:0%;width:90px;}
+  .fc-4{bottom:4%;right:6%;width:100px;}
+  .fc-bar{height:6px;border-radius:4px;background:var(--line);margin-top:6px;}
+
+  /* ============ 2 — AGENCY INTRO ============ */
+  .agency-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start;text-align:left;}
+  .agency-grid h2{font-size:clamp(22px,3.2vw,28px);font-weight:700;line-height:1.28;margin-bottom:16px;}
+  .agency-grid p{color:var(--slate);font-size:15px;margin-bottom:14px;}
+  .agency-art{border-radius:var(--radius);overflow:hidden;background:linear-gradient(160deg,#111827,#1c2740);padding:26px;min-height:280px;position:relative;}
+  .agency-art .code-window{background:#fff;border-radius:10px;padding:16px;}
+  .agency-art .code-window .title-bar{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:12px;}
+  .agency-art .code-line{height:8px;border-radius:5px;background:var(--line);margin-bottom:8px;}
+  .agency-art .code-line.blue{background:#DCE9FF;width:60%;}
+  .agency-art .code-line.orange{background:var(--peach-bg);width:75%;}
+  .agency-art .code-line.green{background:var(--mint-bg);width:45%;}
+  .agency-art .code-line.short{width:35%;}
+
+  /* ============ 3 — CHALLENGES ============ */
+  .challenge-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;text-align:left;}
+  .challenge-grid h2{font-size:clamp(22px,3.2vw,28px);font-weight:700;line-height:1.28;margin-bottom:14px;}
+  .challenge-grid > div:first-child p{color:var(--slate);font-size:15px;margin-bottom:24px;}
+  .challenge-list{display:grid;gap:0;}
+  .challenge-item{padding:16px 0;border-bottom:1px solid var(--line);font-weight:600;font-size:15px;text-align:left;}
+  .challenge-item:first-child{padding-top:0;}
+  .challenge-item:last-child{border-bottom:none;}
+
+  /* ============ 4 — SERVICES DELIVERED ============ */
+  .deliver-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;row-gap:36px;}
+  .deliver-item{text-align:left;}
+  .deliver-icon{width:44px;height:44px;border-radius:12px;background:var(--gray-bg);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
+  .deliver-item h3{font-size:16px;font-weight:700;margin-bottom:8px;text-align:left;}
+  .deliver-item p{font-size:14px;color:var(--slate);text-align:left;}
+
+  /* ============ 5 — TECH LOGOS ============ */
+  .tech-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .tech-card{
+    flex:1 1 130px;background:var(--paper);border:1px solid var(--line);border-radius:14px;
+    aspect-ratio:1/0.85;display:flex;align-items:center;justify-content:center;font-size:34px;
+  }
+
+  /* ============ 6 — CTA BAND ============ */
+  .cta-band{background:var(--peach-bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:52px 40px;text-align:left;}
+  .cta-band h2{font-size:clamp(22px,3vw,28px);font-weight:700;text-align:left;}
+  .cta-band p{color:var(--slate);margin:14px 0 24px;max-width:640px;font-size:15px;text-align:left;}
+
+  /* ============ 7 — STATS ============ */
+  .stats-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center;text-align:left;}
+  .stats-copy h2{font-size:clamp(22px,3vw,28px);font-weight:700;margin-bottom:14px;line-height:1.26;}
+  .stats-copy p{color:var(--slate);font-size:15px;}
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .stat-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:left;box-shadow:0 8px 20px -16px rgba(10,20,40,.3);}
+  .stat-card .num{font-family:'Poppins',sans-serif;font-size:24px;font-weight:800;color:var(--blue);}
+  .stat-card .label{margin-top:6px;font-size:12.5px;color:var(--slate);line-height:1.4;}
+
+  /* ============ 8 — WHO NEEDS ============ */
+  .need-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .need-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;text-align:left;}
+  .need-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
+  .need-card:nth-child(1) .need-icon{background:var(--mint-bg);color:var(--mint-icon);}
+  .need-card:nth-child(2) .need-icon{background:var(--peach-bg);color:var(--peach-icon);}
+  .need-card:nth-child(3) .need-icon{background:var(--lav-bg);color:var(--lav-icon);}
+  .need-card:nth-child(4) .need-icon{background:var(--gray-bg);color:var(--gray-icon);}
+  .need-card h3{font-size:15.5px;font-weight:700;margin-bottom:8px;text-align:left;}
+  .need-card p{font-size:13.5px;color:var(--slate);text-align:left;}
+
+  /* ============ 9 — PROCESS ============ */
+  .process-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .step-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;text-align:left;}
+  .step-card h3{font-size:16px;font-weight:700;margin-bottom:8px;text-align:left;}
+  .step-card .step-label{display:block;font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+  .step-card p{font-size:14px;color:var(--slate);text-align:left;}
+  .step-card.full{grid-column:1/2;}
+
+  /* ============ 10 — CASE STUDIES ============ */
+  .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .case-card{border-radius:var(--radius);padding:22px;text-align:left;}
+  .case-card.blue{background:#EAF2FF;}
+  .case-card.lav{background:var(--lav-bg);}
+  .case-stats-row{display:flex;gap:0;border-radius:10px;overflow:hidden;margin-bottom:16px;}
+  .case-stat{flex:1;padding:12px 10px;color:#fff;font-size:11px;}
+  .case-stat .val{font-size:16px;font-weight:800;display:block;margin-top:2px;}
+  .case-stat.c1{background:#2D6CDF;}
+  .case-stat.c2{background:#E14D4D;}
+  .case-stat.c3{background:#E8A93A;}
+  .case-stat.c4{background:#2FAE60;}
+  .case-chart{height:70px;border-radius:8px;background:linear-gradient(180deg,#fff,transparent);margin-bottom:16px;position:relative;overflow:hidden;}
+  .case-chart svg{width:100%;height:100%;}
+  .case-card h3{font-size:16px;font-weight:700;margin-bottom:10px;text-align:left;}
+  .case-card ul{display:grid;gap:6px;}
+  .case-card li{font-size:13.5px;color:var(--slate);padding-left:16px;position:relative;text-align:left;}
+  .case-card li::before{content:"•";color:var(--blue);position:absolute;left:0;font-weight:900;}
+
+  /* ============ 11 — WHY US ============ */
+  .whyus-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start;text-align:left;}
+  .whyus-grid h2{font-size:clamp(22px,3vw,28px);font-weight:700;line-height:1.28;margin-bottom:14px;}
+  .whyus-grid > div:first-child > p{color:var(--slate);font-size:15px;margin-bottom:22px;}
+  .whyus-list{display:grid;gap:12px;}
+  .whyus-item{display:flex;gap:12px;align-items:flex-start;text-align:left;}
+  .whyus-check{flex:none;width:22px;height:22px;border-radius:6px;background:var(--mint-bg);color:var(--mint-icon);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-top:2px;}
+  .whyus-item p{font-size:14.5px;color:var(--slate);text-align:left;}
+  .whyus-art{background:linear-gradient(160deg,#E9F7EE,#EAF2FF);border-radius:var(--radius);padding:24px;text-align:left;}
+  .whyus-art .caption{font-weight:700;font-size:15px;margin-bottom:16px;text-align:left;}
+  .whyus-mock{display:flex;align-items:flex-end;gap:10px;height:180px;}
+  .whyus-mock .panel{flex:1;background:#fff;border-radius:10px;box-shadow:0 12px 24px -16px rgba(10,20,40,.3);}
+  .whyus-mock .panel:nth-child(1){height:70%;}
+  .whyus-mock .panel:nth-child(2){height:100%;}
+  .whyus-mock .panel:nth-child(3){height:55%;}
+  .whyus-mock .panel:nth-child(4){height:85%;}
+
+  /* ============ 12 — INDUSTRIES ============ */
+  .industry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .industry-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;text-align:left;}
+  .industry-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
+  .industry-card:nth-child(7n+1) .industry-icon{background:var(--mint-bg);color:var(--mint-icon);}
+  .industry-card:nth-child(7n+2) .industry-icon{background:var(--peach-bg);color:var(--peach-icon);}
+  .industry-card:nth-child(7n+3) .industry-icon{background:var(--gray-bg);color:var(--gray-icon);}
+  .industry-card:nth-child(7n+4) .industry-icon{background:var(--lav-bg);color:var(--lav-icon);}
+  .industry-card:nth-child(7n+5) .industry-icon{background:var(--mint-bg);color:var(--mint-icon);}
+  .industry-card:nth-child(7n+6) .industry-icon{background:var(--peach-bg);color:var(--peach-icon);}
+  .industry-card:nth-child(7n+7) .industry-icon{background:var(--gray-bg);color:var(--gray-icon);}
+  .industry-card h3{font-size:15.5px;font-weight:700;margin-bottom:8px;text-align:left;}
+  .industry-card p{font-size:13.5px;color:var(--slate);text-align:left;}
+
+  /* ============ 13 — FAQ ============ */
+  .faq-title{font-size:22px;font-weight:700;margin-bottom:22px;text-align:left;}
+  .faq{max-width:900px;}
+  .faq-item{border:1px solid var(--line);background:var(--paper);border-radius:12px;margin-bottom:10px;}
+  .faq-q{width:100%;background:none;border:none;text-align:left;padding:18px 20px;font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--ink);}
+  .faq-q .plus{font-size:20px;font-weight:400;color:var(--slate);transition:transform .25s ease;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);color:var(--blue);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a p{padding:0 20px 18px;color:var(--slate);font-size:14.5px;text-align:left;}
+  .faq-item.open .faq-a{max-height:220px;}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:980px){
+    .agency-grid,.challenge-grid,.stats-grid,.whyus-grid{grid-template-columns:1fr;}
+    .deliver-grid{grid-template-columns:1fr;}
+    .need-grid,.industry-grid{grid-template-columns:repeat(2,1fr);}
+    .process-grid,.case-grid{grid-template-columns:1fr;}
+    .stat-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:560px){
+    section{padding:56px 0;}
+    .wrap{padding:0 20px;}
+    .need-grid,.industry-grid,.stat-grid{grid-template-columns:1fr;}
+    .tech-card{flex:1 1 90px;}
+    .hero{padding:52px 20px 0;}
+  }
+  :focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<!-- 1 — HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Turn Your Website Into A Lead-Generating Machine</h1>
+    <p>We build fast, responsive, high-converting websites across India that strategically turn visitors into customers and drive real business growth.</p>
+    <a href="#" class="btn">Let's Build Your Website</a>
+  </div>
+
+  <div class="hero-art">
+    <div class="bg-text">Shopping Ads</div>
+    <div class="hero-figure">
+      <div class="hero-person"></div>
+      <div class="float-card fc-1">Dashboard<div class="fc-bar"></div><div class="fc-bar" style="width:70%;"></div></div>
+      <div class="float-card fc-2">Sales +25%<div class="fc-bar" style="background:#DCE9FF;"></div></div>
+      <div class="float-card fc-3">$89.99<div class="fc-bar" style="width:60%;"></div></div>
+      <div class="float-card fc-4">4.8 ★ Buy Now<div class="fc-bar" style="width:50%;"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 — AGENCY INTRO -->
+<section>
+  <div class="wrap agency-grid">
+    <div>
+      <h2>Reliable &amp; Performance-Driven Web Development Company in India</h2>
+      <p>At High Horse, we don't just develop websites—we build high-performing digital platforms designed to support business growth. As a trusted web development company in India, we work with startups, scaling businesses, and established brands to create fast, responsive, and conversion-focused websites that deliver real results.</p>
+      <p>Our approach combines strategic thinking, technical expertise, and modern development practices to ensure every website performs seamlessly. From simple business websites to complex platforms, we build solutions that are reliable, scalable, and built to drive measurable business outcomes.</p>
+    </div>
+    <div class="agency-art">
+      <div class="code-window">
+        <div class="title-bar">Development</div>
+        <div class="code-line blue"></div>
+        <div class="code-line orange"></div>
+        <div class="code-line green"></div>
+        <div class="code-line short"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 — CHALLENGES -->
+<section style="background:var(--paper);">
+  <div class="wrap challenge-grid">
+    <div>
+      <h2>The Real Challenges You Face with a Poor Web Development Agency</h2>
+      <p>A poorly developed website doesn't just affect user experience—it directly impacts your business growth. Here's what might be holding you back:</p>
+      <a href="#" class="btn">Talk to SEO Expert</a>
+    </div>
+    <div class="challenge-list">
+      <div class="challenge-item">Your website loads slowly, affecting user retention</div>
+      <div class="challenge-item">Visitors are not converting into leads or customers</div>
+      <div class="challenge-item">Website structure is not optimized for performance</div>
+      <div class="challenge-item">Poor mobile responsiveness affecting user experience</div>
+      <div class="challenge-item">Frequent technical issues and broken functionalities</div>
+      <div class="challenge-item">Your website lacks scalability for future growth</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 — WHAT WE DELIVER -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What We Deliver as a Web Development Expert</h2>
+      <p>We focus on building websites that are not just functional but engineered for performance, scalability, and conversions.</p>
+    </div>
+    <div class="deliver-grid">
+      <div class="deliver-item">
+        <div class="deliver-icon">🚚</div>
+        <h3>Custom Website Development</h3>
+        <p>We build fully customized websites tailored to your business needs, ensuring flexibility, scalability, and performance across all devices and platforms.</p>
+      </div>
+      <div class="deliver-item">
+        <div class="deliver-icon">🛒</div>
+        <h3>Responsive Web Development</h3>
+        <p>We create mobile-friendly, responsive websites that adapt seamlessly across devices, ensuring consistent performance and user experience on every screen.</p>
+      </div>
+      <div class="deliver-item">
+        <div class="deliver-icon">🏬</div>
+        <h3>eCommerce Website Development</h3>
+        <p>We develop high-performing eCommerce platforms with optimized product pages, smooth checkout flows, and secure payment integrations to increase conversions.</p>
+      </div>
+      <div class="deliver-item">
+        <div class="deliver-icon">🛍️</div>
+        <h3>CMS-Based Development</h3>
+        <p>We build easy-to-manage websites using CMS platforms, allowing you to update content, manage pages, and scale your website without technical complexity.</p>
+      </div>
+      <div class="deliver-item">
+        <div class="deliver-icon">⚡</div>
+        <h3>Website Speed Optimization</h3>
+        <p>We optimize website performance by improving loading speed, reducing latency, and enhancing overall responsiveness to improve user experience and SEO rankings.</p>
+      </div>
+      <div class="deliver-item">
+        <div class="deliver-icon">🧰</div>
+        <h3>Website Maintenance &amp; Support</h3>
+        <p>We provide ongoing maintenance, updates, and technical support to ensure your website remains secure, functional, and up-to-date at all times.</p>
+      </div>
+      <div class="deliver-item">
+        <div class="deliver-icon">🎯</div>
+        <h3>Conversion-Focused Development Strategy</h3>
+        <p>We develop websites with a strong focus on user behavior and business goals, ensuring every element is optimized to drive leads and conversions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 — TECHNOLOGIES -->
+<section style="background:var(--paper);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Technologies We Use to Build High-Performance Websites</h2>
+      <p>We use modern frameworks, scalable technologies, and reliable tools to build fast, secure, and high-performing websites tailored for growth.</p>
+    </div>
+    <div class="tech-row">
+      <div class="tech-card" style="background:#111;color:#fff;">🐙</div>
+      <div class="tech-card" style="color:#E8874A;">📊</div>
+      <div class="tech-card" style="color:#6C8EFF;">🔷</div>
+      <div class="tech-card" style="color:#E8622D;">🅜</div>
+      <div class="tech-card" style="background:#95BF47;color:#fff;">🛍️</div>
+      <div class="tech-card" style="background:#000;color:#fff;">Wix</div>
+      <div class="tech-card" style="color:#21759B;">W</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 — CTA BAND -->
+<section style="padding:0;">
+  <div class="cta-band">
+    <div class="wrap" style="padding:0;">
+      <h2>Let's Build a Website That Drives Real Business Growth</h2>
+      <p>Share your requirements, and we'll help you create a fast, scalable, and high-performing website designed to attract users, generate leads, and grow your business.</p>
+      <a href="#" class="btn">Start Your Project</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7 — STATS -->
+<section>
+  <div class="wrap stats-grid">
+    <div class="stats-copy">
+      <h2>Developed for Results, Backed by Data and Performance Insights</h2>
+      <p>When the website is built with the right structure and performance in mind, everything starts improving. Pages load faster, users engage more, and conversions increase. These results come from optimized code, scalable architecture, and development focused on performance, usability, and measurable business impact.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num">120+</div><div class="label">Websites successfully developed</div></div>
+      <div class="stat-card"><div class="num">5+</div><div class="label">Years of experience in UI/UX design</div></div>
+      <div class="stat-card"><div class="num">90%</div><div class="label">Client retention rate</div></div>
+      <div class="stat-card"><div class="num">80%</div><div class="label">Improvement in website loading speed</div></div>
+      <div class="stat-card"><div class="num">2X</div><div class="label">Increase in conversion rates after development</div></div>
+      <div class="stat-card"><div class="num">6+</div><div class="label">Industries served globally</div></div>
+      <div class="stat-card"><div class="num">3X</div><div class="label">Improvement in user engagement metrics</div></div>
+      <div class="stat-card"><div class="num">99%</div><div class="label">Uptime across deployed websites</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 — WHO NEEDS -->
+<section style="background:var(--paper);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Who Needs Professional Website Development Services</h2>
+      <p>Any business aiming to grow online, generate leads, or build credibility needs a professionally developed website that performs consistently. Website development services are essential for different stages of business growth. Whether you're starting fresh, scaling, or upgrading, the right website supports performance, usability, and long-term success.</p>
+    </div>
+    <div class="need-grid">
+      <div class="need-card">
+        <div class="need-icon">🎯</div>
+        <h3>Startups launching their digital presence</h3>
+        <p>Need a strong, credible website to showcase offerings and build trust from day one.</p>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">📈</div>
+        <h3>Traditional businesses going digital</h3>
+        <p>Require structured websites to establish an online presence and reach a wider audience effectively.</p>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">🔁</div>
+        <h3>Businesses needing a website redesign</h3>
+        <p>Outdated, slow, or underperforming websites need redevelopment to improve usability, speed, and conversions.</p>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">📋</div>
+        <h3>Enterprises managing large-scale operations</h3>
+        <p>Need scalable, secure, and high-performance platforms to handle traffic, integrations, and complex workflows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 — PROCESS -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How Our Developers Build High-Performance Websites</h2>
+      <p>Our development process is focused on performance, scalability, and delivering a seamless digital experience.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step-card"><span class="step-label">Step 1</span><h3>Understand Your Requirements</h3><p>We analyze your business goals, audience, and requirements to build a strong foundation for your website development process.</p></div>
+      <div class="step-card"><span class="step-label">Step 2</span><h3>Plan the Website Structure</h3><p>We define site architecture, user flow, and technical requirements to ensure a smooth, scalable, and performance-driven development process.</p></div>
+      <div class="step-card"><span class="step-label">Step 3</span><h3>Design &amp; Development Execution</h3><p>We combine UI design with clean coding practices to build responsive, high-performing websites optimized for speed and usability.</p></div>
+      <div class="step-card"><span class="step-label">Step 4</span><h3>Testing &amp; Quality Assurance</h3><p>We test across devices, browsers, and scenarios to ensure your website performs flawlessly without errors or performance issues.</p></div>
+      <div class="step-card full"><span class="step-label">Step 5</span><h3>Launch &amp; Optimize</h3><p>We deploy your website and continuously monitor, optimize, and improve performance to ensure long-term success and scalability.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 — CASE STUDIES -->
+<section style="background:var(--paper);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Web Solutions That Delivered Real Business Impact</h2>
+      <p>We've developed websites for brands across industries, helping them improve performance, scalability, and user experience. Our portfolio includes:</p>
+    </div>
+    <div class="case-grid">
+      <div class="case-card blue">
+        <div class="case-stats-row">
+          <div class="case-stat c1">Clicks<span class="val">942</span></div>
+          <div class="case-stat c2">Impressions<span class="val">10.1K</span></div>
+          <div class="case-stat c3">Conversions<span class="val">50.00</span></div>
+          <div class="case-stat c4">Cost<span class="val">₹68.1K</span></div>
+        </div>
+        <div class="case-chart">
+          <svg viewBox="0 0 300 70" preserveAspectRatio="none">
+            <polyline points="0,50 30,45 60,15 90,20 120,55 150,50 180,18 210,22 240,52 270,48 300,20" fill="none" stroke="#2D6CDF" stroke-width="2"/>
+            <polyline points="0,60 30,55 60,40 90,45 120,60 150,58 180,40 210,44 240,60 270,58 300,42" fill="none" stroke="#E8A93A" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>For Bawa</h3>
+        <ul>
+          <li>Organic traffic tripled within 12 months for Bawa</li>
+          <li>Significant lift in qualified visitors</li>
+          <li>Sustained month-on-month traffic growth</li>
+        </ul>
+      </div>
+      <div class="case-card lav">
+        <div class="case-stats-row">
+          <div class="case-stat c1">Clicks<span class="val">1.75K</span></div>
+          <div class="case-stat c2">Impressions<span class="val">24.3K</span></div>
+          <div class="case-stat c3">Cost/conv.<span class="val">$57.58</span></div>
+          <div class="case-stat c4">Cost<span class="val">$12.8K</span></div>
+        </div>
+        <div class="case-chart">
+          <svg viewBox="0 0 300 70" preserveAspectRatio="none">
+            <polyline points="0,20 30,45 60,55 90,25 120,15 150,35 180,55 210,30 240,20 270,45 300,15" fill="none" stroke="#2D6CDF" stroke-width="2"/>
+            <polyline points="0,35 30,55 60,60 90,40 120,30 150,50 180,60 210,45 240,35 270,55 300,30" fill="none" stroke="#2FAE60" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>For Fech Moving &amp; Cleaning</h3>
+        <ul>
+          <li>Drove 351 conversions from 2.98K high-intent clicks</li>
+          <li>Achieved strong reach with 39.1K impressions consistently</li>
+          <li>Maintained efficient cost per conversion at $59.70</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 — WHY US -->
+<section>
+  <div class="wrap whyus-grid">
+    <div>
+      <h2>What Makes High Horse the Right Development Partner</h2>
+      <p>Choosing the right web development partner directly impacts your business growth. Businesses trust us because we combine technical expertise, performance optimization, and strategic thinking to deliver reliable, scalable, and result-driven websites.</p>
+      <div class="whyus-list">
+        <div class="whyus-item"><div class="whyus-check">✓</div><p>Performance-first development approach aligned with your business goals</p></div>
+        <div class="whyus-item"><div class="whyus-check">✓</div><p>Websites optimized for speed, scalability, and long-term growth</p></div>
+        <div class="whyus-item"><div class="whyus-check">✓</div><p>Ensure clean, structured coding for better performance and maintainability</p></div>
+        <div class="whyus-item"><div class="whyus-check">✓</div><p>Projects on time with strong attention to technical precision</p></div>
+        <div class="whyus-item"><div class="whyus-check">✓</div><p>Transparent communication throughout the development process</p></div>
+        <div class="whyus-item"><div class="whyus-check">✓</div><p>Websites designed to generate leads, conversions, and measurable outcomes</p></div>
+      </div>
+    </div>
+    <div class="whyus-art">
+      <div class="caption">Smart &amp; Seamless Website Solutions for Visioworld</div>
+      <div class="whyus-mock">
+        <div class="panel"></div>
+        <div class="panel"></div>
+        <div class="panel"></div>
+        <div class="panel"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 — INDUSTRIES -->
+<section style="background:var(--paper);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Industries We Serve with Web Development Solutions</h2>
+      <p>We develop tailored websites for different industries, ensuring every solution meets specific business needs, user expectations, and performance standards.</p>
+    </div>
+    <div class="industry-grid">
+      <div class="industry-card"><div class="industry-icon">🛒</div><h3>eCommerce &amp; Retail</h3><p>We develop scalable eCommerce websites with optimized product pages, secure payment gateways, and seamless checkout experiences to drive higher conversions.</p></div>
+      <div class="industry-card"><div class="industry-icon">🤝</div><h3>Healthcare &amp; Medical</h3><p>We build secure, fast-loading healthcare websites that ensure accessibility, compliance, and seamless patient interaction across services and digital platforms.</p></div>
+      <div class="industry-card"><div class="industry-icon">🏢</div><h3>Real Estate</h3><p>We develop property-focused websites with advanced search features, intuitive navigation, and engaging layouts to enhance user experience and lead generation.</p></div>
+      <div class="industry-card"><div class="industry-icon">📖</div><h3>Education &amp; EdTech</h3><p>We create interactive education platforms with structured content, smooth navigation, and scalable systems that support seamless learning experiences.</p></div>
+      <div class="industry-card"><div class="industry-icon">☁️</div><h3>SaaS &amp; Technology</h3><p>We develop robust SaaS platforms with scalable architecture, clean interfaces, and optimized performance to support complex workflows and user interactions.</p></div>
+      <div class="industry-card"><div class="industry-icon">🚚</div><h3>Logistics &amp; Supply Chain</h3><p>We build efficient web platforms that streamline logistics operations, improve tracking visibility, and simplify complex supply chain processes for better management.</p></div>
+      <div class="industry-card"><div class="industry-icon">📊</div><h3>Finance &amp; Consulting</h3><p>We develop secure, performance-driven financial websites that simplify data presentation, ensure trust, and support better decision-making for users.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 — FAQ -->
+<section>
+  <div class="wrap">
+    <div class="faq-title">Frequently Asked Questions</div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">1. What type of website is best for my business? <span class="plus">+</span></button>
+        <div class="faq-a"><p>It depends on your goals — a business website builds credibility, an eCommerce site drives online sales, and a custom platform supports complex workflows. We help you decide based on your objectives.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">2. What technologies do you use for web development? <span class="plus">+</span></button>
+        <div class="faq-a"><p>We work with modern frameworks and platforms including WordPress, Shopify, Magento, Wix, and custom-coded solutions depending on your project's scale and requirements.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">3. Do you provide website maintenance and support? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes — we offer ongoing maintenance, updates, and technical support to keep your website secure, functional, and performing well after launch.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">4. How do I know if my website needs redevelopment? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Signs include slow load times, low conversions, poor mobile experience, outdated design, or frequent technical issues — any of these indicate it's time for a redesign.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>

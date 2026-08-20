@@ -58,13 +58,71 @@ export default defineType({
         {type: 'processStepsSection'},
         {type: 'imageGallerySection'},
         {type: 'clientProofSection'},
+        {type: 'portfolioMasonryGrid'},
+        {type: 'challengeGridSection'},
+        {type: 'checklistSection'},
+        {type: 'portfolioShowcaseSection'},
+        {type: 'techSliderSection'},
       ],
+    }),
+    defineField({
+      name: 'caseStudiesHeading',
+      title: 'Case studies section heading',
+      type: 'string',
+      description: 'Override the default heading for the related case studies section.',
+    }),
+    defineField({
+      name: 'caseStudiesSubtext',
+      title: 'Case studies section subtext',
+      type: 'text',
+      rows: 3,
+      description: 'Override the default subtext for the related case studies section.',
     }),
     defineField({
       name: 'relatedCaseStudies',
       title: 'Related case studies',
       type: 'array',
-      of: [{type: 'reference', to: [{type: 'caseStudy'}]}],
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'caseStudy',
+              title: 'Case study',
+              type: 'reference',
+              to: [{type: 'caseStudy'}],
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'overrideMetrics',
+              title: 'Override metrics',
+              type: 'array',
+              description: 'Page-specific metrics shown instead of the base case study results.',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    defineField({name: 'value', title: 'Value', type: 'string'}),
+                    defineField({name: 'label', title: 'Label', type: 'string'}),
+                  ],
+                },
+              ],
+            }),
+            defineField({
+              name: 'metricsFilterTag',
+              title: 'Metrics filter tag',
+              type: 'string',
+              description: 'Decorative label shown near the metric bar (e.g. "Daily").',
+            }),
+          ],
+          preview: {
+            select: {title: 'caseStudy.clientName'},
+            prepare({title}) {
+              return {title: title || 'Case Study'}
+            },
+          },
+        },
+      ],
     }),
     defineField({
       name: 'relatedFaqs',

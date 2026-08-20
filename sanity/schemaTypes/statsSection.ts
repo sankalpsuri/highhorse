@@ -11,8 +11,16 @@ export default defineType({
       name: 'layout',
       title: 'Layout',
       type: 'string',
-      options: {list: [{title: 'Grid', value: 'grid'}, {title: 'Scattered', value: 'scattered'}]},
+      options: {list: [{title: 'Grid', value: 'grid'}, {title: 'Scattered', value: 'scattered'}, {title: 'Split (text + stats)', value: 'split'}]},
       initialValue: 'grid',
+    }),
+    defineField({
+      name: 'theme',
+      title: 'Theme',
+      type: 'string',
+      options: {list: [{title: 'Light', value: 'light'}, {title: 'Dark', value: 'dark'}]},
+      initialValue: 'light',
+      description: 'Dark renders stats inside a dark rounded panel.',
     }),
     defineField({
       name: 'stats',

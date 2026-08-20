@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI/UX Design Agency in India | High Horse</title>
+<style>
+  :root{
+    --ink:#0B0F19;
+    --blue:#0A5CFF;
+    --slate:#4B5568;
+    --line:#E7E9EE;
+    --mint-bg:#E9F7EE;   --mint-icon:#2FAE60;
+    --peach-bg:#FDECE0;  --peach-icon:#E8874A;
+    --lav-bg:#F1E9FB;    --lav-icon:#8A5CDB;
+    --sky-bg:#E7F1FF;    --sky-icon:#2D7DFF;
+    --rose-bg:#FCE9EF;   --rose-icon:#E8508A;
+    --gray-bg:#EFF1F5;   --gray-icon:#4B5568;
+    --paper:#FAFAF9;
+    --radius:16px;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Poppins','Inter',sans-serif;letter-spacing:-0.02em;color:var(--ink);}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+  .eyebrow::before{content:"";width:18px;height:2px;background:var(--blue);display:inline-block;}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-weight:600;font-size:15px;padding:15px 28px;border-radius:999px;border:none;cursor:pointer;transition:transform .18s ease,background .18s ease,box-shadow .18s ease;}
+  .btn:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(10,92,255,.55);}
+  .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:#fff;box-shadow:0 10px 24px -10px rgba(0,0,0,.4);}
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin-bottom:40px;}
+  .section-head h2{font-size:clamp(24px,3vw,34px);font-weight:700;line-height:1.2;}
+  .section-head p{color:var(--slate);margin-top:14px;font-size:15.5px;}
+  .center{text-align:center;margin-left:auto;margin-right:auto;}
+
+  /* HERO */
+  .hero{padding:72px 32px 0;text-align:center;background:radial-gradient(80% 60% at 50% -10%,#EAF1FF 0%,#fff 60%);}
+  .hero-inner{max-width:760px;margin:0 auto;}
+  .hero h1{font-size:clamp(28px,4.2vw,46px);line-height:1.16;font-weight:700;}
+  .hero p{max-width:600px;margin:22px auto 32px;color:var(--slate);font-size:16.5px;}
+  .hero-art{margin-top:52px;border-radius:20px 20px 0 0;overflow:hidden;background:linear-gradient(160deg,#0B0F19,#1c2740);aspect-ratio:16/6;position:relative;}
+  .hero-art .grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:48px 48px;}
+  .hero-art .device-mock{position:absolute;bottom:-10%;left:50%;transform:translateX(-50%);width:70%;height:85%;background:#fff;border-radius:14px 14px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.5);padding:18px 22px;}
+  .device-mock .bar{height:10px;border-radius:6px;background:var(--line);margin-bottom:10px;}
+  .device-mock .bar:nth-child(1){width:40%;height:16px;background:#D9E3FF;}
+  .device-mock .bar:nth-child(2){width:90%;}
+  .device-mock .bar:nth-child(3){width:75%;}
+  .device-mock .swatches{display:flex;gap:8px;margin-top:16px;}
+  .device-mock .swatch{flex:1;aspect-ratio:1/.7;border-radius:8px;}
+  .device-mock .swatch:nth-child(1){background:#FDECE0;}
+  .device-mock .swatch:nth-child(2){background:#E9F7EE;}
+  .device-mock .swatch:nth-child(3){background:#F1E9FB;}
+
+  /* AGENCY INTRO */
+  .agency-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start;}
+  .agency-grid h2{font-size:clamp(24px,3.2vw,30px);font-weight:700;line-height:1.24;margin-bottom:18px;}
+  .agency-grid p{color:var(--slate);font-size:15.5px;margin-bottom:16px;}
+  .agency-art{border-radius:var(--radius);overflow:hidden;background:linear-gradient(135deg,#DCE9FF,#F1E9FB);padding:26px;min-height:320px;display:flex;flex-direction:column;justify-content:center;gap:14px;}
+  .agency-art .card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 16px 30px -18px rgba(10,20,40,.35);}
+  .agency-art .card .dot-row{display:flex;gap:6px;margin-bottom:10px;}
+  .agency-art .dot{width:8px;height:8px;border-radius:50%;background:var(--line);}
+  .agency-art .line{height:8px;border-radius:5px;background:var(--line);margin-bottom:6px;}
+  .agency-art .line.short{width:55%;}
+
+  /* CHALLENGES */
+  .challenge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .challenge-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;font-size:14.5px;font-weight:600;position:relative;padding-left:52px;}
+  .challenge-card::before{content:"✕";position:absolute;left:20px;top:22px;width:22px;height:22px;border-radius:50%;background:#FDE7E7;color:#E14D4D;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+
+  /* SERVICES */
+  .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .service-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;transition:transform .2s ease,box-shadow .2s ease;}
+  .service-card:hover{transform:translateY(-6px);box-shadow:0 20px 30px -20px rgba(10,20,40,.25);}
+  .service-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
+  .service-card:nth-child(8n+1) .service-icon{background:var(--sky-bg);color:var(--sky-icon);}
+  .service-card:nth-child(8n+2) .service-icon{background:var(--mint-bg);color:var(--mint-icon);}
+  .service-card:nth-child(8n+3) .service-icon{background:var(--peach-bg);color:var(--peach-icon);}
+  .service-card:nth-child(8n+4) .service-icon{background:var(--lav-bg);color:var(--lav-icon);}
+  .service-card:nth-child(8n+5) .service-icon{background:var(--rose-bg);color:var(--rose-icon);}
+  .service-card:nth-child(8n+6) .service-icon{background:var(--gray-bg);color:var(--gray-icon);}
+  .service-card:nth-child(8n+7) .service-icon{background:var(--sky-bg);color:var(--sky-icon);}
+  .service-card:nth-child(8n+0) .service-icon{background:var(--mint-bg);color:var(--mint-icon);}
+  .service-card h3{font-size:15.5px;font-weight:700;margin-bottom:8px;}
+  .service-card p{font-size:13.5px;color:var(--slate);}
+
+  /* STATS */
+  .stats-section{background:var(--ink);color:#fff;border-radius:24px;padding:56px 40px;}
+  .stats-section .section-head h2,.stats-section .section-head p{color:#fff;}
+  .stats-section .section-head p{color:#B8C0D4;}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .stat-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px 18px;}
+  .stat-card .num{font-family:'Poppins',sans-serif;font-size:30px;font-weight:800;color:#7FA8FF;}
+  .stat-card .label{margin-top:8px;font-size:13px;color:#C6CCDA;line-height:1.4;}
+
+  /* PROCESS */
+  .process-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+  .step-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;}
+  .step-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-size:12.5px;font-weight:700;margin-bottom:14px;}
+  .step-card h3{font-size:15px;font-weight:700;margin-bottom:8px;}
+  .step-card p{font-size:13.3px;color:var(--slate);}
+
+  /* CASE STUDIES */
+  .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .case-card{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);}
+  .case-media{aspect-ratio:16/10;background:linear-gradient(160deg,#1c2740,#0B0F19);position:relative;}
+  .case-media.alt{background:linear-gradient(160deg,#E8874A,#E14D4D);}
+  .case-tag{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:6px 12px;border-radius:999px;backdrop-filter:blur(4px);}
+  .case-body{padding:22px;}
+  .case-body h3{font-size:17px;font-weight:700;margin-bottom:8px;}
+  .case-body p{font-size:14px;color:var(--slate);}
+
+  /* WHY CHOOSE */
+  .choose-list{display:grid;grid-template-columns:1fr 1fr;gap:16px 32px;}
+  .choose-item{display:flex;gap:14px;align-items:flex-start;}
+  .choose-check{flex:none;width:26px;height:26px;border-radius:8px;background:var(--mint-bg);color:var(--mint-icon);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;}
+  .choose-item p{font-size:14.5px;color:var(--slate);}
+
+  /* INDUSTRIES */
+  .industry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .industry-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;}
+  .industry-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
+  .industry-card:nth-child(8n+1) .industry-icon{background:var(--peach-bg);color:var(--peach-icon);}
+  .industry-card:nth-child(8n+2) .industry-icon{background:var(--lav-bg);color:var(--lav-icon);}
+  .industry-card:nth-child(8n+3) .industry-icon{background:var(--sky-bg);color:var(--sky-icon);}
+  .industry-card:nth-child(8n+4) .industry-icon{background:var(--rose-bg);color:var(--rose-icon);}
+  .industry-card:nth-child(8n+5) .industry-icon{background:var(--mint-bg);color:var(--mint-icon);}
+  .industry-card:nth-child(8n+6) .industry-icon{background:var(--gray-bg);color:var(--gray-icon);}
+  .industry-card:nth-child(8n+7) .industry-icon{background:var(--peach-bg);color:var(--peach-icon);}
+  .industry-card:nth-child(8n+0) .industry-icon{background:var(--sky-bg);color:var(--sky-icon);}
+  .industry-card h3{font-size:15px;font-weight:700;margin-bottom:8px;}
+  .industry-card p{font-size:13.3px;color:var(--slate);}
+
+  /* CTA BAND */
+  .cta-band{background:var(--peach-bg);border-radius:24px;padding:52px 40px;text-align:center;}
+  .cta-band h2{font-size:clamp(22px,3vw,30px);font-weight:700;}
+  .cta-band p{color:var(--slate);margin:14px auto 26px;max-width:560px;font-size:15px;}
+
+  /* FAQ */
+  .faq-title{font-size:22px;font-weight:700;margin-bottom:22px;}
+  .faq{max-width:900px;}
+  .faq-item{border:1px solid var(--line);background:var(--paper);border-radius:12px;margin-bottom:10px;}
+  .faq-q{width:100%;background:none;border:none;text-align:left;padding:18px 20px;font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--ink);}
+  .faq-q .plus{font-size:20px;font-weight:400;color:var(--slate);transition:transform .25s ease;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);color:var(--blue);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a p{padding:0 20px 18px;color:var(--slate);font-size:14.5px;}
+  .faq-item.open .faq-a{max-height:220px;}
+
+  @media (max-width:980px){
+    .agency-grid,.case-grid,.choose-list{grid-template-columns:1fr;}
+    .challenge-grid{grid-template-columns:repeat(2,1fr);}
+    .service-grid,.industry-grid{grid-template-columns:repeat(2,1fr);}
+    .stat-grid{grid-template-columns:repeat(2,1fr);}
+    .process-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:560px){
+    section{padding:60px 0;}
+    .wrap{padding:0 20px;}
+    .challenge-grid,.service-grid,.industry-grid,.process-grid,.stat-grid{grid-template-columns:1fr;}
+    .hero{padding:52px 20px 0;}
+    .stats-section{padding:40px 22px;}
+  }
+  :focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">UI/UX Design</span>
+    <h1>Design that makes your users stay, trust your brand, and take action</h1>
+    <p>If your website or app isn't converting, the issue is rarely traffic — it's the experience. We design UI/UX that goes beyond aesthetics, helping businesses across India guide users, build trust, and drive meaningful actions.</p>
+    <a href="#contact" class="btn">Let's Fix Your UI/UX</a>
+  </div>
+  <div class="hero-art">
+    <div class="grid-lines"></div>
+    <div class="device-mock">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="swatches">
+        <div class="swatch"></div>
+        <div class="swatch"></div>
+        <div class="swatch"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENCY INTRO -->
+<section id="about">
+  <div class="wrap agency-grid">
+    <div>
+      <h2>Creative &amp; User-Friendly UI/UX Agency in India</h2>
+      <p>At High Horse, we don't just design interfaces — we design experiences that drive action. As a leading UI/UX design company in India, we help startups, growing businesses, and established brands build digital experiences that are clean, intuitive, and built for conversions.</p>
+      <p>Our approach combines research, strategy, and creativity to ensure every user interaction feels effortless. From websites to mobile apps, we design interfaces that not only look modern but also guide users naturally toward taking action.</p>
+      <a href="#services" class="btn btn-outline" style="margin-top:8px;">See Our Services</a>
+    </div>
+    <div class="agency-art">
+      <div class="card">
+        <div class="dot-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="line" style="width:70%;height:12px;background:#DCE9FF;"></div>
+        <div class="line"></div>
+        <div class="line short"></div>
+      </div>
+      <div class="card">
+        <div class="line" style="width:40%;height:12px;background:#F1E9FB;"></div>
+        <div class="line"></div>
+        <div class="line" style="width:80%;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGES -->
+<section style="background:var(--paper);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The Real Challenges You Might Be Facing With Poor UI/UX</h2>
+      <p>A poor UI/UX design doesn't just affect aesthetics — it directly impacts your revenue and growth. Here's what might be going wrong.</p>
+      <a href="#contact" class="btn" style="margin-top:22px;">Talk to a UX Expert</a>
+    </div>
+    <div class="challenge-grid">
+      <div class="challenge-card">Users are visiting your website but leaving within seconds</div>
+      <div class="challenge-card">Your bounce rate is high and conversions are low</div>
+      <div class="challenge-card">Navigation feels confusing or overwhelming</div>
+      <div class="challenge-card">Your website looks outdated compared to competitors</div>
+      <div class="challenge-card">Mobile experience is inconsistent or frustrating</div>
+      <div class="challenge-card">Users don't trust your platform enough to take action</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What We Deliver as a UI/UX Industry Expert</h2>
+      <p>We focus on building experiences that are not just visually appealing but strategically designed to perform.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card"><div class="service-icon">🔍</div><h3>User Research &amp; Behavior Analysis</h3><p>We study user behavior, preferences, and pain points to design experiences that align with expectations and improve engagement.</p></div>
+      <div class="service-card"><div class="service-icon">📱</div><h3>Mobile App UI/UX Design</h3><p>Intuitive mobile app interfaces that enhance usability and deliver seamless experiences across Android and iOS.</p></div>
+      <div class="service-card"><div class="service-icon">📈</div><h3>Conversion-Focused Design Strategy</h3><p>We align user experience with business goals to drive actions, generate leads, and increase revenue consistently.</p></div>
+      <div class="service-card"><div class="service-icon">🧩</div><h3>Wireframing &amp; Prototyping</h3><p>Structured wireframes and interactive prototypes to visualize user journeys and test usability before development.</p></div>
+      <div class="service-card"><div class="service-icon">📊</div><h3>Dashboard &amp; SaaS Interface Design</h3><p>We simplify complex data into clean, user-friendly dashboards that improve usability and decision-making.</p></div>
+      <div class="service-card"><div class="service-icon">🖥️</div><h3>Website UI/UX Design</h3><p>Modern, responsive websites focused on usability, clarity, and conversion so users act without confusion.</p></div>
+      <div class="service-card"><div class="service-icon">🛠️</div><h3>UX Audit &amp; Optimization</h3><p>We analyze existing designs, identify usability issues, and optimize journeys to improve conversion rates.</p></div>
+      <div class="service-card"><div class="service-icon">✨</div><h3>Design Systems &amp; Style Guides</h3><p>Scalable component libraries and style guides that keep every screen consistent as your product grows.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section>
+  <div class="wrap">
+    <div class="stats-section">
+      <div class="section-head">
+        <h2>Less Guesswork. More Measurable Impact.</h2>
+        <p>Once the user experience was redefined, everything started working as it should — users stayed longer, navigation felt effortless, and actions became intentional.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="num">150+</div><div class="label">UI/UX projects successfully delivered</div></div>
+        <div class="stat-card"><div class="num">120+</div><div class="label">Websites redesigned for better performance</div></div>
+        <div class="stat-card"><div class="num">5+</div><div class="label">Years of experience in UI/UX design</div></div>
+        <div class="stat-card"><div class="num">70%</div><div class="label">Increase in mobile usability scores</div></div>
+        <div class="stat-card"><div class="num">95%</div><div class="label">Client retention rate</div></div>
+        <div class="stat-card"><div class="num">6+</div><div class="label">Industries served globally</div></div>
+        <div class="stat-card"><div class="num">2X</div><div class="label">Faster user task completion after redesign</div></div>
+        <div class="stat-card"><div class="num">3X</div><div class="label">Improvement in average session duration</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What Do Our Creative Experts Do to Provide the Best UI/UX Services?</h2>
+      <p>Our process is built to understand users, eliminate friction, and design seamless experiences that improve usability, engagement, and conversions.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step-card"><div class="step-num">1</div><h3>Understand Your Users</h3><p>We deeply research user behavior, needs, and expectations to build meaningful, user-centered experiences.</p></div>
+      <div class="step-card"><div class="step-num">2</div><h3>Define the Experience Strategy</h3><p>We map complete user journeys, identifying gaps and friction points for a conversion-focused experience.</p></div>
+      <div class="step-card"><div class="step-num">3</div><h3>Wireframe &amp; Prototype</h3><p>We build structured wireframes and prototypes to visualize layout, flow, and functionality.</p></div>
+      <div class="step-card"><div class="step-num">4</div><h3>Design with Purpose</h3><p>We design clean, intuitive interfaces focused on usability and guiding users toward meaningful actions.</p></div>
+      <div class="step-card"><div class="step-num">5</div><h3>Test &amp; Optimize</h3><p>We continuously test designs, gather feedback, and optimize for better usability and results.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="case-studies" style="background:var(--paper);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Where Ideas Turned Into High-Performing Experiences</h2>
+      <p>We've worked with brands across industries to transform their digital presence through UI/UX design.</p>
+    </div>
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-media"><span class="case-tag">Responsive Website</span></div>
+        <div class="case-body">
+          <h3>Powdertek</h3>
+          <p>3D facade visualisation &amp; mockups, interactive shade exploration across wood effects and solid finishes, with smooth motion design and micro-animations throughout.</p>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-media alt"><span class="case-tag">Brand + Web + Growth</span></div>
+        <div class="case-body">
+          <h3>Party Rack India</h3>
+          <p>Built from the ground up — strategy, brand, catalog, website, automation, and growth infrastructure — on a structured 90–120 day roadmap. No guesswork, no patchwork.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section id="solutions">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Chosen for the Way We Think — Not Just Design</h2>
+      <p>Choosing the right UI/UX partner directly impacts how users experience your brand and take action.</p>
+    </div>
+    <div class="choose-list">
+      <div class="choose-item"><div class="choose-check">✓</div><p>We follow a strategy-first approach, ensuring every design decision supports business goals and user experience.</p></div>
+      <div class="choose-item"><div class="choose-check">✓</div><p>Design based on real user behavior, optimizing every interaction to improve engagement and drive conversions.</p></div>
+      <div class="choose-item"><div class="choose-check">✓</div><p>Clean, modern interfaces that are scalable, consistent, and adaptable across platforms and devices.</p></div>
+      <div class="choose-item"><div class="choose-check">✓</div><p>We deliver projects quickly without compromising quality, with strong attention to every design detail.</p></div>
+      <div class="choose-item"><div class="choose-check">✓</div><p>Clear, consistent communication — working closely with clients to ensure alignment throughout the process.</p></div>
+      <div class="choose-item"><div class="choose-check">✓</div><p>Design solutions that align perfectly with your business objectives, not just visual trends.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section style="background:var(--paper);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Industries for Which We Provide UI/UX Services</h2>
+      <p>We design tailored UI/UX solutions across diverse industries, ensuring each experience aligns with user expectations and business goals.</p>
+    </div>
+    <div class="industry-grid">
+      <div class="industry-card"><div class="industry-icon">🛍️</div><h3>eCommerce &amp; Retail</h3><p>Seamless shopping experiences that simplify navigation, build trust, and increase conversions.</p></div>
+      <div class="industry-card"><div class="industry-icon">🎓</div><h3>Education &amp; EdTech</h3><p>Engaging learning experiences with clear navigation and structured flows that improve engagement.</p></div>
+      <div class="industry-card"><div class="industry-icon">💰</div><h3>Finance &amp; Consulting</h3><p>Secure, user-friendly financial interfaces that simplify complex data and build user trust.</p></div>
+      <div class="industry-card"><div class="industry-icon">🏥</div><h3>Healthcare &amp; Medical</h3><p>Interfaces focused on clarity, accessibility, and trust for patients accessing care and services.</p></div>
+      <div class="industry-card"><div class="industry-icon">⚙️</div><h3>SaaS &amp; Technology</h3><p>Scalable interfaces that simplify complex workflows and improve productivity and retention.</p></div>
+      <div class="industry-card"><div class="industry-icon">🏠</div><h3>Real Estate</h3><p>Intuitive platforms that showcase properties and simplify search, comparison, and connection.</p></div>
+      <div class="industry-card"><div class="industry-icon">🚚</div><h3>Logistics &amp; Supply Chain</h3><p>Streamlined dashboards that simplify operations and improve visibility with minimal friction.</p></div>
+      <div class="industry-card"><div class="industry-icon">✈️</div><h3>Travel &amp; Tourism</h3><p>Booking flows and discovery experiences designed to build confidence and reduce drop-off.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Ready to Fix Your UI/UX?</h2>
+      <p>Let's turn your website or app into an experience users trust, enjoy, and act on.</p>
+      <a href="#contact" class="btn">Let's Fix Your UI/UX</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="faq-title">Frequently Asked Questions</div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">What does a UI/UX design agency actually do? <span class="plus">+</span></button>
+        <div class="faq-a"><p>We research your users, map their journeys, and design interfaces — wireframes, prototypes, and final visuals — that make your product easier and more compelling to use.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does a typical UI/UX project take? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Most website or app redesigns take 4–8 weeks depending on scope, moving through research, wireframing, design, and testing in structured phases.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you design for both web and mobile apps? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes — we design responsive websites, native mobile app interfaces for iOS and Android, and dashboards for SaaS products.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will a redesign actually improve my conversion rate? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Every design decision is made with conversion in mind — clearer navigation, reduced friction, and stronger trust signals typically lead to measurable lifts in engagement and conversions.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can you improve an existing product instead of a full redesign? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes — our UX audit service identifies specific usability issues in your current product and optimizes them without requiring a ground-up rebuild.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>

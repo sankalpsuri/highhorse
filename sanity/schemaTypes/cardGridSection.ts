@@ -11,15 +11,33 @@ export default defineType({
       name: 'style',
       title: 'Style',
       type: 'string',
-      options: {list: [{title: 'Default', value: 'default'}, {title: 'Dashed border', value: 'dashed'}]},
+      options: {list: [{title: 'Default', value: 'default'}, {title: 'Dashed border', value: 'dashed'}, {title: 'Clean (no borders)', value: 'clean'}]},
       initialValue: 'default',
     }),
     defineField({
       name: 'background',
       title: 'Background',
       type: 'string',
-      options: {list: [{title: 'Default', value: 'default'}, {title: 'Cream', value: 'cream'}]},
+      options: {list: [{title: 'Default', value: 'default'}, {title: 'Cream', value: 'cream'}, {title: 'White', value: 'white'}]},
       initialValue: 'default',
+    }),
+    defineField({
+      name: 'columns',
+      title: 'Columns',
+      type: 'number',
+      description: 'Fixed column count. Leave empty for auto-fit.',
+    }),
+    defineField({
+      name: 'tintStyle',
+      title: 'Tint style',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Badge only', value: 'badge'},
+          {title: 'Full card background', value: 'full'},
+        ],
+      },
+      description: 'Controls how badgeColor is applied. "badge" tints only the icon badge; "full" tints the entire card background.',
     }),
     defineField({
       name: 'cards',

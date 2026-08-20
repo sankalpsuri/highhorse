@@ -5,18 +5,41 @@ import { urlFor } from '@/lib/sanity/client'
 
 interface HeroSectionProps {
   badgeText?: string
+  badgeStyle?: string
   headline: string
   subheadline?: string
   ctaText?: string
   ctaLink?: string
   heroImage?: any
+  textAlign?: string
 }
 
-export function HeroSection({ badgeText, headline, subheadline, ctaText, ctaLink, heroImage }: HeroSectionProps) {
+export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaText, ctaLink, heroImage, textAlign }: HeroSectionProps) {
+  const centered = textAlign === 'center'
+
   return (
     <section style={{ background: '#F5F5F4', borderBottom: '1px solid #E4E4E4' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '88px 32px 96px' }}>
-        {badgeText && (
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '88px 32px 96px', textAlign: centered ? 'center' as const : 'left' as const }}>
+        {badgeText && badgeStyle === 'eyebrow' ? (
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            marginBottom: 14,
+          }}>
+            <span style={{ width: 18, height: 2, background: '#1A6AFF', display: 'inline-block' }} />
+            <span style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 13,
+              fontWeight: 700,
+              color: '#1A6AFF',
+              textTransform: 'uppercase' as const,
+              letterSpacing: '0.08em',
+            }}>
+              {badgeText}
+            </span>
+          </div>
+        ) : badgeText ? (
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -32,17 +55,16 @@ export function HeroSection({ badgeText, headline, subheadline, ctaText, ctaLink
             <FcGoogle style={{ fontSize: 18, flexShrink: 0 }} />
             <span style={{ font: "500 12.5px 'Poppins', sans-serif", color: '#5c5c5c' }}>{badgeText}</span>
           </div>
-        )}
+        ) : null}
         <h1 style={{
           fontFamily: "'Montserrat', sans-serif",
           fontWeight: 800,
           fontSize: 'clamp(2.2rem, 3.8vw, 3.4rem)',
           lineHeight: 1.1,
-          margin: '0 0 24px',
-          maxWidth: 720,
+          margin: centered ? '0 auto 24px' : '0 0 24px',
+          maxWidth: centered ? 760 : 720,
           letterSpacing: '-0.01em',
           color: '#111111',
-          textAlign: 'left' as const,
         }}>
           {headline}
         </h1>
@@ -52,9 +74,8 @@ export function HeroSection({ badgeText, headline, subheadline, ctaText, ctaLink
             fontSize: 17,
             lineHeight: 1.65,
             color: '#5c5c5c',
-            maxWidth: 680,
-            margin: '0 0 36px',
-            textAlign: 'left' as const,
+            maxWidth: centered ? 600 : 680,
+            margin: centered ? '0 auto 36px' : '0 0 36px',
           }}>
             {subheadline}
           </p>

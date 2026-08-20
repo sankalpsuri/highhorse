@@ -26,11 +26,11 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'relatedPage',
-      title: 'Related service page',
-      type: 'reference',
-      to: [{type: 'servicePage'}],
-      description: 'Optional — set this if the FAQ should appear on a specific service page.',
+      name: 'relatedPages',
+      title: 'Related service pages',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'servicePage'}]}],
+      description: 'Service pages where this FAQ should appear.',
     }),
     defineField({
       name: 'order',

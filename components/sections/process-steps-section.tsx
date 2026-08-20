@@ -6,11 +6,13 @@ interface Step {
 
 interface ProcessStepsSectionProps {
   heading?: string
+  headingBordered?: boolean
   subtext?: string
+  columns?: number
   steps?: Step[]
 }
 
-export function ProcessStepsSection({ heading, subtext, steps }: ProcessStepsSectionProps) {
+export function ProcessStepsSection({ heading, headingBordered, subtext, columns, steps }: ProcessStepsSectionProps) {
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
@@ -23,6 +25,12 @@ export function ProcessStepsSection({ heading, subtext, steps }: ProcessStepsSec
             margin: '0 0 16px',
             color: '#111111',
             textAlign: 'left' as const,
+            ...(headingBordered ? {
+              border: '2px solid #1A6AFF',
+              borderRadius: 8,
+              padding: '14px 22px',
+              display: 'inline-block',
+            } : {}),
           }}>
             {heading}
           </h2>
@@ -42,7 +50,7 @@ export function ProcessStepsSection({ heading, subtext, steps }: ProcessStepsSec
         {steps && steps.length > 0 && (
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gridTemplateColumns: columns ? `repeat(${columns}, 1fr)` : 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: 24,
           }}>
             {steps.map((step, i) => (

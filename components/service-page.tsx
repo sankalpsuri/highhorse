@@ -10,7 +10,28 @@ import { StatsSection } from '@/components/sections/stats-section'
 import { ProcessStepsSection } from '@/components/sections/process-steps-section'
 import { ImageGallerySection } from '@/components/sections/image-gallery-section'
 import { ClientProofSection } from '@/components/sections/client-proof-section'
+import { PortfolioMasonryGrid } from '@/components/sections/portfolio-masonry-grid'
+import { ChallengeGridSection } from '@/components/sections/challenge-grid-section'
+import { ChecklistSection } from '@/components/sections/checklist-section'
+import { PortfolioShowcaseSection } from '@/components/sections/portfolio-showcase-section'
+import { TechSliderSection } from '@/components/sections/tech-slider-section'
 import { FaqAccordion } from '@/components/faq-accordion'
+
+interface CaseStudyEntry {
+  _key?: string
+  metricsFilterTag?: string
+  overrideMetrics?: { value: string; label: string }[]
+  caseStudy: {
+    clientName: string
+    slug: string
+    industry?: string
+    summary?: string
+    logo?: any
+    coverImage?: any
+    resultImages?: any[]
+    results?: { value: string; label: string }[]
+  }
+}
 
 interface ServicePageProps {
   data: {
@@ -19,23 +40,16 @@ interface ServicePageProps {
     summary?: string
     accentStyle?: string
     pageBuilder?: any[]
-    relatedCaseStudies?: {
-      clientName: string
-      slug: string
-      industry?: string
-      summary?: string
-      logo?: any
-      coverImage?: any
-      resultImages?: any[]
-      results?: { value: string; label: string }[]
-    }[]
+    caseStudiesHeading?: string
+    caseStudiesSubtext?: string
+    relatedCaseStudies?: CaseStudyEntry[]
     relatedFaqs?: { _id: string; question: string; answer: any; order?: number }[]
   }
 }
 
 const caseStudyColors = ['#DBEAFE', '#EDE9FE', '#FFEDD5', '#D1FAE5']
 
-function PageBuilderSection({ block, relatedCaseStudies, accentStyle }: { block: any; relatedCaseStudies?: any[]; accentStyle?: string }) {
+function PageBuilderSection({ block, relatedCaseStudies, accentStyle }: { block: any; relatedCaseStudies?: CaseStudyEntry[]; accentStyle?: string }) {
   switch (block._type) {
     case 'heroSection':
       return <HeroSection {...block} />
@@ -51,14 +65,29 @@ function PageBuilderSection({ block, relatedCaseStudies, accentStyle }: { block:
       return <ProcessStepsSection {...block} />
     case 'imageGallerySection':
       return <ImageGallerySection {...block} />
-    case 'clientProofSection':
-      return <ClientProofSection {...block} caseStudies={relatedCaseStudies} />
+    case 'clientProofSection': {
+      const flatStudies = relatedCaseStudies?.map((e) => e.caseStudy)
+      return <ClientProofSection {...block} caseStudies={flatStudies} />
+    }
+    case 'portfolioMasonryGrid':
+      return <PortfolioMasonryGrid {...block} />
+    case 'challengeGridSection':
+      return <ChallengeGridSection {...block} />
+    case 'checklistSection':
+      return <ChecklistSection {...block} />
+    case 'portfolioShowcaseSection':
+      return <PortfolioShowcaseSection {...block} />
+    case 'techSliderSection':
+      return <TechSliderSection {...block} />
     default:
       return null
   }
 }
 
 export function ServicePage({ data }: ServicePageProps) {
+  const csHeading = data.caseStudiesHeading || 'How Our Strategies Turned Search Demand Into Revenue'
+  const csSubtext = data.caseStudiesSubtext || 'SEO strategies convert search demand into measurable revenue by attracting high-intent traffic, improving conversions, and delivering consistent business growth.'
+
   return (
     <article>
       {data.pageBuilder?.map((block) => (
@@ -81,7 +110,7 @@ export function ServicePage({ data }: ServicePageProps) {
               margin: '0 0 16px',
               color: '#111111',
             }}>
-              How Our Strategies Turned Search Demand Into Revenue
+              {csHeading}
             </h2>
             <p style={{
               fontFamily: "'Poppins', sans-serif",
@@ -91,20 +120,22 @@ export function ServicePage({ data }: ServicePageProps) {
               maxWidth: 680,
               margin: '0 0 48px',
             }}>
-              SEO strategies convert search demand into measurable revenue by attracting high-intent traffic, improving conversions, and delivering consistent business growth.
+              {csSubtext}
             </p>
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
               gap: 24,
             }}>
-              {data.relatedCaseStudies.map((cs, idx) => {
+              {data.relatedCaseStudies.map((entry, idx) => {
+                const cs = entry.caseStudy
+                const metrics = entry.overrideMetrics?.length ? entry.overrideMetrics : cs.results
                 const isMulti = data.accentStyle === 'multi'
                 const cardBg = isMulti ? caseStudyColors[idx % caseStudyColors.length] : '#FFFFFF'
                 const cardBorder = isMulti ? 'none' : '1px solid #E4E4E4'
                 return (
                 <Link
-                  key={cs.slug}
+                  key={entry._key || cs.slug}
                   href={`/${cs.slug}`}
                   style={{
                     display: 'block',
@@ -128,8 +159,8 @@ export function ServicePage({ data }: ServicePageProps) {
                     <div style={{
                       aspectRatio: '16 / 9',
                       display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
+                      alignItems: 'left',
+                      justifyContent: 'left',
                       fontFamily: "'Poppins', sans-serif",
                       fontSize: 14,
                       color: '#8a8a86',
@@ -138,18 +169,33 @@ export function ServicePage({ data }: ServicePageProps) {
                     </div>
                   )}
                   <div style={{ padding: '24px 28px 28px' }}>
-                    <p style={{
-                      fontFamily: "'Montserrat', sans-serif",
-                      fontWeight: 700,
-                      fontSize: 17,
-                      color: '#111111',
-                      margin: '0 0 16px',
-                    }}>
-                      {cs.clientName}
-                    </p>
-                    {cs.results && cs.results.length > 0 && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                      <p style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontWeight: 700,
+                        fontSize: 17,
+                        color: '#111111',
+                        margin: 0,
+                      }}>
+                        {cs.clientName}
+                      </p>
+                      {entry.metricsFilterTag && (
+                        <span style={{
+                          fontFamily: "'Poppins', sans-serif",
+                          fontSize: 11,
+                          fontWeight: 600,
+                          color: '#1A6AFF',
+                          background: 'rgba(26, 106, 255, 0.08)',
+                          padding: '2px 8px',
+                          borderRadius: 100,
+                        }}>
+                          {entry.metricsFilterTag}
+                        </span>
+                      )}
+                    </div>
+                    {metrics && metrics.length > 0 && (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                        {cs.results.slice(0, 3).map((r, i) => (
+                        {metrics.slice(0, 3).map((r, i) => (
                           <div key={i}>
                             <span style={{
                               fontFamily: "'Montserrat', sans-serif",

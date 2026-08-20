@@ -33,17 +33,23 @@ export const servicePageQuery = groq`
       _key,
       _type == "heroSection" => {
         badgeText,
+        badgeStyle,
         headline,
         subheadline,
         ctaText,
         ctaLink,
-        heroImage{ ..., asset-> }
+        heroImage{ ..., asset-> },
+        textAlign
       },
       _type == "textImageSection" => {
         heading,
+        headingBordered,
         bodyText,
         bullets,
+        bulletStyle,
         closingText,
+        ctaText,
+        ctaLink,
         image{ ..., asset-> },
         imagePosition
       },
@@ -52,6 +58,8 @@ export const servicePageQuery = groq`
         subtext,
         style,
         background,
+        columns,
+        tintStyle,
         cards[]{
           _key,
           icon{ ..., asset-> },
@@ -66,17 +74,21 @@ export const servicePageQuery = groq`
         bodyText,
         ctaText,
         ctaLink,
-        variant
+        variant,
+        textAlign
       },
       _type == "statsSection" => {
         heading,
         bodyText,
         layout,
+        theme,
         stats[]{ _key, value, label }
       },
       _type == "processStepsSection" => {
         heading,
+        headingBordered,
         subtext,
+        columns,
         steps[]{ _key, stepTitle, stepDescription }
       },
       _type == "imageGallerySection" => {
@@ -87,9 +99,45 @@ export const servicePageQuery = groq`
       _type == "clientProofSection" => {
         heading,
         bodyText
+      },
+      _type == "portfolioMasonryGrid" => {
+        heading,
+        subtext,
+        items[]{ _key, image{ ..., asset-> }, badgeText, mediaType }
+      },
+      _type == "challengeGridSection" => {
+        layout,
+        heading,
+        subtext,
+        ctaText,
+        ctaLink,
+        challenges
+      },
+      _type == "checklistSection" => {
+        layout,
+        heading,
+        subtext,
+        items
+      },
+      _type == "portfolioShowcaseSection" => {
+        heading,
+        subtext,
+        items[]{ _key, tag, title, description, image{ ..., asset-> } }
+      },
+      _type == "techSliderSection" => {
+        heading,
+        subtext,
+        logos[]{ _key, name, displayText, bgColor, textColor }
       }
     },
-    relatedCaseStudies[]->{ clientName, "slug": slug.current, industry, summary, logo{ ..., asset-> }, coverImage{ ..., asset-> }, resultImages[]{ ..., asset-> }, results[]{ value, label } },
+    caseStudiesHeading,
+    caseStudiesSubtext,
+    relatedCaseStudies[]{
+      _key,
+      metricsFilterTag,
+      overrideMetrics[]{ value, label },
+      caseStudy->{ clientName, "slug": slug.current, industry, summary, logo{ ..., asset-> }, coverImage{ ..., asset-> }, resultImages[]{ ..., asset-> }, results[]{ value, label } }
+    },
     relatedFaqs[]->{ _id, question, answer, order },
     seo
   }
@@ -165,7 +213,7 @@ export const blogListingQuery = groq`
 // ── FAQs by page ───────────────────────────────────────────────
 
 export const faqsByPageQuery = groq`
-  *[_type == "faq" && relatedPage._ref == $pageId] | order(order asc){
+  *[_type == "faq" && $pageId in relatedPages[]._ref] | order(order asc){
     _id,
     question,
     answer,

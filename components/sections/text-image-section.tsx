@@ -1,19 +1,40 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import { urlFor } from '@/lib/sanity/client'
 
 interface TextImageSectionProps {
   heading?: string
+  headingBordered?: boolean
   bodyText?: any[]
   bullets?: string[]
+  bulletStyle?: string
   closingText?: string
+  ctaText?: string
+  ctaLink?: string
   image?: any
   imagePosition?: 'left' | 'right'
 }
 
-export function TextImageSection({ heading, bodyText, bullets, closingText, image, imagePosition }: TextImageSectionProps) {
+export function TextImageSection({ heading, headingBordered, bodyText, bullets, bulletStyle, closingText, ctaText, ctaLink, image, imagePosition }: TextImageSectionProps) {
   const hasImage = !!image?.asset
   const expectsImage = !!imagePosition
+
+  const headingStyle: React.CSSProperties = {
+    fontFamily: "'Montserrat', sans-serif",
+    fontWeight: 700,
+    fontSize: 'clamp(1.7rem, 2.4vw, 2.2rem)',
+    lineHeight: 1.25,
+    margin: 0,
+    color: '#111111',
+    textAlign: 'left' as const,
+    ...(headingBordered ? {
+      border: '2px solid #1A6AFF',
+      borderRadius: 8,
+      padding: '14px 22px',
+      display: 'inline-block',
+    } : {}),
+  }
 
   const bodyBlock = bodyText && (
     <div style={{ color: '#5c5c5c', fontFamily: "'Poppins', sans-serif", fontSize: 16, lineHeight: 1.7 }}>
@@ -22,23 +43,61 @@ export function TextImageSection({ heading, bodyText, bullets, closingText, imag
   )
 
   const bulletsBlock = bullets && bullets.length > 0 && (
-    <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0' }}>
-      {bullets.map((bullet, i) => (
-        <li key={i} style={{
-          padding: '12px 0',
-          borderBottom: '1px solid #E4E4E4',
-        }}>
-          <span style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: 15,
-            lineHeight: 1.6,
-            color: '#5c5c5c',
+    bulletStyle === 'stacked' ? (
+      <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0' }}>
+        {bullets.map((bullet, i) => {
+          const sepIdx = bullet.indexOf(' — ')
+          const title = sepIdx >= 0 ? bullet.slice(0, sepIdx) : bullet
+          const desc = sepIdx >= 0 ? bullet.slice(sepIdx + 3) : null
+          return (
+            <li key={i} style={{
+              padding: '16px 0',
+              borderBottom: '1px solid #E4E4E4',
+            }}>
+              <p style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 15,
+                lineHeight: 1.4,
+                color: '#111111',
+                margin: desc ? '0 0 6px' : 0,
+              }}>
+                {title}
+              </p>
+              {desc && (
+                <p style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: 14,
+                  lineHeight: 1.6,
+                  color: '#5c5c5c',
+                  margin: 0,
+                }}>
+                  {desc}
+                </p>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    ) : (
+      <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0' }}>
+        {bullets.map((bullet, i) => (
+          <li key={i} style={{
+            padding: '12px 0',
+            borderBottom: '1px solid #E4E4E4',
           }}>
-            {bullet}
-          </span>
-        </li>
-      ))}
-    </ul>
+            <span style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 15,
+              lineHeight: 1.6,
+              color: '#5c5c5c',
+            }}>
+              {bullet}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )
   )
 
   const closingBlock = closingText && (
@@ -51,6 +110,28 @@ export function TextImageSection({ heading, bodyText, bullets, closingText, imag
     }}>
       {closingText}
     </p>
+  )
+
+  const ctaBlock = ctaText && ctaLink && (
+    <div style={{ marginTop: 16 }}>
+      <Link
+        href={ctaLink}
+        style={{
+          display: 'inline-block',
+          fontFamily: "'Montserrat', sans-serif",
+          fontWeight: 600,
+          fontSize: 14,
+          background: 'transparent',
+          color: '#111111',
+          padding: '13px 28px',
+          borderRadius: 5,
+          textDecoration: 'none',
+          border: '1.5px solid #111111',
+        }}
+      >
+        {ctaText}
+      </Link>
+    </div>
   )
 
   if (!expectsImage) {
@@ -66,24 +147,13 @@ export function TextImageSection({ heading, bodyText, bullets, closingText, imag
           alignItems: 'flex-start',
         }}>
           <div style={{ flex: '1 1 340px', minWidth: 280 }}>
-            {heading && (
-              <h2 style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 700,
-                fontSize: 'clamp(1.7rem, 2.4vw, 2.2rem)',
-                lineHeight: 1.25,
-                margin: 0,
-                color: '#111111',
-                textAlign: 'left' as const,
-              }}>
-                {heading}
-              </h2>
-            )}
+            {heading && <h2 style={headingStyle}>{heading}</h2>}
           </div>
           <div style={{ flex: '1 1 520px', minWidth: 300 }}>
             {bodyBlock}
             {bulletsBlock}
             {closingBlock}
+            {ctaBlock}
           </div>
         </div>
       </section>
@@ -92,20 +162,9 @@ export function TextImageSection({ heading, bodyText, bullets, closingText, imag
 
   const textBlock = (
     <div style={{ flex: '1 1 480px', minWidth: 300 }}>
-      {heading && (
-        <h2 style={{
-          fontFamily: "'Montserrat', sans-serif",
-          fontWeight: 700,
-          fontSize: 'clamp(1.7rem, 2.4vw, 2.2rem)',
-          lineHeight: 1.25,
-          margin: '0 0 20px',
-          color: '#111111',
-          textAlign: 'left' as const,
-        }}>
-          {heading}
-        </h2>
-      )}
+      {heading && <h2 style={{ ...headingStyle, margin: '0 0 20px' }}>{heading}</h2>}
       {bodyBlock}
+      {ctaBlock}
       {bulletsBlock}
       {closingBlock}
     </div>

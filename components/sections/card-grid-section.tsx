@@ -22,19 +22,111 @@ interface CardGridSectionProps {
   subtext?: string
   style?: string
   background?: string
+  columns?: number
+  tintStyle?: string
   cards?: Card[]
   accentStyle?: string
 }
 
 const brandBadge = { bg: 'rgba(26, 106, 255, 0.1)', text: '#1A6AFF' }
 
-export function CardGridSection({ heading, subtext, style, background, cards, accentStyle }: CardGridSectionProps) {
-  const bg = background === 'cream' ? '#FDF8F0' : '#F5F5F4'
+const tintBgColors: Record<string, string> = {
+  mint: 'rgba(209, 250, 229, 0.35)',
+  peach: 'rgba(255, 237, 213, 0.35)',
+  lavender: 'rgba(237, 233, 254, 0.35)',
+  gray: 'rgba(243, 244, 246, 0.5)',
+}
+
+export function CardGridSection({ heading, subtext, style, background, columns, tintStyle, cards, accentStyle }: CardGridSectionProps) {
+  const bg = background === 'cream' ? '#FDF8F0' : background === 'white' ? '#fff' : '#F5F5F4'
+  const isClean = style === 'clean'
+
+  const gridCols = columns
+    ? `repeat(${columns}, 1fr)`
+    : 'repeat(auto-fit, minmax(300px, 1fr))'
+
+  if (isClean) {
+    return (
+      <section style={{ background: bg, borderTop: background === 'white' ? 'none' : '1px solid #E4E4E4', borderBottom: background === 'white' ? 'none' : '1px solid #E4E4E4' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+          {heading && (
+            <h2 style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 700,
+              fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+              lineHeight: 1.2,
+              margin: '0 0 16px',
+              color: '#111111',
+            }}>
+              {heading}
+            </h2>
+          )}
+          {subtext && (
+            <p style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 16,
+              lineHeight: 1.7,
+              color: '#5c5c5c',
+              maxWidth: 680,
+              margin: '0 0 36px',
+            }}>
+              {subtext}
+            </p>
+          )}
+          {cards && cards.length > 0 && (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: gridCols,
+              columnGap: 56,
+              rowGap: 36,
+            }}>
+              {cards.map((card, i) => (
+                <div key={card._key || i}>
+                  {card.icon?.asset && (
+                    <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(26, 106, 255, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+                      <Image
+                        src={urlFor(card.icon).width(80).auto('format').url()}
+                        alt={card.title || ''}
+                        width={24}
+                        height={24}
+                      />
+                    </div>
+                  )}
+                  {card.title && (
+                    <h3 style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 16,
+                      margin: '0 0 8px',
+                      color: '#111111',
+                    }}>
+                      {card.title}
+                    </h3>
+                  )}
+                  {card.description && (
+                    <p style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: 14,
+                      lineHeight: 1.6,
+                      color: '#5c5c5c',
+                      margin: 0,
+                    }}>
+                      {card.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
 
   const gridContent = (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+      gridTemplateColumns: gridCols,
       border: style === 'dashed' ? 'none' : '1px solid #E4E4E4',
       borderRadius: 5,
       overflow: 'hidden',
@@ -44,12 +136,16 @@ export function CardGridSection({ heading, subtext, style, background, cards, ac
         const badge = card.badgeColor
           ? (isMulti ? badgeColors[card.badgeColor] || brandBadge : brandBadge)
           : null
+        const isFullTint = tintStyle === 'full' && card.badgeColor
+        const cardBg = isFullTint
+          ? (isMulti ? tintBgColors[card.badgeColor!] || '#fff' : 'rgba(26, 106, 255, 0.06)')
+          : '#fff'
         return (
           <div key={card._key || i} style={{
             padding: '36px 32px',
             borderRight: '1px solid #E4E4E4',
             borderBottom: '1px solid #E4E4E4',
-            background: '#fff',
+            background: cardBg,
           }}>
             {card.icon?.asset && (
               <div style={{ marginBottom: 16, width: 40, height: 40 }}>

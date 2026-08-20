@@ -16,6 +16,13 @@ export default defineType({
       options: {list: [{title: 'Default', value: 'default'}, {title: 'Tan', value: 'tan'}]},
       initialValue: 'default',
     }),
+    defineField({
+      name: 'textAlign',
+      title: 'Text alignment',
+      type: 'string',
+      options: {list: [{title: 'Left', value: 'left'}, {title: 'Center', value: 'center'}]},
+      initialValue: 'left',
+    }),
   ],
   preview: {
     select: {title: 'heading'},
