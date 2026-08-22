@@ -6,6 +6,7 @@ import Image from 'next/image'
 import styles from './header.module.css'
 
 const CONTACT_HREF = '/contact-search-performance-marketing-agency'
+const AUDIT_HREF = '/free-website-audit'
 
 interface NavItem {
   label: string
@@ -26,8 +27,8 @@ interface MegaMenuData {
 const navLinks: NavItem[] = [
   { label: 'Who We Are', href: '/about-search-performance-marketing-agency' },
   { label: 'What We Do', href: '/search-intelligence-and-demand-discovery-services' },
-  { label: 'Case Studies', href: '/marketing-insights-and-research' },
-  { label: 'Learn With Us', href: '/search-and-performance-marketing-blog' },
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Learn With Us', href: '/blog' },
 ]
 
 const megaMenus: (MegaMenuData | null)[] = [
@@ -92,7 +93,7 @@ const megaMenus: (MegaMenuData | null)[] = [
           { label: 'Guides', href: '/performance-marketing-strategy-guides' },
           { label: 'Templates', href: '/marketing-strategy-templates-download' },
           { label: 'Insights', href: '/marketing-insights-and-research' },
-          { label: 'Blog', href: '/search-and-performance-marketing-blog' },
+          { label: 'Blog', href: '/blog' },
         ],
       },
     ],
@@ -138,6 +139,9 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
+          <Link href={AUDIT_HREF} className={styles.ctaBtnDark}>
+            Free Website Audit
+          </Link>
           <Link href={CONTACT_HREF} className={styles.ctaBtn}>
             Find Your Search Opportunity
           </Link>
@@ -168,6 +172,9 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <Link href={AUDIT_HREF} className={styles.mobileCtaDark} onClick={closeMenu}>
+            Free Website Audit
+          </Link>
           <Link href={CONTACT_HREF} className={styles.mobileCta} onClick={closeMenu}>
             Find Your Search Opportunity
           </Link>

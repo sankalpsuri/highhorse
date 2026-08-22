@@ -3,10 +3,21 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { sanityFetch, urlFor } from '@/lib/sanity/client'
 import { blogListingQuery } from '@/lib/sanity/queries'
+import { BlogGrid } from './blog-grid'
+import { NewsletterForm } from '@/app/case-studies/newsletter-form'
 
 export const metadata: Metadata = {
   title: 'Blog — High Horse',
-  description: 'Insights on SEO, performance marketing, and growing your business online.',
+  description:
+    'Practical strategy, technical playbooks, and AI-search thinking for teams building durable acquisition engines.',
+}
+
+const categoryLabels: Record<string, string> = {
+  seo: 'SEO',
+  'performance-marketing': 'Performance Marketing',
+  'content-marketing': 'Content Marketing',
+  ecommerce: 'Ecommerce',
+  'industry-news': 'Industry News',
 }
 
 interface BlogListItem {
@@ -22,73 +33,281 @@ interface BlogListItem {
 
 export default async function BlogListingPage() {
   const posts = await sanityFetch<BlogListItem[]>(blogListingQuery)
+  const featured = posts.length > 0 ? posts[0] : null
+  const remaining = posts.length > 1 ? posts.slice(1) : []
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16">
-      <h1 className="mb-12 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-        Blog
-      </h1>
-
-      {posts.length === 0 && (
-        <p className="text-zinc-500">No posts yet. Check back soon.</p>
-      )}
-
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
-          <Link
-            key={post._id}
-            href={`/blog/${post.slug}`}
-            className="group block overflow-hidden rounded-lg border border-zinc-200 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
+    <main>
+      {/* ── Hero ─────────────────────────────────────────────── */}
+      <section style={{ padding: '56px 0 0' }}>
+        <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
+          <div
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              fontSize: 13,
+              fontWeight: 700,
+              color: '#1A6AFF',
+              marginBottom: 10,
+            }}
           >
-            {post.mainImage && (
-              <Image
-                src={urlFor(post.mainImage).width(400).height(225).auto('format').url()}
-                alt={post.mainImage.alt || post.title}
-                width={400}
-                height={225}
-                className="w-full object-cover"
-              />
-            )}
-            <div className="p-5">
-              {post.categories && post.categories.length > 0 && (
-                <div className="mb-2 flex flex-wrap gap-1">
-                  {post.categories.map((cat) => (
-                    <span
-                      key={cat}
-                      className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
-                    >
-                      {cat}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <h2 className="font-semibold text-zinc-900 group-hover:underline dark:text-zinc-50">
-                {post.title}
-              </h2>
-              {post.excerpt && (
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">
-                  {post.excerpt}
-                </p>
-              )}
-              <div className="mt-3 flex items-center gap-2 text-xs text-zinc-500">
-                {post.author?.name && <span>{post.author.name}</span>}
-                {post.publishedAt && (
-                  <>
-                    <span>&middot;</span>
-                    <time dateTime={post.publishedAt}>
-                      {new Date(post.publishedAt).toLocaleDateString('en-IN', {
+            Blogs
+          </div>
+          <h1
+            style={{
+              fontFamily: 'Montserrat, sans-serif',
+              fontSize: 34,
+              fontWeight: 700,
+              lineHeight: 1.25,
+              letterSpacing: '-0.02em',
+              color: '#111111',
+              maxWidth: 640,
+            }}
+          >
+            Ideas That Turn Search Visibility Into Measurable Growth.
+          </h1>
+          <p
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              fontSize: 14.5,
+              color: '#5c5c5c',
+              maxWidth: 520,
+              lineHeight: 1.55,
+            }}
+          >
+            Practical strategy, technical playbooks, and AI-search thinking
+            for teams building durable acquisition engines.
+          </p>
+
+          {/* ── Featured Card ──────────────────────────────── */}
+          {featured && (
+            <Link
+              href={`/blog/${featured.slug}`}
+              className="blog-featured-card"
+            >
+              <div
+                style={{
+                  flex: 1,
+                  minWidth: 260,
+                  height: 220,
+                  borderRadius: 12,
+                  background: '#f5f5f4',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                {featured.mainImage?.asset ? (
+                  <Image
+                    src={urlFor(featured.mainImage).width(520).height(220).auto('format').url()}
+                    alt={featured.mainImage.alt || featured.title}
+                    width={520}
+                    height={220}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    priority
+                  />
+                ) : (
+                  <span
+                    style={{
+                      fontFamily: 'Montserrat, sans-serif',
+                      fontSize: 13,
+                      fontWeight: 700,
+                      color: '#8a8a86',
+                    }}
+                  >
+                    HIGH HORSE
+                  </span>
+                )}
+              </div>
+              <div
+                style={{
+                  flex: 1,
+                  minWidth: 260,
+                  padding: '8px 20px 8px 0',
+                }}
+              >
+                {featured.categories && featured.categories.length > 0 && (
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      fontFamily: 'Poppins, sans-serif',
+                      fontSize: 11,
+                      fontWeight: 700,
+                      color: '#1A6AFF',
+                      background: '#eaf1ff',
+                      padding: '4px 10px',
+                      borderRadius: 999,
+                      marginBottom: 12,
+                    }}
+                  >
+                    {categoryLabels[featured.categories[0]] || featured.categories[0]}
+                  </span>
+                )}
+                <h2
+                  style={{
+                    fontFamily: 'Montserrat, sans-serif',
+                    fontSize: 22,
+                    fontWeight: 700,
+                    lineHeight: 1.3,
+                    letterSpacing: '-0.02em',
+                    color: '#111111',
+                    marginBottom: 12,
+                  }}
+                >
+                  {featured.title}
+                </h2>
+                {featured.excerpt && (
+                  <p
+                    style={{
+                      fontFamily: 'Poppins, sans-serif',
+                      fontSize: 13.5,
+                      color: '#5c5c5c',
+                      maxWidth: 440,
+                      lineHeight: 1.55,
+                      marginBottom: 12,
+                    }}
+                  >
+                    {featured.excerpt}
+                  </p>
+                )}
+                <div
+                  style={{
+                    fontFamily: 'Poppins, sans-serif',
+                    fontSize: 12,
+                    color: '#8a8a86',
+                    marginBottom: 16,
+                  }}
+                >
+                  {featured.author?.name && (
+                    <span style={{ marginRight: 14 }}>{featured.author.name}</span>
+                  )}
+                  {featured.publishedAt && (
+                    <span>
+                      {new Date(featured.publishedAt).toLocaleDateString('en-IN', {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric',
                       })}
-                    </time>
-                  </>
-                )}
+                    </span>
+                  )}
+                </div>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    background: '#1A6AFF',
+                    color: '#fff',
+                    fontFamily: 'Poppins, sans-serif',
+                    fontSize: 13,
+                    fontWeight: 600,
+                    padding: '11px 20px',
+                    borderRadius: 999,
+                  }}
+                >
+                  Read Article
+                </span>
               </div>
+            </Link>
+          )}
+
+          {!featured && (
+            <div
+              style={{
+                marginTop: 28,
+                padding: '48px 0',
+                textAlign: 'center',
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: 'Poppins, sans-serif',
+                  fontSize: 15,
+                  color: '#8a8a86',
+                  lineHeight: 1.55,
+                }}
+              >
+                We&rsquo;re working on our first articles. Check back soon
+                for practical strategy and technical playbooks.
+              </p>
             </div>
-          </Link>
-        ))}
-      </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── Latest Articles Grid ─────────────────────────────── */}
+      <BlogGrid posts={remaining} />
+
+      {/* ── Newsletter CTA ───────────────────────────────────── */}
+      <section style={{ paddingTop: 0, paddingBottom: 56 }}>
+        <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
+          <div
+            className="blog-newsletter-panel"
+            style={{
+              background: '#111111',
+              borderRadius: 20,
+              padding: '56px 40px',
+              textAlign: 'center',
+            }}
+          >
+            <h2
+              style={{
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: 28,
+                fontWeight: 700,
+                color: '#ffffff',
+                letterSpacing: '-0.02em',
+                marginBottom: 12,
+              }}
+            >
+              Stay Updated
+            </h2>
+            <p
+              style={{
+                fontFamily: 'Poppins, sans-serif',
+                fontSize: 14.5,
+                color: '#b7bcc4',
+                maxWidth: 480,
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginBottom: 14,
+                lineHeight: 1.55,
+              }}
+            >
+              Get the latest SEO experiments, AI search notes, and growth
+              frameworks delivered to your inbox.
+            </p>
+            <NewsletterForm />
+          </div>
+        </div>
+      </section>
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .blog-featured-card {
+              border: 1.5px solid #1A6AFF;
+              border-radius: 16px;
+              padding: 16px;
+              display: flex;
+              gap: 24px;
+              align-items: center;
+              flex-wrap: wrap;
+              margin-top: 28px;
+              text-decoration: none;
+              color: inherit;
+              transition: box-shadow 0.15s;
+            }
+            .blog-featured-card:hover {
+              box-shadow: 0 4px 20px rgba(26, 106, 255, 0.1);
+            }
+            @media (max-width: 860px) {
+              .blog-featured-card { flex-direction: column; align-items: stretch; }
+            }
+            @media (max-width: 560px) {
+              .blog-newsletter-panel { padding: 40px 22px !important; }
+            }
+          `,
+        }}
+      />
     </main>
   )
 }

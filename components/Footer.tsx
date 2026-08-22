@@ -8,7 +8,7 @@ const footerNav = [
   { label: 'How We Work', href: '/about-search-performance-marketing-agency' },
   { label: 'Paid Search', href: '/ppc-advertising-management-and-performance-marketing' },
   { label: 'Organic + AI Search', href: '/search-engine-optimization-seo-growth-services' },
-  { label: 'Case Studies', href: '/marketing-insights-and-research' },
+  { label: 'Case Studies', href: '/case-studies' },
   { label: 'About', href: '/search-driven-performance-marketing-company' },
   { label: 'Contact', href: CONTACT_HREF },
 ]

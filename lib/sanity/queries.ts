@@ -159,7 +159,14 @@ export const caseStudyQuery = groq`
     testimonial{ quote, personName, personRole },
     relatedServices[]->{ title, "slug": slug.current, summary },
     publishedAt,
-    seo
+    seo,
+    "otherCaseStudies": *[_type == "caseStudy" && slug.current != $slug] | order(publishedAt desc)[0...3]{
+      _id,
+      clientName,
+      "slug": slug.current,
+      summary,
+      coverImage{ ..., asset-> }
+    }
   }
 `
 
@@ -196,6 +203,19 @@ export const blogPostQuery = groq`
 `
 
 // ── Listing queries ────────────────────────────────────────────
+
+export const caseStudiesListingQuery = groq`
+  *[_type == "caseStudy"] | order(publishedAt desc){
+    _id,
+    clientName,
+    "slug": slug.current,
+    industry,
+    summary,
+    logo{ ..., asset-> },
+    coverImage{ ..., asset-> },
+    results[]{ value, label }
+  }
+`
 
 export const blogListingQuery = groq`
   *[_type == "blogPost"] | order(publishedAt desc){

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Horse — Marketplace Optimization</title>
+<style>
+  :root{
+    --ink:#0f1115;
+    --sub:#5b6472;
+    --line:#e7e5df;
+    --bg:#ffffff;
+    --bg-soft:#f4f6f9;
+    --bg-warm:#fdeee0;
+    --accent:#111318;
+    --blue:#2f6fed;
+    --orange:#e0762b;
+    --green:#2e9e6b;
+    --purple:#7a4fd6;
+    --card-radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:1140px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  h1,h2,h3{
+    margin:0 0 12px 0;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    text-align:left;
+  }
+  p{margin:0 0 14px 0; text-align:left;}
+  ul{margin:0; padding:0; list-style:none;}
+  a{color:inherit;}
+
+  .eyebrow-accent{color:var(--blue);}
+
+  .btn{
+    display:inline-block;
+    background:var(--accent);
+    color:#fff;
+    font-weight:600;
+    font-size:14px;
+    padding:14px 26px;
+    border-radius:999px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+  }
+
+  section{padding:64px 0;}
+  .section-border-top{border-top:1px solid var(--line);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:56px;
+    padding-bottom:16px;
+  }
+  .hero-head{max-width:820px;}
+  .hero h1{
+    font-size:40px;
+    line-height:1.15;
+  }
+  .hero p{
+    font-size:15px;
+    color:var(--sub);
+    max-width:640px;
+  }
+  .hero .btn{margin-top:8px; margin-bottom:36px;}
+  .hero-visual{
+    background:linear-gradient(135deg,#eef2f8,#f7f4fb);
+    border-radius:20px;
+    padding:40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .hero-products{
+    display:flex;
+    gap:14px;
+    align-items:flex-end;
+  }
+  .pouch{
+    width:80px;
+    height:130px;
+    border-radius:10px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    color:#fff;
+    font-size:11px;
+    font-weight:700;
+    padding-bottom:10px;
+    text-align:center;
+    box-shadow:0 10px 20px rgba(0,0,0,.12);
+  }
+  .pouch.p1{background:#b5324a; height:150px;}
+  .pouch.p2{background:#2fa7b8; height:135px;}
+  .pouch.p3{background:#7cb342; height:145px;}
+  .hero-illustration{
+    flex:1;
+    min-width:260px;
+    height:190px;
+    background:
+      radial-gradient(circle at 70% 30%, rgba(47,111,237,.10), transparent 60%),
+      #e8edf6;
+    border-radius:16px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--blue);
+    font-size:13px;
+    font-weight:600;
+  }
+
+  /* ---------- TWO COLUMN: text + image ---------- */
+  .split{
+    display:flex;
+    gap:48px;
+    align-items:center;
+  }
+  .split .text{flex:1.1; min-width:280px;}
+  .split .media{flex:1; min-width:260px;}
+  .split h2{font-size:26px;}
+  .split p{font-size:14.5px; color:var(--sub);}
+  .media-block{
+    background:var(--bg-soft);
+    border-radius:16px;
+    height:230px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--sub);
+    font-size:13px;
+    overflow:hidden;
+  }
+  .media-photo{
+    background:linear-gradient(135deg,#dfe6ee,#cfd8e3);
+  }
+
+  /* bullet list w/ colored labels like image 3 */
+  .feature-list{margin-top:18px;}
+  .feature-list li{
+    font-size:14.5px;
+    color:var(--sub);
+    margin-bottom:10px;
+  }
+  .feature-list b{color:var(--ink);}
+
+  /* ---------- PROBLEM SECTION (image 4) ---------- */
+  .problem{
+    display:flex;
+    gap:48px;
+    align-items:flex-start;
+  }
+  .problem .left{flex:1; min-width:280px;}
+  .problem .left h2{font-size:26px;}
+  .problem .left p{font-size:14.5px; color:var(--sub); max-width:340px;}
+  .problem .right{flex:1.2; min-width:300px;}
+  .problem-row{
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+    font-weight:600;
+  }
+  .problem-row:first-child{padding-top:0;}
+
+  /* ---------- WHAT WE DO GRID (image 5) ---------- */
+  .section-head{max-width:760px; margin-bottom:36px;}
+  .section-head h2{font-size:26px;}
+  .section-head p{font-size:14.5px; color:var(--sub);}
+
+  .grid3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px 32px;
+  }
+  .grid-card .icon{
+    width:38px;
+    height:38px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:14px;
+    font-size:18px;
+  }
+  .grid-card h3{font-size:15.5px; margin-bottom:6px;}
+  .grid-card p{font-size:13.5px; color:var(--sub); margin-bottom:0;}
+
+  .icon-blue{background:#e8f0fe; color:var(--blue);}
+  .icon-orange{background:#fdece0; color:var(--orange);}
+  .icon-green{background:#e5f6ee; color:var(--green);}
+  .icon-purple{background:#f1e9fb; color:var(--purple);}
+
+  /* ---------- PLATFORMS STRIP (image 6) ---------- */
+  .platforms{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .platform-card{
+    width:120px;
+    height:90px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:15px;
+  }
+
+  /* ---------- CTA STRIP (image 7) ---------- */
+  .cta-strip{
+    background:var(--bg-warm);
+    border-radius:20px;
+    padding:44px 40px;
+  }
+  .cta-strip h2{font-size:24px; max-width:640px;}
+  .cta-strip p{font-size:14.5px; color:var(--sub); max-width:560px;}
+
+  /* ---------- STATS (image 8) ---------- */
+  .stats-wrap{
+    display:flex;
+    gap:48px;
+    align-items:flex-start;
+  }
+  .stats-wrap .text{flex:1; min-width:260px;}
+  .stats-wrap .text h2{font-size:24px;}
+  .stats-wrap .text p{font-size:14.5px; color:var(--sub);}
+  .stats-grid{
+    flex:1.4;
+    min-width:340px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .stat-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 16px;
+  }
+  .stat-card .num{
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:4px;
+  }
+  .stat-card .num.boxed{
+    border:1.5px solid var(--ink);
+    display:inline-block;
+    padding:2px 8px;
+    border-radius:4px;
+  }
+  .stat-card .label{
+    font-size:12px;
+    color:var(--sub);
+  }
+
+  /* ---------- WHO NEEDS (image 9) ---------- */
+  .grid4{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  .who-card{
+    border-radius:16px;
+    padding:22px 20px;
+    min-height:190px;
+  }
+  .who-card .icon{
+    width:34px; height:34px;
+    border-radius:8px;
+    background:rgba(255,255,255,.6);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:16px;
+    font-size:16px;
+  }
+  .who-card h3{font-size:14.5px; margin-bottom:8px;}
+  .who-card p{font-size:12.5px; color:var(--sub); margin-bottom:0;}
+  .who-green{background:#e8f6ee;}
+  .who-orange{background:#fdeee0;}
+  .who-purple{background:#f1e9fb;}
+  .who-blue{background:#eaf1fe;}
+
+  /* ---------- STEPS (image 10) ---------- */
+  .steps-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+  }
+  .step-card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:26px 24px;
+  }
+  .step-card .step-label{
+    font-size:12px;
+    font-weight:700;
+    color:var(--sub);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin-bottom:6px;
+  }
+  .step-card h3{font-size:17px; margin-bottom:8px;}
+  .step-card p{font-size:13.5px; color:var(--sub); margin-bottom:0;}
+  .step-card.wide{grid-column:1 / -1; max-width:calc(50% - 10px);}
+
+  /* ---------- WHY US (image 11) ---------- */
+  .why-list li{
+    font-size:14.5px;
+    color:var(--sub);
+    margin-bottom:10px;
+    padding-left:18px;
+    position:relative;
+  }
+  .why-list li::before{
+    content:"";
+    position:absolute;
+    left:0; top:8px;
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--blue);
+  }
+  .why-list b{color:var(--ink);}
+  .mock-panel{
+    background:#eef1f7;
+    border-radius:16px;
+    padding:20px;
+  }
+  .mock-panel .mock-label{
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:12px;
+  }
+  .mock-panel .mock-screen{
+    background:#fff;
+    border-radius:10px;
+    height:180px;
+    border:1px solid var(--line);
+  }
+
+  /* ---------- CATEGORIES (image 12) ---------- */
+  .cat-card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px 20px;
+  }
+  .cat-card .icon{font-size:20px; margin-bottom:14px;}
+  .cat-card h3{font-size:15px; margin-bottom:6px;}
+  .cat-card p{font-size:13px; color:var(--sub); margin-bottom:0;}
+
+  /* ---------- FAQ (image 13) ---------- */
+  .faq h2{font-size:24px; margin-bottom:24px;}
+  .faq-item{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 20px;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:14.5px;
+    font-weight:600;
+    background:var(--bg-soft);
+  }
+  .faq-item .plus{
+    font-size:18px;
+    font-weight:400;
+    color:var(--sub);
+  }
+
+  footer{
+    padding:40px 0 60px;
+    font-size:13px;
+    color:var(--sub);
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:860px){
+    .split, .problem, .stats-wrap{flex-direction:column;}
+    .grid3, .grid4{grid-template-columns:repeat(2,1fr);}
+    .steps-grid{grid-template-columns:1fr;}
+    .step-card.wide{max-width:100%;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .hero h1{font-size:30px;}
+  }
+  @media (max-width:520px){
+    .grid3, .grid4{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:1fr;}
+    .platforms{justify-content:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-head">
+      <h1>If Your Listings Aren't Selling, Something's Broken</h1>
+      <p>If your products aren't converting, the issue is optimization. We improve listings, rankings, visibility, and conversions to turn marketplace traffic into consistent sales.</p>
+      <a class="btn" href="#">Optimize Your Listings Now</a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-products">
+        <div class="pouch p1">PUNJABI<br>CHOLE</div>
+        <div class="pouch p2">DAL<br>FRY</div>
+        <div class="pouch p3">PAV<br>BHAJI</div>
+      </div>
+      <div class="hero-illustration">Marketplace dashboard illustration</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. BOOST VISIBILITY -->
+<section>
+  <div class="wrap">
+    <div class="split">
+      <div class="text">
+        <h2>Boost Your Online Store's Visibility and Sales with High Horse</h2>
+        <p>Boosting your online store's visibility isn't just about being present — it's about being found, clicked, and chosen. At High Horse, we optimize your marketplace listings to improve search rankings, increase product visibility, and attract the right audience. From keyword optimization to compelling product content, every element is designed to bring more qualified traffic to your store.</p>
+        <p>But visibility alone doesn't drive growth — conversions do. We refine your listings, images, and overall storefront experience to build trust and encourage action. The result is a marketplace presence that not only gets noticed but consistently drives sales and long-term performance.</p>
+      </div>
+      <div class="media">
+        <div class="media-block media-photo">Person reviewing store analytics on tablet</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. WHY MARKETPLACE OPTIMIZATION -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="split">
+      <div class="media">
+        <div class="media-block media-photo">Team reviewing growth chart in meeting room</div>
+      </div>
+      <div class="text">
+        <h2>Why Marketplace Optimization Is Key to Online Success</h2>
+        <p>Without proper optimization, listings get lost in competition. Effective marketplace optimization improves visibility, builds trust, and consistently drives higher clicks, conversions, and sales.</p>
+        <ul class="feature-list">
+          <li><b>Appear in Relevant Searches:</b> By using the right keywords and descriptions, your products become more discoverable.</li>
+          <li><b>Attract More Clicks:</b> Clear titles and compelling images entice customers to view your listings.</li>
+          <li><b>Increase Conversion Rates:</b> Detailed and accurate product information builds trust, leading to more purchases.</li>
+          <li><b>Stay Competitive:</b> Regular updates and monitoring keep your listings ahead of competitors.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PROBLEM LIST -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="problem">
+      <div class="left">
+        <h2>You Already Have Listings — Why Aren't They Generating More Sales?</h2>
+        <p>Just having your products listed isn't enough—if sales aren't growing, your listings aren't working as they should.</p>
+        <a class="btn" href="#">Talk to SEO Expert</a>
+      </div>
+      <div class="right">
+        <div class="problem-row">Your listings are not ranking for the right search keywords</div>
+        <div class="problem-row">Titles and descriptions lack optimization and clarity</div>
+        <div class="problem-row">Product images fail to build trust or grab attention</div>
+        <div class="problem-row">Pricing isn't competitive within your category</div>
+        <div class="problem-row">Low reviews or weak ratings reduce buyer confidence</div>
+        <div class="problem-row">Content doesn't clearly communicate product value</div>
+        <div class="problem-row" style="border-bottom:none;">Listings are not optimized to convert visitors into buyers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. WHAT WE DO GRID -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What We Do to Optimize Your Marketplace Performance</h2>
+      <p>We don't just improve listings—we build a complete marketplace strategy that increases visibility, attracts the right buyers, and drives consistent sales. Every element is optimized with a clear focus on performance and conversions.</p>
+    </div>
+    <div class="grid3">
+      <div class="grid-card">
+        <div class="icon icon-blue">&#9635;</div>
+        <h3>Product Listing Optimization</h3>
+        <p>We optimize titles, descriptions, and backend keywords to improve search visibility, ensuring your products rank higher and reach the right audience.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-blue">&#128269;</div>
+        <h3>Keyword Research &amp; Search Optimization</h3>
+        <p>We identify high-performing keywords based on search trends and competition, helping your listings appear in relevant searches and attract qualified traffic.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-blue">&#128421;</div>
+        <h3>Product Image &amp; Visual Optimization</h3>
+        <p>We enhance product images to make them more engaging, informative, and conversion-focused, helping build trust and improve click-through rates.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-orange">&#128200;</div>
+        <h3>Pricing &amp; Competitor Analysis</h3>
+        <p>We analyze your competitors and pricing strategy to position your products effectively, ensuring you stay competitive without compromising margins.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-orange">&#9881;</div>
+        <h3>Conversion Rate Optimization (CRO)</h3>
+        <p>We improve product content, layout, and messaging to reduce drop-offs and increase the chances of turning visitors into paying customers.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-orange">&#11088;</div>
+        <h3>Review &amp; Rating Strategy</h3>
+        <p>We guide strategies to improve product reviews and ratings, helping build credibility and influence purchase decisions.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-purple">&#127978;</div>
+        <h3>Storefront &amp; Brand Optimization</h3>
+        <p>We optimize your brand storefront with structured layouts and content, creating a consistent and professional shopping experience for customers.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-purple">&#128187;</div>
+        <h3>Performance Tracking &amp; Continuous Improvement</h3>
+        <p>We monitor listing performance, analyze data, and continuously optimize strategies to ensure long-term growth and consistent marketplace sales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. PLATFORMS -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Platforms Where Our Marketplace Optimization Services Work</h2>
+      <p>We optimize listings across leading marketplaces, helping your products rank better, reach targeted audiences, and consistently generate higher conversions and sales.</p>
+    </div>
+    <div class="platforms">
+      <div class="platform-card">amazon</div>
+      <div class="platform-card">blinkit</div>
+      <div class="platform-card">AJIO.com</div>
+      <div class="platform-card">ebay</div>
+      <div class="platform-card">Etsy</div>
+      <div class="platform-card">Flipkart</div>
+      <div class="platform-card">Meesho</div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CTA STRIP -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="cta-strip">
+      <h2>Let's Turn Your Listings Into Consistent Revenue Drivers</h2>
+      <p>Share your product details, and we'll help you optimize listings, improve visibility, increase conversions, and scale your marketplace sales effectively.</p>
+      <a class="btn" href="#">Optimize Your Listings</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. STATS -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="stats-wrap">
+      <div class="text">
+        <h2>Optimized for Sales, Backed by Data and Marketplace Insights</h2>
+        <p>When listings are optimized the right way, performance starts improving across every level. Visibility increases, clicks grow, and conversions follow. These results come from keyword-driven optimization, better product presentation, and strategies focused on ranking, trust, and consistent sales growth.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="num boxed">1000+</div><div class="label">product listings optimized</div></div>
+        <div class="stat-card"><div class="num">4X</div><div class="label">increase in product visibility and impressions</div></div>
+        <div class="stat-card"><div class="num">2.5X</div><div class="label">improvement in conversion rates</div></div>
+        <div class="stat-card"><div class="num">70%</div><div class="label">increase in click-through rates (CTR)</div></div>
+        <div class="stat-card"><div class="num">50+</div><div class="label">brands scaled through marketplace optimization</div></div>
+        <div class="stat-card"><div class="num">5+</div><div class="label">years of marketplace experience</div></div>
+        <div class="stat-card"><div class="num">60%</div><div class="label">boost in organic ranking positions</div></div>
+        <div class="stat-card"><div class="num">3X</div><div class="label">growth in monthly marketplace revenue</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. WHO NEEDS -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Who Needs Professional Website Development Services</h2>
+      <p>Any business aiming to grow online, generate leads, or build credibility needs a professionally developed website that performs consistently. Website development services are essential for different stages of business growth. Whether you're starting fresh, scaling, or need a website redesign, the right website supports performance, usability, and long-term success.</p>
+    </div>
+    <div class="grid4">
+      <div class="who-card who-green">
+        <div class="icon">&#127919;</div>
+        <h3>Startups launching their digital presence</h3>
+        <p>Need a strong, credible website to showcase offerings and build trust from day one.</p>
+      </div>
+      <div class="who-card who-orange">
+        <div class="icon">&#128200;</div>
+        <h3>Traditional businesses going digital</h3>
+        <p>Require structured websites to establish an online presence and reach a wider audience effectively.</p>
+      </div>
+      <div class="who-card who-purple">
+        <div class="icon">&#128101;</div>
+        <h3>Businesses needing a website redesign</h3>
+        <p>Outdated, slow, or underperforming websites need redevelopment to improve usability, speed, and conversions.</p>
+      </div>
+      <div class="who-card who-blue">
+        <div class="icon">&#128337;</div>
+        <h3>Enterprises managing large-scale operations</h3>
+        <p>Need scalable, secure, and high-performance platforms to handle traffic, integrations, and complex workflows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. STEPS -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How We Optimize Your Marketplace Listings for Better Performance</h2>
+      <p>Our process is focused on improving visibility, increasing conversions, and turning your listings into consistent revenue drivers.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-label">Step 1</div>
+        <h3>Understand Your Product &amp; Market</h3>
+        <p>We analyze your product, target audience, and competition to identify gaps, opportunities, and positioning for better marketplace performance.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-label">Step 2</div>
+        <h3>Keyword &amp; Search Strategy Planning</h3>
+        <p>We research high-intent keywords and search trends to ensure your listings rank for relevant queries and attract the right buyers.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-label">Step 3</div>
+        <h3>Listing Content Optimization</h3>
+        <p>We optimize titles, descriptions, bullet points, and backend keywords to improve visibility, clarity, and conversion potential.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-label">Step 4</div>
+        <h3>Visual &amp; Conversion Enhancement</h3>
+        <p>We refine product images, creatives, and content structure to build trust, improve engagement, and increase click-through and conversion rates.</p>
+      </div>
+      <div class="step-card wide">
+        <div class="step-label">Step 5</div>
+        <h3>Monitor, Test &amp; Scale</h3>
+        <p>We continuously track performance, test improvements, and optimize listings to maintain rankings, improve conversions, and scale marketplace sales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. WHY US -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="split">
+      <div class="text">
+        <h2>What Makes High Horse the Right Marketplace Optimization Partner</h2>
+        <p>Choosing the right marketplace optimization partner directly impacts your visibility, conversions, and overall sales growth. Businesses trust us because we combine data-driven strategies, platform expertise, and performance-focused execution to deliver consistent, scalable marketplace results.</p>
+        <ul class="why-list">
+          <li><b>Optimization-first approach</b> aligned with your sales and revenue goals</li>
+          <li>Listings optimized for visibility, ranking, and long-term marketplace growth</li>
+          <li>Data-driven keyword and content strategies for better performance</li>
+          <li>On-time execution with strong attention to listing quality and accuracy</li>
+          <li>Transparent communication with regular performance insights and updates</li>
+          <li>Strategies designed to increase clicks, conversions, and consistent marketplace sales</li>
+        </ul>
+      </div>
+      <div class="media">
+        <div class="mock-panel">
+          <div class="mock-label">Optimising Setmi for Higher Visibility &amp; Better Conversions</div>
+          <div class="mock-screen"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. CATEGORIES -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>eCommerce Categories We Scale with Marketplace Optimization</h2>
+      <p>We optimize product listings across eCommerce categories, ensuring every product ranks better, attracts the right buyers, and converts consistently.</p>
+    </div>
+    <div class="grid3">
+      <div class="cat-card">
+        <div class="icon">&#128092;</div>
+        <h3>Fashion &amp; Apparel</h3>
+        <p>We optimize listings with strong visuals, clear descriptions, and keyword-rich titles to improve discoverability and increase conversions in competitive fashion categories.</p>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#128131;</div>
+        <h3>Beauty &amp; Personal Care</h3>
+        <p>We enhance product content, images, and positioning to build trust, highlight benefits, and drive higher engagement and repeat purchases.</p>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#128241;</div>
+        <h3>Electronics &amp; Gadgets</h3>
+        <p>We optimize technical product listings with clear specifications, structured content, and comparison-driven messaging to improve conversions and reduce buyer confusion.</p>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#127968;</div>
+        <h3>Home &amp; Kitchen</h3>
+        <p>We improve product presentation with lifestyle images, detailed descriptions, and keyword optimization to increase visibility and drive consistent sales.</p>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#128154;</div>
+        <h3>Health &amp; Wellness</h3>
+        <p>We create trust-focused listings with clear benefits, accurate information, and optimized content to improve credibility and conversions.</p>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#129688;</div>
+        <h3>Baby &amp; Kids Products</h3>
+        <p>We optimize listings with clear, safety-focused messaging and engaging visuals to build trust and improve purchase decisions for parents.</p>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#127939;</div>
+        <h3>Sports &amp; Fitness</h3>
+        <p>We enhance product listings with benefit-driven content and visuals to attract active buyers and improve conversion rates.</p>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#128142;</div>
+        <h3>Jewelry &amp; Accessories</h3>
+        <p>We focus on premium visuals, compelling descriptions, and keyword optimization to improve product appeal and increase high-intent conversions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. FAQ -->
+<section class="section-border-top faq">
+  <div class="wrap">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><span>1. Why are my marketplace listings not generating sales?</span><span class="plus">+</span></div>
+    <div class="faq-item"><span>2. How long does it take to see results from listing optimization?</span><span class="plus">+</span></div>
+    <div class="faq-item"><span>3. What are backend keywords in marketplace listings?</span><span class="plus">+</span></div>
+    <div class="faq-item"><span>4. How do I know if my listings need optimization?</span><span class="plus">+</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    High Horse — Marketplace Optimization Services
+  </div>
+</footer>
+
+</body>
+</html>

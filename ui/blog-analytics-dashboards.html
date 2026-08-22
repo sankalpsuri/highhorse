@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics Dashboards for SEO Leaders — Blog</title>
+<style>
+  :root{
+    --ink:#0f1115;
+    --sub:#5b6472;
+    --line:#e7e5df;
+    --bg:#ffffff;
+    --bg-soft:#f4f6f9;
+    --blue:#2f6fed;
+    --dark:#0e1013;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
+  h1,h2,h3,h4{margin:0 0 12px 0; font-weight:700; letter-spacing:-0.02em; text-align:left;}
+  p{margin:0 0 14px 0; text-align:left;}
+  a{color:inherit; text-decoration:none;}
+
+  section{padding:40px 0 0;}
+
+  /* ---------- HEADER ---------- */
+  .eyebrow{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    color:var(--blue);
+    background:#eaf1ff;
+    padding:4px 10px;
+    border-radius:999px;
+    margin-bottom:14px;
+  }
+  .post-title{
+    font-size:32px;
+    line-height:1.25;
+    max-width:640px;
+  }
+  .post-meta{
+    font-size:13px;
+    color:var(--sub);
+    margin-bottom:24px;
+  }
+  .post-meta span{margin-right:16px;}
+
+  /* ---------- HERO IMAGE ---------- */
+  .hero-image{
+    height:280px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#f0932b,#eab676);
+    position:relative;
+    overflow:hidden;
+    margin-bottom:36px;
+  }
+  .hero-image .bars{
+    position:absolute;
+    bottom:36px; left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:flex-end;
+    gap:22px;
+  }
+  .hero-image .bar{
+    width:38px;
+    border-radius:8px;
+    background:radial-gradient(circle at 30% 30%, #9fb4ea, #5470c4);
+  }
+  .hero-image .bar.b1{height:90px;}
+  .hero-image .bar.b2{height:150px;}
+  .hero-image .bar.b3{height:220px;}
+
+  /* ---------- LAYOUT: SIDEBAR + CONTENT ---------- */
+  .article-body{
+    display:flex;
+    gap:48px;
+    align-items:flex-start;
+  }
+  .sidebar{
+    width:190px;
+    flex-shrink:0;
+    position:sticky;
+    top:24px;
+  }
+  .sidebar .label{
+    font-size:11px;
+    font-weight:700;
+    color:var(--sub);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:12px;
+  }
+  .sidebar ul{list-style:none; padding:0; margin:0 0 20px 0;}
+  .sidebar li{
+    font-size:13px;
+    margin-bottom:10px;
+    color:var(--sub);
+    font-weight:600;
+  }
+  .sidebar li.active{color:var(--blue);}
+  .sidebar .share-icons{display:flex; gap:10px;}
+  .sidebar .share-icons span{
+    width:30px; height:30px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px;
+    color:var(--sub);
+  }
+
+  .content{flex:1; min-width:0; max-width:680px;}
+  .content h2{font-size:20px; margin-top:32px;}
+  .content h3{font-size:16px; margin-top:24px;}
+  .content p{font-size:14.5px; color:var(--ink);}
+  .content b{font-weight:700;}
+  .content .lede{font-size:15px; color:var(--sub);}
+
+  /* ---------- RELATED ARTICLES ---------- */
+  .related-title{font-size:22px; margin-top:56px; margin-bottom:22px;}
+  .cs-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .cs-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .cs-card .thumb{height:100px;}
+  .cs-card .body{padding:14px 16px;}
+  .cs-card h3{font-size:13.5px; margin-bottom:4px; line-height:1.35;}
+  .cs-card p{font-size:12px; color:var(--sub); margin-bottom:0;}
+
+  .thumb-analytics{background:linear-gradient(135deg,#f0932b,#eab676);}
+  .thumb-office{background:linear-gradient(135deg,#e4e8ef,#cfd6e2);}
+  .thumb-social{background:linear-gradient(135deg,#f5d3c8,#e6ecf5);}
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter{
+    background:var(--dark);
+    border-radius:20px;
+    padding:52px 40px;
+    text-align:center;
+    margin-top:56px;
+  }
+  .newsletter h2{color:#fff; font-size:24px; text-align:center;}
+  .newsletter p{
+    color:#b7bcc4; font-size:13.5px; text-align:center;
+    max-width:440px; margin:0 auto 14px;
+  }
+  .newsletter-form{
+    display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;
+  }
+  .newsletter-form input{
+    background:#1c1f24; border:1px solid #33373e; border-radius:10px;
+    padding:12px 16px; color:#fff; font-size:13.5px; width:240px; outline:none;
+  }
+  .newsletter-form input::placeholder{color:#7a808a;}
+  .newsletter-form button{
+    background:var(--blue); color:#fff; border:none; border-radius:10px;
+    padding:12px 20px; font-size:13.5px; font-weight:600; cursor:pointer;
+  }
+
+  .page-bottom{padding-bottom:64px;}
+
+  @media (max-width:860px){
+    .article-body{flex-direction:column;}
+    .sidebar{position:static; width:100%; display:flex; gap:32px; align-items:flex-start;}
+    .cs-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:560px){
+    .cs-grid{grid-template-columns:1fr;}
+    .post-title{font-size:24px;}
+    .hero-image{height:200px;}
+  }
+</style>
+</head>
+<body>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Analytics</div>
+    <h1 class="post-title">Analytics Dashboards for SEO Leaders</h1>
+    <div class="post-meta">
+      <span>Priya Ranti</span>
+      <span>Jan 15, 2024</span>
+      <span>6 min read</span>
+    </div>
+
+    <div class="hero-image">
+      <div class="bars">
+        <div class="bar b1"></div>
+        <div class="bar b2"></div>
+        <div class="bar b3"></div>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <aside class="sidebar">
+        <div class="label">In this article</div>
+        <ul>
+          <li class="active">What is a portfolio?</li>
+          <li>Types of design portfolio</li>
+        </ul>
+        <div class="share-icons">
+          <span>&#9743;</span>
+          <span>&#128279;</span>
+        </div>
+      </aside>
+
+      <div class="content">
+        <p class="lede">A portfolio is a curated collection of a designer's best work, put together to demonstrate skill, style, process, and range of growth.</p>
+
+        <h2>What is a portfolio?</h2>
+        <p>A portfolio is a curated collection of a designer's best work, put together to demonstrate skill, style, process, and range of growth. Rather than listing responsibilities, a strong portfolio walks a hiring manager or client through how you think, how you solve problems, and what your finished work actually looks like in context.</p>
+        <p>For SEO and analytics teams, the equivalent is a dashboard: a curated, purposeful view of the metrics that matter, arranged so that decision-makers can see progress at a glance rather than digging through raw exports.</p>
+
+        <h2>Types of design portfolio</h2>
+        <p>In the language of design portfolios, we can borrow two useful categories to think about dashboards too — the graphic-style overview and the deep, contextual walkthrough.</p>
+
+        <h3>Graphic design portfolio</h3>
+        <p>A graphic design portfolio is a collection of visual work — for example, brand identities, illustrations, or print and digital layouts — that highlights a designer's creativity, technical skill, and style range. In dashboard terms, this is your top-level view: the small set of KPIs — organic traffic, keyword rankings, conversion rate — that leadership scans first to gauge overall health.</p>
+        <p>The goal is instant clarity, not exhaustive detail. Every element earns its place because it answers a question a stakeholder is likely to ask within the first ten seconds of opening the dashboard.</p>
+
+        <h3>UX design portfolio</h3>
+        <p>A UX design portfolio focuses on how a designer solves user problems, showing wireframes, prototypes, user research, and the reasoning behind product decisions. It communicates process, not just outcomes. The dashboard analogue is a drill-down view — the report a strategist opens after the headline numbers raise a question, showing keyword-level movement, page-level engagement, and the specific actions taken that week.</p>
+        <p>This is where the story of "why" lives: which pages moved, which changes were shipped, and what the data suggests should happen next. Good dashboards let both audiences — the ten-second scanner and the deep-dive analyst — get what they need from the same source of truth.</p>
+      </div>
+    </div>
+
+    <h2 class="related-title">Related articles</h2>
+    <div class="cs-grid">
+      <a class="cs-card" href="blog-analytics-dashboards.html">
+        <div class="thumb thumb-analytics"></div>
+        <div class="body">
+          <h3>Analytics Dashboards for SEO Leaders</h3>
+          <p>A guide to building dashboards that separate signal from noise.</p>
+        </div>
+      </a>
+      <a class="cs-card" href="#">
+        <div class="thumb thumb-office"></div>
+        <div class="body">
+          <h3>How to Start an Ecommerce Business from Scratch in 2026</h3>
+          <p>Essential steps, tools, and strategies to launch and grow.</p>
+        </div>
+      </a>
+      <a class="cs-card" href="#">
+        <div class="thumb thumb-social"></div>
+        <div class="body">
+          <h3>Social Media Marketing Strategy: How to Get Seen and Grow Your Business Today</h3>
+          <p>Content pillars and platform-specific growth playbooks.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="newsletter page-bottom-inner">
+      <h2>Stay ahead of search.</h2>
+      <p>Get weekly insights on SEO, AI discovery, and growth strategies for operators.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="you@company.com">
+        <button>Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+<div class="page-bottom"></div>
+
+</body>
+</html>
