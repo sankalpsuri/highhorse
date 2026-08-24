@@ -21,6 +21,7 @@ import challengeGridSection from './challengeGridSection'
 import checklistSection from './checklistSection'
 import portfolioShowcaseSection from './portfolioShowcaseSection'
 import techSliderSection from './techSliderSection'
+import caseStudyCardsSection from './caseStudyCardsSection'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
@@ -40,6 +41,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     checklistSection,
     portfolioShowcaseSection,
     techSliderSection,
+    caseStudyCardsSection,
     // documents
     author,
     blogPost,

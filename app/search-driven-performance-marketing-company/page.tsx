@@ -226,10 +226,15 @@ export default function CompanyPage() {
       {/* ── 1. Hero ──────────────────────────────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <div className={styles.heroBadge}>
+          <a
+            href="https://partnersdirectory.withgoogle.com/partners/6812870132"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.heroBadge}
+          >
             <GoogleGIcon />
             <span className={styles.heroBadgeText}>Certified Google Partner</span>
-          </div>
+          </a>
           <h1 className={styles.heroTitle}>
             We Don&rsquo;t Just Help Brands Get Seen.{' '}
             <span className={styles.heroAccent}>We Help Them Get Chosen.</span>

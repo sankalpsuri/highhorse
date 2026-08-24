@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High Horse - Content Marketing Agency</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #111827;
+      background-color: #ffffff;
+      line-height: 1.6;
+      text-align: left;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: left;
+    }
+
+    /* Common Components */
+    .btn-pill {
+      display: inline-block;
+      background-color: #000000;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      text-align: left;
+    }
+
+    .btn-pill:hover {
+      opacity: 0.85;
+    }
+
+    .section-title {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #000000;
+      letter-spacing: -0.02em;
+      text-align: left;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    /* 1. HERO SECTION */
+    .hero-section {
+      padding: 70px 0 60px;
+      text-align: left;
+    }
+
+    .hero-text-wrapper {
+      max-width: 820px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .hero-title {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #000000;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      text-align: left;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: #374151;
+      line-height: 1.55;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    .hero-banner-container {
+      margin-top: 50px;
+      border-radius: 24px;
+      overflow: hidden;
+      background-color: #f3f4f6;
+    }
+
+    .hero-banner-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 24px;
+    }
+
+    /* TWO COLUMN SPLIT SECTIONS */
+    .split-section {
+      padding: 65px 0;
+      text-align: left;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .split-grid.reversed {
+      direction: rtl;
+    }
+
+    .split-grid.reversed > * {
+      direction: ltr;
+    }
+
+    .split-content {
+      text-align: left;
+    }
+
+    .split-content .section-title {
+      margin-bottom: 24px;
+    }
+
+    .split-content p {
+      margin-bottom: 20px;
+      color: #374151;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .split-bullets {
+      list-style: none;
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .split-bullets li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+      text-align: left;
+    }
+
+    .split-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #000000;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* 3. CHECKLIST SECTION */
+    .checklist-rows {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .checklist-row {
+      font-size: 16.5px;
+      font-weight: 600;
+      color: #111827;
+      padding: 16px 0;
+      border-bottom: 1.5px solid #111827;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    /* 4. CHALLENGES 4-BOX GRID */
+    .challenges-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .challenges-header {
+      max-width: 850px;
+      margin: 0 0 44px 0;
+      text-align: left;
+    }
+
+    .challenges-header .section-title {
+      margin-bottom: 14px;
+    }
+
+    .challenges-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: left;
+    }
+
+    .challenge-card {
+      border: 1.5px solid #000000;
+      border-radius: 18px;
+      padding: 32px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .card-mint { background-color: #ecfaf4; }
+    .card-peach { background-color: #fdf6ec; }
+    .card-purple { background-color: #f7eefa; }
+    .card-white { background-color: #ffffff; }
+
+    .challenge-icon-box {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .challenge-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 12px;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .challenge-card p {
+      font-size: 13.5px;
+      color: #374151;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    /* 6. CLIENT RESULTS PROOF */
+    .results-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .results-header {
+      margin-bottom: 36px;
+      text-align: left;
+    }
+
+    .results-header .section-title {
+      margin-bottom: 8px;
+    }
+
+    .results-brands-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      margin-bottom: 30px;
+    }
+
+    .brand-block img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      display: block;
+    }
+
+    /* 7. SEARCH DEMAND INTO REVENUE CARDS */
+    .demand-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .demand-header {
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .demand-header .section-title {
+      margin-bottom: 10px;
+    }
+
+    .demand-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .demand-card {
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .demand-bawa { background-color: #e6f6fc; }
+    .demand-terra { background-color: #ecebfe; }
+    .demand-fech { background-color: #fdf2e4; }
+    .demand-hioki { background-color: #ffffff; border: 1.5px solid #e5e7eb; }
+
+    .demand-graph-img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      display: block;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+    }
+
+    .demand-card h3 {
+      font-size: 19px;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .demand-card p {
+      font-size: 13.5px;
+      color: #374151;
+      line-height: 1.55;
+      text-align: left;
+      margin-bottom: 6px;
+    }
+
+    /* 8. SERVICES 3-COLUMN GRID */
+    .services-grid-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .services-grid-section .section-title {
+      margin-bottom: 48px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 40px;
+      row-gap: 48px;
+      text-align: left;
+    }
+
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .service-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background-color: #ecfaf4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .service-item h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 10px;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .service-item p {
+      font-size: 14px;
+      color: #4b5563;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    /* 9. BEIGE CTA CARD SECTION (MOVED TO POSITION 9) */
+    .middle-cta-section {
+      padding: 40px 0 60px;
+      text-align: left;
+    }
+
+    .cta-card {
+      background-color: #fdf0df;
+      border-radius: 24px;
+      padding: 60px 48px;
+      text-align: left;
+      margin: 0;
+    }
+
+    .cta-card .section-title {
+      max-width: 820px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .cta-card .section-desc {
+      max-width: 760px;
+      margin-bottom: 30px;
+      font-size: 15px;
+      text-align: left;
+    }
+
+    /* 10. PROCESS (6 BOXES) */
+    .process-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .process-header {
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .process-header .section-title {
+      margin-bottom: 10px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      text-align: left;
+    }
+
+    .process-card {
+      border: 1.5px solid #000000;
+      border-radius: 16px;
+      padding: 28px 26px;
+      background-color: #ffffff;
+      text-align: left;
+    }
+
+    .process-number {
+      font-size: 26px;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .process-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .process-card p {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    /* 11. STATS SECTION */
+    .stats-section {
+      padding: 70px 0;
+      text-align: left;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 60px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .stats-content {
+      text-align: left;
+    }
+
+    .stats-content .section-title {
+      margin-bottom: 20px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: left;
+    }
+
+    .stat-card {
+      border: 1.5px solid #111827;
+      border-radius: 18px;
+      padding: 24px 18px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 130px;
+      background: #ffffff;
+    }
+
+    .stat-number {
+      font-size: 34px;
+      font-weight: 800;
+      color: #000000;
+      line-height: 1;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .stat-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #111827;
+      line-height: 1.35;
+      text-align: left;
+    }
+
+    /* 12. COMPARISON BOXES */
+    .comparison-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .comparison-header {
+      max-width: 850px;
+      margin: 0 0 44px 0;
+      text-align: left;
+    }
+
+    .comparison-header .section-title {
+      margin-bottom: 16px;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      text-align: left;
+    }
+
+    .comp-card {
+      border-radius: 20px;
+      padding: 40px 36px;
+      text-align: left;
+    }
+
+    .comp-card-blue {
+      background-color: #e6f6fc;
+    }
+
+    .comp-card-purple {
+      background-color: #e3e4fc;
+    }
+
+    .comp-card h3 {
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #000000;
+      text-align: left;
+    }
+
+    .comp-card ul {
+      list-style: none;
+      text-align: left;
+    }
+
+    .comp-card ul li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #1f2937;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    .comp-card ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #000000;
+      font-weight: bold;
+    }
+
+    /* 13. FREQUENTLY ASKED QUESTIONS (LAST SECTION) */
+    .faq-section {
+      padding: 60px 0 90px;
+      text-align: left;
+    }
+
+    .faq-section .section-title {
+      margin-bottom: 24px;
+    }
+
+    .faq-box-wrapper {
+      border: 1.5px solid #000000;
+      border-radius: 20px;
+      padding: 24px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background-color: #ecfaf4;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #111827;
+      text-align: left;
+      transition: background-color 0.2s ease;
+    }
+
+    .faq-item:hover {
+      background-color: #e2f6ee;
+    }
+
+    .faq-item span.plus {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111827;
+      margin-left: 16px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .split-grid,
+      .split-grid.reversed,
+      .stats-container,
+      .comparison-grid,
+      .demand-grid,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .challenges-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title,
+      .section-title {
+        font-size: 28px;
+      }
+
+      .challenges-grid,
+      .services-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-card {
+        padding: 32px 24px;
+      }
+
+      .faq-box-wrapper {
+        padding: 14px;
+      }
+
+      .faq-item {
+        padding: 16px 18px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. HERO -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-text-wrapper">
+        <h1 class="hero-title">Looking For An Expert Content Marketing Agency?</h1>
+        <p class="hero-subtitle">High Horse creates strategic content that attracts your audience, improves search visibility, builds brand trust, and turns website visitors into consistent business leads.</p>
+        <a href="#contact" class="btn-pill">Book a Strategy Call</a>
+      </div>
+      <div class="hero-banner-container">
+        <img src="Screenshot 2026-08-24 133345.png" alt="Content Marketing Agency Hero Graphic">
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. WORK WITH CONTENT MARKETING AGENCY -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-grid">
+        <div class="split-content">
+          <h2 class="section-title">Work With a Content Marketing Agency That Understands your Business</h2>
+          <p>Content marketing is no longer about simply publishing blogs. It is about creating the right information for every stage of the customer journey. People search for answers, compare options, and research solutions before making decisions. Strategic content helps your business appear during those moments.</p>
+          <p>By combining search data, audience insights, and structured content strategies, we help brands attract visitors, educate potential customers, and convert them into leads. Whether you run a service company, ecommerce brand, or enterprise website, strong content marketing helps you build authority, visibility, and long-term organic growth.</p>
+          <ul class="split-bullets">
+            <li>We create content that attracts the right customers.</li>
+            <li>Your website content starts ranking on Google.</li>
+            <li>Turn visitors into leads with strategic content.</li>
+            <li>Build trust with consistent valuable content.</li>
+          </ul>
+        </div>
+        <div class="image-card">
+          <img src="Screenshot 2026-08-24 133359.png" alt="Person working on content marketing strategy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. LOOKING FOR CONTENT MARKETING SERVICES? -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-grid">
+        <div class="split-content">
+          <h2 class="section-title">Looking for Content Marketing Services?</h2>
+          <p>Most businesses don't start looking for a content marketing agency unless their current content is not producing results. Many brands publish content regularly but still struggle with traffic, engagement, and conversions.</p>
+          <p style="margin-bottom: 28px;">You may be experiencing challenges like:</p>
+          <a href="#contact" class="btn-pill">Talk to SEO Expert</a>
+        </div>
+        <div class="checklist-rows">
+          <div class="checklist-row">Your website content does not rank on Google</div>
+          <div class="checklist-row">Blog posts get published but attract very little traffic</div>
+          <div class="checklist-row">Your competitors dominate search results for important topics</div>
+          <div class="checklist-row">Visitors read your content but don’t convert into leads</div>
+          <div class="checklist-row">Your content lacks a clear strategy or direction</div>
+          <div class="checklist-row">Your brand message feels inconsistent across platforms</div>
+          <div class="checklist-row">Your content is not optimized for SEO or search intent</div>
+          <div class="checklist-row">Your team spends time creating content without measurable results</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CHALLENGES BEHIND INEFFECTIVE CONTENT MARKETING -->
+  <section class="challenges-section">
+    <div class="container">
+      <div class="challenges-header">
+        <h2 class="section-title">Challenges Behind Ineffective Content Marketing</h2>
+        <p class="section-desc">When content marketing fails, it is usually because of missing strategy, poor planning, or weak optimization.</p>
+      </div>
+      <div class="challenges-grid">
+        
+        <div class="challenge-card card-mint">
+          <div class="challenge-icon-box">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>No Clear Content Strategy</h3>
+          <p>Content is created randomly without aligning with audience needs or business goals.</p>
+        </div>
+
+        <div class="challenge-card card-peach">
+          <div class="challenge-icon-box">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><circle cx="11" cy="14" r="3"/><line x1="13.5" y1="16.5" x2="16.5" y2="19.5"/></svg>
+          </div>
+          <h3>Poor Keyword &amp; Topic Research</h3>
+          <p>Without understanding what people search for, content struggles to attract organic traffic.</p>
+        </div>
+
+        <div class="challenge-card card-purple">
+          <div class="challenge-icon-box">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>Lack of Consistent Publishing</h3>
+          <p>Irregular content production makes it difficult to build authority or maintain audience engagement.</p>
+        </div>
+
+        <div class="challenge-card card-white">
+          <div class="challenge-icon-box">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+          </div>
+          <h3>Content Without Distribution</h3>
+          <p>Your site is not optimized for modern search experiences like AI search, voice queries, and evolving Google.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. MORE THAN WRITING -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-grid reversed">
+        <div class="split-content">
+          <h2 class="section-title">More Than Writing, We Create Content That People Actually Engage With</h2>
+          <p>Anyone can write content, but not everyone can create content that captures attention and keeps people interested. At High Horse, we focus on creating content experiences that connect with your audience, not just fill pages on your website.</p>
+          <p>Our team combines strategic writing, creative visuals, SEO insights, and audience research to produce content that is easy to understand, engaging to read, and designed to guide visitors toward action. From website pages and blogs to marketing campaigns and visual storytelling, we ensure every piece of content supports your brand message and business goals. Because effective content doesn’t just inform – it attracts the right audience, builds trust, and helps turn interest into real business opportunities.</p>
+        </div>
+        <div class="image-card">
+          <img src="Screenshot 2026-08-24 133433.png" alt="Content and analytics on workstation monitor">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. WE BACK EVERY STRATEGY WITH REAL RESULTS -->
+  <section class="results-section">
+    <div class="container">
+      <div class="results-header">
+        <h2 class="section-title">We Back Every Strategy With Real Results</h2>
+        <p class="section-desc">See real SEO results from High Horse through improved Google rankings, organic traffic growth, higher keyword visibility, and measurable business lead generation.</p>
+      </div>
+      <div class="results-brands-grid">
+        <div class="brand-block">
+          <img src="Screenshot 2026-08-24 133449.png" alt="Search Result Rankings Proof Portfolio">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. HOW OUR STRATEGIES TURNED SEARCH DEMAND INTO REVENUE -->
+  <section class="demand-section">
+    <div class="container">
+      <div class="demand-header">
+        <h2 class="section-title">How Our Strategies Turned Search Demand Into Revenue</h2>
+        <p class="section-desc">SEO strategies convert search demand into measurable revenue by attracting high-intent traffic, improving conversions, and delivering consistent business growth.</p>
+      </div>
+      <div class="demand-grid">
+        
+        <div class="demand-card demand-bawa">
+          <img src="Screenshot 2026-08-24 133449.png" alt="Bawa Performance Graph" class="demand-graph-img">
+          <h3>For Bawa</h3>
+          <p>Organic traffic tripled within 12 months for Bawa</p>
+          <p>Significant lift in qualified visitors</p>
+          <p>Sustained month-on-month traffic growth</p>
+        </div>
+
+        <div class="demand-card demand-terra">
+          <img src="Screenshot 2026-08-24 133449.png" alt="Terra Performance Graph" class="demand-graph-img">
+          <h3>For Terra</h3>
+          <p>100% growth in search impressions within 3 months for Terra</p>
+          <p>Multiple high-intent keywords reached Google's first page</p>
+          <p>Consistent rise in organic clicks and enquiries</p>
+        </div>
+
+        <div class="demand-card demand-fech">
+          <img src="Screenshot 2026-08-24 133449.png" alt="Fech Performance Graph" class="demand-graph-img">
+          <h3>For Fech Moving &amp; Cleaning</h3>
+          <p>For Fech Moving &amp; Cleaning we drove 351 conversions from 2.98K high-intent clicks</p>
+          <p>Achieved strong reach with 39.1K impressions consistently</p>
+          <p>Maintained efficient cost per conversion at $59.70</p>
+        </div>
+
+        <div class="demand-card demand-hioki">
+          <img src="Screenshot 2026-08-24 133449.png" alt="Hioki Performance Graph" class="demand-graph-img">
+          <h3>For Hioki</h3>
+          <p>For Hioki we generated 831 conversions from 18.9K high-intent clicks</p>
+          <p>Maintained low average CPC at ₹40.22 across campaigns</p>
+          <p>Achieved efficient cost per conversion at ₹818</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CONTENT MARKETING SERVICES 3x3 GRID -->
+  <section class="services-grid-section">
+    <div class="container">
+      <h2 class="section-title">Content Marketing Services Designed to Drive Traffic</h2>
+      <div class="services-grid">
+        
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <h3>SEO Content Writing</h3>
+          <p>Create search-optimized articles and landing pages that rank higher on Google and attract qualified traffic.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+          </div>
+          <h3>Blog &amp; Article Development</h3>
+          <p>Informative and valuable blog content designed to educate audiences and strengthen brand authority.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Website Content Creation</h3>
+          <p>Conversion-focused website copy that clearly communicates your value and improves user experience.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+          </div>
+          <h3>Visual &amp; Interactive Content</h3>
+          <p>Infographics and creative assets that simplify complex ideas and increase engagement.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3>Social Media Content</h3>
+          <p>Strategic content designed to build brand presence and engage audiences across social platforms.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h3>Email &amp; Newsletter Content</h3>
+          <p>Content designed to nurture leads, strengthen relationships, and keep audiences connected with your brand.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <h3>Video Content Marketing</h3>
+          <p>Story-driven video content that improves engagement and helps communicate ideas effectively.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          </div>
+          <h3>Ecommerce Content</h3>
+          <p>Optimized product descriptions and category content designed to improve search visibility and increase sales.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </div>
+          <h3>Landing Page Content</h3>
+          <p>Conversion-focused content designed to capture attention and turn visitors into leads.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3>AEO / GEO Content</h3>
+          <p>Structured content optimized to appear in AI answers, featured snippets, and generative search platforms.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+          </div>
+          <h3>Content Optimization</h3>
+          <p>Improving existing content to enhance readability, SEO performance, and engagement.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. BEIGE BANNER WITH BUTTON (SECTION 9) -->
+  <section class="middle-cta-section" id="contact">
+    <div class="container">
+      <div class="cta-card">
+        <h2 class="section-title">Let’s Build Content That Brings the Right Customers to Your Business</h2>
+        <p class="section-desc">If your website content isn’t attracting visitors or generating leads, it may be time for a smarter content strategy. Our team analyzes your current content, identifies opportunities, and builds a structured plan that helps your brand attract and engage the right audience.</p>
+        <a href="#contact" class="btn-pill">Get a Free Content Audit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. OUR PROCESS (6 STEPS) -->
+  <section class="process-section">
+    <div class="container">
+      <div class="process-header">
+        <h2 class="section-title">Our Process for Delivering Effective Content Marketing</h2>
+        <p class="section-desc">Our proven SEO process combines research, strategy, optimization, and continuous tracking to improve rankings, drive traffic, and maximize long-term growth.</p>
+      </div>
+      <div class="process-grid">
+        
+        <div class="process-card">
+          <div class="process-number">1.</div>
+          <h3>Content Audit &amp; Market Research</h3>
+          <p>We analyze your website, competitors, and search trends to identify opportunities for impactful content.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-number">2.</div>
+          <h3>Keyword &amp; Topic Strategy</h3>
+          <p>Our team identifies high-value keywords and topics that align with customer intent.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-number">3.</div>
+          <h3>Content Creation</h3>
+          <p>We produce high-quality, SEO-optimized content designed to attract readers and build trust.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-number">4.</div>
+          <h3>Content Distribution</h3>
+          <p>Content is promoted through relevant channels including search engines, social platforms, and newsletters.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-number">5.</div>
+          <h3>Performance Tracking</h3>
+          <p>We track traffic, engagement, and conversions to measure the effectiveness of your content.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-number">6.</div>
+          <h3>Continuous Optimization</h3>
+          <p>Strategies are refined based on data insights to continuously improve results.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. WHY BUSINESSES CHOOSE HIGH HORSE STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-container">
+        <div class="stats-content">
+          <h2 class="section-title">Why Businesses Choose High Horse for Content Marketing</h2>
+          <p class="section-desc">Businesses choose High Horse because we focus on <strong>strategy, clarity, and measurable impact</strong> rather than just producing content.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">SEO &amp; Marketing Pages Created</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Industries Served With Content Marketing</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">300+</div>
+            <div class="stat-label">Blogs &amp; Articles Published</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">90%</div>
+            <div class="stat-label">Clients From Referrals</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1200+</div>
+            <div class="stat-label">SEO Content Keywords Targeted</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Client retention rate</div>
+          </div>
+          <div class="stat-card" style="grid-column: 1 / 2;">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Content Campaigns Successfully Executed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. WHAT OTHERS DO VS WHAT HIGH HORSE DOES -->
+  <section class="comparison-section">
+    <div class="container">
+      <div class="comparison-header">
+        <h2 class="section-title">Why Businesses Choose High Horse for Content Marketing</h2>
+        <p class="section-desc">At High Horse we focus on creating content that delivers real business impact. Our approach combines audience research, SEO insights, and strategic storytelling to ensure every piece of content has a clear purpose.</p>
+      </div>
+      <div class="comparison-grid">
+        <div class="comp-card comp-card-blue">
+          <h3>What Others Do</h3>
+          <ul>
+            <li>Focus on producing large volumes of content</li>
+            <li>Write blogs without clear search strategy</li>
+            <li>Ignore audience intent and customer journey</li>
+            <li>Deliver content without measurable impact</li>
+            <li>Prioritize quantity over quality and engagement</li>
+          </ul>
+        </div>
+        <div class="comp-card comp-card-purple">
+          <h3>What High Horse Does</h3>
+          <ul>
+            <li>Build strategic content systems for growth</li>
+            <li>Create SEO-driven content based on real searches</li>
+            <li>Align content with audience needs and intent</li>
+            <li>Focus on traffic, engagement, and conversions</li>
+            <li>Deliver content designed for measurable results</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. FREQUENTLY ASKED QUESTIONS (LAST SECTION) -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-box-wrapper">
+        <div class="faq-item">
+          <span>Do I need SEO if I already run Google Ads?</span>
+          <span class="plus">+</span>
+        </div>
+        <div class="faq-item">
+          <span>How do you choose keywords for my business?</span>
+          <span class="plus">+</span>
+        </div>
+        <div class="faq-item">
+          <span>Do backlinks still matter for SEO?</span>
+          <span class="plus">+</span>
+        </div>
+        <div class="faq-item">
+          <span>Do you optimize websites for AI search and generative results?</span>
+          <span class="plus">+</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

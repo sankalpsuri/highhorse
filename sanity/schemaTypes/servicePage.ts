@@ -63,6 +63,7 @@ export default defineType({
         {type: 'checklistSection'},
         {type: 'portfolioShowcaseSection'},
         {type: 'techSliderSection'},
+        {type: 'caseStudyCardsSection'},
       ],
     }),
     defineField({

@@ -40,21 +40,15 @@ export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaT
             </span>
           </div>
         ) : badgeText ? (
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 10,
-            background: 'rgba(255,255,255,0.8)',
-            backdropFilter: 'blur(12px)',
-            border: '1px solid #E4E4E4',
-            borderRadius: 100,
-            padding: '8px 18px 8px 12px',
-            marginBottom: 28,
-            boxShadow: '0 4px 12px rgba(16,16,16,0.06)',
-          }}>
+          <a
+            href="https://partnersdirectory.withgoogle.com/partners/6812870132"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="google-partner-badge"
+          >
             <FcGoogle style={{ fontSize: 18, flexShrink: 0 }} />
             <span style={{ font: "500 12.5px 'Poppins', sans-serif", color: '#5c5c5c' }}>{badgeText}</span>
-          </div>
+          </a>
         ) : null}
         <h1 style={{
           fontFamily: "'Montserrat', sans-serif",
@@ -81,7 +75,7 @@ export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaT
           </p>
         )}
         {ctaText && ctaLink && (
-          <div style={{ marginBottom: heroImage?.asset ? 56 : 0 }}>
+          <div style={{ marginBottom: heroImage ? 56 : 0 }}>
             <Link
               href={ctaLink}
               style={{
@@ -100,7 +94,7 @@ export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaT
             </Link>
           </div>
         )}
-        {heroImage?.asset && (
+        {heroImage?.asset ? (
           <Image
             src={urlFor(heroImage).width(1280).auto('format').url()}
             alt={headline}
@@ -108,7 +102,22 @@ export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaT
             height={600}
             style={{ width: '100%', height: 'auto', borderRadius: 8, marginTop: 16 }}
           />
-        )}
+        ) : heroImage ? (
+          <div style={{
+            marginTop: 48,
+            aspectRatio: '16 / 7',
+            background: 'linear-gradient(135deg, #EDE9FB 0%, #E4EAFC 55%, #E9EFFD 100%)',
+            borderRadius: 24,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: 14,
+            color: '#8a8a86',
+          }}>
+            Hero image placeholder
+          </div>
+        ) : null}
       </div>
     </section>
   )

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Ads Agency - High Horse</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #111827;
+      background-color: #ffffff;
+      line-height: 1.6;
+      text-align: left;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: left;
+    }
+
+    /* Common Components */
+    .btn-pill {
+      display: inline-block;
+      background-color: #000000;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      text-align: left;
+    }
+
+    .btn-pill:hover {
+      opacity: 0.85;
+    }
+
+    .section-title {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #000000;
+      letter-spacing: -0.02em;
+      text-align: left;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    /* 1. HERO SECTION */
+    .hero-section {
+      padding: 70px 0 60px;
+      text-align: left;
+    }
+
+    .hero-text-wrapper {
+      max-width: 840px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .hero-title {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #000000;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      text-align: left;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: #374151;
+      line-height: 1.55;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    .hero-banner-container {
+      margin-top: 48px;
+      border-radius: 24px;
+      overflow: hidden;
+      background-color: #f3f4f6;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .hero-banner-container img {
+      width: 100%;
+      max-height: 560px;
+      object-fit: cover;
+      display: block;
+      border-radius: 24px;
+    }
+
+    /* TWO COLUMN SPLIT SECTIONS */
+    .split-section {
+      padding: 65px 0;
+      text-align: left;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .split-grid.image-left {
+      grid-template-columns: 0.95fr 1.05fr;
+    }
+
+    .split-content {
+      text-align: left;
+    }
+
+    .split-content .section-title {
+      margin-bottom: 24px;
+    }
+
+    .split-content p {
+      margin-bottom: 18px;
+      color: #374151;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .split-bullets {
+      list-style: none;
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .split-bullets li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+      text-align: left;
+    }
+
+    .split-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #000000;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .feature-list {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feature-item p {
+      font-size: 14.5px;
+      color: #374151;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    .feature-item p strong {
+      color: #000000;
+      font-size: 15.5px;
+    }
+
+    .image-card {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      border-radius: 20px;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* 3. CHECKLIST SECTION */
+    .checklist-rows {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .checklist-row {
+      font-size: 16.5px;
+      font-weight: 600;
+      color: #111827;
+      padding: 16px 0;
+      border-bottom: 1.5px solid #111827;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    /* 5. SERVICES 3-COLUMN GRID */
+    .services-grid-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .services-header {
+      max-width: 880px;
+      margin-bottom: 44px;
+      text-align: left;
+    }
+
+    .services-header .section-title {
+      margin-bottom: 12px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 40px;
+      row-gap: 44px;
+      text-align: left;
+    }
+
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .service-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background-color: #ecfaf4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .service-item h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 10px;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .service-item p {
+      font-size: 14px;
+      color: #4b5563;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    /* 6. PROCESS (4 STEPS) */
+    .process-section {
+      padding: 60px 0 40px;
+      text-align: left;
+    }
+
+    .process-header {
+      max-width: 880px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .process-header .section-title {
+      margin-bottom: 10px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      text-align: left;
+    }
+
+    .process-card {
+      border: 1.5px solid #000000;
+      border-radius: 16px;
+      padding: 28px 26px;
+      background-color: #ffffff;
+      text-align: left;
+    }
+
+    .process-step-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .process-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .process-card p {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    /* 7. STATS SECTION */
+    .stats-section {
+      padding: 70px 0;
+      text-align: left;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 60px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .stats-content {
+      text-align: left;
+    }
+
+    .stats-content .section-title {
+      margin-bottom: 20px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: left;
+    }
+
+    .stat-card {
+      border: 1.5px solid #111827;
+      border-radius: 18px;
+      padding: 24px 18px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 130px;
+      background: #ffffff;
+    }
+
+    .stat-number {
+      font-size: 34px;
+      font-weight: 800;
+      color: #000000;
+      line-height: 1;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .stat-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #111827;
+      line-height: 1.35;
+      text-align: left;
+    }
+
+    /* 8. VIDEO SHOWCASE SECTION (SEE WHAT HIGH PERFORMING CAMPAIGNS ACTUALLY LOOK LIKE) */
+    .video-showcase-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .video-header {
+      max-width: 880px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .video-header .section-title {
+      margin-bottom: 10px;
+    }
+
+    .video-container-card {
+      position: relative;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .video-container-card video {
+      width: 100%;
+      height: 100%;
+      max-height: 640px;
+      display: block;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    /* 10. FREQUENTLY ASKED QUESTIONS (LAST SECTION) */
+    .faq-section {
+      padding: 40px 0 90px;
+      text-align: left;
+    }
+
+    .faq-section .section-title {
+      margin-bottom: 24px;
+    }
+
+    .faq-box-wrapper {
+      border: 1.5px solid #000000;
+      border-radius: 20px;
+      padding: 24px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background-color: #ecfaf4;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #111827;
+      text-align: left;
+      transition: background-color 0.2s ease;
+    }
+
+    .faq-item:hover {
+      background-color: #e2f6ee;
+    }
+
+    .faq-item span.plus {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111827;
+      margin-left: 16px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .split-grid,
+      .split-grid.image-left,
+      .stats-container,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title,
+      .section-title {
+        font-size: 28px;
+      }
+
+      .services-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-box-wrapper {
+        padding: 14px;
+      }
+
+      .faq-item {
+        padding: 16px 18px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. HERO -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-text-wrapper">
+        <h1 class="hero-title">Transform Your Visual Ads Into A Recognizable Brand Identity</h1>
+        <p class="hero-subtitle">At High Horse, we help brands run strategic visual advertising campaigns that increase brand visibility, capture audience attention, and turn impressions into meaningful engagement and conversions.</p>
+        <a href="#contact" class="btn-pill">Book a Strategy Call</a>
+      </div>
+      <div class="hero-banner-container">
+        <img src="image_fb7d2e.png" alt="Visual Ads Hero Banner">
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SEEN BY MANY, CHOSEN BY NONE? (IMAGE ON RIGHT) -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-grid">
+        <div class="split-content">
+          <h2 class="section-title">Seen by Many, Chosen by None? Let’s Fix Your Ads.</h2>
+          <p>Visual ads are one of the most powerful ways to build brand recognition and influence buying decisions. Instead of relying only on text, these ads use images, videos, and creative designs to communicate your message instantly.</p>
+          <p>However, running high-performing visual campaigns requires more than just attractive designs. Audience targeting, creative strategy, and continuous testing are essential for success. Our visual advertising strategies focus on helping you capture attention, engage the right audience, and drive measurable business results.</p>
+          <ul class="split-bullets">
+            <li>Showcase your brand creatively across high-visibility platforms</li>
+            <li>Reach targeted audiences with visually engaging ads</li>
+            <li>Increase brand awareness and engagement</li>
+            <li>Optimize campaigns for better return on ad spend</li>
+          </ul>
+        </div>
+        <div class="image-card">
+          <img src="image_fb7d4d.png" alt="People scrolling visual feeds on smartphones">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. GRAB ATTENTION WHERE YOUR AUDIENCE IS ALREADY SCROLLING (CHECKLIST) -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-grid">
+        <div class="split-content">
+          <h2 class="section-title">Grab Attention Where Your Audience Is Already Scrolling</h2>
+          <p style="margin-bottom: 28px;">Visual ads combine compelling creatives with smart targeting to connect with users across platforms and influence their decisions effectively.</p>
+          <a href="#contact" class="btn-pill">Talk to SEO Expert</a>
+        </div>
+        <div class="checklist-rows">
+          <div class="checklist-row">Be Seen Instantly – Show your brand across high-traffic platforms with eye-catching visuals.</div>
+          <div class="checklist-row">Reach the Right People – Target users based on interests, behavior, and demographics.</div>
+          <div class="checklist-row">High Purchase Intent – Reach users actively searching for products like yours.</div>
+          <div class="checklist-row">Stay in Their Mind Longer – Creative visuals help people remember your brand.</div>
+          <div class="checklist-row">Turn Views Into Actions – Engaging creatives encourage clicks and conversions.</div>
+          <div class="checklist-row">Track What’s Working – Measure impressions, clicks, engagement, and results clearly.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. HIGH HORSE DELIVERS DATA-DRIVEN VISUAL ADVERTISING (IMAGE ON LEFT) -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-grid image-left">
+        <div class="image-card">
+          <img src="image_fb7d8a.png" alt="High Horse Data-Driven Visual Advertising Dashboard">
+        </div>
+        <div class="split-content">
+          <h2 class="section-title">High Horse Delivers Data-Driven Visual Advertising Designed for Growth</h2>
+          <p class="section-desc">Our visual ad campaigns combine creative excellence, audience targeting, and performance optimization to maximize brand impact and results.</p>
+          
+          <div class="feature-list">
+            <div class="feature-item">
+              <p><strong>Creative Strategy &amp; Design</strong> Develop visually compelling ad creatives aligned with your brand identity</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Audience Targeting</strong> Reach the right users based on behavior, interests, and demographics.</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Platform-Specific Optimization</strong> Customize creatives and campaigns for each advertising platform.</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Continuous Creative Testing</strong> Test multiple creatives to identify top-performing visuals.</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Transparent Performance Reporting</strong> Track engagement, conversions, and campaign efficiency clearly.</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Dedicated Advertising Specialists</strong> Experienced experts managing campaigns focused on visual performance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CHOOSE THE RIGHT VISUAL AD FORMAT FOR YOUR BRAND (3-COLUMN GRID) -->
+  <section class="services-grid-section">
+    <div class="container">
+      <div class="services-header">
+        <h2 class="section-title">Choose the Right Visual Ad Format for Your Brand</h2>
+        <p class="section-desc">Different visual ad formats help you connect with your audience and grow across platforms effectively.</p>
+      </div>
+      <div class="services-grid">
+        
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Display Ads</h3>
+          <p>Banner ads placed across relevant websites and apps to increase brand visibility, reach new audiences, and consistently reinforce your presence online.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </div>
+          <h3>Meta Ads</h3>
+          <p>Image and video ads designed for platforms like Instagram and Facebook to engage audiences, build interest, and drive targeted traffic effectively.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <h3>LinkedIn Ads</h3>
+          <p>Target decision-makers and professionals with precise B2B campaigns, generating high-quality leads, building authority, and driving meaningful business conversations and conversions.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </div>
+          <h3>YouTube Ads</h3>
+          <p>Engage audiences through impactful video ads, increasing brand awareness, capturing attention early, and driving high-intent traffic with compelling visual storytelling strategies.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <h3>Video Ads</h3>
+          <p>Engaging video campaigns that capture attention quickly, communicate your brand story clearly, and drive higher engagement and conversions across digital platforms.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <h3>Carousel Ads</h3>
+          <p>Interactive ads that showcase multiple products, services, or features in a single format, encouraging users to explore and engage with your offerings.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          </div>
+          <h3>Remarketing Ads</h3>
+          <p>Reconnect with users who previously interacted with your brand, reminding them of your services and guiding them back to complete desired actions.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Responsive Display Ads</h3>
+          <p>Automatically optimised ads that adjust visuals, formats, and messaging to fit different placements, ensuring better performance and wider reach across platforms.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. HOW WE TURN YOUR CAMPAIGNS INTO PERFORMANCE MACHINES (4 STEPS) -->
+  <section class="process-section">
+    <div class="container">
+      <div class="process-header">
+        <h2 class="section-title">How We Turn Your Campaigns Into Performance Machines</h2>
+        <p class="section-desc">Our process focuses on creative strategy, audience targeting, and continuous improvement to drive better results.</p>
+      </div>
+      <div class="process-grid">
+        
+        <div class="process-card">
+          <div class="process-step-title">Step 1</div>
+          <h3>Understand Your Brand &amp; Audience</h3>
+          <p>We analyze your business, audience behavior, and goals.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step-title">Step 2</div>
+          <h3>Create High-Impact Visuals</h3>
+          <p>Design creatives that align with your message and stand out.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step-title">Step 3</div>
+          <h3>Launch Targeted Campaigns</h3>
+          <p>Run structured campaigns aimed at the right audience segments.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step-title">Step 4</div>
+          <h3>Optimize for Better Results</h3>
+          <p>Continuously improve creatives, targeting, and performance.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. NUMBERS THAT SHOW WHAT'S POSSIBLE WHEN IT'S DONE RIGHT (STATS SECTION) -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-container">
+        <div class="stats-content">
+          <h2 class="section-title">Numbers That Show What’s Possible When It’s Done Right</h2>
+          <p class="section-desc">Our visual ad campaigns combine high-impact creativity with precise audience targeting, helping your brand capture attention, drive meaningful engagement, and achieve consistent, measurable growth across digital platforms and channels today.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Visual Campaigns Managed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Clicks Driven Through Visual Ads</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3X</div>
+            <div class="stat-label">In Social Media Engagement</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">30%</div>
+            <div class="stat-label">Cost Per Conversion</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">5X</div>
+            <div class="stat-label">Creative Testing Cycles</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">90%</div>
+            <div class="stat-label">Optimized Within First 30 Days</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">6+</div>
+            <div class="stat-label">Globally Served</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">360</div>
+            <div class="stat-label">Degree Marketing Solutions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. VIDEO SHOWCASE SECTION (REPLACED STATIC IMAGE WITH VIDEO CONTAINER) -->
+  <section class="video-showcase-section">
+    <div class="container">
+      <div class="video-header">
+        <h2 class="section-title">See What High-Performing Campaigns Actually Look Like</h2>
+        <p class="section-desc">Explore real examples of high-performing campaigns that drive engagement, capture attention, and deliver measurable results across digital platforms and audiences.</p>
+      </div>
+      <div class="video-container-card">
+        <!-- Autoplaying, looping, muted video showcase with fallback poster -->
+        <video autoplay loop muted playsinline controls poster="image_fb80cc.png">
+          <source src="campaign_showcase_video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. WHAT CHANGES WHEN YOU LET US HANDLE YOUR VISUAL ADS (IMAGE ON RIGHT) -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-grid">
+        <div class="split-content">
+          <h2 class="section-title">What Changes When You Let Us Handle Your Visual Ads</h2>
+          <p>When we manage your campaigns, every creative is built to capture attention and drive real outcomes.</p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <p><strong>Get Noticed Faster</strong> – Your brand stands out with strong, high-quality visuals.</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Attract the Right Audience</strong> – Your ads reach people who are more likely to engage.</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Reduce Wasted Spend</strong> – Better targeting means fewer irrelevant impressions.</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Turn Engagement Into Results</strong> – Strong creatives help convert interest into action.</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Grow Your Brand Consistently</strong> – Campaigns focused on long-term visibility and performance.</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Know Exactly What’s Working</strong> – Clear data helps you scale confidently.</p>
+            </div>
+          </div>
+        </div>
+        <div class="image-card">
+          <img src="image_fb810a.png" alt="Setmi India Visual Ads Mobile Mockup Showcase">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FREQUENTLY ASKED QUESTIONS (LAST SECTION) -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-box-wrapper">
+        <div class="faq-item">
+          <span>Will visual ads actually help me get more customers?</span>
+          <span class="plus">+</span>
+        </div>
+        <div class="faq-item">
+          <span>Where will my ads appear?</span>
+          <span class="plus">+</span>
+        </div>
+        <div class="faq-item">
+          <span>Why do creatives matter so much?</span>
+          <span class="plus">+</span>
+        </div>
+        <div class="faq-item">
+          <span>Is this right for my business?</span>
+          <span class="plus">+</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

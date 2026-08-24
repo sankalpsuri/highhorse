@@ -272,3 +272,13 @@
 .megaMenuCta:hover {
   background: #144FC0;
 }
+
+/* ── Desktop: hide mobile-only elements ────────────────────── */
+@media (min-width: 1080px) {
+  .hamburger {
+    display: none;
+  }
+  .mobileMenu {
+    display: none;
+  }
+}

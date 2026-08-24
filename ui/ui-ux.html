@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Horse — UI/UX Design</title>
+<style>
+  :root{
+    --ink:#0f1115;
+    --sub:#5b6472;
+    --line:#e7e5df;
+    --bg:#ffffff;
+    --bg-soft:#f4f6f9;
+    --bg-warm:#fdeee0;
+    --accent:#111318;
+    --blue:#2f6fed;
+    --orange:#e0762b;
+    --green:#2e9e6b;
+    --purple:#7a4fd6;
+    --pink:#fdeaf4;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
+  h1,h2,h3{margin:0 0 12px 0; font-weight:700; letter-spacing:-0.02em; text-align:left;}
+  p{margin:0 0 14px 0; text-align:left;}
+  ul{margin:0; padding:0; list-style:none;}
+  a{color:inherit; text-decoration:none;}
+
+  .btn{
+    display:inline-block;
+    background:var(--accent);
+    color:#fff;
+    font-weight:600;
+    font-size:14px;
+    padding:14px 26px;
+    border-radius:999px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+  }
+
+  section{padding:64px 0;}
+  .section-border-top{border-top:1px solid var(--line);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding-top:56px; padding-bottom:16px;}
+  .hero-head{max-width:820px;}
+  .hero h1{
+    font-size:34px;
+    line-height:1.2;
+    border:1.5px solid var(--blue);
+    border-radius:8px;
+    padding:14px 18px;
+    display:inline-block;
+  }
+  .hero p{
+    font-size:15px;
+    color:var(--sub);
+    max-width:660px;
+  }
+  .hero .btn{margin-top:8px; margin-bottom:36px;}
+  .hero-visual{
+    background:linear-gradient(135deg,#dfe6f5,#eae4f6);
+    border-radius:20px;
+    padding:44px 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    min-height:260px;
+  }
+  .hero-visual .ui-ux-text{
+    font-size:52px;
+    font-weight:800;
+    color:#fff;
+    letter-spacing:.01em;
+  }
+  .hero-mocks{
+    display:flex;
+    gap:16px;
+    align-items:flex-end;
+  }
+  .mock-phone{
+    width:110px;
+    height:200px;
+    background:#0f1115;
+    border-radius:18px;
+    padding:8px;
+  }
+  .mock-phone .screen{
+    width:100%; height:100%;
+    border-radius:12px;
+    background:#f1f3f7;
+  }
+  .mock-phone.m2 .screen{background:#eef1fb;}
+  .mock-phone.m3 .screen{background:linear-gradient(160deg,#2a1a52,#3a2570);}
+
+  /* ---------- TWO COLUMN: text + image ---------- */
+  .split{display:flex; gap:48px; align-items:center;}
+  .split .text{flex:1.1; min-width:280px;}
+  .split .media{flex:1; min-width:260px;}
+  .split h2{font-size:26px;}
+  .split p{font-size:14.5px; color:var(--sub);}
+  .media-block{
+    border-radius:16px;
+    height:230px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:13px;
+    overflow:hidden;
+  }
+  .media-dark{
+    background:radial-gradient(circle at 30% 30%, #3a1f6b, #150a2e);
+  }
+
+  /* ---------- CHALLENGES (image 3) ---------- */
+  .problem{display:flex; gap:48px; align-items:flex-start;}
+  .problem .left{flex:1; min-width:280px;}
+  .problem .left h2{font-size:26px;}
+  .problem .left p{font-size:14.5px; color:var(--sub); max-width:360px;}
+  .problem .right{flex:1.2; min-width:300px;}
+  .problem-row{
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+    font-weight:600;
+  }
+  .problem-row:first-child{padding-top:0;}
+
+  /* ---------- WHAT WE DELIVER GRID (image 4) ---------- */
+  .section-head{max-width:760px; margin-bottom:36px;}
+  .section-head h2{font-size:26px;}
+  .section-head p{font-size:14.5px; color:var(--sub);}
+
+  .grid3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px 32px;
+  }
+  .grid-card .icon{
+    width:38px;
+    height:38px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:14px;
+    font-size:18px;
+    background:#e5f6ee;
+    color:var(--green);
+  }
+  .grid-card h3{font-size:15.5px; margin-bottom:6px;}
+  .grid-card p{font-size:13.5px; color:var(--sub); margin-bottom:0;}
+
+  /* ---------- STATS (image 5) ---------- */
+  .stats-wrap{display:flex; gap:48px; align-items:flex-start;}
+  .stats-wrap .text{flex:1; min-width:260px;}
+  .stats-wrap .text h2{font-size:24px;}
+  .stats-wrap .text p{font-size:14.5px; color:var(--sub);}
+  .stats-grid{
+    flex:1.4;
+    min-width:340px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .stat-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 16px;
+  }
+  .stat-card .num{font-size:20px; font-weight:800; margin-bottom:4px;}
+  .stat-card .label{font-size:12px; color:var(--sub);}
+
+  /* ---------- STEPS (image 6) ---------- */
+  .steps-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+  }
+  .step-card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:26px 24px;
+  }
+  .step-card .step-label{
+    font-size:12px;
+    font-weight:700;
+    color:var(--sub);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin-bottom:6px;
+  }
+  .step-card h3{font-size:17px; margin-bottom:8px;}
+  .step-card p{font-size:13.5px; color:var(--sub); margin-bottom:0;}
+  .step-card.wide{grid-column:1 / -1; max-width:calc(50% - 10px);}
+
+  /* ---------- PORTFOLIO (image 7) ---------- */
+  .portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+  }
+  .portfolio-card{
+    border-radius:18px;
+    padding:24px;
+  }
+  .portfolio-card.warm{background:#faf6ee;}
+  .portfolio-card.pink{background:var(--pink);}
+  .portfolio-preview{
+    height:160px;
+    border-radius:12px;
+    background:var(--bg-soft);
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--sub);
+    font-size:12.5px;
+  }
+  .portfolio-card h3{font-size:16px; margin-bottom:8px;}
+  .portfolio-card p, .portfolio-card li{font-size:13px; color:var(--sub); margin-bottom:4px;}
+  .portfolio-card ul{list-style:disc; padding-left:18px;}
+
+  /* ---------- WHY US (image 8) ---------- */
+  .why-list li{
+    font-size:14.5px;
+    color:var(--sub);
+    margin-bottom:10px;
+    padding-left:18px;
+    position:relative;
+  }
+  .why-list li::before{
+    content:"";
+    position:absolute;
+    left:0; top:8px;
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--blue);
+  }
+  .why-list b{color:var(--ink);}
+  .mock-panel{
+    background:linear-gradient(135deg,#fbe4d8,#f6f1eb);
+    border-radius:16px;
+    padding:20px;
+  }
+  .mock-panel .mock-label{
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:12px;
+  }
+  .mock-panel .mock-screen{
+    background:#fff;
+    border-radius:10px;
+    height:180px;
+    border:1px solid var(--line);
+  }
+
+  /* ---------- INDUSTRIES (image 9) ---------- */
+  .cat-card{
+    border-radius:16px;
+    padding:22px 20px;
+  }
+  .cat-card .icon{font-size:20px; margin-bottom:14px;}
+  .cat-card h3{font-size:15px; margin-bottom:6px;}
+  .cat-card p{font-size:13px; color:var(--sub); margin-bottom:0;}
+  .cat-green{background:#e8f6ee;}
+  .cat-orange{background:#fdeee0;}
+  .cat-purple{background:#f1e9fb;}
+
+  /* ---------- FAQ (image 10) ---------- */
+  .faq h2{font-size:24px; margin-bottom:24px;}
+  .faq-item{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 20px;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:14.5px;
+    font-weight:600;
+    background:var(--bg-soft);
+  }
+  .faq-item .plus{font-size:18px; font-weight:400; color:var(--sub);}
+
+  footer{
+    padding:40px 0 60px;
+    font-size:13px;
+    color:var(--sub);
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:860px){
+    .split, .problem, .stats-wrap{flex-direction:column;}
+    .grid3{grid-template-columns:repeat(2,1fr);}
+    .steps-grid{grid-template-columns:1fr;}
+    .step-card.wide{max-width:100%;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .portfolio-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:26px;}
+  }
+  @media (max-width:520px){
+    .grid3{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-head">
+      <h1>Design That Makes Your Users Stay, Trust Your Brand, And Take Action</h1>
+      <p>If your website or app isn't converting, the issue is rarely traffic—it's the experience. We design UI/UX that goes beyond aesthetics, helping businesses across India guide users, build trust, and drive meaningful actions. Great design doesn't just look good it creates clarity, comfort, and confidence to convert.</p>
+      <a class="btn" href="#">Let's Fix Your Ui/UX</a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="ui-ux-text">UI / UX</div>
+      <div class="hero-mocks">
+        <div class="mock-phone m1"><div class="screen"></div></div>
+        <div class="mock-phone m2"><div class="screen"></div></div>
+        <div class="mock-phone m3"><div class="screen"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. CREATIVE & USER-FRIENDLY -->
+<section>
+  <div class="wrap">
+    <div class="split">
+      <div class="text">
+        <h2>Creative &amp; User-Friendly UI/UX Agency in India</h2>
+        <p>At High Horse, we don't just design interfaces—we design experiences that drive action. As a leading UI/UX design company in India, we help startups, growing businesses, and established brands build digital experiences that are clean, intuitive, and built for conversions.</p>
+        <p>Our approach combines research, strategy, and creativity to ensure every user interaction feels effortless. From websites to mobile apps, we design interfaces that not only look modern but also guide users naturally toward taking action.</p>
+      </div>
+      <div class="media">
+        <div class="media-block media-dark">UI/UX concept illustration with app mockup</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. CHALLENGES -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="problem">
+      <div class="left">
+        <h2>The Real Challenges You Are Facing Because of a Bad UI/UX Agency You Hired</h2>
+        <p>A poor UI/UX design doesn't just affect aesthetics—it directly impacts your revenue and growth. Here's what might be going wrong:</p>
+        <a class="btn" href="#">Talk to SEO Expert</a>
+      </div>
+      <div class="right">
+        <div class="problem-row">Users are visiting your website but leaving within seconds</div>
+        <div class="problem-row">Your bounce rate is high and conversions are low</div>
+        <div class="problem-row">Navigation feels confusing or overwhelming</div>
+        <div class="problem-row">Your website looks outdated compared to competitors</div>
+        <div class="problem-row">Mobile experience is inconsistent or frustrating</div>
+        <div class="problem-row" style="border-bottom:none;">Users don't trust your platform enough to take action</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. WHAT WE DELIVER -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What We Deliver as a UI/UX Industry Expert</h2>
+      <p>We focus on building experiences that are not just visually appealing but strategically designed to perform.</p>
+    </div>
+    <div class="grid3">
+      <div class="grid-card">
+        <div class="icon">&#128663;</div>
+        <h3>User Research &amp; Behavior Analysis</h3>
+        <p>We study user behavior, preferences, and pain points to design experiences that align with expectations and improve engagement and conversions.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">&#128722;</div>
+        <h3>Wireframing &amp; Prototyping</h3>
+        <p>We create structured wireframes and interactive prototypes to visualize user journeys, test usability, and ensure a smooth experience before development begins.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">&#128230;</div>
+        <h3>Website UI/UX Design</h3>
+        <p>We design modern, responsive websites focused on usability, clarity, and conversion, ensuring users navigate easily and take desired actions without confusion.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">&#128722;</div>
+        <h3>Mobile App UI/UX Design</h3>
+        <p>We design intuitive mobile app interfaces that enhance usability, improve engagement, and deliver seamless experiences across Android and iOS devices.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">&#127919;</div>
+        <h3>Dashboard &amp; SaaS Interface Design</h3>
+        <p>We simplify complex data into clean, user-friendly dashboards and SaaS interfaces, improving usability, accessibility, and decision-making for better user experiences.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">&#128230;</div>
+        <h3>UX Audit &amp; Optimization</h3>
+        <p>We analyze existing designs, identify usability issues, and optimize user journeys to improve performance, engagement, and overall conversion rates effectively.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">&#128230;</div>
+        <h3>Conversion-Focused Design Strategy</h3>
+        <p>We design with a clear focus on conversions, aligning user experience with business goals to drive actions, generate leads, and increase revenue consistently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. STATS -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="stats-wrap">
+      <div class="text">
+        <h2>Less Guesswork. More Measurable Impact.</h2>
+        <p>Once the user experience was redefined, everything started working as it should. Users stayed longer, navigation felt effortless, and actions became intentional. The results weren't accidental they were a direct outcome of removing friction, simplifying journeys, and designing every interaction with clarity, purpose, and measurable impact.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="num">150+</div><div class="label">UI/UX projects successfully delivered</div></div>
+        <div class="stat-card"><div class="num">5+</div><div class="label">years of experience in UI/UX design</div></div>
+        <div class="stat-card"><div class="num">95%</div><div class="label">client retention rate</div></div>
+        <div class="stat-card"><div class="num">120+</div><div class="label">websites redesigned for better performance</div></div>
+        <div class="stat-card"><div class="num">70%</div><div class="label">increase in mobile usability scores</div></div>
+        <div class="stat-card"><div class="num">6+</div><div class="label">industries served globally</div></div>
+        <div class="stat-card"><div class="num">2X</div><div class="label">faster user task completion after redesign</div></div>
+        <div class="stat-card"><div class="num">3X</div><div class="label">improvement in average session duration</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. STEPS -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What Do Our Creative Experts Do to Provide the Best UI/UX Services?</h2>
+      <p>Our process is built to understand users, eliminate friction, and design seamless experiences that improve usability, engagement, and overall conversions.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-label">Step 1</div>
+        <h3>Understand Your Users</h3>
+        <p>We deeply research user behavior, needs, and expectations to build meaningful, user-centered digital experiences.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-label">Step 2</div>
+        <h3>Define the Experience Strategy</h3>
+        <p>We map complete user journeys, identifying gaps and friction points to create smooth, conversion-focused experiences.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-label">Step 3</div>
+        <h3>Wireframe &amp; Prototype</h3>
+        <p>We build structured wireframes and prototypes to visualize layout, flow, and functionality before final design execution.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-label">Step 4</div>
+        <h3>Design with Purpose</h3>
+        <p>We design clean, intuitive interfaces focused on usability, engagement, and guiding users toward meaningful actions.</p>
+      </div>
+      <div class="step-card wide">
+        <div class="step-label">Step 5</div>
+        <h3>Test &amp; Optimize</h3>
+        <p>We continuously test designs, gather feedback, and optimize experiences to improve usability, performance, and overall results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. PORTFOLIO -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Where Ideas Turned Into High-Performing Experiences</h2>
+      <p>We've worked with brands across industries to transform their digital presence through UI/UX design. Our portfolio includes</p>
+    </div>
+    <h3 style="font-size:17px; margin-bottom:18px;">Responsive Website</h3>
+    <div class="portfolio-grid">
+      <div class="portfolio-card warm">
+        <div class="portfolio-preview">Powdertek architectural coatings site mockup</div>
+        <h3>Powdertek</h3>
+        <ul>
+          <li>3D facade visualisation &amp; mockups</li>
+          <li>Interactive shade exploration (wood effects &amp; solid shades)</li>
+          <li>Smooth motion design &amp; micro-animations</li>
+        </ul>
+      </div>
+      <div class="portfolio-card pink">
+        <div class="portfolio-preview">Party Rack India catalog and storefront mockup</div>
+        <h3>Party Rack India</h3>
+        <p>For Party Rack India, we built everything from the ground up strategy, brand, catalog, website, automation, and growth infrastructure.</p>
+        <p>A structured 90-120 day roadmap. No guesswork. No patchwork.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. WHY US -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="split">
+      <div class="text">
+        <h2>Chosen for the Way We Think Not Just Design</h2>
+        <p>Choosing the right UI/UX partner directly impacts how users experience your brand and take action. Businesses trust us because we combine strategy, design clarity, and user understanding to deliver measurable, growth-focused outcomes.</p>
+        <ul class="why-list">
+          <li><b>Strategy-first approach</b>, ensuring every design decision supports business goals and user experience</li>
+          <li>Design based on real user behavior, optimizing every interaction to improve engagement and drive conversions</li>
+          <li>Create clean, modern interfaces that are scalable, consistent, and adaptable across different platforms and devices</li>
+          <li>Deliver projects quickly without compromising quality, maintaining strong attention to every design detail</li>
+          <li>Maintain clear, consistent communication, working closely with clients to ensure alignment throughout the entire design process</li>
+          <li>Design solutions that align perfectly with your business objectives</li>
+        </ul>
+      </div>
+      <div class="media">
+        <div class="mock-panel">
+          <div class="mock-label">Building a High-Performance SEO Website for Powdertek with 3D &amp; Motion Design</div>
+          <div class="mock-screen"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. INDUSTRIES -->
+<section class="section-border-top">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Industries for Which We Provide UI/UX Services</h2>
+      <p>We design tailored UI/UX solutions across diverse industries, ensuring each experience aligns with user expectations, business goals, and industry-specific requirements.</p>
+    </div>
+    <div class="grid3">
+      <div class="cat-card cat-green">
+        <div class="icon">&#127919;</div>
+        <h3>eCommerce &amp; Retail</h3>
+        <p>We design seamless shopping experiences that simplify navigation, build trust, and increase conversions across product pages, checkout flows, and mobile interfaces.</p>
+      </div>
+      <div class="cat-card cat-orange">
+        <div class="icon">&#128200;</div>
+        <h3>Healthcare &amp; Medical</h3>
+        <p>We create user-friendly healthcare interfaces focused on clarity, accessibility, and trust, ensuring patients easily access information, services, and appointments without confusion.</p>
+      </div>
+      <div class="cat-card cat-purple">
+        <div class="icon">&#127970;</div>
+        <h3>Real Estate</h3>
+        <p>We design intuitive platforms that showcase properties effectively, simplify search journeys, and help users explore, compare, and connect with ease.</p>
+      </div>
+      <div class="cat-card cat-green">
+        <div class="icon">&#128203;</div>
+        <h3>Education &amp; EdTech</h3>
+        <p>We build engaging learning experiences with clear navigation, interactive interfaces, and structured flows that improve usability and student engagement across digital platforms.</p>
+      </div>
+      <div class="cat-card cat-orange">
+        <div class="icon">&#128203;</div>
+        <h3>SaaS &amp; Technology</h3>
+        <p>We design scalable SaaS interfaces that simplify complex workflows, improve usability, and help users navigate features efficiently for better productivity and retention.</p>
+      </div>
+      <div class="cat-card cat-purple">
+        <div class="icon">&#128203;</div>
+        <h3>Logistics &amp; Supply Chain</h3>
+        <p>We create streamlined dashboards and systems that simplify operations, improve visibility, and help users manage logistics processes efficiently with minimal friction.</p>
+      </div>
+      <div class="cat-card cat-green">
+        <div class="icon">&#128337;</div>
+        <h3>Finance &amp; Consulting</h3>
+        <p>We design secure, user-friendly financial interfaces that build trust, simplify complex data, and help users make informed decisions confidently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. FAQ -->
+<section class="section-border-top faq">
+  <div class="wrap">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><span>How do retargeting ads work?</span><span class="plus">+</span></div>
+    <div class="faq-item"><span>How soon can I see results from retargeting ads?</span><span class="plus">+</span></div>
+    <div class="faq-item"><span>Which platforms are best for retargeting ads?</span><span class="plus">+</span></div>
+    <div class="faq-item"><span>Are retargeting ads expensive?</span><span class="plus">+</span></div>
+    <div class="faq-item"><span>Can retargeting help ecommerce businesses?</span><span class="plus">+</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    High Horse — UI/UX Design Services
+  </div>
+</footer>
+
+</body>
+</html>

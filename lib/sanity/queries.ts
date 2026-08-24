@@ -128,6 +128,11 @@ export const servicePageQuery = groq`
         heading,
         subtext,
         logos[]{ _key, name, displayText, bgColor, textColor }
+      },
+      _type == "caseStudyCardsSection" => {
+        heading,
+        subtext,
+        cards[]{ _key, clientName, badgeColor, metrics[]{ value, label }, results }
       }
     },
     caseStudiesHeading,

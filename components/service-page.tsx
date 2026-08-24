@@ -15,6 +15,7 @@ import { ChallengeGridSection } from '@/components/sections/challenge-grid-secti
 import { ChecklistSection } from '@/components/sections/checklist-section'
 import { PortfolioShowcaseSection } from '@/components/sections/portfolio-showcase-section'
 import { TechSliderSection } from '@/components/sections/tech-slider-section'
+import { CaseStudyCardsSection } from '@/components/sections/case-study-cards-section'
 import { FaqAccordion } from '@/components/faq-accordion'
 
 interface CaseStudyEntry {
@@ -79,6 +80,8 @@ function PageBuilderSection({ block, relatedCaseStudies, accentStyle }: { block:
       return <PortfolioShowcaseSection {...block} />
     case 'techSliderSection':
       return <TechSliderSection {...block} />
+    case 'caseStudyCardsSection':
+      return <CaseStudyCardsSection {...block} accentStyle={accentStyle} />
     default:
       return null
   }
@@ -99,7 +102,7 @@ export function ServicePage({ data }: ServicePageProps) {
         />
       ))}
 
-      {data.relatedCaseStudies && data.relatedCaseStudies.length > 0 && (
+      {data.relatedCaseStudies && data.relatedCaseStudies.length > 0 && !data.pageBuilder?.some((b) => b._type === 'caseStudyCardsSection') && (
         <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
           <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
             <h2 style={{

@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Ads & PPC Management - High Horse</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #111827;
+      background-color: #ffffff;
+      line-height: 1.6;
+      text-align: left;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: left;
+    }
+
+    /* Common Components */
+    .btn-pill {
+      display: inline-block;
+      background-color: #000000;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      text-align: left;
+    }
+
+    .btn-pill:hover {
+      opacity: 0.85;
+    }
+
+    .section-title {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #000000;
+      letter-spacing: -0.02em;
+      text-align: left;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    /* 1. HERO SECTION */
+    .hero-section {
+      padding: 70px 0 60px;
+      text-align: left;
+    }
+
+    .hero-text-wrapper {
+      max-width: 840px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .hero-title {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #000000;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      text-align: left;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: #374151;
+      line-height: 1.55;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    .hero-banner-container {
+      margin-top: 48px;
+      border-radius: 24px;
+      overflow: hidden;
+      background-color: #f3f4f6;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .hero-banner-container img {
+      width: 100%;
+      max-height: 560px;
+      object-fit: cover;
+      display: block;
+      border-radius: 24px;
+    }
+
+    /* TWO COLUMN SPLIT SECTIONS */
+    .split-section {
+      padding: 65px 0;
+      text-align: left;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .split-grid.image-left {
+      grid-template-columns: 0.95fr 1.05fr;
+    }
+
+    .split-content {
+      text-align: left;
+    }
+
+    .split-content .section-title {
+      margin-bottom: 24px;
+    }
+
+    .split-content p {
+      margin-bottom: 18px;
+      color: #374151;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .split-bullets {
+      list-style: none;
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .split-bullets li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+      text-align: left;
+    }
+
+    .split-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #000000;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .feature-list {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feature-item p {
+      font-size: 14.5px;
+      color: #374151;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    .feature-item p strong {
+      color: #000000;
+      font-size: 15.5px;
+    }
+
+    .image-card {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      border-radius: 20px;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* 3. CHECKLIST SECTION */
+    .checklist-rows {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .checklist-row {
+      font-size: 16.5px;
+      font-weight: 600;
+      color: #111827;
+      padding: 16px 0;
+      border-bottom: 1.5px solid #111827;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    /* 4. CHALLENGES 4-BOX GRID */
+    .challenges-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .challenges-header {
+      max-width: 850px;
+      margin: 0 0 44px 0;
+      text-align: left;
+    }
+
+    .challenges-header .section-title {
+      margin-bottom: 14px;
+    }
+
+    .challenges-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: left;
+    }
+
+    .challenge-card {
+      border: 1.5px solid #000000;
+      border-radius: 18px;
+      padding: 32px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .card-mint { background-color: #ecfaf4; }
+    .card-peach { background-color: #fdf6ec; }
+    .card-purple { background-color: #f7eefa; }
+    .card-white { background-color: #ffffff; }
+
+    .challenge-icon-box {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .challenge-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 12px;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .challenge-card p {
+      font-size: 13.5px;
+      color: #374151;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    /* 7. REAL RESULTS (2 CARDS) */
+    .results-cards-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .results-cards-header {
+      max-width: 880px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .results-cards-header .section-title {
+      margin-bottom: 10px;
+    }
+
+    .results-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .result-perf-card {
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .result-card-blue { background-color: #e6f6fc; }
+    .result-card-purple { background-color: #ecebfe; }
+
+    .result-graph-img {
+      width: 100%;
+      height: 240px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      display: block;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      object-fit: cover;
+    }
+
+    .result-perf-card h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .result-perf-card p {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.55;
+      text-align: left;
+      margin-bottom: 6px;
+    }
+
+    /* 8. SERVICES 3-COLUMN GRID */
+    .services-grid-section {
+      padding: 60px 0;
+      text-align: left;
+    }
+
+    .services-header {
+      max-width: 880px;
+      margin-bottom: 44px;
+      text-align: left;
+    }
+
+    .services-header .section-title {
+      margin-bottom: 12px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 40px;
+      row-gap: 44px;
+      text-align: left;
+    }
+
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .service-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background-color: #ecfaf4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .service-item h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 10px;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .service-item p {
+      font-size: 14px;
+      color: #4b5563;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    /* 9. BEIGE CTA CARD SECTION */
+    .middle-cta-section {
+      padding: 40px 0 60px;
+      text-align: left;
+    }
+
+    .cta-card {
+      background-color: #fdf0df;
+      border-radius: 24px;
+      padding: 60px 48px;
+      text-align: left;
+      margin: 0;
+    }
+
+    .cta-card .section-title {
+      max-width: 820px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .cta-card .section-desc {
+      max-width: 760px;
+      margin-bottom: 30px;
+      font-size: 15px;
+      text-align: left;
+    }
+
+    /* 10. PROCESS (4 STEPS) */
+    .process-section {
+      padding: 60px 0 40px;
+      text-align: left;
+    }
+
+    .process-header {
+      max-width: 880px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .process-header .section-title {
+      margin-bottom: 10px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      text-align: left;
+    }
+
+    .process-card {
+      border: 1.5px solid #000000;
+      border-radius: 16px;
+      padding: 28px 26px;
+      background-color: #ffffff;
+      text-align: left;
+    }
+
+    .process-step-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .process-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .process-card p {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    /* 11. STATS SECTION */
+    .stats-section {
+      padding: 70px 0;
+      text-align: left;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 60px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .stats-content {
+      text-align: left;
+    }
+
+    .stats-content .section-title {
+      margin-bottom: 20px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: left;
+    }
+
+    .stat-card {
+      border: 1.5px solid #111827;
+      border-radius: 18px;
+      padding: 24px 18px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 130px;
+      background: #ffffff;
+    }
+
+    .stat-number {
+      font-size: 34px;
+      font-weight: 800;
+      color: #000000;
+      line-height: 1;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .stat-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #111827;
+      line-height: 1.35;
+      text-align: left;
+    }
+
+    /* 12. FREQUENTLY ASKED QUESTIONS (LAST SECTION) */
+    .faq-section {
+      padding: 40px 0 90px;
+      text-align: left;
+    }
+
+    .faq-section .section-title {
+      margin-bottom: 24px;
+    }
+
+    .faq-box-wrapper {
+      border: 1.5px solid #000000;
+      border-radius: 20px;
+      padding: 24px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background-color: #ecfaf4;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #111827;
+      text-align: left;
+      transition: background-color 0.2s ease;
+    }
+
+    .faq-item:hover {
+      background-color: #e2f6ee;
+    }
+
+    .faq-item span.plus {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111827;
+      margin-left: 16px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .split-grid,
+      .split-grid.image-left,
+      .stats-container,
+      .results-grid-2col,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .challenges-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title,
+      .section-title {
+        font-size: 28px;
+      }
+
+      .challenges-grid,
+      .services-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-card {
+        padding: 32px 24px;
+      }
+
+      .faq-box-wrapper {
+        padding: 14px;
+      }
+
+      .faq-item {
+        padding: 16px 18px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. HERO -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-text-wrapper">
+        <h1 class="hero-title">Own The Top Spot For High-Intent Keywords</h1>
+        <p class="hero-subtitle">Reach customers when they search with high-performance PPC campaigns. Our Google Ads management captures top keyword positions, driving qualified traffic, leads, and measurable business growth.</p>
+        <a href="#contact" class="btn-pill">Book a Strategy Call</a>
+      </div>
+      <div class="hero-banner-container">
+        <img src="image_fb6e4b.png" alt="Google Ads and Meta Glasses Hero Banner">
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LOOKING FOR A TEAM (IMAGE ON RIGHT) -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-grid">
+        <div class="split-content">
+          <h2 class="section-title">Looking for a Team That Helps You Spend Less and Get More From Your Ads?</h2>
+          <p>PPC advertising can generate leads instantly—but only when done right. Many businesses invest in ads but fail to see results due to poor strategy and lack of optimization.</p>
+          <p>Our PPC management services are designed to connect your business with people already searching for solutions. Through advanced keyword targeting, smart bidding, and continuous optimization, we ensure your ads appear where they matter most.</p>
+          <p>Whether you want more leads, higher sales, or consistent traffic, our paid ads strategies are built to scale performance and maximize ROI.</p>
+          <ul class="split-bullets">
+            <li>Google Partner with great Experience</li>
+            <li>3X faster lead generation compared to organic channels</li>
+            <li>High-intent traffic from users actively searching solutions</li>
+            <li>Visibility at the top of Google search results</li>
+          </ul>
+        </div>
+        <div class="image-card">
+          <img src="image_fb6e6a.png" alt="PPC optimization team and conversion funnel dashboard">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SPENDING TOO MUCH ON ADS? (CHECKLIST) -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-grid">
+        <div class="split-content">
+          <h2 class="section-title">Spending Too Much on Ads But Still Not Getting Leads? Here’s Why</h2>
+          <p style="margin-bottom: 28px;">If your ad budget is increasing but leads aren't, it’s usually a sign that your campaigns aren't optimized for performance. More spend doesn’t always mean better results—strategy is what makes the difference.</p>
+          <a href="#contact" class="btn-pill">Talk to SEO Expert</a>
+        </div>
+        <div class="checklist-rows">
+          <div class="checklist-row">You're targeting the wrong keywords that bring clicks, not customers</div>
+          <div class="checklist-row">Your ad copy isn't strong enough to drive action</div>
+          <div class="checklist-row">Your landing page isn't converting visitors into leads</div>
+          <div class="checklist-row">Your budget is being wasted on irrelevant searches</div>
+          <div class="checklist-row">There’s no continuous optimization or performance tracking</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. HOW OUR PPC ADS STRATEGY TURN SEARCHES (4 COLORED CARDS) -->
+  <section class="challenges-section">
+    <div class="container">
+      <div class="challenges-header">
+        <h2 class="section-title">How our PPC Ads Strategy Turn Searches Into Real Customers</h2>
+        <p class="section-desc">Pay-per-click advertising works because it targets demand that already exists. It helps your business appear exactly when potential customers are ready to take action.</p>
+      </div>
+      <div class="challenges-grid">
+        
+        <div class="challenge-card card-mint">
+          <div class="challenge-icon-box">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h3>Appear for High-Intent Searches</h3>
+          <p>Show your ads exactly when users are actively searching for your products or services, capturing demand at the perfect moment</p>
+        </div>
+
+        <div class="challenge-card card-peach">
+          <div class="challenge-icon-box">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <h3>Get Instant Top Visibility</h3>
+          <p>Reach top positions on search engines quickly, outranking competitors and gaining immediate exposure to potential customers ready to engage.</p>
+        </div>
+
+        <div class="challenge-card card-purple">
+          <div class="challenge-icon-box">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          </div>
+          <h3>Spend Smarter, Drive Conversions</h3>
+          <p>Pay only for relevant clicks while targeting users with strong intent, ensuring your budget is used efficiently for better results.</p>
+        </div>
+
+        <div class="challenge-card card-white">
+          <div class="challenge-icon-box">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3>Track, Optimize, and Scale</h3>
+          <p>Monitor every click, lead, and conversion with precision, allowing continuous optimization and scalable growth as your campaigns perform better.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. HIGH HORSE IS THE PPC PARTNER (IMAGE ON LEFT, TEXT ON RIGHT) -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-grid image-left">
+        <div class="image-card">
+          <img src="image_fb6ea7.png" alt="PPC Partner meeting with Google Ads display board">
+        </div>
+        <div class="split-content">
+          <h2 class="section-title">High Horse is the PPC Partner Businesses Trust for Growth</h2>
+          <p class="section-desc">We don't just run ads—we build performance-driven PPC systems that consistently generate results.</p>
+          
+          <div class="feature-list">
+            <div class="feature-item">
+              <p><strong>Strategy Backed by Data</strong> - Every campaign is built using keyword research, audience insights, and competitor analysis</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Experienced PPC Specialists</strong> - Certified experts managing campaigns with advanced bidding strategies</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Full Transparency</strong> - Clear reporting on leads, clicks, cost efficiency, and ROI</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Focused on Conversions</strong> - Campaigns designed to generate real business outcomes</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Daily Optimization</strong> - Continuous improvements to maximize performance</p>
+            </div>
+            <div class="feature-item">
+              <p><strong>Dedicated Support</strong> - Regular updates, insights, and expert guidance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. REAL RESULTS (BAWA & FECH MOVING CARDS) -->
+  <section class="results-cards-section">
+    <div class="container">
+      <div class="results-cards-header">
+        <h2 class="section-title">Real Results Achieved Through Strategic Search Advertising Campaigns</h2>
+        <p class="section-desc">Our search advertising campaigns have helped businesses generate qualified leads, increase sales, and improve marketing return on investment.</p>
+      </div>
+      <div class="results-grid-2col">
+        <div class="result-perf-card result-card-blue">
+          <img src="image_fb7204.png" alt="Bawa Google Ads Analytics" class="result-graph-img">
+          <h3>For Bawa</h3>
+          <p>Organic traffic tripled within 12 months for Bawa</p>
+          <p>Significant lift in qualified visitors</p>
+          <p>Sustained month-on-month traffic growth</p>
+        </div>
+        <div class="result-perf-card result-card-purple">
+          <img src="image_fb7204.png" alt="Fech Moving Google Ads Analytics" class="result-graph-img">
+          <h3>For Fech Moving &amp; Cleaning</h3>
+          <p>For Fech Moving &amp; Cleaning we drove 351 conversions from 2.98K high-intent clicks</p>
+          <p>Achieved strong reach with 39.1K impressions consistently</p>
+          <p>Maintained efficient cost per conversion at $59.70</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. COMPLETE PPC SERVICES (3-COLUMN GRID) -->
+  <section class="services-grid-section">
+    <div class="container">
+      <div class="services-header">
+        <h2 class="section-title">Complete PPC Services That Fix Everything</h2>
+        <p class="section-desc">Our PPC management services cover every aspect required to drive results.</p>
+      </div>
+      <div class="services-grid">
+        
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3>Search Ads</h3>
+          <p>Reach people actively searching for your products or services on Google and Bing, helping you generate high-quality leads and quick results.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Display Ads</h3>
+          <p>Show visually engaging ads across websites and apps to build awareness, attract attention, and keep your brand visible to potential customers.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          </div>
+          <h3>Remarketing Ads</h3>
+          <p>Reconnect with people who visited your website but didn't take action, reminding them about your business and increasing chances of conversion.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </div>
+          <h3>Shopping Ads</h3>
+          <p>Promote your products directly in search results with images and pricing, helping customers compare easily and make faster purchase decisions.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3>Social Ads</h3>
+          <p>Reach targeted audiences on platforms like Facebook, Instagram, and Linkedin to generate leads, drive traffic, and increase brand visibility.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Lead Ads</h3>
+          <p>Capture customer inquiries through forms and calls, making it easy for users to connect with your business and take immediate action.</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>Performance Ads</h3>
+          <p>Run automated campaigns across multiple platforms to maximize reach, improve efficiency, and drive better results using data-driven optimization.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. BEIGE BANNER WITH BUTTON (SECTION 8) -->
+  <section class="middle-cta-section" id="contact">
+    <div class="container">
+      <div class="cta-card">
+        <h2 class="section-title">Maximize Your ROI with Smart PPC Advertising</h2>
+        <p class="section-desc">Put your business in front of ready-to-buy customers through optimized and high-converting PPC campaigns.</p>
+        <a href="#contact" class="btn-pill">Launch Ads Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. A STRUCTURED PROCESS (4 STEPS) -->
+  <section class="process-section">
+    <div class="container">
+      <div class="process-header">
+        <h2 class="section-title">A Structured Process Designed to Maximize Campaign Performance</h2>
+        <p class="section-desc">Our process ensures every search advertising campaign is strategically planned, launched carefully, and continuously optimized for better results.</p>
+      </div>
+      <div class="process-grid">
+        
+        <div class="process-card">
+          <div class="process-step-title">Step 1</div>
+          <h3>Understanding Your Business</h3>
+          <p>Deep analysis of your audience and competitors</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step-title">Step 2</div>
+          <h3>Keyword Strategy Development</h3>
+          <p>Build campaigns around high-intent searches</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step-title">Step 3</div>
+          <h3>Campaign Launch</h3>
+          <p>Deploy ads with precision targeting and budgets</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step-title">Step 4</div>
+          <h3>Continuous Optimization</h3>
+          <p>Improve results through ongoing testing and refinement</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. HONEST NUMBERS. PROVEN PPC PERFORMANCE (STATS SECTION) -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-container">
+        <div class="stats-content">
+          <h2 class="section-title">Honest Numbers. Proven PPC Performance</h2>
+          <p class="section-desc">We believe complete transparency builds trust and long-term partnerships. Instead of just making promises, we show real PPC performance data, campaign growth metrics, and measurable results that reflect how our strategies consistently generate leads, reduce costs, and improve return on ad spend.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">120+</div>
+            <div class="stat-label">PPC Campaigns Managed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2.8X</div>
+            <div class="stat-label">Average ROAS Achieved</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">38%</div>
+            <div class="stat-label">Increase in Qualified Leads</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1.9M+</div>
+            <div class="stat-label">Clicks Generated</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">24%</div>
+            <div class="stat-label">Lower Cost Per Lead</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">70%</div>
+            <div class="stat-label">Campaigns Improved ROI in 90 Days</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Client Retention Rate</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">6+</div>
+            <div class="stat-label">Countries Served</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FREQUENTLY ASKED QUESTIONS (LAST SECTION) -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-box-wrapper">
+        <div class="faq-item">
+          <span>How quickly can search ads generate results?</span>
+          <span class="plus">+</span>
+        </div>
+        <div class="faq-item">
+          <span>How much budget is required for search ads?</span>
+          <span class="plus">+</span>
+        </div>
+        <div class="faq-item">
+          <span>Which platforms do you manage search ads on?</span>
+          <span class="plus">+</span>
+        </div>
+        <div class="faq-item">
+          <span>Do search ads work for small businesses?</span>
+          <span class="plus">+</span>
+        </div>
+        <div class="faq-item">
+          <span>How do you measure search campaign success?</span>
+          <span class="plus">+</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -108,10 +108,15 @@ export default function CareersPage() {
       {/* ── Hero ───────────────────────────────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <div className={styles.heroBadge}>
+          <a
+            href="https://partnersdirectory.withgoogle.com/partners/6812870132"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.heroBadge}
+          >
             <GoogleGIcon />
             <span className={styles.heroBadgeText}>Certified Google Partner</span>
-          </div>
+          </a>
           <h1 className={styles.heroTitle}>
             Build the Future of{' '}
             <span className={styles.heroAccent}>Search&nbsp;&amp;&nbsp;Growth</span> With Us

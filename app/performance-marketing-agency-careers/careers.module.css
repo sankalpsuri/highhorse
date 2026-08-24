@@ -30,6 +30,11 @@
   padding: 8px 18px 8px 12px;
   margin-bottom: 28px;
   box-shadow: 0 4px 12px rgba(16, 16, 16, 0.06);
+  text-decoration: none;
+}
+
+.heroBadge:hover {
+  opacity: 0.75;
 }
 
 .heroBadgeText {

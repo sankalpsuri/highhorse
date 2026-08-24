@@ -98,7 +98,12 @@ export default async function HomePage() {
             <p className={styles.heroNote}>
               For established businesses with real search demand and serious growth ambitions.
             </p>
-            <div className={styles.partnerBadge}>
+            <a
+              href="https://partnersdirectory.withgoogle.com/partners/6812870132"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.partnerBadge}
+            >
               <Image
                 src="/images/google-partner-badge.png"
                 alt="Google Partner"
@@ -107,7 +112,7 @@ export default async function HomePage() {
                 style={{ objectFit: 'contain' }}
               />
               <span>Certified Google Partner</span>
-            </div>
+            </a>
           </div>
           <div className={styles.heroRight}>
             <HeroSearchWidget />
