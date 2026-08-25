@@ -31,6 +31,7 @@ interface CaseStudyEntry {
     coverImage?: any
     resultImages?: any[]
     results?: { value: string; label: string }[]
+    proofImage?: any
   }
 }
 

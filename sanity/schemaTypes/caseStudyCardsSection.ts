@@ -23,18 +23,11 @@ export default defineType({
               options: {list: ['blue', 'lavender', 'peach', 'green']},
             }),
             defineField({
-              name: 'metrics',
-              title: 'Metric chips',
-              type: 'array',
-              of: [
-                {
-                  type: 'object',
-                  fields: [
-                    defineField({name: 'value', title: 'Value', type: 'string'}),
-                    defineField({name: 'label', title: 'Label', type: 'string'}),
-                  ],
-                },
-              ],
+              name: 'resultChartImage',
+              title: 'Result chart image',
+              type: 'image',
+              options: {hotspot: true},
+              description: 'Supplied chart/graph image shown between metric chips and bullet results.',
             }),
             defineField({
               name: 'results',

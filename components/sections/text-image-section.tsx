@@ -12,11 +12,12 @@ interface TextImageSectionProps {
   closingText?: string
   ctaText?: string
   ctaLink?: string
+  ctaStyle?: string
   image?: any
   imagePosition?: 'left' | 'right'
 }
 
-export function TextImageSection({ heading, headingBordered, bodyText, bullets, bulletStyle, closingText, ctaText, ctaLink, image, imagePosition }: TextImageSectionProps) {
+export function TextImageSection({ heading, headingBordered, bodyText, bullets, bulletStyle, closingText, ctaText, ctaLink, ctaStyle, image, imagePosition }: TextImageSectionProps) {
   const hasImage = !!image?.asset
   const expectsImage = !!imagePosition
 
@@ -117,16 +118,17 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
       <Link
         href={ctaLink}
         style={{
-          display: 'inline-block',
-          fontFamily: "'Montserrat', sans-serif",
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 8,
+          fontFamily: "'Poppins', sans-serif",
           fontWeight: 600,
-          fontSize: 14,
-          background: 'transparent',
-          color: '#111111',
-          padding: '13px 28px',
-          borderRadius: 5,
+          fontSize: 15,
+          background: '#0f0f0f',
+          color: '#fff',
+          padding: '14px 26px',
+          borderRadius: ctaStyle === 'rounded' ? 16 : 999,
           textDecoration: 'none',
-          border: '1.5px solid #111111',
         }}
       >
         {ctaText}

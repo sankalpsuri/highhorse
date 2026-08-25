@@ -81,6 +81,13 @@ export default defineType({
       initialValue: false,
     }),
     defineField({name: 'publishedAt', title: 'Published at', type: 'datetime'}),
+    defineField({
+      name: 'proofImage',
+      title: 'Proof image',
+      type: 'image',
+      options: {hotspot: true},
+      description: 'Single proof visual (e.g. SERP screenshot, analytics snapshot) shown in the client proof section.',
+    }),
     defineField({name: 'seo', title: 'SEO', type: 'seo'}),
   ],
   preview: {

@@ -6,6 +6,7 @@ interface CaseStudy {
   slug: string
   logo?: any
   resultImages?: any[]
+  proofImage?: any
 }
 
 interface ClientProofSectionProps {
@@ -15,6 +16,9 @@ interface ClientProofSectionProps {
 }
 
 export function ClientProofSection({ heading, bodyText, caseStudies }: ClientProofSectionProps) {
+  const studiesWithProof = caseStudies?.filter((cs) => cs.proofImage?.asset)
+  const displayStudies = studiesWithProof && studiesWithProof.length > 0 ? studiesWithProof : caseStudies
+
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
@@ -42,20 +46,12 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
             {bodyText}
           </p>
         )}
-        {caseStudies && caseStudies.length > 0 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
-            {caseStudies.map((cs) => (
-              <div key={cs.slug} style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 40,
-                flexWrap: 'wrap',
-                background: '#fff',
-                border: '1px solid #E4E4E4',
-                borderRadius: 8,
-                padding: '32px 36px',
-              }}>
-                <div style={{ flex: '0 0 120px', textAlign: 'center' }}>
+
+        {displayStudies && displayStudies.length > 0 && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
+            {displayStudies.map((cs) => (
+              <div key={cs.slug}>
+                <div style={{ marginBottom: 16 }}>
                   {cs.logo?.asset ? (
                     <Image
                       src={urlFor(cs.logo).width(200).auto('format').url()}
@@ -67,45 +63,34 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
                   ) : (
                     <p style={{
                       fontFamily: "'Montserrat', sans-serif",
-                      fontWeight: 700,
-                      fontSize: 16,
-                      color: '#111111',
+                      fontWeight: 800,
+                      fontSize: 24,
+                      color: '#161616',
                       margin: 0,
                     }}>
                       {cs.clientName}
                     </p>
                   )}
                 </div>
-                {cs.resultImages && cs.resultImages.length > 0 && (
-                  <div style={{ flex: 1, display: 'flex', gap: 16, flexWrap: 'wrap', minWidth: 200 }}>
-                    {cs.resultImages.map((img: any, i: number) => (
-                      img?.asset ? (
-                        <Image
-                          key={i}
-                          src={urlFor(img).width(400).auto('format').url()}
-                          alt={`${cs.clientName} result ${i + 1}`}
-                          width={400}
-                          height={240}
-                          style={{
-                            flex: '1 1 180px',
-                            width: '100%',
-                            maxWidth: 340,
-                            height: 'auto',
-                            borderRadius: 6,
-                            border: '1px solid #E4E4E4',
-                          }}
-                        />
-                      ) : null
-                    ))}
-                  </div>
-                )}
-                {(!cs.resultImages || cs.resultImages.length === 0) && (
+
+                {cs.proofImage?.asset ? (
+                  <Image
+                    src={urlFor(cs.proofImage).width(1100).auto('format').url()}
+                    alt={`${cs.clientName} proof`}
+                    width={1100}
+                    height={500}
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      borderRadius: 8,
+                      border: '1px solid #E4E4E4',
+                    }}
+                  />
+                ) : (
                   <div style={{
-                    flex: 1,
-                    minWidth: 200,
                     aspectRatio: '16 / 7',
                     background: '#E4E4E4',
-                    borderRadius: 6,
+                    borderRadius: 8,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -113,7 +98,7 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
                     fontSize: 14,
                     color: '#8a8a86',
                   }}>
-                    Result images placeholder
+                    Proof image placeholder
                   </div>
                 )}
               </div>

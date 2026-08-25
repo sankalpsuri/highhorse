@@ -50,6 +50,7 @@ export const servicePageQuery = groq`
         closingText,
         ctaText,
         ctaLink,
+        ctaStyle,
         image{ ..., asset-> },
         imagePosition
       },
@@ -132,7 +133,7 @@ export const servicePageQuery = groq`
       _type == "caseStudyCardsSection" => {
         heading,
         subtext,
-        cards[]{ _key, clientName, badgeColor, metrics[]{ value, label }, results }
+        cards[]{ _key, clientName, badgeColor, resultChartImage{ ..., asset-> }, results }
       }
     },
     caseStudiesHeading,
@@ -141,7 +142,7 @@ export const servicePageQuery = groq`
       _key,
       metricsFilterTag,
       overrideMetrics[]{ value, label },
-      caseStudy->{ clientName, "slug": slug.current, industry, summary, logo{ ..., asset-> }, coverImage{ ..., asset-> }, resultImages[]{ ..., asset-> }, results[]{ value, label } }
+      caseStudy->{ clientName, "slug": slug.current, industry, summary, logo{ ..., asset-> }, coverImage{ ..., asset-> }, resultImages[]{ ..., asset-> }, results[]{ value, label }, proofImage{ ..., asset-> } }
     },
     relatedFaqs[]->{ _id, question, answer, order },
     seo

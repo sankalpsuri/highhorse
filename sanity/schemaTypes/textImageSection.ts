@@ -34,6 +34,18 @@ export default defineType({
     defineField({name: 'closingText', title: 'Closing text', type: 'text', rows: 3}),
     defineField({name: 'ctaText', title: 'CTA button text', type: 'string'}),
     defineField({name: 'ctaLink', title: 'CTA link', type: 'string'}),
+    defineField({
+      name: 'ctaStyle',
+      title: 'CTA button style',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Pill (default)', value: 'pill'},
+          {title: 'Rounded rectangle', value: 'rounded'},
+        ],
+      },
+      description: 'Override the button shape for this section only.',
+    }),
     defineField({name: 'image', title: 'Image', type: 'image', options: {hotspot: true}}),
     defineField({
       name: 'imagePosition',
