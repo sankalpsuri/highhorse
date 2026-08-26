@@ -136,6 +136,32 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
     </div>
   )
 
+  if (!expectsImage && bulletsBlock) {
+    return (
+      <section style={{ background: '#F5F5F4' }}>
+        <div style={{
+          maxWidth: 1280,
+          margin: '0 auto',
+          padding: '96px 32px',
+          display: 'flex',
+          gap: 64,
+          flexWrap: 'wrap' as const,
+          alignItems: 'flex-start',
+        }}>
+          <div style={{ flex: '1 1 420px', minWidth: 300 }}>
+            {heading && <h2 style={{ ...headingStyle, margin: '0 0 20px' }}>{heading}</h2>}
+            {bodyBlock}
+            {closingBlock}
+            {ctaBlock}
+          </div>
+          <div style={{ flex: '1 1 420px', minWidth: 300 }}>
+            {bulletsBlock}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   if (!expectsImage) {
     return (
       <section style={{ background: '#F5F5F4' }}>
@@ -153,7 +179,6 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
           </div>
           <div style={{ flex: '1 1 520px', minWidth: 300 }}>
             {bodyBlock}
-            {bulletsBlock}
             {closingBlock}
             {ctaBlock}
           </div>

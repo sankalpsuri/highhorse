@@ -52,11 +52,20 @@
   text-transform: uppercase;
 }
 
+.badgeLink {
+  display: inline-block;
+  margin-top: 20px;
+}
+
 .badge {
   width: 96px;
   height: auto;
-  margin-top: 20px;
   border-radius: 5px;
+  transition: opacity 0.15s;
+}
+
+.badgeLink:hover .badge {
+  opacity: 0.8;
 }
 
 /* ── Link Columns ───────────────────────────────────────────── */

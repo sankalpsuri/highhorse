@@ -21,7 +21,7 @@ export const metadata: Metadata = {
  * ────────────────────────────────────────────────────────────────────── */
 const ASSETS = {
   freelancePartnerIcon: '/assets/freelance-partners.png',
-  salesPartnerIcon: '/assets/sales-partner-icon.svg',
+  salesPartnerIcon: '/assets/Sales-Partner.png',
 }
 
 function fileExists(src: string): boolean {

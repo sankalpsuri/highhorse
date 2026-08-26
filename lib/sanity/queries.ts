@@ -118,7 +118,9 @@ export const servicePageQuery = groq`
         layout,
         heading,
         subtext,
-        items
+        items,
+        image{ ..., asset-> },
+        imagePosition
       },
       _type == "portfolioShowcaseSection" => {
         heading,
@@ -128,12 +130,19 @@ export const servicePageQuery = groq`
       _type == "techSliderSection" => {
         heading,
         subtext,
-        logos[]{ _key, name, displayText, bgColor, textColor }
+        logos[]{ _key, name, image{ ..., asset-> }, displayText, bgColor, textColor }
       },
       _type == "caseStudyCardsSection" => {
         heading,
         subtext,
         cards[]{ _key, clientName, badgeColor, resultChartImage{ ..., asset-> }, results }
+      },
+      _type == "videoShowcaseSection" => {
+        heading,
+        subtext,
+        videoUrl,
+        videoFile{ asset->{ url } },
+        posterImage{ ..., asset-> }
       }
     },
     caseStudiesHeading,

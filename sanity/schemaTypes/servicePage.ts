@@ -64,6 +64,7 @@ export default defineType({
         {type: 'portfolioShowcaseSection'},
         {type: 'techSliderSection'},
         {type: 'caseStudyCardsSection'},
+        {type: 'videoShowcaseSection'},
       ],
     }),
     defineField({

@@ -16,7 +16,8 @@ export default defineType({
           type: 'object',
           fields: [
             defineField({name: 'name', title: 'Name', type: 'string'}),
-            defineField({name: 'displayText', title: 'Display text or emoji', type: 'string', description: 'Emoji or short text shown in the tile.'}),
+            defineField({name: 'image', title: 'Logo image', type: 'image', description: 'Logo image file. Overrides display text when set.'}),
+            defineField({name: 'displayText', title: 'Display text or emoji', type: 'string', description: 'Emoji or short text shown in the tile (fallback when no image).'}),
             defineField({name: 'bgColor', title: 'Background color', type: 'string', description: 'Hex color for tile background (e.g. #111 for dark).'}),
             defineField({name: 'textColor', title: 'Text color', type: 'string', description: 'Hex color for tile text/emoji.'}),
           ],

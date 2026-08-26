@@ -20,6 +20,14 @@ export default defineType({
       type: 'array',
       of: [{type: 'string'}],
     }),
+    defineField({name: 'image', title: 'Side image', type: 'image', options: {hotspot: true}}),
+    defineField({
+      name: 'imagePosition',
+      title: 'Image position',
+      type: 'string',
+      options: {list: [{title: 'Left', value: 'left'}, {title: 'Right', value: 'right'}]},
+      hidden: ({parent}) => !parent?.image,
+    }),
   ],
   preview: {
     select: {title: 'heading'},

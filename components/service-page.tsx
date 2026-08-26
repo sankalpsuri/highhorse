@@ -16,6 +16,7 @@ import { ChecklistSection } from '@/components/sections/checklist-section'
 import { PortfolioShowcaseSection } from '@/components/sections/portfolio-showcase-section'
 import { TechSliderSection } from '@/components/sections/tech-slider-section'
 import { CaseStudyCardsSection } from '@/components/sections/case-study-cards-section'
+import { VideoShowcaseSection } from '@/components/sections/video-showcase-section'
 import { FaqAccordion } from '@/components/faq-accordion'
 
 interface CaseStudyEntry {
@@ -83,6 +84,8 @@ function PageBuilderSection({ block, relatedCaseStudies, accentStyle }: { block:
       return <TechSliderSection {...block} />
     case 'caseStudyCardsSection':
       return <CaseStudyCardsSection {...block} accentStyle={accentStyle} />
+    case 'videoShowcaseSection':
+      return <VideoShowcaseSection {...block} />
     default:
       return null
   }

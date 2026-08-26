@@ -4,20 +4,47 @@ import styles from './footer.module.css'
 
 const CONTACT_HREF = '/contact-search-performance-marketing-agency'
 
-const footerNav = [
-  { label: 'How We Work', href: '/about-search-performance-marketing-agency' },
-  { label: 'Paid Search', href: '/ppc-advertising-management-and-performance-marketing' },
-  { label: 'Organic + AI Search', href: '/search-engine-optimization-seo-growth-services' },
-  { label: 'Case Studies', href: '/case-studies' },
-  { label: 'About', href: '/search-driven-performance-marketing-company' },
-  { label: 'Contact', href: CONTACT_HREF },
-]
-
-const connectLinks = [
-  { label: 'LinkedIn', href: '#' },
-  { label: 'YouTube', href: '#' },
-  { label: 'Privacy Policy', href: '#' },
-  { label: 'Terms', href: '#' },
+const navColumns = [
+  {
+    title: 'Company',
+    links: [
+      { label: 'Home', href: '/' },
+      { label: 'About', href: '/search-driven-performance-marketing-company' },
+      { label: 'Careers', href: '/performance-marketing-agency-careers' },
+      { label: 'Partnership', href: '/marketing-agency-partnership-program' },
+      { label: 'Contact', href: CONTACT_HREF },
+    ],
+  },
+  {
+    title: 'Services',
+    links: [
+      { label: 'AEO / GEO', href: '/answer-engine-optimization-and-ai-search-optimization-services' },
+      { label: 'Voice SEO', href: '/voice-search-seo-optimization-services' },
+      { label: 'SEO', href: '/search-engine-optimization-seo-growth-services' },
+      { label: 'Content Marketing', href: '/seo-content-marketing-and-demand-generation-services' },
+    ],
+  },
+  {
+    title: 'Performance Marketing',
+    links: [
+      { label: 'Search Ads', href: '/google-search-ads-management-for-lead-generation' },
+      { label: 'Shopping Ads', href: '/google-shopping-ads-management-for-ecommerce' },
+      { label: 'PPC Ads', href: '/ppc-advertising-management-and-performance-marketing' },
+      { label: 'Visual Ads', href: '/display-and-visual-advertising-campaign-management' },
+      { label: 'Retargeting', href: '/retargeting-and-remarketing-ad-campaign-services' },
+    ],
+  },
+  {
+    title: 'Experience & More',
+    links: [
+      { label: 'UI/UX', href: '/conversion-focused-ui-ux-design-for-websites' },
+      { label: 'Website Development', href: '/high-conversion-website-development-services' },
+      { label: 'Marketplace Optimisation', href: '/marketplace-listing-optimization-for-ecommerce' },
+      { label: 'Workflow Automation', href: '/ai-marketing-workflow-automation-solutions' },
+      { label: 'Case Studies', href: '/case-studies' },
+      { label: 'Blog', href: '/blog' },
+    ],
+  },
 ]
 
 export function Footer() {
@@ -37,36 +64,34 @@ export function Footer() {
           </div>
           <div className={styles.tagline}>We turn intent into revenue.</div>
           <div className={styles.subtext}>Search Marketing Agency</div>
-          <Image
-            src="/images/google-partner-badge.png"
-            alt="Google Partner"
-            width={96}
-            height={36}
-            className={styles.badge}
-          />
+          <a
+            href="https://partnersdirectory.withgoogle.com/partners/6812870132"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.badgeLink}
+          >
+            <Image
+              src="/images/google-partner-badge.png"
+              alt="Google Partner"
+              width={96}
+              height={36}
+              className={styles.badge}
+            />
+          </a>
         </div>
 
-        <div className={styles.col}>
-          <div className={styles.colTitle}>Navigate</div>
-          <div className={styles.colLinks}>
-            {footerNav.map((link) => (
-              <Link key={link.label} href={link.href} className={styles.colLink}>
-                {link.label}
-              </Link>
-            ))}
+        {navColumns.map((col) => (
+          <div key={col.title} className={styles.col}>
+            <div className={styles.colTitle}>{col.title}</div>
+            <div className={styles.colLinks}>
+              {col.links.map((link) => (
+                <Link key={link.label} href={link.href} className={styles.colLink}>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-
-        <div className={styles.col}>
-          <div className={styles.colTitle}>Connect</div>
-          <div className={styles.colLinks}>
-            {connectLinks.map((link) => (
-              <a key={link.label} href={link.href} className={styles.colLink}>
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
 
       <div className={styles.bottom}>

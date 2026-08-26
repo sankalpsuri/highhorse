@@ -1,8 +1,12 @@
 'use client'
 
+import Image from 'next/image'
+import { urlFor } from '@/lib/sanity/client'
+
 interface Logo {
   _key?: string
   name?: string
+  image?: any
   displayText?: string
   bgColor?: string
   textColor?: string
@@ -37,7 +41,17 @@ export function TechSliderSection({ heading, subtext, logos }: TechSliderSection
       }}
       title={logo.name}
     >
-      {logo.displayText}
+      {logo.image?.asset ? (
+        <Image
+          src={urlFor(logo.image).width(80).auto('format').url()}
+          alt={logo.name || ''}
+          width={80}
+          height={80}
+          style={{ maxWidth: '60%', maxHeight: '60%', objectFit: 'contain' }}
+        />
+      ) : (
+        logo.displayText
+      )}
     </div>
   )
 

@@ -25,20 +25,20 @@ export const metadata: Metadata = {
  * ────────────────────────────────────────────────────────────────────── */
 const ASSETS = {
   // Section 2 — Mission / Vision / Aim icons
-  missionIcon: '/assets/mission-icon.svg',
-  visionIcon: '/assets/vision-icon.svg',
-  aimIcon: '/assets/aim-icon.svg',
+  missionIcon: '/assets/Our Mission(1).png',
+  visionIcon: '/assets/our vision(1).png',
+  aimIcon: '/assets/our aim(1).png',
 
   // Section 5 — What We Do cards
-  searchIntelIcon: '/assets/search-intel-icon.svg',
-  performanceIcon: '/assets/performance-icon.svg',
-  experienceIcon: '/assets/experience-icon.svg',
+  searchIntelIcon: '/assets/Search Intelligence & Discovery(1).png',
+  performanceIcon: '/assets/Performance Advertising & Demand Capture(2).png',
+  experienceIcon: '/assets/Experience, Systems & Automation(1).png',
 
   // Section 4 — Our Story banner
-  storyBanner: '/assets/story-banner.jpg',
+  storyBanner: '/assets/2(54).jpg',
 
   // Section 6 — Thinking banner
-  thinkingBanner: '/assets/thinking-banner.jpg',
+  thinkingBanner: '/assets/1(24).png',
 
   // Section 7 — Founder banner
   founderBanner: '/assets/founder-banner.jpg',

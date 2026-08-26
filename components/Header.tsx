@@ -52,7 +52,6 @@ const megaMenus: (MegaMenuData | null)[] = [
       {
         title: 'Search Intelligence',
         items: [
-          { label: 'Demand Discovery', href: '/search-intelligence-and-demand-discovery-services' },
           { label: 'AEO / GEO', href: '/answer-engine-optimization-and-ai-search-optimization-services' },
           { label: 'Voice SEO', href: '/voice-search-seo-optimization-services' },
           { label: 'SEO', href: '/search-engine-optimization-seo-growth-services' },
@@ -88,12 +87,8 @@ const megaMenus: (MegaMenuData | null)[] = [
       {
         title: 'Resources',
         items: [
-          { label: 'Calculator', href: '/marketing-roi-calculator-for-growth' },
-          { label: 'Tutorials', href: '/performance-marketing-tutorials-and-training' },
-          { label: 'Guides', href: '/performance-marketing-strategy-guides' },
-          { label: 'Templates', href: '/marketing-strategy-templates-download' },
-          { label: 'Insights', href: '/marketing-insights-and-research' },
           { label: 'Blog', href: '/blog' },
+          { label: 'FAQ', href: '#' },
         ],
       },
     ],
@@ -104,10 +99,20 @@ const megaMenus: (MegaMenuData | null)[] = [
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<number | null>(null)
+  const [mobileExpanded, setMobileExpanded] = useState<number | null>(null)
 
   const clearActiveMenu = useCallback(() => setActiveMenu(null), [])
-  const toggleMenu = useCallback(() => setMenuOpen((prev) => !prev), [])
-  const closeMenu = useCallback(() => setMenuOpen(false), [])
+  const toggleMenu = useCallback(() => {
+    setMenuOpen((prev) => !prev)
+    setMobileExpanded(null)
+  }, [])
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false)
+    setMobileExpanded(null)
+  }, [])
+  const toggleMobileSection = useCallback((index: number) => {
+    setMobileExpanded((prev) => (prev === index ? null : index))
+  }, [])
 
   const activeMenuData = activeMenu !== null ? megaMenus[activeMenu] : null
 
@@ -126,23 +131,38 @@ export function Header() {
         </Link>
 
         <nav className={styles.desktopNav}>
-          {navLinks.map((link, i) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className={styles.navLink}
-              onMouseEnter={() => setActiveMenu(i)}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link, i) => {
+            const hasMega = megaMenus[i] !== null
+            if (hasMega) {
+              return (
+                <button
+                  key={link.label}
+                  type="button"
+                  className={styles.navLink}
+                  onMouseEnter={() => setActiveMenu(i)}
+                >
+                  {link.label}
+                </button>
+              )
+            }
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={styles.navLink}
+                onMouseEnter={() => setActiveMenu(i)}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
         </nav>
 
         <div className={styles.actions}>
-          <Link href={AUDIT_HREF} className={styles.ctaBtnDark}>
+          <Link href={AUDIT_HREF} className={`${styles.ctaBtnDark} ${styles.desktopOnly}`}>
             Free Website Audit
           </Link>
-          <Link href={CONTACT_HREF} className={styles.ctaBtn}>
+          <Link href={CONTACT_HREF} className={`${styles.ctaBtn} ${styles.desktopOnly}`}>
             Find Your Search Opportunity
           </Link>
           <button
@@ -162,16 +182,63 @@ export function Header() {
 
       {menuOpen && (
         <div className={styles.mobileMenu}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className={styles.mobileLink}
-              onClick={closeMenu}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link, i) => {
+            const mega = megaMenus[i]
+            if (mega) {
+              const isExpanded = mobileExpanded === i
+              return (
+                <div key={link.label} className={styles.mobileSection}>
+                  <button
+                    type="button"
+                    className={styles.mobileSectionToggle}
+                    onClick={() => toggleMobileSection(i)}
+                    aria-expanded={isExpanded}
+                  >
+                    <span>{link.label}</span>
+                    <svg
+                      className={`${styles.chevron} ${isExpanded ? styles.chevronOpen : ''}`}
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                  {isExpanded && (
+                    <div className={styles.mobileSectionItems}>
+                      {mega.columns.map((col) => (
+                        <div key={col.title} className={styles.mobileSectionGroup}>
+                          <div className={styles.mobileSectionTitle}>{col.title}</div>
+                          {col.items.map((item) => (
+                            <Link
+                              key={item.label}
+                              href={item.href}
+                              className={styles.mobileSectionLink}
+                              onClick={closeMenu}
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            }
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={styles.mobileLink}
+                onClick={closeMenu}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
           <Link href={AUDIT_HREF} className={styles.mobileCtaDark} onClick={closeMenu}>
             Free Website Audit
           </Link>

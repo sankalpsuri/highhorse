@@ -222,8 +222,9 @@ export default async function HomePage() {
                   <Image
                     src="/images/visual-paid-search.jpg"
                     alt="Paid Search across channels"
-                    fill
-                    style={{ objectFit: 'cover' }}
+                    width={2612}
+                    height={852}
+                    style={{ width: '100%', height: 'auto' }}
                   />
                 </div>
                 <div className={styles.capVisualCaption}>
@@ -235,8 +236,9 @@ export default async function HomePage() {
                   <Image
                     src="/images/visual-ai-search.jpg"
                     alt="AI Search visibility"
-                    fill
-                    style={{ objectFit: 'cover' }}
+                    width={1080}
+                    height={1350}
+                    style={{ width: '100%', height: 'auto' }}
                   />
                 </div>
                 <div className={styles.capVisualCaption}>

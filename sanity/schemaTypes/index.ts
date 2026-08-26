@@ -22,6 +22,7 @@ import checklistSection from './checklistSection'
 import portfolioShowcaseSection from './portfolioShowcaseSection'
 import techSliderSection from './techSliderSection'
 import caseStudyCardsSection from './caseStudyCardsSection'
+import videoShowcaseSection from './videoShowcaseSection'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
@@ -42,6 +43,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     portfolioShowcaseSection,
     techSliderSection,
     caseStudyCardsSection,
+    videoShowcaseSection,
     // documents
     author,
     blogPost,
