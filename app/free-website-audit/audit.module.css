@@ -1,0 +1,316 @@
+/* ── Capture Bar ────────────────────────────────────────────── */
+.captureBar {
+  display: flex;
+  gap: 0;
+  max-width: 520px;
+  border: 1px solid #E4E4E4;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(10, 10, 12, 0.06);
+}
+
+.captureInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  padding: 15px 18px;
+  font: 400 14.5px 'Poppins', sans-serif;
+  color: #111111;
+  background: transparent;
+}
+
+.captureInput::placeholder {
+  color: #9A9A96;
+}
+
+.captureBtn {
+  flex-shrink: 0;
+  border: none;
+  background: #1A6AFF;
+  color: #fff;
+  font: 600 14px 'Montserrat', sans-serif;
+  padding: 15px 28px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.captureBtn:hover {
+  background: #144FC0;
+}
+
+/* ── Modal Overlay ──────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(10, 10, 12, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 480px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(10, 10, 12, 0.18);
+}
+
+.modalClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #EAEAE8;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #55555A;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.modalClose:hover {
+  border-color: #111111;
+  color: #111111;
+}
+
+.modalTitle {
+  font: 700 22px 'Montserrat', sans-serif;
+  color: #111111;
+  margin: 0 0 8px;
+  padding-right: 40px;
+}
+
+.modalSub {
+  font: 400 14px/1.55 'Poppins', sans-serif;
+  color: #55555A;
+  margin: 0 0 28px;
+}
+
+/* ── Form Fields ────────────────────────────────────────────── */
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font: 600 13px 'Poppins', sans-serif;
+  color: #111111;
+  margin-bottom: 6px;
+}
+
+.required {
+  color: #1A6AFF;
+}
+
+.optional {
+  font-weight: 400;
+  color: #9A9A96;
+  font-size: 12px;
+}
+
+.field {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #E4E4E4;
+  border-radius: 8px;
+  padding: 13px 16px;
+  font: 400 14px 'Poppins', sans-serif;
+  color: #111111;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.field:focus {
+  border-color: #1A6AFF;
+}
+
+.field::placeholder {
+  color: #9A9A96;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.error {
+  font: 400 13px 'Poppins', sans-serif;
+  color: #ef4444;
+  margin: 0;
+}
+
+.submitBtn {
+  background: #1A6AFF;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font: 600 14px 'Montserrat', sans-serif;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.15s;
+}
+
+.submitBtn:hover {
+  background: #144FC0;
+}
+
+.submitBtn:disabled {
+  background: #4a8aff;
+  cursor: default;
+}
+
+/* ── Success State ──────────────────────────────────────────── */
+.successState {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.successIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #1A6AFF;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.successTitle {
+  font: 700 22px 'Montserrat', sans-serif;
+  color: #111111;
+  margin: 0 0 12px;
+}
+
+.successBody {
+  font: 400 14.5px/1.55 'Poppins', sans-serif;
+  color: #55555A;
+  max-width: 360px;
+  margin: 0 auto 24px;
+}
+
+.successBtn {
+  background: #1A6AFF;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font: 600 14px 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.successBtn:hover {
+  background: #144FC0;
+}
+
+/* ── Responsive: Tablet (≤ 768px) ──────────────────────────── */
+@media (max-width: 768px) {
+  .captureBar {
+    max-width: 100%;
+  }
+
+  .modal {
+    padding: 32px 28px;
+  }
+}
+
+/* ── Responsive: Mobile (≤ 480px) ──────────────────────────── */
+@media (max-width: 480px) {
+  .captureBar {
+    flex-direction: column;
+    border-radius: 10px;
+  }
+
+  .captureInput {
+    padding: 14px 16px;
+    border-bottom: 1px solid #E4E4E4;
+  }
+
+  .captureBtn {
+    padding: 14px 20px;
+  }
+
+  .overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .modal {
+    max-width: 100%;
+    max-height: calc(100vh - 24px);
+    border-radius: 16px 16px 8px 8px;
+    padding: 28px 20px;
+  }
+
+  .modalTitle {
+    font-size: 20px;
+  }
+
+  .submitBtn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ── Responsive: Small Mobile (≤ 374px) ────────────────────── */
+@media (max-width: 374px) {
+  .captureInput {
+    padding: 12px 14px;
+    font-size: 13.5px;
+  }
+
+  .captureBtn {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  .modal {
+    padding: 24px 16px;
+  }
+
+  .modalTitle {
+    font-size: 18px;
+  }
+
+  .modalSub {
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+
+  .field {
+    padding: 11px 14px;
+    font-size: 13.5px;
+  }
+
+  .submitBtn {
+    padding: 13px 20px;
+    font-size: 13px;
+  }
+}

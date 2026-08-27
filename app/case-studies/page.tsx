@@ -33,7 +33,7 @@ export default async function CaseStudiesPage() {
           <h1
             style={{
               fontFamily: 'Montserrat, sans-serif',
-              fontSize: 30,
+              fontSize: 'clamp(1.4rem, 3vw, 1.875rem)',
               fontWeight: 700,
               letterSpacing: '-0.02em',
               color: '#111111',
@@ -66,10 +66,11 @@ export default async function CaseStudiesPage() {
                 >
                   {cs.logo?.asset ? (
                     <Image
-                      src={urlFor(cs.logo).height(52).auto('format').url()}
+                      src={urlFor(cs.logo).format('png').url()}
                       alt={cs.clientName}
                       width={80}
                       height={26}
+                      unoptimized
                       style={{
                         objectFit: 'contain',
                         objectPosition: 'left',
@@ -150,7 +151,7 @@ export default async function CaseStudiesPage() {
             <h2
               style={{
                 fontFamily: 'Montserrat, sans-serif',
-                fontSize: 28,
+                fontSize: 'clamp(1.3rem, 2.6vw, 1.75rem)',
                 fontWeight: 700,
                 color: '#ffffff',
                 letterSpacing: '-0.02em',
@@ -216,6 +217,12 @@ export default async function CaseStudiesPage() {
             @media (max-width: 560px) {
               .cs-listing-grid { grid-template-columns: 1fr; }
               .cs-newsletter-panel { padding: 40px 22px; }
+              .cs-listing-card { padding: 20px 18px; min-height: 160px; }
+            }
+            @media (max-width: 374px) {
+              .cs-listing-card { padding: 18px 16px; min-height: auto; }
+              .cs-newsletter-panel { padding: 32px 16px; }
+              .cs-listing-grid { gap: 16px; }
             }
           `,
         }}

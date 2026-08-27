@@ -68,7 +68,8 @@ export function NewsletterForm() {
             color: '#ffffff',
             fontFamily: 'Poppins, sans-serif',
             fontSize: 14,
-            width: 260,
+            width: '100%',
+            maxWidth: 260,
             outline: 'none',
           }}
         />

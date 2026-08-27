@@ -256,6 +256,17 @@ export const faqsByPageQuery = groq`
   }
 `
 
+// ── All FAQs (for /faq listing page) ──────────────────────────
+
+export const allFaqsQuery = groq`
+  *[_type == "faq"] | order(order asc){
+    _id,
+    question,
+    answer,
+    category
+  }
+`
+
 // ── Homepage sections ─────────────────────────────────────────
 
 export const homeFeaturedCaseStudiesQuery = groq`

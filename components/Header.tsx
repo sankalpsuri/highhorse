@@ -88,7 +88,7 @@ const megaMenus: (MegaMenuData | null)[] = [
         title: 'Resources',
         items: [
           { label: 'Blog', href: '/blog' },
-          { label: 'FAQ', href: '#' },
+          { label: 'FAQ', href: '/faq' },
         ],
       },
     ],

@@ -55,7 +55,7 @@ export default async function BlogListingPage() {
           <h1
             style={{
               fontFamily: 'Montserrat, sans-serif',
-              fontSize: 34,
+              fontSize: 'clamp(1.5rem, 3.2vw, 2.125rem)',
               fontWeight: 700,
               lineHeight: 1.25,
               letterSpacing: '-0.02em',
@@ -251,7 +251,7 @@ export default async function BlogListingPage() {
             <h2
               style={{
                 fontFamily: 'Montserrat, sans-serif',
-                fontSize: 28,
+                fontSize: 'clamp(1.3rem, 2.6vw, 1.75rem)',
                 fontWeight: 700,
                 color: '#ffffff',
                 letterSpacing: '-0.02em',
@@ -304,6 +304,11 @@ export default async function BlogListingPage() {
             }
             @media (max-width: 560px) {
               .blog-newsletter-panel { padding: 40px 22px !important; }
+              .blog-featured-card { padding: 12px; gap: 16px; }
+            }
+            @media (max-width: 374px) {
+              .blog-newsletter-panel { padding: 32px 16px !important; }
+              .blog-featured-card { padding: 10px; }
             }
           `,
         }}

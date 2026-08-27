@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { AuditForm } from './audit-form'
+import { AuditCaptureBar } from './audit-form'
 
 export const metadata: Metadata = {
   title: 'Free Website Audit — High Horse',
@@ -14,105 +14,147 @@ export default function FreeWebsiteAuditPage() {
   return (
     <main>
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section style={{ padding: '64px 0 0' }}>
+      <section style={{ padding: '80px 0 0' }}>
         <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
-          <div className="audit-layout">
-            <div style={{ flex: 1, minWidth: 300 }}>
-              <div
-                style={{
-                  fontFamily: 'Poppins, sans-serif',
-                  fontSize: 13,
-                  fontWeight: 700,
-                  color: '#1A6AFF',
-                  marginBottom: 10,
-                }}
-              >
-                Free Audit
-              </div>
-              <h1
+          <div
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              fontSize: 13,
+              fontWeight: 700,
+              color: '#1A6AFF',
+              marginBottom: 10,
+            }}
+          >
+            Free Audit
+          </div>
+          <h1
+            style={{
+              fontFamily: 'Montserrat, sans-serif',
+              fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
+              fontWeight: 700,
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em',
+              color: '#111111',
+              maxWidth: 580,
+              marginBottom: 20,
+            }}
+          >
+            Find Out What&rsquo;s Holding Your Website Back
+          </h1>
+          <p
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              fontSize: 15.5,
+              color: '#5c5c5c',
+              lineHeight: 1.65,
+              maxWidth: 540,
+              marginBottom: 32,
+            }}
+          >
+            Enter your website below and we&rsquo;ll review it across
+            technical SEO, page performance, and content structure — then
+            send you a clear summary of what&rsquo;s working, what
+            isn&rsquo;t, and where the quickest improvements are.
+          </p>
+
+          <AuditCaptureBar />
+
+          <p
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              fontSize: 12.5,
+              color: '#9A9A96',
+              marginTop: 14,
+              marginBottom: 0,
+            }}
+          >
+            No commitment required. Results delivered within two working days.
+          </p>
+        </div>
+      </section>
+
+      {/* ── What You'll Receive ──────────────────────────────── */}
+      <section className="audit-details-section">
+        <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
+          <div className="audit-details-grid">
+            <div>
+              <h2
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
-                  fontSize: 34,
+                  fontSize: 'clamp(1.4rem, 2.2vw, 1.8rem)',
                   fontWeight: 700,
-                  lineHeight: 1.25,
-                  letterSpacing: '-0.02em',
                   color: '#111111',
-                  maxWidth: 480,
-                  marginBottom: 20,
+                  marginBottom: 16,
                 }}
               >
-                Get a Free Website Audit
-              </h1>
+                What you&rsquo;ll receive
+              </h2>
               <p
                 style={{
                   fontFamily: 'Poppins, sans-serif',
-                  fontSize: 15,
+                  fontSize: 14.5,
                   color: '#5c5c5c',
-                  lineHeight: 1.6,
-                  maxWidth: 460,
-                  marginBottom: 28,
+                  lineHeight: 1.65,
+                  maxWidth: 480,
+                  marginBottom: 0,
                 }}
               >
-                We review your site across technical SEO, page performance,
-                and content structure — then send you a clear summary of
-                what&rsquo;s working, what isn&rsquo;t, and where the
-                quickest improvements are.
+                A written review specific to your site — not a generic
+                checklist. We look at the things that actually affect your
+                search visibility and conversions.
               </p>
-
-              <div
-                style={{
-                  background: '#f5f5f4',
-                  borderRadius: 12,
-                  padding: '20px 24px',
-                  maxWidth: 460,
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: 'Montserrat, sans-serif',
-                    fontSize: 13,
-                    fontWeight: 700,
-                    color: '#111111',
-                    marginBottom: 10,
-                  }}
-                >
-                  What you&rsquo;ll receive
-                </p>
-                <ul
-                  style={{
-                    fontFamily: 'Poppins, sans-serif',
-                    fontSize: 13.5,
-                    color: '#5c5c5c',
-                    lineHeight: 1.6,
-                    paddingLeft: 18,
-                    margin: 0,
-                  }}
-                >
-                  <li style={{ marginBottom: 6 }}>
-                    A written review covering technical health, SEO
-                    fundamentals, and content gaps
-                  </li>
-                  <li style={{ marginBottom: 6 }}>
-                    Specific observations about your site — not a generic
-                    checklist
-                  </li>
-                  <li>Delivered to your inbox within two working days</li>
-                </ul>
-              </div>
             </div>
-
-            {/* ── Form Card ──────────────────────────────────── */}
-            <div
-              style={{
-                flex: 1,
-                minWidth: 320,
-                maxWidth: 480,
-                border: '1px solid #e4e4e4',
-                borderRadius: 16,
-                padding: '32px 28px',
-              }}
-            >
-              <AuditForm />
+            <div className="audit-details-cards">
+              {[
+                {
+                  title: 'Technical Health',
+                  desc: 'Site speed, crawlability, indexation issues, and core web vitals.',
+                },
+                {
+                  title: 'SEO Fundamentals',
+                  desc: 'On-page structure, meta tags, internal linking, and keyword gaps.',
+                },
+                {
+                  title: 'Content & Conversion',
+                  desc: 'Content structure, messaging clarity, and conversion path review.',
+                },
+              ].map((item) => (
+                <div key={item.title} className="audit-detail-card">
+                  <div
+                    style={{
+                      width: 6,
+                      height: 6,
+                      borderRadius: '50%',
+                      background: '#1A6AFF',
+                      flexShrink: 0,
+                      marginTop: 7,
+                    }}
+                  />
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: 'Montserrat, sans-serif',
+                        fontSize: 14.5,
+                        fontWeight: 600,
+                        color: '#111111',
+                        marginBottom: 6,
+                      }}
+                    >
+                      {item.title}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: 'Poppins, sans-serif',
+                        fontSize: 13.5,
+                        color: '#5c5c5c',
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {item.desc}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -121,19 +163,11 @@ export default function FreeWebsiteAuditPage() {
       {/* ── CTA Reinforcement ────────────────────────────────── */}
       <section style={{ padding: '64px 0' }}>
         <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
-          <div
-            style={{
-              background: '#f5f5f4',
-              borderRadius: 16,
-              padding: '48px 40px',
-              textAlign: 'center',
-            }}
-            className="audit-cta-panel"
-          >
+          <div className="audit-cta-panel">
             <h2
               style={{
                 fontFamily: 'Montserrat, sans-serif',
-                fontSize: 24,
+                fontSize: 'clamp(1.3rem, 2vw, 1.5rem)',
                 fontWeight: 700,
                 color: '#111111',
                 letterSpacing: '-0.02em',
@@ -178,17 +212,50 @@ export default function FreeWebsiteAuditPage() {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-            .audit-layout {
+            .audit-details-section {
+              padding: 72px 0;
+            }
+            .audit-details-grid {
               display: flex;
-              gap: 48px;
+              gap: 56px;
               align-items: flex-start;
               flex-wrap: wrap;
             }
-            @media (max-width: 860px) {
-              .audit-layout { flex-direction: column; }
+            .audit-details-grid > div:first-child {
+              flex: 1 1 320px;
+              min-width: 260px;
+            }
+            .audit-details-cards {
+              flex: 1 1 400px;
+              min-width: 280px;
+              display: flex;
+              flex-direction: column;
+              gap: 18px;
+            }
+            .audit-detail-card {
+              display: flex;
+              gap: 14px;
+              align-items: flex-start;
+              background: #F7F7F6;
+              border: 1px solid #EAEAE8;
+              border-radius: 10px;
+              padding: 20px 22px;
+            }
+            .audit-cta-panel {
+              background: #F7F7F6;
+              border: 1px solid #EAEAE8;
+              border-radius: 16px;
+              padding: 48px 40px;
+              text-align: center;
+            }
+            @media (max-width: 768px) {
+              .audit-details-section { padding: 56px 0; }
+              .audit-details-grid { gap: 36px; }
             }
             @media (max-width: 560px) {
               .audit-cta-panel { padding: 32px 22px !important; }
+              .audit-details-section { padding: 48px 0; }
+              .audit-detail-card { padding: 16px 18px; }
             }
           `,
         }}

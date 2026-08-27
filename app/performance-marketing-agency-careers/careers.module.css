@@ -191,6 +191,14 @@
   min-width: 300px;
 }
 
+.lookingImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
 .lookingRight {
   flex: 1 1 460px;
   min-width: 300px;

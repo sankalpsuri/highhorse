@@ -60,10 +60,11 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
           <div style={{ padding: '40px 0 0', textAlign: 'center' }}>
             {data.logo?.asset ? (
               <Image
-                src={urlFor(data.logo).height(88).auto('format').url()}
+                src={urlFor(data.logo).format('png').url()}
                 alt={data.clientName}
                 width={140}
                 height={44}
+                unoptimized
                 style={{ objectFit: 'contain', margin: '0 auto' }}
               />
             ) : (
@@ -105,7 +106,7 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
               <h1
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
-                  fontSize: 26,
+                  fontSize: 'clamp(1.25rem, 2.4vw, 1.625rem)',
                   fontWeight: 700,
                   lineHeight: 1.3,
                   letterSpacing: '-0.02em',
@@ -443,7 +444,7 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
               <h2
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
-                  fontSize: 24,
+                  fontSize: 'clamp(1.25rem, 2.2vw, 1.5rem)',
                   fontWeight: 700,
                   color: '#111111',
                   letterSpacing: '-0.02em',
@@ -536,7 +537,7 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
             <h2
               style={{
                 fontFamily: 'Montserrat, sans-serif',
-                fontSize: 28,
+                fontSize: 'clamp(1.3rem, 2.6vw, 1.75rem)',
                 fontWeight: 700,
                 color: '#ffffff',
                 letterSpacing: '-0.02em',
@@ -623,6 +624,11 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
               .cs-detail-related-grid { grid-template-columns: 1fr; }
               .cs-detail-hero { padding: 28px; }
               .cs-detail-newsletter { padding: 40px 22px !important; }
+            }
+            @media (max-width: 374px) {
+              .cs-detail-hero { padding: 20px; }
+              .cs-detail-newsletter { padding: 32px 16px !important; }
+              .cs-detail-related-grid { gap: 14px; }
             }
           `,
         }}

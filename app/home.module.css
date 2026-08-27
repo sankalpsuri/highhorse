@@ -1592,6 +1592,41 @@
   color: #9A9A96;
 }
 
+@media (max-width: 480px) {
+  .faqQuestion {
+    padding: 18px 18px;
+    gap: 16px;
+  }
+
+  .faqQuestionText {
+    font-size: 14.5px;
+  }
+
+  .faqAnswer {
+    padding: 0 18px 22px 18px;
+  }
+}
+
+@media (max-width: 374px) {
+  .faqQuestion {
+    padding: 16px 14px;
+    gap: 12px;
+  }
+
+  .faqQuestionText {
+    font-size: 14px;
+  }
+
+  .faqAnswer {
+    padding: 0 14px 18px 14px;
+    font-size: 13.5px;
+  }
+
+  .faqEmpty {
+    padding: 24px 14px;
+  }
+}
+
 /* ── Final CTA ─────────────────────────────────────────────── */
 .ctaSection {
   background: #1A6AFF;

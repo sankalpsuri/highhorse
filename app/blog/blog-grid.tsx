@@ -320,6 +320,9 @@ export function BlogGrid({ posts }: { posts: BlogListItem[] }) {
             @media (max-width: 560px) {
               .blog-article-grid { grid-template-columns: 1fr; }
             }
+            @media (max-width: 374px) {
+              .blog-article-grid { gap: 20px 0; }
+            }
           `,
         }}
       />

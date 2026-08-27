@@ -179,14 +179,13 @@ export default function CareersPage() {
         <div className={styles.section}>
           <div className={styles.lookingLayout}>
             <div className={styles.lookingLeft}>
-              <div className={styles.placeholder}>
-                <div className={styles.placeholderText}>
-                  [Placeholder: Composition image — central photo of team member with laptop,
-                  surrounded by four floating labels: &ldquo;Grow Together&rdquo;, &ldquo;Learn
-                  Everyday&rdquo;, &ldquo;Create Impact Always&rdquo;, &ldquo;Collaborate As
-                  One&rdquo;]
-                </div>
-              </div>
+              <Image
+                src="/assets/Career image.webp"
+                alt="Team collaboration at High Horse"
+                width={640}
+                height={640}
+                className={styles.lookingImg}
+              />
             </div>
             <div className={styles.lookingRight}>
               <div className={styles.sectionLabel}>The people we want</div>
