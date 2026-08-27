@@ -159,7 +159,8 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <Link href={AUDIT_HREF} className={`${styles.ctaBtnDark} ${styles.desktopOnly}`}>
+          <Link href={AUDIT_HREF} className={`${styles.ctaBtnAudit} ${styles.auditDesktopOnly}`}>
+            <span className={styles.ctaBtnAuditDot} />
             Free Website Audit
           </Link>
           <Link href={CONTACT_HREF} className={`${styles.ctaBtn} ${styles.desktopOnly}`}>
@@ -239,46 +240,68 @@ export function Header() {
               </Link>
             )
           })}
-          <Link href={AUDIT_HREF} className={styles.mobileCtaDark} onClick={closeMenu}>
-            Free Website Audit
-          </Link>
           <Link href={CONTACT_HREF} className={styles.mobileCta} onClick={closeMenu}>
             Find Your Search Opportunity
+          </Link>
+          <Link href={AUDIT_HREF} className={styles.mobileCtaAudit} onClick={closeMenu}>
+            <span className={styles.ctaBtnAuditDot} />
+            Free Website Audit
           </Link>
         </div>
       )}
 
       {activeMenuData && (
         <div className={styles.megaMenu}>
-          <div className={styles.megaMenuInner}>
-            <div className={styles.megaMenuColumns}>
-              {activeMenuData.columns.map((col) => (
-                <div key={col.title} className={styles.megaMenuColumn}>
-                  <div className={styles.columnTitle}>{col.title}</div>
-                  <div className={styles.columnItems}>
-                    {col.items.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        className={styles.columnItem}
-                        onClick={clearActiveMenu}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
+          <div className={styles.megaMenuGrid}>
+            <div className={styles.megaMenuGridBg} />
+            <div className={styles.megaMenuInner}>
+              <div className={styles.megaMenuColumns}>
+                {activeMenuData.columns.map((col) => (
+                  <div key={col.title} className={styles.megaMenuColumn}>
+                    <div className={styles.columnTitle}>
+                      <div className={styles.columnTitleDot} />
+                      <div className={styles.columnTitleText}>{col.title}</div>
+                    </div>
+                    <div className={styles.columnItems}>
+                      {col.items.map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          className={styles.columnItem}
+                          onClick={clearActiveMenu}
+                        >
+                          <span>{item.label}</span>
+                          <span className={styles.columnItemArrow}>&rarr;</span>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
+                ))}
+              </div>
+              <div className={styles.megaMenuSidebar}>
+                <div className={styles.megaMenuSidebarGlow} />
+                <div style={{ position: 'relative' }}>
+                  <div className={styles.megaMenuSidebarLabel}>Where this leads</div>
+                  <div className={styles.megaMenuBlurb}>{activeMenuData.blurb}</div>
                 </div>
-              ))}
-            </div>
-            <div className={styles.megaMenuSidebar}>
-              <div className={styles.megaMenuBlurb}>{activeMenuData.blurb}</div>
-              <Link
-                href={activeMenuData.cta.href}
-                className={styles.megaMenuCta}
-                onClick={clearActiveMenu}
-              >
-                {activeMenuData.cta.label}
-              </Link>
+                <div className={styles.megaMenuSidebarCtas}>
+                  <Link
+                    href={activeMenuData.cta.href}
+                    className={styles.megaMenuCta}
+                    onClick={clearActiveMenu}
+                  >
+                    {activeMenuData.cta.label}
+                  </Link>
+                  <Link
+                    href={AUDIT_HREF}
+                    className={styles.megaMenuCtaAudit}
+                    onClick={clearActiveMenu}
+                  >
+                    <span className={styles.megaMenuCtaAuditDot} />
+                    Free Website Audit
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

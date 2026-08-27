@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { existsSync, readdirSync } from 'fs'
+import { join, extname } from 'path'
 import { urlFor } from '@/lib/sanity/client'
 import { PortableTextBody } from '@/components/portable-text-body'
 import { HeroSection } from '@/components/sections/hero-section'
@@ -50,6 +52,20 @@ interface ServicePageProps {
   }
 }
 
+const TECH_LOGO_EXTS = new Set(['.svg', '.png', '.jpg', '.jpeg', '.webp'])
+
+function getTechLogos(): { name: string; src: string }[] {
+  const dir = join(process.cwd(), 'public', 'assets', 'tech-logos')
+  if (!existsSync(dir)) return []
+  return readdirSync(dir)
+    .filter((f) => TECH_LOGO_EXTS.has(extname(f).toLowerCase()))
+    .sort()
+    .map((f) => ({
+      name: f.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+      src: `/assets/tech-logos/${f}`,
+    }))
+}
+
 const caseStudyColors = ['#DBEAFE', '#EDE9FE', '#FFEDD5', '#D1FAE5']
 
 function PageBuilderSection({ block, relatedCaseStudies, accentStyle }: { block: any; relatedCaseStudies?: CaseStudyEntry[]; accentStyle?: string }) {
@@ -81,7 +97,7 @@ function PageBuilderSection({ block, relatedCaseStudies, accentStyle }: { block:
     case 'portfolioShowcaseSection':
       return <PortfolioShowcaseSection {...block} />
     case 'techSliderSection':
-      return <TechSliderSection {...block} />
+      return <TechSliderSection {...block} filesystemLogos={getTechLogos()} />
     case 'caseStudyCardsSection':
       return <CaseStudyCardsSection {...block} accentStyle={accentStyle} />
     case 'videoShowcaseSection':

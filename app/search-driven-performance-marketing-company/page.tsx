@@ -44,14 +44,14 @@ const ASSETS = {
   founderBanner: '/assets/founder-banner.jpg',
 
   // Section 8 — Industry card images
-  industryFinance: '/assets/industry-finance.jpg',
-  industryEcommerce: '/assets/industry-ecommerce.jpg',
-  industryHealthcare: '/assets/industry-healthcare.jpg',
-  industryEducation: '/assets/industry-education.jpg',
-  industryTravel: '/assets/industry-travel.jpg',
-  industryLogistics: '/assets/industry-logistics.jpg',
-  industryRealEstate: '/assets/industry-real-estate.jpg',
-  industrySaas: '/assets/industry-saas.jpg',
+  industryFinance: '/assets/Finance (BFSI)(1).jpg',
+  industryEcommerce: '/assets/Ecommerce(1).jpg',
+  industryHealthcare: '/assets/Healthcare(2).jpg',
+  industryEducation: '/assets/Education(2).jpg',
+  industryTravel: '/assets/Travel & Tourism(2).jpg',
+  industryLogistics: '/assets/transportation Company(2).jpg',
+  industryRealEstate: '/assets/Real Estate(1).jpg',
+  industrySaas: '/assets/Saas (2).jpg',
 }
 
 /* ── Helpers ──────────────────────────────────────────────────────────── */
@@ -105,7 +105,7 @@ function BannerImage({ src, alt, slot }: { src: string; alt: string; slot: strin
   if (fileExists(src)) {
     return (
       <div className={styles.bannerWrap}>
-        <Image src={src} alt={alt} fill className={styles.bannerImg} />
+        <Image src={src} alt={alt} width={1200} height={1200} className={styles.bannerImg} />
       </div>
     )
   }
@@ -284,8 +284,8 @@ export default function CompanyPage() {
                     <Image
                       src={logo.src}
                       alt={logo.name}
-                      width={140}
-                      height={48}
+                      width={180}
+                      height={64}
                       className={styles.marqueeLogoImg}
                     />
                   </div>
@@ -295,8 +295,8 @@ export default function CompanyPage() {
                     <Image
                       src={logo.src}
                       alt=""
-                      width={140}
-                      height={48}
+                      width={180}
+                      height={64}
                       className={styles.marqueeLogoImg}
                     />
                   </div>

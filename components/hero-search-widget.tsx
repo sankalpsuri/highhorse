@@ -75,7 +75,14 @@ export function HeroSearchWidget() {
   return (
     <div>
       <div className={styles.searchWidget}>
-        <div className={styles.searchWidgetTitle}>Capture demand in</div>
+        <div className={styles.searchWidgetHeader}>
+          <div className={styles.searchWidgetTitle}>Capture demand in</div>
+          <div className={styles.searchWidgetDots}>
+            <div className={`${styles.searchWidgetDot} ${styles.searchWidgetDotActive}`} />
+            <div className={styles.searchWidgetDot} />
+            <div className={styles.searchWidgetDot} />
+          </div>
+        </div>
         <div className={styles.engineTabs}>
           {engines.map((e, i) => (
             <div
@@ -124,7 +131,7 @@ export function HeroSearchWidget() {
         </div>
       </div>
       <div className={styles.searchCaption}>
-        This is where the decision starts—across paid, organic, Maps and AI answers.
+        This is where the decision starts — across paid, organic, Maps and AI answers.
       </div>
     </div>
   )

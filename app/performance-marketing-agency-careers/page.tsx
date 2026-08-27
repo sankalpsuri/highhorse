@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import styles from './careers.module.css'
 import { CareersForm } from './careers-form'
 
@@ -12,22 +13,27 @@ const benefits = [
   {
     title: 'Work on Meaningful Growth Projects',
     desc: 'Work directly on campaigns and systems that produce measurable business outcomes — leads, sales, revenue — across search, advertising, and digital experiences.',
+    icon: '/assets/Meaningful Growth(1).png',
   },
   {
     title: 'Learn the Future of Digital Growth',
     desc: 'Stay ahead of SEO, AI-powered search, performance marketing, and emerging platforms. Continuous learning and experimentation are part of the work, not separate from it.',
+    icon: '/assets/Learn the Future of Digital Growth(1).png',
   },
   {
     title: 'Creative Freedom & Ownership',
     desc: 'Own your work from strategy through execution. We value initiative, independent thinking, and creative approaches to solving real business problems.',
+    icon: '/assets/Creative Freedom & Ownership(1).png',
   },
   {
     title: 'Growth-Focused Environment',
     desc: 'Your career development is tied directly to the growth you create. We invest in people who invest in their craft and deliver results.',
+    icon: '/assets/Growth-Focused Environment(1).png',
   },
   {
     title: 'Collaborative Team Culture',
     desc: 'A small, direct team where everyone contributes meaningfully. No bureaucracy, clear communication, and shared accountability for outcomes.',
+    icon: '/assets/Collaborative Team Culture(1).png',
   },
 ]
 
@@ -40,42 +46,51 @@ const qualities = [
   'Passionate about digital growth and innovation',
 ]
 
-const opportunities = [
+const opportunities: { title: string; desc: string; icon?: string }[] = [
   {
     title: 'SEO & Search Strategy',
     desc: 'Technical audits, keyword research, on-page optimisation, and organic strategy across search engines and AI answer platforms.',
+    icon: '/assets/SEO & Search Strategy(1).png',
   },
   {
     title: 'Performance Marketing',
     desc: 'Google Ads, Shopping, Display, and retargeting campaign management focused on qualified leads and measurable return on spend.',
+    icon: '/assets/Performance Marketing(2).png',
   },
   {
     title: 'Content Writing & Copywriting',
     desc: 'Search-driven content strategy, article writing, landing page copy, and content that ranks and drives conversions.',
+    icon: '/assets/Content Writing & Copywriting(1).png',
   },
   {
     title: 'Social Media Marketing',
     desc: 'Strategy, content planning, and community management across social platforms to build brand visibility and engagement.',
+    icon: '/assets/Social Media Marketing(2).png',
   },
   {
     title: 'UI/UX Design',
     desc: 'Conversion-focused design for websites, landing pages, and digital experiences that turn traffic into customers.',
+    icon: '/assets/UI UX Design(2).png',
   },
   {
     title: 'Website Development',
     desc: 'Fast, accessible, SEO-optimised websites and web applications using modern frameworks and development practices.',
+    icon: '/assets/Website Development(4).png',
   },
   {
     title: 'Graphic Design & Video Editing',
     desc: 'Visual design for campaigns, social media, brand materials, and video content that communicates with clarity.',
+    icon: '/assets/Graphic Design & Video Editing(2).png',
   },
   {
     title: 'Automation & CRM Systems',
     desc: 'Marketing automation, CRM setup, workflow optimisation, and data pipelines for growth-oriented teams.',
+    icon: '/assets/Automation & CRM Systems(1).png',
   },
   {
     title: 'Business Development & Client Success',
     desc: 'Client relationships, growth strategy, and making sure the work we deliver translates into real business outcomes.',
+    icon: '/assets/Business Development & Client Success(2).png',
   },
 ]
 
@@ -144,18 +159,13 @@ export default function CareersPage() {
           {benefits.map((b) => (
             <div key={b.title} className={styles.benefitCard}>
               <div className={styles.benefitIcon}>
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                  <rect
-                    x="3"
-                    y="3"
-                    width="16"
-                    height="16"
-                    rx="3"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                  <path d="M8 11l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                <Image
+                  src={b.icon}
+                  alt=""
+                  width={28}
+                  height={28}
+                  className={styles.benefitIconImg}
+                />
               </div>
               <div className={styles.benefitTitle}>{b.title}</div>
               <div className={styles.benefitDesc}>{b.desc}</div>
@@ -214,10 +224,20 @@ export default function CareersPage() {
           {opportunities.map((o) => (
             <div key={o.title} className={styles.oppCard}>
               <div className={styles.oppIcon}>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M10 7v6M7 10h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
+                {o.icon ? (
+                  <Image
+                    src={o.icon}
+                    alt=""
+                    width={24}
+                    height={24}
+                    className={styles.oppIconImg}
+                  />
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M10 7v6M7 10h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                )}
               </div>
               <div className={styles.oppTitle}>{o.title}</div>
               <div className={styles.oppDesc}>{o.desc}</div>

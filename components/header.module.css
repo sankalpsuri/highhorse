@@ -3,9 +3,10 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid #E4E4E4;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px) saturate(1.6);
+  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+  border-bottom: 1px solid #EAEAE8;
 }
 
 .headerInner {
@@ -15,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 76px;
+  height: 74px;
 }
 
 /* ── Logo ───────────────────────────────────────────────────── */
@@ -37,14 +38,14 @@
 .logoText {
   font: 800 17px 'Montserrat', sans-serif;
   letter-spacing: 0.04em;
-  color: #101010;
+  color: #0A0A0C;
 }
 
 /* ── Desktop Nav ────────────────────────────────────────────── */
 .desktopNav {
   display: none;
   align-items: center;
-  gap: 26px;
+  gap: 22px;
   flex-wrap: nowrap;
   justify-content: flex-end;
   flex: 0 0 auto;
@@ -58,7 +59,7 @@
 
 .navLink {
   font: 500 14px 'Poppins', sans-serif;
-  color: #101010;
+  color: #0A0A0C;
   white-space: nowrap;
   text-decoration: none;
   transition: color 0.15s;
@@ -76,40 +77,54 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
 .ctaBtn {
-  font: 600 14px 'Montserrat', sans-serif;
-  background: #1A6AFF;
+  font: 600 13.5px 'Montserrat', sans-serif;
+  background: #0A0A0C;
   color: #fff;
   padding: 11px 20px;
-  border-radius: 5px;
+  border-radius: 6px;
   white-space: nowrap;
   text-decoration: none;
   transition: background 0.15s;
+  box-shadow: 0 6px 18px rgba(10, 10, 12, 0.18);
 }
 
 .ctaBtn:hover {
-  background: #144FC0;
+  background: #2A2A2C;
   color: #fff;
 }
 
-.ctaBtnDark {
-  font: 600 14px 'Montserrat', sans-serif;
-  background: #111111;
-  color: #fff;
-  padding: 11px 20px;
-  border-radius: 5px;
+.ctaBtnAudit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 13.5px 'Montserrat', sans-serif;
+  color: #0A0A0C;
+  border: 1px solid #E6E6E4;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 11px 18px;
+  border-radius: 6px;
   white-space: nowrap;
   text-decoration: none;
-  transition: background 0.15s;
+  transition: border-color 0.15s, background 0.15s;
 }
 
-.ctaBtnDark:hover {
-  background: #333333;
-  color: #fff;
+.ctaBtnAudit:hover {
+  border-color: #FF9D2E;
+  background: #FFF9F1;
+  color: #0A0A0C;
+}
+
+.ctaBtnAuditDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FF9D2E;
+  flex-shrink: 0;
 }
 
 .desktopOnly {
@@ -118,16 +133,26 @@
 
 @media (min-width: 1080px) {
   .desktopOnly {
-    display: inline-block;
+    display: inline-flex;
+  }
+}
+
+.auditDesktopOnly {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .auditDesktopOnly {
+    display: inline-flex;
   }
 }
 
 .hamburger {
   width: 40px;
   height: 40px;
-  border: 1px solid #E4E4E4;
+  border: 1px solid #E6E6E4;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,7 +166,7 @@
 
 .hamburgerLine {
   height: 1.5px;
-  background: #101010;
+  background: #0A0A0C;
   margin-bottom: 4px;
 }
 
@@ -151,7 +176,7 @@
 
 /* ── Mobile Menu ────────────────────────────────────────────── */
 .mobileMenu {
-  border-top: 1px solid #E4E4E4;
+  border-top: 1px solid #EAEAE8;
   padding: 16px 32px;
   display: flex;
   flex-direction: column;
@@ -161,7 +186,7 @@
 
 .mobileLink {
   font: 500 15px 'Poppins', sans-serif;
-  color: #101010;
+  color: #0A0A0C;
   text-decoration: none;
 }
 
@@ -171,10 +196,10 @@
 
 .mobileCta {
   font: 600 14px 'Montserrat', sans-serif;
-  background: #1A6AFF;
+  background: #0A0A0C;
   color: #fff;
   padding: 12px 20px;
-  border-radius: 5px;
+  border-radius: 6px;
   text-align: center;
   margin-top: 6px;
   text-decoration: none;
@@ -182,24 +207,26 @@
 }
 
 .mobileCta:hover {
-  background: #144FC0;
+  background: #2A2A2C;
   color: #fff;
 }
 
-.mobileCtaDark {
+.mobileCtaAudit {
   font: 600 14px 'Montserrat', sans-serif;
-  background: #111111;
-  color: #fff;
+  color: #0A0A0C;
+  border: 1px solid #E6E6E4;
   padding: 12px 20px;
-  border-radius: 5px;
-  text-align: center;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   text-decoration: none;
-  transition: background 0.15s;
+  transition: border-color 0.15s;
 }
 
-.mobileCtaDark:hover {
-  background: #333333;
-  color: #fff;
+.mobileCtaAudit:hover {
+  border-color: #FF9D2E;
 }
 
 /* ── Mobile Accordion ──────────────────────────────────────── */
@@ -214,7 +241,7 @@
   justify-content: space-between;
   width: 100%;
   font: 500 15px 'Poppins', sans-serif;
-  color: #101010;
+  color: #0A0A0C;
   background: none;
   border: none;
   padding: 0;
@@ -229,7 +256,7 @@
 .chevron {
   transition: transform 0.2s;
   flex-shrink: 0;
-  color: #8a8a86;
+  color: #9A9A96;
 }
 
 .chevronOpen {
@@ -253,12 +280,12 @@
   font: 600 11px 'Montserrat', sans-serif;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #8a8a86;
+  color: #9A9A96;
 }
 
 .mobileSectionLink {
   font: 400 14px 'Poppins', sans-serif;
-  color: #101010;
+  color: #0A0A0C;
   text-decoration: none;
   padding-left: 4px;
 }
@@ -273,83 +300,200 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: #fff;
-  border-bottom: 1px solid #E4E4E4;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(22px) saturate(1.6);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6);
+  border-bottom: 1px solid #EAEAE8;
+  box-shadow: 0 28px 56px rgba(10, 10, 12, 0.12);
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 74px);
+}
+
+.megaMenuGrid {
+  position: relative;
+}
+
+.megaMenuGridBg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(10, 10, 12, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 12, 0.04) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(90% 120% at 20% 0%, #000 10%, transparent 80%);
+  -webkit-mask-image: radial-gradient(90% 120% at 20% 0%, #000 10%, transparent 80%);
+  pointer-events: none;
 }
 
 .megaMenuInner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 40px 32px;
+  padding: 28px 32px 30px;
   display: flex;
-  gap: 56px;
+  gap: 24px;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .megaMenuColumns {
-  flex: 1 1 500px;
+  flex: 1 1 560px;
   min-width: 280px;
   display: flex;
-  gap: 48px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .megaMenuColumn {
+  flex: 1 1 220px;
   min-width: 200px;
+  border: 1px solid #EDEDEB;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px 20px 16px;
 }
 
 .columnTitle {
-  font: 600 12px 'Montserrat', sans-serif;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #8a8a86;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 16px;
+}
+
+.columnTitleDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FF9D2E;
+  flex-shrink: 0;
+}
+
+.columnTitleText {
+  font: 600 10.5px 'Montserrat', sans-serif;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #9A9A96;
 }
 
 .columnItems {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 2px;
 }
 
 .columnItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   font: 400 14px 'Poppins', sans-serif;
-  color: #101010;
+  color: #0A0A0C;
+  padding: 9px 10px;
+  border-radius: 7px;
+  transition: background 0.15s, color 0.15s;
   text-decoration: none;
-  transition: color 0.15s;
 }
 
 .columnItem:hover {
+  background: #F4F7FF;
   color: #1A6AFF;
 }
 
+.columnItemArrow {
+  font: 500 13px 'Poppins', sans-serif;
+  color: #C4C4C0;
+}
+
+/* ── Mega Menu Sidebar (dark) ─────────────────────────────── */
 .megaMenuSidebar {
   flex: 1 1 280px;
-  min-width: 240px;
-  border-left: 1px solid #E4E4E4;
-  padding-left: 40px;
+  min-width: 250px;
+  border: 1px solid #E6E6E4;
+  border-radius: 12px;
+  background: #0A0A0C;
+  color: #F5F5F4;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.megaMenuSidebarGlow {
+  position: absolute;
+  top: -90px;
+  right: -60px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26, 106, 255, 0.42), rgba(26, 106, 255, 0) 68%);
+  pointer-events: none;
+}
+
+.megaMenuSidebarLabel {
+  font: 600 10.5px 'Montserrat', sans-serif;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #FF9D2E;
+  margin-bottom: 12px;
 }
 
 .megaMenuBlurb {
   font: 400 15px/1.6 'Poppins', sans-serif;
-  color: #5C5C5C;
-  margin-bottom: 20px;
+  color: #D4D4D1;
+  text-wrap: pretty;
+}
+
+.megaMenuSidebarCtas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
 }
 
 .megaMenuCta {
   font: 600 13px 'Montserrat', sans-serif;
   color: #fff;
   background: #1A6AFF;
-  padding: 12px 20px;
-  border-radius: 5px;
-  display: inline-block;
+  padding: 13px 18px;
+  border-radius: 7px;
+  text-align: center;
+  display: block;
   text-decoration: none;
   transition: background 0.15s;
 }
 
 .megaMenuCta:hover {
   background: #144FC0;
+  color: #fff;
+}
+
+.megaMenuCtaAudit {
+  font: 600 13px 'Montserrat', sans-serif;
+  color: #fff;
+  border: 1px solid #2E2E31;
+  padding: 13px 18px;
+  border-radius: 7px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+
+.megaMenuCtaAudit:hover {
+  border-color: #FF9D2E;
+}
+
+.megaMenuCtaAuditDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FF9D2E;
+  flex-shrink: 0;
 }
 
 /* ── Desktop: hide mobile-only elements ────────────────────── */
@@ -359,5 +503,32 @@
   }
   .mobileMenu {
     display: none;
+  }
+}
+
+/* ── Responsive: smaller padding on mobile ─────────────────── */
+@media (max-width: 767px) {
+  .headerInner {
+    padding: 0 16px;
+  }
+  .mobileMenu {
+    padding: 16px 16px;
+  }
+  .megaMenuInner {
+    padding: 20px 16px 24px;
+  }
+}
+
+@media (max-width: 374px) {
+  .headerInner {
+    padding: 0 12px;
+    height: 64px;
+  }
+  .logoText {
+    font-size: 15px;
+  }
+  .ctaBtn {
+    padding: 9px 14px;
+    font-size: 12px;
   }
 }

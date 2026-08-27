@@ -12,16 +12,51 @@ interface Logo {
   textColor?: string
 }
 
+interface FilesystemLogo {
+  name: string
+  src: string
+}
+
 interface TechSliderSectionProps {
   heading?: string
   subtext?: string
   logos?: Logo[]
+  filesystemLogos?: FilesystemLogo[]
 }
 
-export function TechSliderSection({ heading, subtext, logos }: TechSliderSectionProps) {
-  if (!logos || logos.length === 0) return null
+export function TechSliderSection({ heading, subtext, logos, filesystemLogos }: TechSliderSectionProps) {
+  const hasFs = filesystemLogos && filesystemLogos.length > 0
+  const hasCms = logos && logos.length > 0
+  if (!hasFs && !hasCms) return null
 
-  const tile = (logo: Logo, keyPrefix: string, i: number) => (
+  const fsTile = (logo: FilesystemLogo, keyPrefix: string, i: number) => (
+    <div
+      key={`${keyPrefix}-fs-${i}`}
+      aria-hidden={keyPrefix === 'dup' ? true : undefined}
+      style={{
+        flexShrink: 0,
+        width: 130,
+        aspectRatio: '1 / 0.85',
+        background: '#F5F5F4',
+        border: '1px solid #E4E4E4',
+        borderRadius: 14,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+      title={logo.name}
+    >
+      <Image
+        src={logo.src}
+        alt={logo.name}
+        width={80}
+        height={80}
+        style={{ maxWidth: '60%', maxHeight: '60%', objectFit: 'contain' }}
+      />
+    </div>
+  )
+
+  const cmsTile = (logo: Logo, keyPrefix: string, i: number) => (
     <div
       key={`${keyPrefix}-${i}`}
       aria-hidden={keyPrefix === 'dup' ? true : undefined}
@@ -96,8 +131,16 @@ export function TechSliderSection({ heading, subtext, logos }: TechSliderSection
               width: 'max-content',
             }}
           >
-            {logos.map((logo, i) => tile(logo, 'orig', i))}
-            {logos.map((logo, i) => tile(logo, 'dup', i))}
+            {hasFs
+              ? <>
+                  {filesystemLogos!.map((logo, i) => fsTile(logo, 'orig', i))}
+                  {filesystemLogos!.map((logo, i) => fsTile(logo, 'dup', i))}
+                </>
+              : <>
+                  {logos!.map((logo, i) => cmsTile(logo, 'orig', i))}
+                  {logos!.map((logo, i) => cmsTile(logo, 'dup', i))}
+                </>
+            }
           </div>
         </div>
       </div>
