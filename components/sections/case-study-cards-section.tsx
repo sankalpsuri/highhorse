@@ -23,7 +23,7 @@ export function CaseStudyCardsSection({ heading, subtext, cards }: CaseStudyCard
 
   return (
     <section>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
         {heading && (
           <h2 style={{
             fontFamily: "'Montserrat', sans-serif",
@@ -48,7 +48,7 @@ export function CaseStudyCardsSection({ heading, subtext, cards }: CaseStudyCard
             {subtext}
           </p>
         )}
-        <div style={{
+        <div className="rsp-grid-2" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
           gap: 20,

@@ -21,7 +21,7 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
 
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
         {heading && (
           <h2 style={{
             fontFamily: "'Montserrat', sans-serif",
@@ -48,10 +48,36 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
         )}
 
         {displayStudies && displayStudies.length > 0 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
+          <div className="rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
             {displayStudies.map((cs) => (
-              <div key={cs.slug}>
-                <div style={{ marginBottom: 16 }}>
+              <div key={cs.slug} style={{ background: '#fff', border: '1px solid #E4E4E4', borderRadius: 12, overflow: 'hidden' }}>
+                {cs.proofImage?.asset ? (
+                  <Image
+                    src={urlFor(cs.proofImage).width(700).auto('format').url()}
+                    alt={`${cs.clientName} proof`}
+                    width={700}
+                    height={400}
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      display: 'block',
+                    }}
+                  />
+                ) : (
+                  <div style={{
+                    aspectRatio: '16 / 9',
+                    background: '#E4E4E4',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: 14,
+                    color: '#8a8a86',
+                  }}>
+                    Proof image placeholder
+                  </div>
+                )}
+                <div style={{ padding: '16px 20px' }}>
                   {cs.logo?.asset ? (
                     <Image
                       src={urlFor(cs.logo).width(200).auto('format').url()}
@@ -63,8 +89,8 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
                   ) : (
                     <p style={{
                       fontFamily: "'Montserrat', sans-serif",
-                      fontWeight: 800,
-                      fontSize: 24,
+                      fontWeight: 700,
+                      fontSize: 17,
                       color: '#161616',
                       margin: 0,
                     }}>
@@ -72,35 +98,6 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
                     </p>
                   )}
                 </div>
-
-                {cs.proofImage?.asset ? (
-                  <Image
-                    src={urlFor(cs.proofImage).width(1100).auto('format').url()}
-                    alt={`${cs.clientName} proof`}
-                    width={1100}
-                    height={500}
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      borderRadius: 8,
-                      border: '1px solid #E4E4E4',
-                    }}
-                  />
-                ) : (
-                  <div style={{
-                    aspectRatio: '16 / 7',
-                    background: '#E4E4E4',
-                    borderRadius: 8,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: "'Poppins', sans-serif",
-                    fontSize: 14,
-                    color: '#8a8a86',
-                  }}>
-                    Proof image placeholder
-                  </div>
-                )}
               </div>
             ))}
           </div>

@@ -28,7 +28,7 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
   if (isSplit) {
     return (
       <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 44, alignItems: 'center' }}>
+        <div className="rsp-grid-split rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 44, alignItems: 'center' }}>
           <div>
             {heading && (
               <h2 style={{
@@ -55,7 +55,7 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
             )}
           </div>
           {stats && stats.length > 0 && (
-            <div style={{
+            <div className="rsp-grid-3" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: 14,
@@ -103,8 +103,8 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
   if (isDark) {
     return (
       <section>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-          <div style={{
+        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+          <div className="rsp-dark-pad" style={{
             background: '#111111',
             borderRadius: 24,
             padding: '56px 40px',
@@ -135,7 +135,7 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
               </p>
             )}
             {stats && stats.length > 0 && (
-              <div style={{
+              <div className="rsp-grid-4" style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(4, 1fr)',
                 gap: 18,
@@ -182,7 +182,7 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
 
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
         {heading && (
           <h2 style={{
             fontFamily: "'Montserrat', sans-serif",

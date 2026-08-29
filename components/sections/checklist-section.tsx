@@ -33,7 +33,7 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
   if (layout === 'split') {
     return (
       <section>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 48, alignItems: 'start' }}>
+        <div className="rsp-grid-split rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 48, alignItems: 'start' }}>
           <div>
             {heading && (
               <h2 style={{
@@ -77,31 +77,30 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
               </div>
             )}
           </div>
-          <div style={{
-            background: 'linear-gradient(160deg, rgba(26,106,255,0.08), rgba(26,106,255,0.04))',
-            borderRadius: 16,
-            padding: 24,
-          }}>
-            <div style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 700,
-              fontSize: 15,
-              color: '#111111',
-              marginBottom: 16,
-            }}>
-              Performance Overview
-            </div>
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 10, height: 180 }}>
-              {[70, 100, 55, 85].map((h, i) => (
-                <div key={i} style={{
-                  flex: 1,
-                  height: `${h}%`,
-                  background: '#fff',
-                  borderRadius: 10,
-                  boxShadow: '0 12px 24px -16px rgba(10,20,40,0.3)',
-                }} />
-              ))}
-            </div>
+          <div style={{ borderRadius: 16, overflow: 'hidden' }}>
+            {image?.asset ? (
+              <Image
+                src={urlFor(image).width(800).auto('format').url()}
+                alt={heading || ''}
+                width={800}
+                height={600}
+                style={{ width: '100%', height: 'auto', borderRadius: 16 }}
+              />
+            ) : (
+              <div style={{
+                aspectRatio: '4 / 3',
+                background: '#E4E4E4',
+                borderRadius: 16,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: 14,
+                color: '#8a8a86',
+              }}>
+                Image placeholder
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -186,7 +185,7 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
 
     return (
       <section>
-        <div style={{
+        <div className="rsp-section" style={{
           maxWidth: 1280,
           margin: '0 auto',
           padding: '96px 32px',
@@ -203,7 +202,7 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
 
   return (
     <section>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
         <div style={{ maxWidth: 640, marginBottom: 40 }}>
           {heading && (
             <h2 style={{
@@ -230,7 +229,7 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
           )}
         </div>
         {items && items.length > 0 && (
-          <div style={{
+          <div className="rsp-grid-2" style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: '16px 32px',

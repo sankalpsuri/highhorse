@@ -139,7 +139,7 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
   if (!expectsImage && bulletsBlock) {
     return (
       <section style={{ background: '#F5F5F4' }}>
-        <div style={{
+        <div className="rsp-section" style={{
           maxWidth: 1280,
           margin: '0 auto',
           padding: '96px 32px',
@@ -165,7 +165,7 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
   if (!expectsImage) {
     return (
       <section style={{ background: '#F5F5F4' }}>
-        <div style={{
+        <div className="rsp-section" style={{
           maxWidth: 1280,
           margin: '0 auto',
           padding: '96px 32px',
@@ -228,7 +228,7 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
 
   return (
     <section style={{ background: '#F5F5F4' }}>
-      <div style={{
+      <div className="rsp-section" style={{
         maxWidth: 1280,
         margin: '0 auto',
         padding: '96px 32px',

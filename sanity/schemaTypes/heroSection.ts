@@ -18,6 +18,7 @@ export default defineType({
       options: {list: [{title: 'Left', value: 'left'}, {title: 'Center', value: 'center'}]},
       initialValue: 'left',
     }),
+    defineField({name: 'mobileImageSquare', title: 'Square hero image on mobile', type: 'boolean'}),
     defineField({
       name: 'badgeStyle',
       title: 'Badge style',

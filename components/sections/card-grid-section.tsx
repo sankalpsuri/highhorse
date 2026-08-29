@@ -45,10 +45,12 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
     ? `repeat(${columns}, 1fr)`
     : 'repeat(auto-fit, minmax(300px, 1fr))'
 
+  const gridClass = columns === 5 ? 'rsp-grid-5' : columns === 4 ? 'rsp-grid-4' : columns === 3 ? 'rsp-grid-3' : columns === 2 ? 'rsp-grid-2' : undefined
+
   if (isClean) {
     return (
       <section style={{ background: bg, borderTop: background === 'white' ? 'none' : '1px solid #E4E4E4', borderBottom: background === 'white' ? 'none' : '1px solid #E4E4E4' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           {heading && (
             <h2 style={{
               fontFamily: "'Montserrat', sans-serif",
@@ -74,7 +76,7 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
             </p>
           )}
           {cards && cards.length > 0 && (
-            <div style={{
+            <div className={gridClass} style={{
               display: 'grid',
               gridTemplateColumns: gridCols,
               columnGap: 56,
@@ -124,7 +126,7 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
   }
 
   const gridContent = (
-    <div style={{
+    <div className={gridClass} style={{
       display: 'grid',
       gridTemplateColumns: gridCols,
       border: style === 'dashed' ? 'none' : '1px solid #E4E4E4',
@@ -227,7 +229,7 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
 
   return (
     <section style={{ background: bg, borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
         {heading && (
           <h2 style={{
             fontFamily: "'Montserrat', sans-serif",

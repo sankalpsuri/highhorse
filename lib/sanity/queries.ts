@@ -39,7 +39,8 @@ export const servicePageQuery = groq`
         ctaText,
         ctaLink,
         heroImage{ ..., asset-> },
-        textAlign
+        textAlign,
+        mobileImageSquare
       },
       _type == "textImageSection" => {
         heading,

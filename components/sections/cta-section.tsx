@@ -16,7 +16,7 @@ export function CtaSection({ heading, bodyText, ctaText, ctaLink, variant, textA
 
   return (
     <section style={{ background: bg, borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', textAlign: centered ? 'center' as const : 'left' as const }}>
+      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', textAlign: centered ? 'center' as const : 'left' as const }}>
         {heading && (
           <h2 style={{
             fontFamily: "'Montserrat', sans-serif",

@@ -43,13 +43,14 @@ async function main() {
     {
       _type: 'heroSection',
       _key: 'hero01',
-      badgeText: 'UI/UX Design',
-      badgeStyle: 'eyebrow',
+      badgeText: 'Certified Google Partner',
+      badgeStyle: 'partner',
       headline: 'Design that makes your users stay, trust your brand, and take action',
       subheadline: 'If your website or app isn\'t converting, the issue is rarely traffic — it\'s the experience. We design UI/UX that goes beyond aesthetics, helping businesses across India guide users, build trust, and drive meaningful actions.',
       ctaText: 'Let\'s Fix Your UI/UX',
       ctaLink: '/contact-search-performance-marketing-agency',
       textAlign: 'center',
+      mobileImageSquare: true,
     },
     // 2. textImageSection — Agency Intro (image right, outline CTA)
     {
@@ -157,6 +158,7 @@ async function main() {
     {
       _type: 'checklistSection',
       _key: 'checklist01',
+      layout: 'split',
       heading: 'Chosen for the Way We Think — Not Just Design',
       subtext: 'Choosing the right UI/UX partner directly impacts how users experience your brand and take action.',
       items: [

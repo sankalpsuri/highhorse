@@ -99,6 +99,42 @@
   color: #fff;
 }
 
+/* ── Contact Block (inside brand column) ───────────────────── */
+.contactBlock {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #232323;
+}
+
+.contactTitle {
+  font: 600 12px 'Montserrat', sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6a6a67;
+  margin-bottom: 12px;
+}
+
+.contactLink {
+  display: block;
+  font: 400 14px 'Poppins', sans-serif;
+  color: #d4d4d1;
+  text-decoration: none;
+  transition: color 0.15s;
+  margin-bottom: 8px;
+}
+
+.contactLink:hover {
+  color: #fff;
+}
+
+.contactAddress {
+  font: 400 13px 'Poppins', sans-serif;
+  font-style: normal;
+  color: #9a9a97;
+  line-height: 1.6;
+  margin: 4px 0 0;
+}
+
 /* ── Bottom Bar ─────────────────────────────────────────────── */
 .bottom {
   max-width: 1280px;
@@ -117,4 +153,58 @@
 
 .bottomLink:hover {
   color: #9a9a97;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .footerInner {
+    flex-direction: column;
+    gap: 36px;
+    padding: 48px 24px 32px;
+  }
+
+  .brand {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+
+  .col {
+    flex-basis: calc(50% - 18px);
+    min-width: 140px;
+  }
+
+  .footerInner {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .brand {
+    flex-basis: 100%;
+  }
+
+  .bottom {
+    padding: 16px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footerInner {
+    padding: 40px 16px 24px;
+    gap: 28px;
+  }
+
+  .col {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+
+  .bottom {
+    padding: 16px;
+    text-align: center;
+  }
+
+  .contactLink {
+    font-size: 15px;
+    padding: 4px 0;
+  }
 }

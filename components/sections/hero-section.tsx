@@ -12,14 +12,15 @@ interface HeroSectionProps {
   ctaLink?: string
   heroImage?: any
   textAlign?: string
+  mobileImageSquare?: boolean
 }
 
-export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaText, ctaLink, heroImage, textAlign }: HeroSectionProps) {
+export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaText, ctaLink, heroImage, textAlign, mobileImageSquare }: HeroSectionProps) {
   const centered = textAlign === 'center'
 
   return (
     <section style={{ background: '#F5F5F4', borderBottom: '1px solid #E4E4E4' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '88px 32px 96px', textAlign: centered ? 'center' as const : 'left' as const }}>
+      <div className="rsp-hero-pad" style={{ maxWidth: 1280, margin: '0 auto', padding: '88px 32px 96px', textAlign: centered ? 'center' as const : 'left' as const }}>
         {badgeText && badgeStyle === 'eyebrow' ? (
           <div style={{
             display: 'inline-flex',
@@ -95,13 +96,15 @@ export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaT
           </div>
         )}
         {heroImage?.asset ? (
-          <Image
-            src={urlFor(heroImage).width(1280).auto('format').url()}
-            alt={headline}
-            width={1280}
-            height={600}
-            style={{ width: '100%', height: 'auto', borderRadius: 8, marginTop: 16 }}
-          />
+          <div className={mobileImageSquare ? 'hero-img-mobile-square' : undefined} style={{ marginTop: 16 }}>
+            <Image
+              src={urlFor(heroImage).width(1280).auto('format').url()}
+              alt={headline}
+              width={1280}
+              height={600}
+              style={{ width: '100%', height: 'auto', borderRadius: 8 }}
+            />
+          </div>
         ) : heroImage ? (
           <div style={{
             marginTop: 48,

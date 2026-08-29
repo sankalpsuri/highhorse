@@ -15,7 +15,7 @@ interface ProcessStepsSectionProps {
 export function ProcessStepsSection({ heading, headingBordered, subtext, columns, steps }: ProcessStepsSectionProps) {
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
         {heading && (
           <h2 style={{
             fontFamily: "'Montserrat', sans-serif",
@@ -48,7 +48,7 @@ export function ProcessStepsSection({ heading, headingBordered, subtext, columns
           </p>
         )}
         {steps && steps.length > 0 && (
-          <div style={{
+          <div className={columns === 5 ? 'rsp-grid-5' : columns === 4 ? 'rsp-grid-4' : columns === 3 ? 'rsp-grid-3' : columns === 2 ? 'rsp-grid-2' : undefined} style={{
             display: 'grid',
             gridTemplateColumns: columns ? `repeat(${columns}, 1fr)` : 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: 24,

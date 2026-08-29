@@ -78,6 +78,20 @@ export function Footer() {
               className={styles.badge}
             />
           </a>
+
+          <div className={styles.contactBlock}>
+            <div className={styles.contactTitle}>Contact</div>
+            <a href="mailto:contact@highhorse.in" className={styles.contactLink}>
+              contact@highhorse.in
+            </a>
+            <a href="tel:+918287194831" className={styles.contactLink}>
+              Tel: +91-82871 94831
+            </a>
+            <address className={styles.contactAddress}>
+              A-4, West, Block A, Vishal Enclave,<br />
+              Tagore Garden Extension, Delhi, 110027
+            </address>
+          </div>
         </div>
 
         {navColumns.map((col) => (
@@ -96,8 +110,8 @@ export function Footer() {
 
       <div className={styles.bottom}>
         &copy; 2026 High Horse. Contact:{' '}
-        <a href="mailto:hello@highhorse.in" className={styles.bottomLink}>
-          hello@highhorse.in
+        <a href="mailto:contact@highhorse.in" className={styles.bottomLink}>
+          contact@highhorse.in
         </a>
       </div>
     </footer>

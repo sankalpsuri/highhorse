@@ -37,3 +37,40 @@ body {
 .google-partner-badge:hover {
   opacity: 0.75;
 }
+
+/* ── Responsive overrides for service page sections ────────────── */
+
+.hero-img-mobile-square {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .rsp-grid-2,
+  .rsp-grid-split { grid-template-columns: 1fr !important; }
+  .rsp-grid-3,
+  .rsp-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+  .rsp-grid-5 { grid-template-columns: repeat(2, 1fr) !important; }
+  .rsp-section { padding: 64px 20px !important; }
+  .rsp-hero-pad { padding: 56px 20px 64px !important; }
+  .rsp-dark-pad { padding: 40px 24px !important; }
+  .hero-img-mobile-square { aspect-ratio: 1 / 1; }
+  .hero-img-mobile-square img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+  }
+  .tech-marquee-track { gap: 12px !important; }
+  .tech-marquee-track > div { width: 115px !important; }
+}
+
+@media (max-width: 480px) {
+  .rsp-grid-3,
+  .rsp-grid-4,
+  .rsp-grid-5 { grid-template-columns: 1fr !important; }
+  .rsp-section { padding: 48px 16px !important; }
+  .rsp-hero-pad { padding: 40px 16px 48px !important; }
+  .rsp-dark-pad { padding: 32px 16px !important; }
+  .tech-marquee-track > div { width: 100px !important; font-size: 28px !important; }
+}

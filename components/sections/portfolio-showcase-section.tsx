@@ -18,7 +18,7 @@ interface PortfolioShowcaseSectionProps {
 export function PortfolioShowcaseSection({ heading, subtext, items }: PortfolioShowcaseSectionProps) {
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
         <div style={{ maxWidth: 640, marginBottom: 40 }}>
           {heading && (
             <h2 style={{
@@ -45,7 +45,7 @@ export function PortfolioShowcaseSection({ heading, subtext, items }: PortfolioS
           )}
         </div>
         {items && items.length > 0 && (
-          <div style={{
+          <div className="rsp-grid-2" style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: 24,
