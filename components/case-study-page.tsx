@@ -463,19 +463,20 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
                   >
                     <div
                       style={{
-                        height: 110,
+                        aspectRatio: '16 / 9',
                         background: '#f5f5f4',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        overflow: 'hidden',
                       }}
                     >
                       {cs.coverImage?.asset ? (
                         <Image
-                          src={urlFor(cs.coverImage).width(360).height(110).auto('format').url()}
+                          src={urlFor(cs.coverImage).width(600).auto('format').url()}
                           alt={cs.clientName}
-                          width={360}
-                          height={110}
+                          width={600}
+                          height={338}
                           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />
                       ) : (

@@ -28,11 +28,13 @@ export default defineType({
       of: [{type: 'string'}],
       options: {
         list: [
+          {title: 'AI', value: 'ai'},
           {title: 'SEO', value: 'seo'},
-          {title: 'Performance Marketing', value: 'performance-marketing'},
-          {title: 'Content Marketing', value: 'content-marketing'},
           {title: 'Ecommerce', value: 'ecommerce'},
-          {title: 'Industry News', value: 'industry-news'},
+          {title: 'Social Media', value: 'social-media'},
+          {title: 'B2B Sales', value: 'b2b-sales'},
+          {title: 'Analytics', value: 'analytics'},
+          {title: 'GEO', value: 'geo'},
         ],
       },
     }),

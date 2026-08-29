@@ -13,11 +13,13 @@ export const metadata: Metadata = {
 }
 
 const categoryLabels: Record<string, string> = {
+  ai: 'AI',
   seo: 'SEO',
-  'performance-marketing': 'Performance Marketing',
-  'content-marketing': 'Content Marketing',
   ecommerce: 'Ecommerce',
-  'industry-news': 'Industry News',
+  'social-media': 'Social Media',
+  'b2b-sales': 'B2B Sales',
+  analytics: 'Analytics',
+  geo: 'GEO',
 }
 
 interface BlogListItem {
@@ -88,7 +90,7 @@ export default async function BlogListingPage() {
                 style={{
                   flex: 1,
                   minWidth: 260,
-                  height: 220,
+                  aspectRatio: '16 / 9',
                   borderRadius: 12,
                   background: '#f5f5f4',
                   overflow: 'hidden',
@@ -99,10 +101,10 @@ export default async function BlogListingPage() {
               >
                 {featured.mainImage?.asset ? (
                   <Image
-                    src={urlFor(featured.mainImage).width(520).height(220).auto('format').url()}
+                    src={urlFor(featured.mainImage).width(700).auto('format').url()}
                     alt={featured.mainImage.alt || featured.title}
-                    width={520}
-                    height={220}
+                    width={700}
+                    height={394}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     priority
                   />

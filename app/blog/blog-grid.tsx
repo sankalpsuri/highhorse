@@ -6,11 +6,13 @@ import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/client'
 
 const categoryLabels: Record<string, string> = {
+  ai: 'AI',
   seo: 'SEO',
-  'performance-marketing': 'Performance Marketing',
-  'content-marketing': 'Content Marketing',
   ecommerce: 'Ecommerce',
-  'industry-news': 'Industry News',
+  'social-media': 'Social Media',
+  'b2b-sales': 'B2B Sales',
+  analytics: 'Analytics',
+  geo: 'GEO',
 }
 
 interface BlogListItem {
@@ -183,7 +185,7 @@ export function BlogGrid({ posts }: { posts: BlogListItem[] }) {
               >
                 <div
                   style={{
-                    height: 140,
+                    aspectRatio: '16 / 9',
                     borderRadius: 12,
                     marginBottom: 14,
                     background: '#f5f5f4',
@@ -192,10 +194,10 @@ export function BlogGrid({ posts }: { posts: BlogListItem[] }) {
                 >
                   {post.mainImage?.asset ? (
                     <Image
-                      src={urlFor(post.mainImage).width(400).height(140).auto('format').url()}
+                      src={urlFor(post.mainImage).width(500).auto('format').url()}
                       alt={post.mainImage.alt || post.title}
-                      width={400}
-                      height={140}
+                      width={500}
+                      height={281}
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                   ) : (
