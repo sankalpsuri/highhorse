@@ -6,9 +6,9 @@ import styles from '@/app/home.module.css'
 
 const engines = [
   { label: 'Google', src: '/images/logo-google.webp' },
-  { label: 'Perplexity', src: '/images/logo-perplexity.webp' },
   { label: 'ChatGPT', src: '/images/logo-chatgpt.png' },
   { label: 'Gemini', src: '/images/logo-gemini.webp' },
+  { label: 'Perplexity', src: '/images/logo-perplexity.webp' },
   { label: 'Claude', src: '/images/logo-claude.png' },
 ]
 

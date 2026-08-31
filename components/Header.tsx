@@ -44,7 +44,7 @@ const megaMenus: (MegaMenuData | null)[] = [
         ],
       },
     ],
-    cta: { label: 'About High Horse', href: '/about-search-performance-marketing-agency' },
+    cta: { label: 'About High Horse', href: '/search-driven-performance-marketing-company' },
   },
   {
     blurb: 'Everything we offer, across finding demand, capturing it, and building the systems that convert it.',
@@ -52,10 +52,10 @@ const megaMenus: (MegaMenuData | null)[] = [
       {
         title: 'Search Intelligence',
         items: [
-          { label: 'AEO / GEO', href: '/answer-engine-optimization-and-ai-search-optimization-services' },
-          { label: 'Voice SEO', href: '/voice-search-seo-optimization-services' },
           { label: 'SEO', href: '/search-engine-optimization-seo-growth-services' },
           { label: 'Content Marketing', href: '/seo-content-marketing-and-demand-generation-services' },
+          { label: 'AEO / GEO', href: '/answer-engine-optimization-and-ai-search-optimization-services' },
+          { label: 'Voice SEO', href: '/voice-search-seo-optimization-services' },
         ],
       },
       {
@@ -78,7 +78,7 @@ const megaMenus: (MegaMenuData | null)[] = [
         ],
       },
     ],
-    cta: { label: 'View Capabilities', href: '/search-intelligence-and-demand-discovery-services' },
+    cta: { label: 'View Capabilities', href: '/search-engine-optimization-seo-growth-services' },
   },
   null,
   {

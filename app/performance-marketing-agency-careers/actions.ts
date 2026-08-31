@@ -102,7 +102,7 @@ export async function submitCareerApplication(
     console.error("[careers] Unexpected error:", message)
     return {
       success: false,
-      error: "Failed to save your application. Please try again or email hello@highhorse.in.",
+      error: "Failed to save your application. Please try again or email contact@highhorse.in.",
     }
   }
 }

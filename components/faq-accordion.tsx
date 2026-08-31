@@ -25,28 +25,38 @@ export function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
 
   return (
     <div className={styles.faqList}>
-      {faqs.map((faq, i) => (
-        <div key={faq._id} className={styles.faqItem}>
-          <button
-            className={styles.faqQuestion}
-            onClick={() => setOpenIdx(openIdx === i ? null : i)}
+      {faqs.map((faq, i) => {
+        const isOpen = openIdx === i
+        return (
+          <div
+            key={faq._id}
+            className={styles.faqItem}
+            style={{ animationDelay: `${i * 0.06}s` }}
           >
-            <div className={styles.faqQuestionText}>{faq.question}</div>
-            <div className={`${styles.faqIcon} ${openIdx === i ? styles.faqIconOpen : ''}`}>
-              +
+            <button
+              className={`${styles.faqQuestion} ${isOpen ? styles.faqQuestionOpen : ''}`}
+              onClick={() => setOpenIdx(isOpen ? null : i)}
+              aria-expanded={isOpen}
+            >
+              <div className={styles.faqQuestionText}>{faq.question}</div>
+              <div className={`${styles.faqIcon} ${isOpen ? styles.faqIconOpen : ''}`}>
+                +
+              </div>
+            </button>
+            <div className={`${styles.faqAnswerWrap} ${isOpen ? styles.faqAnswerWrapOpen : ''}`}>
+              <div className={styles.faqAnswerInner}>
+                <div className={styles.faqAnswer}>
+                  {Array.isArray(faq.answer) ? (
+                    <PortableText value={faq.answer} />
+                  ) : (
+                    faq.answer
+                  )}
+                </div>
+              </div>
             </div>
-          </button>
-          {openIdx === i && (
-            <div className={styles.faqAnswer}>
-              {Array.isArray(faq.answer) ? (
-                <PortableText value={faq.answer} />
-              ) : (
-                faq.answer
-              )}
-            </div>
-          )}
-        </div>
-      ))}
+          </div>
+        )
+      })}
     </div>
   )
 }

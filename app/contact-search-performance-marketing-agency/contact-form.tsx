@@ -190,7 +190,7 @@ export function ContactForm() {
             })}
           </div>
           <div className={styles.emailFallback}>
-            Prefer email? <a href="mailto:hello@highhorse.in">hello@highhorse.in</a>
+            Prefer email? <a href="mailto:contact@highhorse.in">contact@highhorse.in</a>
           </div>
         </div>
 

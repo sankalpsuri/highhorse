@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from 'react'
 
-export function ScrollReveal({ children, className }: { children: ReactNode; className?: string }) {
+export function ScrollReveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export function ScrollReveal({ children, className }: { children: ReactNode; cla
 
     el.style.opacity = '0'
     el.style.transform = 'translateY(22px)'
-    el.style.transition = 'opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)'
+    el.style.transition = `opacity .7s cubic-bezier(.2,.7,.2,1) ${delay}s, transform .7s cubic-bezier(.2,.7,.2,1) ${delay}s`
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -26,7 +26,7 @@ export function ScrollReveal({ children, className }: { children: ReactNode; cla
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [])
+  }, [delay])
 
   return (
     <div ref={ref} className={className}>

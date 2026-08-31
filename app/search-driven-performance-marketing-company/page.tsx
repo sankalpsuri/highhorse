@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { existsSync, readdirSync } from 'fs'
 import { join, extname } from 'path'
+import { sanityFetch } from '@/lib/sanity/client'
 import styles from './company.module.css'
 
 export const metadata: Metadata = {
@@ -74,6 +75,26 @@ function getClientLogos(): { name: string; src: string }[] {
     }))
 }
 
+const caseStudySlugsForLogosQuery = `*[_type == "caseStudy"]{ clientName, "slug": slug.current }`
+
+function normalize(s: string): string {
+  return s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]/g, '')
+}
+
+async function getCaseStudySlugLookup(): Promise<(logoName: string) => string | undefined> {
+  const docs = await sanityFetch<{ clientName: string; slug: string }[]>(caseStudySlugsForLogosQuery)
+  const entries = docs
+    .filter((d) => d.clientName && d.slug)
+    .map((d) => ({ normalized: normalize(d.clientName), slug: d.slug }))
+  return (logoName: string) => {
+    const n = normalize(logoName)
+    for (const e of entries) {
+      if (e.normalized === n || e.normalized.includes(n)) return e.slug
+    }
+    return undefined
+  }
+}
+
 /* ── Components ──────────────────────────────────────────────────────── */
 
 function AssetImage({
@@ -92,7 +113,7 @@ function AssetImage({
   className?: string
 }) {
   if (fileExists(src)) {
-    return <Image src={src} alt={alt} width={width} height={height} className={className} />
+    return <Image src={src} alt={alt} width={width} height={height} className={className} quality={90} />
   }
   return (
     <div className={`${styles.placeholder} ${className ?? ''}`}>
@@ -101,11 +122,11 @@ function AssetImage({
   )
 }
 
-function BannerImage({ src, alt, slot }: { src: string; alt: string; slot: string }) {
+function BannerImage({ src, alt, slot, nativeWidth = 1200, nativeHeight = 1200 }: { src: string; alt: string; slot: string; nativeWidth?: number; nativeHeight?: number }) {
   if (fileExists(src)) {
     return (
       <div className={styles.bannerWrap}>
-        <Image src={src} alt={alt} width={1200} height={1200} className={styles.bannerImg} />
+        <Image src={src} alt={alt} width={nativeWidth} height={nativeHeight} quality={90} className={styles.bannerImg} />
       </div>
     )
   }
@@ -218,8 +239,9 @@ const whyBullets = [
 
 /* ── Page ──────────────────────────────────────────────────────────────── */
 
-export default function CompanyPage() {
+export default async function CompanyPage() {
   const clientLogos = getClientLogos()
+  const findSlug = await getCaseStudySlugLookup()
 
   return (
     <div className={styles.page}>
@@ -279,17 +301,28 @@ export default function CompanyPage() {
           {clientLogos.length > 0 ? (
             <div className={styles.marqueeContainer}>
               <div className={styles.marqueeTrack}>
-                {clientLogos.map((logo, i) => (
-                  <div key={i} className={styles.marqueeLogo}>
+                {clientLogos.map((logo, i) => {
+                  const slug = findSlug(logo.name)
+                  const img = (
                     <Image
                       src={logo.src}
                       alt={logo.name}
                       width={180}
                       height={64}
                       className={styles.marqueeLogoImg}
+                      unoptimized
                     />
-                  </div>
-                ))}
+                  )
+                  return slug ? (
+                    <Link key={i} href={`/${slug}`} className={styles.marqueeLogo}>
+                      {img}
+                    </Link>
+                  ) : (
+                    <div key={i} className={styles.marqueeLogo}>
+                      {img}
+                    </div>
+                  )
+                })}
                 {clientLogos.map((logo, i) => (
                   <div key={`dup-${i}`} className={styles.marqueeLogo} aria-hidden="true">
                     <Image
@@ -298,6 +331,7 @@ export default function CompanyPage() {
                       width={180}
                       height={64}
                       className={styles.marqueeLogoImg}
+                      unoptimized
                     />
                   </div>
                 ))}
@@ -344,7 +378,7 @@ export default function CompanyPage() {
             </p>
           </div>
           <div className={styles.twoColMedia}>
-            <BannerImage src={ASSETS.storyBanner} alt="Our story" slot="storyBanner" />
+            <BannerImage src={ASSETS.storyBanner} alt="Our story" slot="storyBanner" nativeWidth={840} nativeHeight={960} />
           </div>
         </div>
       </section>
@@ -386,6 +420,8 @@ export default function CompanyPage() {
               src={ASSETS.thinkingBanner}
               alt="The thinking behind every successful brand"
               slot="thinkingBanner"
+              nativeWidth={1212}
+              nativeHeight={1062}
             />
           </div>
           <div className={styles.twoColText}>

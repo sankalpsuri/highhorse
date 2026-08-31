@@ -49,11 +49,8 @@ function AuditModal({
   initialUrl: string
   onClose: () => void
 }) {
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [websiteUrl, setWebsiteUrl] = useState(initialUrl)
-  const [phone, setPhone] = useState('')
-  const [notes, setNotes] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [done, setDone] = useState(false)
@@ -80,8 +77,8 @@ function AuditModal({
     e.preventDefault()
     setError('')
 
-    if (!name.trim() || !email.trim() || !websiteUrl.trim()) {
-      setError('Name, email, and website URL are required.')
+    if (!email.trim() || !websiteUrl.trim()) {
+      setError('Email and website URL are required.')
       return
     }
 
@@ -93,11 +90,8 @@ function AuditModal({
     setSubmitting(true)
     try {
       const result = await submitAuditRequest({
-        name,
         email,
         websiteUrl,
-        phone,
-        notes,
       })
       if (!result.success) {
         setError(result.error || 'Something went wrong. Please try again.')
@@ -148,22 +142,10 @@ function AuditModal({
           <>
             <h2 className={styles.modalTitle}>Request Your Free Audit</h2>
             <p className={styles.modalSub}>
-              Tell us a bit about yourself and we&rsquo;ll review your site.
+              Enter your email and website URL and we&rsquo;ll review your site.
             </p>
 
             <form onSubmit={handleSubmit} className={styles.modalForm}>
-              <div className={styles.fieldGroup}>
-                <label className={styles.label}>
-                  Full Name <span className={styles.required}>*</span>
-                </label>
-                <input
-                  className={styles.field}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Jane Doe"
-                />
-              </div>
-
               <div className={styles.fieldGroup}>
                 <label className={styles.label}>
                   Email <span className={styles.required}>*</span>
@@ -187,33 +169,6 @@ function AuditModal({
                   value={websiteUrl}
                   onChange={(e) => setWebsiteUrl(e.target.value)}
                   placeholder="https://www.yoursite.com"
-                />
-              </div>
-
-              <div className={styles.fieldGroup}>
-                <label className={styles.label}>
-                  Phone{' '}
-                  <span className={styles.optional}>(optional)</span>
-                </label>
-                <input
-                  className={styles.field}
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+91"
-                />
-              </div>
-
-              <div className={styles.fieldGroup}>
-                <label className={styles.label}>
-                  What should we focus on?{' '}
-                  <span className={styles.optional}>(optional)</span>
-                </label>
-                <textarea
-                  className={`${styles.field} ${styles.textarea}`}
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  placeholder="e.g. slow load times, not ranking for key terms, low conversion rate"
-                  rows={3}
                 />
               </div>
 

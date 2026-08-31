@@ -50,10 +50,10 @@ const fitGood = ['Real search demand', 'Established or properly funded', 'Strong
 const fitBad = ['Looking for the cheapest SEO package', 'No clear marketing budget', 'Expecting guaranteed rankings or revenue', 'Wants every service under one small retainer', 'Refuses tracking or sales-data access', 'Has little meaningful search demand', 'Cannot manage additional enquiries']
 
 const aiLogos = [
-  { label: 'ChatGPT', src: '/images/logo-chatgpt.png' },
-  { label: 'Perplexity', src: '/images/logo-perplexity.webp' },
   { label: 'Google', src: '/images/logo-google.webp' },
+  { label: 'ChatGPT', src: '/images/logo-chatgpt-white.svg' },
   { label: 'Gemini', src: '/images/logo-gemini.webp' },
+  { label: 'Perplexity', src: '/images/logo-perplexity.webp' },
   { label: 'Claude', src: '/images/logo-claude.png' },
 ]
 

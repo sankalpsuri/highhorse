@@ -1,13 +1,18 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { sanityFetch } from '@/lib/sanity/client'
 import { allFaqsQuery } from '@/lib/sanity/queries'
-import { FaqAccordion } from '@/components/faq-accordion'
+import { ScrollReveal } from '@/components/scroll-reveal'
+import { FaqBody } from './faq-body'
+import styles from './faq.module.css'
 
 export const metadata: Metadata = {
   title: 'FAQ — High Horse',
   description:
     'Answers to common questions about SEO, performance marketing, pricing, and how we work.',
 }
+
+const CONTACT_HREF = '/contact-search-performance-marketing-agency'
 
 const categoryMeta: Record<string, { label: string; order: number }> = {
   general: { label: 'General', order: 0 },
@@ -45,117 +50,83 @@ export default async function FaqPage() {
   return (
     <main>
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="faq-hero">
-        <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
-          <div
-            style={{
-              fontFamily: 'Poppins, sans-serif',
-              fontSize: 13,
-              fontWeight: 700,
-              color: '#1A6AFF',
-              marginBottom: 10,
-            }}
-          >
-            Support
-          </div>
-          <h1
-            style={{
-              fontFamily: 'Montserrat, sans-serif',
-              fontSize: 'clamp(1.5rem, 3vw, 2.125rem)',
-              fontWeight: 700,
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-              color: '#111111',
-              maxWidth: 580,
-              marginBottom: 16,
-            }}
-          >
-            Frequently Asked Questions
-          </h1>
-          <p
-            style={{
-              fontFamily: 'Poppins, sans-serif',
-              fontSize: 15,
-              color: '#5c5c5c',
-              lineHeight: 1.6,
-              maxWidth: 520,
-            }}
-          >
-            Answers to the questions we hear most about search, performance
-            marketing, and how we work with clients.
-          </p>
-        </div>
-      </section>
-
-      {/* ── FAQ Sections ──────────────────────────────────────── */}
-      {faqs.length === 0 ? (
-        <section style={{ padding: '0 0 64px' }}>
-          <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
-            <p
-              style={{
-                fontFamily: 'Poppins, sans-serif',
-                fontSize: 15,
-                color: '#8a8a86',
-                padding: '40px 0',
-                textAlign: 'center',
-              }}
-            >
-              No FAQs yet. Check back soon.
+      <div className={styles.hero}>
+        <div className={styles.heroGrid} />
+        <div className={styles.heroGlow} />
+        <div className={styles.heroInner}>
+          <div className={styles.heroContent}>
+            <div className={styles.heroBadge}>
+              <div className={styles.heroBadgeDot} />
+              <span className={styles.heroBadgeText}>Questions &amp; Answers</span>
+            </div>
+            <h1 className={styles.heroHeading}>
+              The questions people ask us before they{' '}
+              <span className={styles.heroAccent}>sign anything</span>
+            </h1>
+            <p className={styles.heroSub}>
+              Straight answers on how we work, what it costs you in time, and what you
+              can expect to see. If yours is not here, ask it directly.
             </p>
           </div>
-        </section>
-      ) : (
-        sections.map((section) => (
-          <section key={section.key} className="faq-section">
-            <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
-              <h2
-                style={{
-                  fontFamily: 'Montserrat, sans-serif',
-                  fontSize: 'clamp(1.1rem, 2vw, 1.375rem)',
-                  fontWeight: 700,
-                  color: '#111111',
-                  letterSpacing: '-0.02em',
-                  marginBottom: 20,
-                }}
-              >
-                {section.label}
-              </h2>
-              <FaqAccordion faqs={section.items} />
+          <div className={styles.heroAside}>
+            <div className={styles.heroCard}>
+              <div className={styles.heroCardGlow} />
+              <div style={{ position: 'relative' }}>
+                <div className={styles.heroCardLabel}>Still unsure?</div>
+                <div className={styles.heroCardBody}>
+                  A 30-minute call answers more than a page of FAQs. No pitch until you
+                  ask for one.
+                </div>
+                <Link href={CONTACT_HREF} className={styles.heroCardCta}>
+                  Book a strategy call
+                </Link>
+              </div>
             </div>
-          </section>
-        ))
+          </div>
+        </div>
+      </div>
+
+      {/* ── Filter + Accordion + Sidebar ─────────────────────── */}
+      {faqs.length === 0 ? (
+        <div className={styles.body}>
+          <div className={styles.bodyInner}>
+            <p className={styles.empty}>No FAQs yet. Check back soon.</p>
+          </div>
+        </div>
+      ) : (
+        <FaqBody sections={sections} />
       )}
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .faq-hero {
-              padding: 56px 0 0;
-            }
-            .faq-section {
-              padding: 40px 0;
-            }
-            .faq-section:last-of-type {
-              padding-bottom: 64px;
-            }
-            @media (max-width: 768px) {
-              .faq-hero { padding: 48px 0 0; }
-              .faq-section { padding: 32px 0; }
-              .faq-section:last-of-type { padding-bottom: 56px; }
-            }
-            @media (max-width: 480px) {
-              .faq-hero { padding: 40px 0 0; }
-              .faq-section { padding: 28px 0; }
-              .faq-section:last-of-type { padding-bottom: 48px; }
-            }
-            @media (max-width: 374px) {
-              .faq-hero { padding: 32px 0 0; }
-              .faq-section { padding: 24px 0; }
-              .faq-section:last-of-type { padding-bottom: 40px; }
-            }
-          `,
-        }}
-      />
+      {/* ── Final CTA ────────────────────────────────────────── */}
+      <div className={styles.cta}>
+        <div className={styles.ctaGrid} />
+        <div className={styles.ctaGlow} />
+        <ScrollReveal>
+          <div className={styles.ctaInner}>
+            <div className={styles.ctaLeft}>
+              <h2 className={styles.ctaHeading}>
+                Find out what the answers say about you today.
+              </h2>
+              <p className={styles.ctaSub}>
+                We will check where you currently appear across search and AI answers,
+                show you the gaps against your competitors, and tell you what is worth
+                fixing first.
+              </p>
+            </div>
+            <div className={styles.ctaRight}>
+              <Link href={CONTACT_HREF} className={styles.ctaBtnPrimary}>
+                Book a strategy call
+              </Link>
+              <Link href={CONTACT_HREF} className={styles.ctaBtnOutline}>
+                Request a pitch deck
+              </Link>
+              <div className={styles.ctaDisclaimer}>
+                No obligation. You keep the findings either way.
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
     </main>
   )
 }

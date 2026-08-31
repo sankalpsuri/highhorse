@@ -295,7 +295,7 @@ export interface Database {
       website_audit_requests: {
         Row: {
           id: string
-          full_name: string
+          full_name: string | null
           email: string
           website_url: string
           phone: string | null
@@ -304,7 +304,7 @@ export interface Database {
         }
         Insert: {
           id?: string
-          full_name: string
+          full_name?: string | null
           email: string
           website_url: string
           phone?: string | null
@@ -313,7 +313,7 @@ export interface Database {
         }
         Update: {
           id?: string
-          full_name?: string
+          full_name?: string | null
           email?: string
           website_url?: string
           phone?: string | null
