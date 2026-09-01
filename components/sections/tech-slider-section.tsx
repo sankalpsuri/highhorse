@@ -51,6 +51,7 @@ export function TechSliderSection({ heading, subtext, logos, filesystemLogos }: 
         alt={logo.name}
         width={80}
         height={80}
+        quality={90}
         style={{ maxWidth: '60%', maxHeight: '60%', objectFit: 'contain' }}
       />
     </div>
@@ -82,6 +83,7 @@ export function TechSliderSection({ heading, subtext, logos, filesystemLogos }: 
           alt={logo.name || ''}
           width={80}
           height={80}
+          quality={90}
           style={{ maxWidth: '60%', maxHeight: '60%', objectFit: 'contain' }}
         />
       ) : (

@@ -66,10 +66,12 @@ export function CaseStudyCardsSection({ heading, subtext, cards }: CaseStudyCard
               {card.resultChartImage?.asset ? (
                 <div style={{ marginBottom: 14, borderRadius: 10, overflow: 'hidden' }}>
                   <Image
-                    src={urlFor(card.resultChartImage).width(600).auto('format').url()}
+                    src={urlFor(card.resultChartImage).width(1200).auto('format').url()}
                     alt={`${card.clientName} chart`}
-                    width={600}
-                    height={200}
+                    width={1200}
+                    height={400}
+                    sizes="(max-width: 767px) 100vw, 50vw"
+                    quality={90}
                     style={{ width: '100%', height: 'auto', display: 'block', maxWidth: 600 }}
                   />
                 </div>

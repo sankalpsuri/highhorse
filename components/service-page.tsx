@@ -175,10 +175,12 @@ export function ServicePage({ data }: ServicePageProps) {
                 >
                   {cs.coverImage?.asset ? (
                     <Image
-                      src={urlFor(cs.coverImage).width(600).auto('format').url()}
+                      src={urlFor(cs.coverImage).width(1200).auto('format').url()}
                       alt={cs.clientName}
-                      width={600}
-                      height={340}
+                      width={1200}
+                      height={680}
+                      sizes="(max-width: 767px) 100vw, 50vw"
+                      quality={90}
                       style={{ width: '100%', height: 'auto', display: 'block' }}
                     />
                   ) : (

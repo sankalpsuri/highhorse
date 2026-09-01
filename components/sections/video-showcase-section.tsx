@@ -13,7 +13,7 @@ interface VideoShowcaseSectionProps {
 
 export function VideoShowcaseSection({ heading, subtext, videoUrl, videoFile, posterImage }: VideoShowcaseSectionProps) {
   const src = videoFile?.asset?.url || videoUrl
-  const poster = posterImage?.asset ? urlFor(posterImage).width(1280).auto('format').url() : undefined
+  const poster = posterImage?.asset ? urlFor(posterImage).width(2560).auto('format').url() : undefined
 
   return (
     <section>
@@ -66,8 +66,10 @@ export function VideoShowcaseSection({ heading, subtext, videoUrl, videoFile, po
             <Image
               src={poster}
               alt={heading || 'Video poster'}
-              width={1280}
-              height={720}
+              width={2560}
+              height={1440}
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              quality={90}
               style={{ width: '100%', height: 'auto', display: 'block', maxWidth: 1280 }}
             />
           ) : (

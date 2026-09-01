@@ -67,10 +67,11 @@ export function PortfolioShowcaseSection({ heading, subtext, items }: PortfolioS
                 }}>
                   {item.image?.asset && (
                     <Image
-                      src={urlFor(item.image).width(800).auto('format').url()}
+                      src={urlFor(item.image).width(1200).auto('format').url()}
                       alt={item.title || ''}
                       fill
                       sizes="(max-width: 767px) 100vw, 50vw"
+                      quality={90}
                       style={{ objectFit: 'cover' }}
                     />
                   )}

@@ -201,10 +201,12 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
     <div style={{ flex: '1 1 400px', minWidth: 280, maxWidth: 520 }}>
       {hasImage ? (
         <Image
-          src={urlFor(image).width(800).auto('format').url()}
+          src={urlFor(image).width(1200).auto('format').url()}
           alt={heading || ''}
-          width={800}
-          height={500}
+          width={1200}
+          height={750}
+          sizes="(max-width: 767px) 100vw, 520px"
+          quality={90}
           style={{ width: '100%', height: 'auto', borderRadius: 8, maxWidth: 800 }}
         />
       ) : (

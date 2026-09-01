@@ -91,6 +91,7 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
                         alt={card.title || ''}
                         fill
                         sizes="24px"
+                        quality={90}
                         style={{ objectFit: 'scale-down', padding: 10 }}
                       />
                     </div>
@@ -157,6 +158,7 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
                   alt={card.title || ''}
                   fill
                   sizes="40px"
+                  quality={90}
                   style={{ objectFit: 'scale-down' }}
                 />
               </div>

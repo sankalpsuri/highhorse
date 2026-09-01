@@ -128,10 +128,12 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
             >
               {data.coverImage?.asset ? (
                 <Image
-                  src={urlFor(data.coverImage).width(400).height(220).auto('format').url()}
+                  src={urlFor(data.coverImage).width(800).height(440).auto('format').url()}
                   alt={data.clientName}
-                  width={400}
-                  height={220}
+                  width={800}
+                  height={440}
+                  sizes="(max-width: 767px) 100vw, 400px"
+                  quality={90}
                   style={{ borderRadius: 12, objectFit: 'cover', maxWidth: '100%', height: 'auto' }}
                   priority
                 />
@@ -372,10 +374,12 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
                     img?.asset ? (
                       <Image
                         key={i}
-                        src={urlFor(img).width(400).auto('format').url()}
+                        src={urlFor(img).width(800).auto('format').url()}
                         alt={`${data.clientName} result ${i + 1}`}
-                        width={400}
-                        height={260}
+                        width={800}
+                        height={520}
+                        sizes="(max-width: 767px) 100vw, 400px"
+                        quality={90}
                         style={{
                           width: '100%',
                           height: 'auto',
@@ -471,10 +475,12 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
                       >
                         {cs.coverImage?.asset ? (
                           <Image
-                            src={urlFor(cs.coverImage).width(600).auto('format').url()}
+                            src={urlFor(cs.coverImage).width(1200).auto('format').url()}
                             alt={cs.clientName}
-                            width={600}
-                            height={338}
+                            width={1200}
+                            height={675}
+                            sizes="(max-width: 767px) 100vw, 33vw"
+                            quality={90}
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                           />
                         ) : (

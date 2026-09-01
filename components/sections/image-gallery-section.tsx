@@ -56,10 +56,12 @@ export function ImageGallerySection({ heading, bodyText, images }: ImageGalleryS
               }}>
                 {item.image?.asset ? (
                   <Image
-                    src={urlFor(item.image).width(800).auto('format').url()}
+                    src={urlFor(item.image).width(1200).auto('format').url()}
                     alt={item.caption || ''}
-                    width={800}
-                    height={500}
+                    width={1200}
+                    height={750}
+                    sizes="(max-width: 767px) 100vw, 33vw"
+                    quality={90}
                     style={{ width: '100%', height: 'auto', display: 'block', maxWidth: 800 }}
                   />
                 ) : (

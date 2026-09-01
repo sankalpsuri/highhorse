@@ -62,10 +62,12 @@ export function PortfolioMasonryGrid({ heading, subtext, items }: PortfolioMason
                 }}>
                   {hasImage ? (
                     <Image
-                      src={urlFor(item.image).width(600).auto('format').url()}
+                      src={urlFor(item.image).width(1200).auto('format').url()}
                       alt={item.badgeText || `Portfolio item ${i + 1}`}
-                      width={600}
-                      height={400}
+                      width={1200}
+                      height={800}
+                      sizes="(max-width: 767px) 100vw, 33vw"
+                      quality={90}
                       style={{ width: '100%', height: 'auto', display: 'block', maxWidth: 600 }}
                     />
                   ) : (

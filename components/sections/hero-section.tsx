@@ -98,10 +98,12 @@ export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaT
         {heroImage?.asset ? (
           <div className={mobileImageSquare ? 'hero-img-mobile-square' : undefined} style={{ marginTop: 16 }}>
             <Image
-              src={urlFor(heroImage).width(1280).auto('format').url()}
+              src={urlFor(heroImage).width(2560).auto('format').url()}
               alt={headline}
-              width={1280}
-              height={600}
+              width={2560}
+              height={1200}
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              quality={90}
               style={{ width: '100%', height: 'auto', borderRadius: 8, maxWidth: 1280 }}
             />
           </div>
