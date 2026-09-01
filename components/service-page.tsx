@@ -156,10 +156,13 @@ export function ServicePage({ data }: ServicePageProps) {
                 const isMulti = data.accentStyle === 'multi'
                 const cardBg = isMulti ? caseStudyColors[idx % caseStudyColors.length] : '#FFFFFF'
                 const cardBorder = isMulti ? 'none' : '1px solid #E4E4E4'
+                const validSlug = cs.slug && !/\s/.test(cs.slug)
+                const Wrapper = validSlug ? Link : 'div'
+                const wrapperProps = validSlug ? { href: `/${cs.slug}` } : {}
                 return (
-                <Link
+                <Wrapper
                   key={entry._key || cs.slug}
-                  href={`/${cs.slug}`}
+                  {...wrapperProps as any}
                   style={{
                     display: 'block',
                     background: cardBg,
@@ -241,7 +244,7 @@ export function ServicePage({ data }: ServicePageProps) {
                       </div>
                     )}
                   </div>
-                </Link>
+                </Wrapper>
                 )
               })}
             </div>

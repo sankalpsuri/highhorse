@@ -102,7 +102,7 @@ export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaT
               alt={headline}
               width={1280}
               height={600}
-              style={{ width: '100%', height: 'auto', borderRadius: 8 }}
+              style={{ width: '100%', height: 'auto', borderRadius: 8, maxWidth: 1280 }}
             />
           </div>
         ) : heroImage ? (

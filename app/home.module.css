@@ -1420,7 +1420,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 22px;
-  align-items: start;
 }
 
 .caseCard {
@@ -1489,6 +1488,62 @@
   color: #9A9A96;
   border: 1px dashed #E6E6E4;
   border-radius: 6px;
+}
+
+/* ── Client Logo Grid ─────────────────────────────────────── */
+.logoGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.logoGridItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #E6E6E4;
+  border-radius: 12px;
+  padding: 20px 16px;
+  height: 80px;
+  transition: box-shadow 0.25s, border-color 0.25s;
+}
+
+.logoGridItem:hover {
+  box-shadow: 0 8px 20px rgba(10, 10, 12, 0.06);
+  border-color: #C9D8FB;
+}
+
+.logoGridEmpty {
+  text-align: center;
+  padding: 48px 24px;
+  font: 400 15px/1.6 'Poppins', sans-serif;
+  color: #9A9A96;
+  border: 1px dashed #E6E6E4;
+  border-radius: 6px;
+}
+
+@media (max-width: 999px) {
+  .logoGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .logoGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .logoGridItem {
+    padding: 16px 12px;
+    height: 68px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ── FAQ ───────────────────────────────────────────────────── */

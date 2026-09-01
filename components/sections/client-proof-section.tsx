@@ -61,6 +61,7 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
                       width: '100%',
                       height: 'auto',
                       display: 'block',
+                      maxWidth: 700,
                     }}
                   />
                 ) : (

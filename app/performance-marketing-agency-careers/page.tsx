@@ -50,7 +50,7 @@ const opportunities: { title: string; desc: string; icon?: string }[] = [
   {
     title: 'SEO & Search Strategy',
     desc: 'Technical audits, keyword research, on-page optimisation, and organic strategy across search engines and AI answer platforms.',
-    icon: '/assets/SEO & Search Strategy(1).png',
+    icon: '/assets/(1).png',
   },
   {
     title: 'Performance Marketing',

@@ -68,7 +68,7 @@ export function VideoShowcaseSection({ heading, subtext, videoUrl, videoFile, po
               alt={heading || 'Video poster'}
               width={1280}
               height={720}
-              style={{ width: '100%', height: 'auto', display: 'block' }}
+              style={{ width: '100%', height: 'auto', display: 'block', maxWidth: 1280 }}
             />
           ) : (
             <div style={{

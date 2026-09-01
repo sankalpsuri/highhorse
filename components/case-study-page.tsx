@@ -455,71 +455,86 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
                 Related Case Studies
               </h2>
               <div className="cs-detail-related-grid">
-                {data.otherCaseStudies.map((cs) => (
-                  <Link
-                    key={cs._id}
-                    href={`/${cs.slug}`}
-                    className="cs-detail-related-card"
-                  >
-                    <div
-                      style={{
-                        aspectRatio: '16 / 9',
-                        background: '#f5f5f4',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      {cs.coverImage?.asset ? (
-                        <Image
-                          src={urlFor(cs.coverImage).width(600).auto('format').url()}
-                          alt={cs.clientName}
-                          width={600}
-                          height={338}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
-                      ) : (
-                        <span
+                {data.otherCaseStudies.map((cs) => {
+                  const validSlug = cs.slug && !/\s/.test(cs.slug)
+                  const card = (
+                    <>
+                      <div
+                        style={{
+                          aspectRatio: '16 / 9',
+                          background: '#f5f5f4',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        {cs.coverImage?.asset ? (
+                          <Image
+                            src={urlFor(cs.coverImage).width(600).auto('format').url()}
+                            alt={cs.clientName}
+                            width={600}
+                            height={338}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
+                        ) : (
+                          <span
+                            style={{
+                              fontFamily: 'Montserrat, sans-serif',
+                              fontSize: 11,
+                              fontWeight: 700,
+                              color: '#8a8a86',
+                              letterSpacing: '0.04em',
+                            }}
+                          >
+                            {cs.clientName.toUpperCase()}
+                          </span>
+                        )}
+                      </div>
+                      <div style={{ padding: '16px 18px' }}>
+                        <h3
                           style={{
                             fontFamily: 'Montserrat, sans-serif',
-                            fontSize: 11,
+                            fontSize: 14,
                             fontWeight: 700,
-                            color: '#8a8a86',
-                            letterSpacing: '0.04em',
+                            color: '#111111',
+                            lineHeight: 1.35,
+                            letterSpacing: '-0.02em',
+                            marginBottom: 6,
                           }}
                         >
-                          {cs.clientName.toUpperCase()}
-                        </span>
-                      )}
+                          {cs.summary || cs.clientName}
+                        </h3>
+                        <p
+                          style={{
+                            fontFamily: 'Poppins, sans-serif',
+                            fontSize: 12.5,
+                            color: '#5c5c5c',
+                            margin: 0,
+                          }}
+                        >
+                          {cs.clientName}
+                        </p>
+                      </div>
+                    </>
+                  )
+                  return validSlug ? (
+                    <Link
+                      key={cs._id}
+                      href={`/${cs.slug}`}
+                      className="cs-detail-related-card"
+                    >
+                      {card}
+                    </Link>
+                  ) : (
+                    <div
+                      key={cs._id}
+                      className="cs-detail-related-card"
+                    >
+                      {card}
                     </div>
-                    <div style={{ padding: '16px 18px' }}>
-                      <h3
-                        style={{
-                          fontFamily: 'Montserrat, sans-serif',
-                          fontSize: 14,
-                          fontWeight: 700,
-                          color: '#111111',
-                          lineHeight: 1.35,
-                          letterSpacing: '-0.02em',
-                          marginBottom: 6,
-                        }}
-                      >
-                        {cs.summary || cs.clientName}
-                      </h3>
-                      <p
-                        style={{
-                          fontFamily: 'Poppins, sans-serif',
-                          fontSize: 12.5,
-                          color: '#5c5c5c',
-                          margin: 0,
-                        }}
-                      >
-                        {cs.clientName}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
+                  )
+                })}
               </div>
             </>
           )}

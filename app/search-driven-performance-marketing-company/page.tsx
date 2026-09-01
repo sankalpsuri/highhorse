@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { existsSync, readdirSync } from 'fs'
-import { join, extname } from 'path'
+import { existsSync } from 'fs'
+import { join } from 'path'
 import { sanityFetch } from '@/lib/sanity/client'
+import { getClientLogos } from '@/lib/get-client-logos'
 import styles from './company.module.css'
 
 export const metadata: Metadata = {
@@ -57,22 +58,8 @@ const ASSETS = {
 
 /* ── Helpers ──────────────────────────────────────────────────────────── */
 
-const IMAGE_EXTS = new Set(['.svg', '.png', '.jpg', '.jpeg', '.webp'])
-
 function fileExists(src: string): boolean {
   return existsSync(join(process.cwd(), 'public', src))
-}
-
-function getClientLogos(): { name: string; src: string }[] {
-  const dir = join(process.cwd(), 'public', 'assets', 'client-logos')
-  if (!existsSync(dir)) return []
-  return readdirSync(dir)
-    .filter((f) => IMAGE_EXTS.has(extname(f).toLowerCase()))
-    .sort()
-    .map((f) => ({
-      name: f.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
-      src: `/assets/client-logos/${f}`,
-    }))
 }
 
 const caseStudySlugsForLogosQuery = `*[_type == "caseStudy"]{ clientName, "slug": slug.current }`
@@ -84,7 +71,7 @@ function normalize(s: string): string {
 async function getCaseStudySlugLookup(): Promise<(logoName: string) => string | undefined> {
   const docs = await sanityFetch<{ clientName: string; slug: string }[]>(caseStudySlugsForLogosQuery)
   const entries = docs
-    .filter((d) => d.clientName && d.slug)
+    .filter((d) => d.clientName && d.slug && !/\s/.test(d.slug))
     .map((d) => ({ normalized: normalize(d.clientName), slug: d.slug }))
   return (logoName: string) => {
     const n = normalize(logoName)

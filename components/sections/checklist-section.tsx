@@ -84,7 +84,7 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
                 alt={heading || ''}
                 width={800}
                 height={600}
-                style={{ width: '100%', height: 'auto', borderRadius: 16 }}
+                style={{ width: '100%', height: 'auto', borderRadius: 16, maxWidth: 800 }}
               />
             ) : (
               <div style={{
@@ -116,7 +116,7 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
           alt={heading || ''}
           width={800}
           height={500}
-          style={{ width: '100%', height: 'auto', borderRadius: 8 }}
+          style={{ width: '100%', height: 'auto', borderRadius: 8, maxWidth: 800 }}
         />
       </div>
     )

@@ -205,7 +205,7 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
           alt={heading || ''}
           width={800}
           height={500}
-          style={{ width: '100%', height: 'auto', borderRadius: 8 }}
+          style={{ width: '100%', height: 'auto', borderRadius: 8, maxWidth: 800 }}
         />
       ) : (
         <div style={{

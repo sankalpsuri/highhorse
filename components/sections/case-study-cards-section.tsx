@@ -70,7 +70,7 @@ export function CaseStudyCardsSection({ heading, subtext, cards }: CaseStudyCard
                     alt={`${card.clientName} chart`}
                     width={600}
                     height={200}
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                    style={{ width: '100%', height: 'auto', display: 'block', maxWidth: 600 }}
                   />
                 </div>
               ) : (

@@ -60,7 +60,7 @@ export function ImageGallerySection({ heading, bodyText, images }: ImageGalleryS
                     alt={item.caption || ''}
                     width={800}
                     height={500}
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                    style={{ width: '100%', height: 'auto', display: 'block', maxWidth: 800 }}
                   />
                 ) : (
                   <div style={{

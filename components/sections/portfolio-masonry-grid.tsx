@@ -66,7 +66,7 @@ export function PortfolioMasonryGrid({ heading, subtext, items }: PortfolioMason
                       alt={item.badgeText || `Portfolio item ${i + 1}`}
                       width={600}
                       height={400}
-                      style={{ width: '100%', height: 'auto', display: 'block' }}
+                      style={{ width: '100%', height: 'auto', display: 'block', maxWidth: 600 }}
                     />
                   ) : (
                     <div style={{

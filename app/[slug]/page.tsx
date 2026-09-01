@@ -22,9 +22,11 @@ export async function generateStaticParams() {
     sanityFetch<{ slug: string }[]>(industryPageSlugsQuery),
   ])
 
-  return [...services, ...caseStudies, ...industries].map((item) => ({
-    slug: item.slug,
-  }))
+  return [...services, ...caseStudies, ...industries]
+    .filter((item) => item.slug && !/\s/.test(item.slug))
+    .map((item) => ({
+      slug: item.slug,
+    }))
 }
 
 async function fetchPageData(slug: string) {

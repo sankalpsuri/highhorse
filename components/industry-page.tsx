@@ -87,22 +87,37 @@ export function IndustryPage({ data }: IndustryPageProps) {
             How we help
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
-            {data.relatedServices.map((svc) => (
-              <Link
-                key={svc.slug}
-                href={`/${svc.slug}`}
-                className="block rounded-lg border border-zinc-200 p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
-              >
-                <p className="font-semibold text-zinc-900 dark:text-zinc-50">
-                  {svc.title}
-                </p>
-                {svc.summary && (
-                  <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                    {svc.summary}
+            {data.relatedServices.map((svc) => {
+              const validSlug = svc.slug && !/\s/.test(svc.slug)
+              const content = (
+                <>
+                  <p className="font-semibold text-zinc-900 dark:text-zinc-50">
+                    {svc.title}
                   </p>
-                )}
-              </Link>
-            ))}
+                  {svc.summary && (
+                    <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                      {svc.summary}
+                    </p>
+                  )}
+                </>
+              )
+              return validSlug ? (
+                <Link
+                  key={svc.slug}
+                  href={`/${svc.slug}`}
+                  className="block rounded-lg border border-zinc-200 p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
+                >
+                  {content}
+                </Link>
+              ) : (
+                <div
+                  key={svc.slug}
+                  className="block rounded-lg border border-zinc-200 p-6 transition-colors dark:border-zinc-800"
+                >
+                  {content}
+                </div>
+              )
+            })}
           </div>
         </section>
       )}
@@ -114,22 +129,37 @@ export function IndustryPage({ data }: IndustryPageProps) {
             Success stories
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
-            {data.relatedCaseStudies.map((cs) => (
-              <Link
-                key={cs.slug}
-                href={`/${cs.slug}`}
-                className="block rounded-lg border border-zinc-200 p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
-              >
-                <p className="font-semibold text-zinc-900 dark:text-zinc-50">
-                  {cs.clientName}
-                </p>
-                {cs.summary && (
-                  <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                    {cs.summary}
+            {data.relatedCaseStudies.map((cs) => {
+              const validSlug = cs.slug && !/\s/.test(cs.slug)
+              const content = (
+                <>
+                  <p className="font-semibold text-zinc-900 dark:text-zinc-50">
+                    {cs.clientName}
                   </p>
-                )}
-              </Link>
-            ))}
+                  {cs.summary && (
+                    <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                      {cs.summary}
+                    </p>
+                  )}
+                </>
+              )
+              return validSlug ? (
+                <Link
+                  key={cs.slug}
+                  href={`/${cs.slug}`}
+                  className="block rounded-lg border border-zinc-200 p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
+                >
+                  {content}
+                </Link>
+              ) : (
+                <div
+                  key={cs.slug}
+                  className="block rounded-lg border border-zinc-200 p-6 transition-colors dark:border-zinc-800"
+                >
+                  {content}
+                </div>
+              )
+            })}
           </div>
         </section>
       )}

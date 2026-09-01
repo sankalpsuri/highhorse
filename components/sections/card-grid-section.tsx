@@ -85,12 +85,13 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
               {cards.map((card, i) => (
                 <div key={card._key || i}>
                   {card.icon?.asset && (
-                    <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(26, 106, 255, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+                    <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(26, 106, 255, 0.1)', position: 'relative', marginBottom: 14 }}>
                       <Image
                         src={urlFor(card.icon).width(80).auto('format').url()}
                         alt={card.title || ''}
-                        width={24}
-                        height={24}
+                        fill
+                        sizes="24px"
+                        style={{ objectFit: 'scale-down', padding: 10 }}
                       />
                     </div>
                   )}
@@ -150,12 +151,13 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
             background: cardBg,
           }}>
             {card.icon?.asset && (
-              <div style={{ marginBottom: 16, width: 40, height: 40 }}>
+              <div style={{ marginBottom: 16, width: 40, height: 40, position: 'relative' }}>
                 <Image
                   src={urlFor(card.icon).width(80).auto('format').url()}
                   alt={card.title || ''}
-                  width={40}
-                  height={40}
+                  fill
+                  sizes="40px"
+                  style={{ objectFit: 'scale-down' }}
                 />
               </div>
             )}

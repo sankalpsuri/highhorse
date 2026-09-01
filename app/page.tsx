@@ -5,7 +5,7 @@ import { sanityFetch } from '@/lib/sanity/client'
 import { homeGeneralFaqsQuery } from '@/lib/sanity/queries'
 import { HeroSearchWidget } from '@/components/hero-search-widget'
 import { ProcessSteps } from '@/components/process-steps'
-import { CaseStudiesGrid } from '@/components/case-studies-grid'
+import { CaseStudyCards } from '@/components/client-logo-grid'
 import { FaqAccordion } from '@/components/faq-accordion'
 import { LeakFunnel } from '@/components/leak-funnel'
 import { OutcomeMeters } from '@/components/outcome-meters'
@@ -194,6 +194,26 @@ export default async function HomePage() {
         </div>
       </div>
 
+      {/* ── CASE STUDY CARDS ─────────────────────────────────── */}
+      <div id="case-studies">
+        <div className={styles.section}>
+          <div className={styles.caseStudiesHeader}>
+            <div className={styles.caseStudiesHeaderLeft}>
+              <div className={styles.sectionLabel}>Evidence over claims</div>
+              <h2 className={styles.sectionHeading}>
+                Search and digital growth work across industries.
+              </h2>
+            </div>
+            <Link href={CONTACT_HREF} className={styles.caseStudiesCta}>
+              Talk About Your Category
+            </Link>
+          </div>
+          <ScrollReveal>
+            <CaseStudyCards />
+          </ScrollReveal>
+        </div>
+      </div>
+
       {/* ── THE LEAK FUNNEL ──────────────────────────────────── */}
       <div id="the-problem" className={styles.leakSection}>
         <div className={styles.section}>
@@ -371,24 +391,6 @@ export default async function HomePage() {
               </div>
             </div>
           </ScrollReveal>
-        </div>
-      </div>
-
-      {/* ── CASE STUDIES ─────────────────────────────────────── */}
-      <div id="case-studies">
-        <div className={styles.section}>
-          <div className={styles.caseStudiesHeader}>
-            <div className={styles.caseStudiesHeaderLeft}>
-              <div className={styles.sectionLabel}>Evidence over claims</div>
-              <h2 className={styles.sectionHeading}>
-                Search and digital growth work across industries.
-              </h2>
-            </div>
-            <Link href={CONTACT_HREF} className={styles.caseStudiesCta}>
-              Talk About Your Category
-            </Link>
-          </div>
-          <CaseStudiesGrid />
         </div>
       </div>
 
