@@ -53,7 +53,7 @@ export function PortfolioMasonryGrid({ heading, subtext, items }: PortfolioMason
               const hasImage = !!item.image?.asset
               const height = placeholderHeights[i % placeholderHeights.length]
               return (
-                <div key={item._key || i} style={{
+                <div key={item._key || i} className="hh-card-hover" style={{
                   breakInside: 'avoid',
                   marginBottom: 16,
                   position: 'relative',

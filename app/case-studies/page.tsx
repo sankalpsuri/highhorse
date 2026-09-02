@@ -3,6 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { sanityFetch, urlFor } from '@/lib/sanity/client'
 import { caseStudiesListingQuery } from '@/lib/sanity/queries'
+import { ScrollReveal } from '@/components/scroll-reveal'
 import { NewsletterForm } from './newsletter-form'
 
 export const metadata: Metadata = {
@@ -49,12 +50,13 @@ export default async function CaseStudiesPage() {
             </p>
           )}
 
+          <ScrollReveal>
           <div className="cs-listing-grid">
             {caseStudies.map((cs) => (
               <Link
                 key={cs._id}
                 href={`/${cs.slug}`}
-                className="cs-listing-card"
+                className="cs-listing-card hh-card-hover"
               >
                 <div
                   style={{
@@ -142,9 +144,11 @@ export default async function CaseStudiesPage() {
               </Link>
             ))}
           </div>
+          </ScrollReveal>
         </div>
       </section>
 
+      <ScrollReveal>
       <section style={{ paddingTop: 0, paddingBottom: 56 }}>
         <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
           <div className="cs-newsletter-panel">
@@ -179,6 +183,7 @@ export default async function CaseStudiesPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       <style
         dangerouslySetInnerHTML={{
@@ -197,10 +202,6 @@ export default async function CaseStudiesPage() {
               min-height: 190px;
               text-decoration: none;
               color: inherit;
-              transition: border-color 0.15s;
-            }
-            .cs-listing-card:hover {
-              border-color: #1A6AFF;
             }
             .cs-listing-card:hover .cs-see-link span[aria-hidden] {
               transform: translateX(3px);

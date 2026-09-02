@@ -145,7 +145,7 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
           ? (isMulti ? tintBgColors[card.badgeColor!] || '#fff' : 'rgba(26, 106, 255, 0.06)')
           : '#fff'
         return (
-          <div key={card._key || i} style={{
+          <div key={card._key || i} className="hh-card-hover" style={{
             padding: '36px 32px',
             borderRight: '1px solid #E4E4E4',
             borderBottom: '1px solid #E4E4E4',

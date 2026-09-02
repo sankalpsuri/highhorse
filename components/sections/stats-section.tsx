@@ -61,7 +61,7 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
               gap: 14,
             }}>
               {stats.map((stat, i) => (
-                <div key={stat._key || i} style={{
+                <div key={stat._key || i} className="hh-card-hover" style={{
                   background: '#fff',
                   border: '1px solid #E4E4E4',
                   borderRadius: 14,
@@ -141,7 +141,7 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
                 gap: 18,
               }}>
                 {stats.map((stat, i) => (
-                  <div key={stat._key || i} style={{
+                  <div key={stat._key || i} className="hh-card-hover" style={{
                     background: 'rgba(255,255,255,0.06)',
                     border: '1px solid rgba(255,255,255,0.12)',
                     borderRadius: 14,
@@ -274,7 +274,7 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
               gap: 32,
             }}>
               {stats.map((stat, i) => (
-                <div key={stat._key || i} style={{
+                <div key={stat._key || i} className="hh-card-hover" style={{
                   padding: '32px 24px',
                   background: '#fff',
                   border: '1px solid #E4E4E4',

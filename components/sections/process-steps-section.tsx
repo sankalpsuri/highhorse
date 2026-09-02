@@ -54,7 +54,7 @@ export function ProcessStepsSection({ heading, headingBordered, subtext, columns
             gap: 24,
           }}>
             {steps.map((step, i) => (
-              <div key={step._key || i} style={{
+              <div key={step._key || i} className="hh-card-hover" style={{
                 padding: '32px 28px',
                 background: '#fff',
                 border: '1px solid #E4E4E4',

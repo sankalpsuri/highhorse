@@ -106,10 +106,10 @@ export default async function HomePage() {
               className={styles.partnerBadge}
             >
               <Image
-                src="/images/google-partner-badge.png"
-                alt="Google Partner"
-                width={64}
-                height={24}
+                src="/assets/logo-google.webp"
+                alt="Google"
+                width={20}
+                height={20}
                 style={{ objectFit: 'contain' }}
               />
               <span>Certified Google Partner</span>

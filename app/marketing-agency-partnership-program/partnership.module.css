@@ -10,6 +10,8 @@
 .hero {
   background: #F5F5F4;
   border-bottom: 1px solid #E4E4E4;
+  position: relative;
+  overflow: hidden;
 }
 
 .heroInner {

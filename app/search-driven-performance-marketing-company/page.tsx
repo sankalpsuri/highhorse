@@ -5,6 +5,7 @@ import { existsSync } from 'fs'
 import { join } from 'path'
 import { sanityFetch } from '@/lib/sanity/client'
 import { getClientLogos } from '@/lib/get-client-logos'
+import { ScrollReveal } from '@/components/scroll-reveal'
 import styles from './company.module.css'
 
 export const metadata: Metadata = {
@@ -234,7 +235,9 @@ export default async function CompanyPage() {
     <div className={styles.page}>
       {/* ── 1. Hero ──────────────────────────────────────────── */}
       <section className={styles.hero}>
-        <div className={styles.heroInner}>
+        <div className="hh-grid-bg" aria-hidden="true" />
+        <div className="hh-glow-blue" aria-hidden="true" />
+        <div className={styles.heroInner} style={{ position: 'relative' }}>
           <a
             href="https://partnersdirectory.withgoogle.com/partners/6812870132"
             target="_blank"
@@ -260,10 +263,11 @@ export default async function CompanyPage() {
       </section>
 
       {/* ── 2. Mission / Vision / Aim ────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.section}>
         <div className={styles.tripleGrid}>
           {missionCards.map((c) => (
-            <div key={c.title} className={styles.mvaCard}>
+            <div key={c.title} className={`${styles.mvaCard} hh-card-hover`}>
               <div className={styles.mvaIconWrap}>
                 <AssetImage
                   src={c.icon}
@@ -280,8 +284,10 @@ export default async function CompanyPage() {
           ))}
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── 3. Our Clients ───────────────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.sectionBg}>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Our Clients</h2>
@@ -333,8 +339,10 @@ export default async function CompanyPage() {
           )}
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── 4. Our Story ─────────────────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Our Story of Turning Brands into Bestsellers</h2>
         <div className={styles.twoCol}>
@@ -369,8 +377,10 @@ export default async function CompanyPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── 5. What We Do ────────────────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.sectionBg}>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>What We Do for Better Brand Performance</h2>
@@ -380,7 +390,7 @@ export default async function CompanyPage() {
           </p>
           <div className={styles.tripleGrid}>
             {whatWeDoCards.map((c) => (
-              <div key={c.title} className={styles.mvaCard}>
+              <div key={c.title} className={`${styles.mvaCard} hh-card-hover`}>
                 <div className={styles.mvaIconWrap}>
                   <AssetImage
                     src={c.icon}
@@ -398,8 +408,10 @@ export default async function CompanyPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── 6. The Thinking ──────────────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.section}>
         <div className={styles.twoCol}>
           <div className={styles.twoColMedia}>
@@ -436,8 +448,10 @@ export default async function CompanyPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── 7. Founder Message ───────────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.sectionBg}>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>A Message from the Founder</h2>
@@ -476,8 +490,10 @@ export default async function CompanyPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── 8. Industries ────────────────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Industries We Work With</h2>
         <p className={styles.sectionSub}>
@@ -486,7 +502,7 @@ export default async function CompanyPage() {
         </p>
         <div className={styles.industryGrid}>
           {industries.map((ind) => (
-            <div key={ind.title} className={styles.industryCard}>
+            <div key={ind.title} className={`${styles.industryCard} hh-card-hover`}>
               <div className={styles.industryImgWrap}>
                 <AssetImage
                   src={ind.img}
@@ -505,8 +521,10 @@ export default async function CompanyPage() {
           ))}
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── 9. Why High Horse Stands Ahead ───────────────────── */}
+      <ScrollReveal>
       <section className={styles.sectionBg}>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Why High Horse Stands Ahead</h2>
@@ -530,6 +548,7 @@ export default async function CompanyPage() {
           </ul>
         </div>
       </section>
+      </ScrollReveal>
     </div>
   )
 }

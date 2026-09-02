@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/client'
 import { PortableTextBody } from '@/components/portable-text-body'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 const categoryLabels: Record<string, string> = {
   seo: 'SEO',
@@ -153,6 +154,7 @@ export function BlogPost({ data }: BlogPostProps) {
           )}
 
           {/* ── 3. Sidebar + Body ──────────────────────────────── */}
+          <ScrollReveal>
           <div className="blog-detail-body">
             <aside className="blog-detail-sidebar">
               {data.author && (
@@ -273,6 +275,7 @@ export function BlogPost({ data }: BlogPostProps) {
               <PortableTextBody value={data.body} />
             </div>
           </div>
+          </ScrollReveal>
 
           {/* ── 4. Back link ───────────────────────────────────── */}
           <div style={{ marginTop: 48 }}>

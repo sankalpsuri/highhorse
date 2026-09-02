@@ -19,8 +19,10 @@ export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaT
   const centered = textAlign === 'center'
 
   return (
-    <section style={{ background: '#F5F5F4', borderBottom: '1px solid #E4E4E4' }}>
-      <div className="rsp-hero-pad" style={{ maxWidth: 1280, margin: '0 auto', padding: '88px 32px 96px', textAlign: centered ? 'center' as const : 'left' as const }}>
+    <section style={{ background: '#F5F5F4', borderBottom: '1px solid #E4E4E4', position: 'relative', overflow: 'hidden' }}>
+      <div className="hh-grid-bg" aria-hidden="true" />
+      <div className="hh-glow-blue" aria-hidden="true" />
+      <div className="rsp-hero-pad" style={{ maxWidth: 1280, margin: '0 auto', padding: '88px 32px 96px', textAlign: centered ? 'center' as const : 'left' as const, position: 'relative' }}>
         {badgeText && badgeStyle === 'eyebrow' ? (
           <div style={{
             display: 'inline-flex',
@@ -79,6 +81,7 @@ export function HeroSection({ badgeText, badgeStyle, headline, subheadline, ctaT
           <div style={{ marginBottom: heroImage ? 56 : 0 }}>
             <Link
               href={ctaLink}
+              className="hh-btn-hover"
               style={{
                 display: 'inline-block',
                 fontFamily: "'Montserrat', sans-serif",

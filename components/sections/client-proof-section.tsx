@@ -50,7 +50,7 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
         {displayStudies && displayStudies.length > 0 && (
           <div className="rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
             {displayStudies.map((cs) => (
-              <div key={cs.slug} style={{ background: '#fff', border: '1px solid #E4E4E4', borderRadius: 12, overflow: 'hidden' }}>
+              <div key={cs.slug} className="hh-card-hover" style={{ background: '#fff', border: '1px solid #E4E4E4', borderRadius: 12, overflow: 'hidden' }}>
                 {cs.proofImage?.asset ? (
                   <Image
                     src={urlFor(cs.proofImage).width(1200).auto('format').url()}

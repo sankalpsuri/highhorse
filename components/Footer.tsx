@@ -2,26 +2,26 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from './footer.module.css'
 
-const CONTACT_HREF = '/contact-search-performance-marketing-agency'
-
 const navColumns = [
   {
-    title: 'Company',
+    title: 'Who We Are',
     links: [
       { label: 'Home', href: '/' },
-      { label: 'About', href: '/search-driven-performance-marketing-company' },
+      { label: 'Company', href: '/search-driven-performance-marketing-company' },
       { label: 'Careers', href: '/performance-marketing-agency-careers' },
       { label: 'Partnership', href: '/marketing-agency-partnership-program' },
-      { label: 'Contact', href: CONTACT_HREF },
+      { label: 'Blog', href: '/blog' },
+      { label: 'FAQ', href: '/faq' },
+      { label: 'Case Studies', href: '/case-studies' },
     ],
   },
   {
-    title: 'Services',
+    title: 'Search Intelligence',
     links: [
-      { label: 'AEO / GEO', href: '/answer-engine-optimization-and-ai-search-optimization-services' },
-      { label: 'Voice SEO', href: '/voice-search-seo-optimization-services' },
       { label: 'SEO', href: '/search-engine-optimization-seo-growth-services' },
       { label: 'Content Marketing', href: '/seo-content-marketing-and-demand-generation-services' },
+      { label: 'AEO/GEO', href: '/answer-engine-optimization-and-ai-search-optimization-services' },
+      { label: 'Voice SEO', href: '/voice-search-seo-optimization-services' },
     ],
   },
   {
@@ -35,14 +35,12 @@ const navColumns = [
     ],
   },
   {
-    title: 'Experience & More',
+    title: 'Experience & Systems',
     links: [
       { label: 'UI/UX', href: '/conversion-focused-ui-ux-design-for-websites' },
       { label: 'Website Development', href: '/high-conversion-website-development-services' },
       { label: 'Marketplace Optimisation', href: '/marketplace-listing-optimization-for-ecommerce' },
       { label: 'Workflow Automation', href: '/ai-marketing-workflow-automation-solutions' },
-      { label: 'Case Studies', href: '/case-studies' },
-      { label: 'Blog', href: '/blog' },
     ],
   },
 ]

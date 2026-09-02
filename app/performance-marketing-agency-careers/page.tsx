@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import { ScrollReveal } from '@/components/scroll-reveal'
 import styles from './careers.module.css'
 import { CareersForm } from './careers-form'
 
@@ -122,7 +123,9 @@ export default function CareersPage() {
     <div className={styles.page}>
       {/* ── Hero ───────────────────────────────────────────── */}
       <section className={styles.hero}>
-        <div className={styles.heroInner}>
+        <div className="hh-grid-bg" aria-hidden="true" />
+        <div className="hh-glow-blue" aria-hidden="true" />
+        <div className={styles.heroInner} style={{ position: 'relative' }}>
           <a
             href="https://partnersdirectory.withgoogle.com/partners/6812870132"
             target="_blank"
@@ -148,6 +151,7 @@ export default function CareersPage() {
       </section>
 
       {/* ── Why Work With Us ───────────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.section}>
         <div className={styles.sectionLabel}>Why work with us</div>
         <h2 className={styles.sectionTitle}>Why Work With Us?</h2>
@@ -157,7 +161,7 @@ export default function CareersPage() {
         </p>
         <div className={styles.benefitsGrid}>
           {benefits.map((b) => (
-            <div key={b.title} className={styles.benefitCard}>
+            <div key={b.title} className={`${styles.benefitCard} hh-card-hover`}>
               <div className={styles.benefitIcon}>
                 <Image
                   src={b.icon}
@@ -173,8 +177,10 @@ export default function CareersPage() {
           ))}
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── Who We're Looking For ──────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.sectionBg}>
         <div className={styles.section}>
           <div className={styles.lookingLayout}>
@@ -211,8 +217,10 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── Opportunities ──────────────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.section}>
         <div className={styles.sectionLabel}>Open departments</div>
         <h2 className={styles.sectionTitle}>Opportunities at High Horse</h2>
@@ -221,7 +229,7 @@ export default function CareersPage() {
         </p>
         <div className={styles.oppGrid}>
           {opportunities.map((o) => (
-            <div key={o.title} className={styles.oppCard}>
+            <div key={o.title} className={`${styles.oppCard} hh-card-hover`}>
               <div className={styles.oppIcon}>
                 {o.icon ? (
                   <Image
@@ -244,8 +252,10 @@ export default function CareersPage() {
           ))}
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── Application Form ───────────────────────────────── */}
+      <ScrollReveal>
       <section id="apply" className={styles.sectionBg}>
         <div className={styles.section}>
           <div className={styles.applicationLayout}>
@@ -270,6 +280,7 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
     </div>
   )
 }

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { existsSync } from 'fs'
 import { join } from 'path'
+import { ScrollReveal } from '@/components/scroll-reveal'
 import styles from './partnership.module.css'
 
 export const metadata: Metadata = {
@@ -112,7 +113,9 @@ export default function PartnershipPage() {
     <div className={styles.page}>
       {/* ── 1. Hero ──────────────────────────────────────────── */}
       <section className={styles.hero}>
-        <div className={styles.heroInner}>
+        <div className="hh-grid-bg" aria-hidden="true" />
+        <div className="hh-glow-blue" aria-hidden="true" />
+        <div className={styles.heroInner} style={{ position: 'relative' }}>
           <a
             href="https://partnersdirectory.withgoogle.com/partners/6812870132"
             target="_blank"
@@ -135,10 +138,11 @@ export default function PartnershipPage() {
       </section>
 
       {/* ── 2. Partner Cards ─────────────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.section}>
         <div className={styles.cardGrid}>
           {/* Card 1 — Freelance */}
-          <div className={styles.partnerCard}>
+          <div className={`${styles.partnerCard} hh-card-hover`}>
             <div className={styles.cardIconWrap}>
               <AssetIcon src={ASSETS.freelancePartnerIcon} slot="freelancePartnerIcon" />
             </div>
@@ -165,7 +169,7 @@ export default function PartnershipPage() {
           </div>
 
           {/* Card 2 — Sales */}
-          <div className={styles.partnerCard}>
+          <div className={`${styles.partnerCard} hh-card-hover`}>
             <div className={styles.cardIconWrap}>
               <AssetIcon src={ASSETS.salesPartnerIcon} slot="salesPartnerIcon" />
             </div>
@@ -199,8 +203,10 @@ export default function PartnershipPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── 3. Terms & Conditions ────────────────────────────── */}
+      <ScrollReveal>
       <section className={styles.sectionBg}>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Partnership Terms &amp; Conditions</h2>
@@ -236,6 +242,7 @@ export default function PartnershipPage() {
           </p>
         </div>
       </section>
+      </ScrollReveal>
     </div>
   )
 }

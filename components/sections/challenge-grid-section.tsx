@@ -131,7 +131,7 @@ export function ChallengeGridSection({ layout, heading, subtext, ctaText, ctaLin
             gap: 18,
           }}>
             {challenges.map((text, i) => (
-              <div key={i} style={{
+              <div key={i} className="hh-card-hover" style={{
                 background: '#fff',
                 border: '1px solid #E4E4E4',
                 borderRadius: 14,

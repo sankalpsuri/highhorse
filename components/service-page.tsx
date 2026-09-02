@@ -20,6 +20,7 @@ import { TechSliderSection } from '@/components/sections/tech-slider-section'
 import { CaseStudyCardsSection } from '@/components/sections/case-study-cards-section'
 import { VideoShowcaseSection } from '@/components/sections/video-showcase-section'
 import { FaqAccordion } from '@/components/faq-accordion'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 interface CaseStudyEntry {
   _key?: string
@@ -113,16 +114,26 @@ export function ServicePage({ data }: ServicePageProps) {
 
   return (
     <article>
-      {data.pageBuilder?.map((block) => (
-        <PageBuilderSection
-          key={block._key}
-          block={block}
-          relatedCaseStudies={data.relatedCaseStudies}
-          accentStyle={data.accentStyle}
-        />
-      ))}
+      {data.pageBuilder?.map((block, idx) => {
+        const isHero = block._type === 'heroSection'
+        const inner = (
+          <PageBuilderSection
+            key={block._key}
+            block={block}
+            relatedCaseStudies={data.relatedCaseStudies}
+            accentStyle={data.accentStyle}
+          />
+        )
+        if (isHero) return <div key={block._key}>{inner}</div>
+        return (
+          <ScrollReveal key={block._key} delay={Math.min(idx * 0.06, 0.3)}>
+            {inner}
+          </ScrollReveal>
+        )
+      })}
 
       {data.relatedCaseStudies && data.relatedCaseStudies.length > 0 && !data.pageBuilder?.some((b) => b._type === 'caseStudyCardsSection') && (
+        <ScrollReveal>
         <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
           <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
             <h2 style={{
@@ -163,6 +174,7 @@ export function ServicePage({ data }: ServicePageProps) {
                 <Wrapper
                   key={entry._key || cs.slug}
                   {...wrapperProps as any}
+                  className="hh-card-hover"
                   style={{
                     display: 'block',
                     background: cardBg,
@@ -252,9 +264,11 @@ export function ServicePage({ data }: ServicePageProps) {
             </div>
           </div>
         </section>
+        </ScrollReveal>
       )}
 
       {data.relatedFaqs && data.relatedFaqs.length > 0 && (
+        <ScrollReveal>
         <section style={{
           background: '#F5F5F4',
           borderTop: '1px solid #E4E4E4',
@@ -273,6 +287,7 @@ export function ServicePage({ data }: ServicePageProps) {
             <FaqAccordion faqs={data.relatedFaqs} />
           </div>
         </section>
+        </ScrollReveal>
       )}
     </article>
   )

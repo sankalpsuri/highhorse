@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { PortableTextBody } from '@/components/portable-text-body'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 interface IndustryPageProps {
   data: {
@@ -51,6 +52,7 @@ export function IndustryPage({ data }: IndustryPageProps) {
 
       {/* Industry challenges */}
       {data.challenges && data.challenges.length > 0 && (
+        <ScrollReveal>
         <section className="mb-16">
           <h2 className="mb-8 text-2xl font-bold text-zinc-900 dark:text-zinc-50">
             Key challenges
@@ -59,7 +61,7 @@ export function IndustryPage({ data }: IndustryPageProps) {
             {data.challenges.map((c, i) => (
               <div
                 key={i}
-                className="rounded-lg border border-zinc-200 p-6 dark:border-zinc-800"
+                className="hh-card-hover rounded-lg border border-zinc-200 p-6 dark:border-zinc-800"
               >
                 <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">
                   {c.challengeTitle}
@@ -71,6 +73,7 @@ export function IndustryPage({ data }: IndustryPageProps) {
             ))}
           </div>
         </section>
+        </ScrollReveal>
       )}
 
       {/* Body */}
@@ -82,6 +85,7 @@ export function IndustryPage({ data }: IndustryPageProps) {
 
       {/* Related services */}
       {data.relatedServices && data.relatedServices.length > 0 && (
+        <ScrollReveal>
         <section className="mb-16">
           <h2 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-zinc-50">
             How we help
@@ -105,14 +109,14 @@ export function IndustryPage({ data }: IndustryPageProps) {
                 <Link
                   key={svc.slug}
                   href={`/${svc.slug}`}
-                  className="block rounded-lg border border-zinc-200 p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
+                  className="hh-card-hover block rounded-lg border border-zinc-200 p-6 dark:border-zinc-800"
                 >
                   {content}
                 </Link>
               ) : (
                 <div
                   key={svc.slug}
-                  className="block rounded-lg border border-zinc-200 p-6 transition-colors dark:border-zinc-800"
+                  className="hh-card-hover block rounded-lg border border-zinc-200 p-6 dark:border-zinc-800"
                 >
                   {content}
                 </div>
@@ -120,10 +124,12 @@ export function IndustryPage({ data }: IndustryPageProps) {
             })}
           </div>
         </section>
+        </ScrollReveal>
       )}
 
       {/* Related case studies */}
       {data.relatedCaseStudies && data.relatedCaseStudies.length > 0 && (
+        <ScrollReveal>
         <section className="mb-16">
           <h2 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-zinc-50">
             Success stories
@@ -147,14 +153,14 @@ export function IndustryPage({ data }: IndustryPageProps) {
                 <Link
                   key={cs.slug}
                   href={`/${cs.slug}`}
-                  className="block rounded-lg border border-zinc-200 p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
+                  className="hh-card-hover block rounded-lg border border-zinc-200 p-6 dark:border-zinc-800"
                 >
                   {content}
                 </Link>
               ) : (
                 <div
                   key={cs.slug}
-                  className="block rounded-lg border border-zinc-200 p-6 transition-colors dark:border-zinc-800"
+                  className="hh-card-hover block rounded-lg border border-zinc-200 p-6 dark:border-zinc-800"
                 >
                   {content}
                 </div>
@@ -162,6 +168,7 @@ export function IndustryPage({ data }: IndustryPageProps) {
             })}
           </div>
         </section>
+        </ScrollReveal>
       )}
 
       {/* CTA */}

@@ -15,8 +15,10 @@ export function CtaSection({ heading, bodyText, ctaText, ctaLink, variant, textA
   const centered = textAlign === 'center'
 
   return (
-    <section style={{ background: bg, borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', textAlign: centered ? 'center' as const : 'left' as const }}>
+    <section style={{ background: bg, borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4', position: 'relative', overflow: 'hidden' }}>
+      <div className="hh-grid-bg" aria-hidden="true" />
+      <div className="hh-glow-blue" aria-hidden="true" style={{ top: 'auto', bottom: -100, right: 'auto', left: -100 }} />
+      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', textAlign: centered ? 'center' as const : 'left' as const, position: 'relative' }}>
         {heading && (
           <h2 style={{
             fontFamily: "'Montserrat', sans-serif",
@@ -44,6 +46,7 @@ export function CtaSection({ heading, bodyText, ctaText, ctaLink, variant, textA
         {ctaText && ctaLink && (
           <Link
             href={ctaLink}
+            className="hh-btn-hover"
             style={{
               display: 'inline-block',
               fontFamily: "'Montserrat', sans-serif",

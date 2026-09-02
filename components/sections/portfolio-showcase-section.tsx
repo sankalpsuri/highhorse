@@ -51,7 +51,7 @@ export function PortfolioShowcaseSection({ heading, subtext, items }: PortfolioS
             gap: 24,
           }}>
             {items.map((item, i) => (
-              <div key={item._key || i} style={{
+              <div key={item._key || i} className="hh-card-hover" style={{
                 borderRadius: 16,
                 overflow: 'hidden',
                 border: '1px solid #E4E4E4',

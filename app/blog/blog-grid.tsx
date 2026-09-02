@@ -181,6 +181,7 @@ export function BlogGrid({ posts }: { posts: BlogListItem[] }) {
               <Link
                 key={post._id}
                 href={`/blog/${post.slug}`}
+                className="hh-card-hover"
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 <div

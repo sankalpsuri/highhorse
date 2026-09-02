@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/client'
 import { PortableTextBody } from '@/components/portable-text-body'
 import { NewsletterForm } from '@/app/case-studies/newsletter-form'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 const industryLabels: Record<string, string> = {
   bfsi: 'Finance',
@@ -326,6 +327,7 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
                     {data.results.map((stat, i) => (
                       <div
                         key={i}
+                        className="hh-card-hover"
                         style={{
                           border: '1px solid #e4e4e4',
                           borderRadius: 12,
@@ -444,7 +446,7 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
 
           {/* ── 4. Related Case Studies ───────────────────────── */}
           {data.otherCaseStudies && data.otherCaseStudies.length > 0 && (
-            <>
+            <ScrollReveal>
               <h2
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
@@ -528,21 +530,21 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
                     <Link
                       key={cs._id}
                       href={`/${cs.slug}`}
-                      className="cs-detail-related-card"
+                      className="cs-detail-related-card hh-card-hover"
                     >
                       {card}
                     </Link>
                   ) : (
                     <div
                       key={cs._id}
-                      className="cs-detail-related-card"
+                      className="cs-detail-related-card hh-card-hover"
                     >
                       {card}
                     </div>
                   )
                 })}
               </div>
-            </>
+            </ScrollReveal>
           )}
 
           {/* ── 5. Newsletter CTA ────────────────────────────── */}
@@ -626,10 +628,6 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
               flex-direction: column;
               text-decoration: none;
               color: inherit;
-              transition: border-color 0.15s;
-            }
-            .cs-detail-related-card:hover {
-              border-color: #1A6AFF;
             }
             @media (max-width: 860px) {
               .cs-detail-body { flex-direction: column; }

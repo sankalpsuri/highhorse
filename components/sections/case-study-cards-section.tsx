@@ -56,6 +56,7 @@ export function CaseStudyCardsSection({ heading, subtext, cards }: CaseStudyCard
           {cards.map((card, idx) => (
             <div
               key={card._key || idx}
+              className="hh-card-hover"
               style={{
                 background: brandColor.bg,
                 border: `1px solid ${brandColor.border}`,

@@ -48,7 +48,7 @@ export function ImageGallerySection({ heading, bodyText, images }: ImageGalleryS
             gap: 20,
           }}>
             {images.map((item, i) => (
-              <div key={item._key || i} style={{
+              <div key={item._key || i} className="hh-card-hover" style={{
                 background: '#fff',
                 border: '1px solid #E4E4E4',
                 borderRadius: 6,

@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { sanityFetch, urlFor } from '@/lib/sanity/client'
 import { blogListingQuery } from '@/lib/sanity/queries'
 import { BlogGrid } from './blog-grid'
+import { ScrollReveal } from '@/components/scroll-reveal'
 import { NewsletterForm } from '@/app/case-studies/newsletter-form'
 
 export const metadata: Metadata = {
@@ -239,6 +240,7 @@ export default async function BlogListingPage() {
       <BlogGrid posts={remaining} />
 
       {/* ── Newsletter CTA ───────────────────────────────────── */}
+      <ScrollReveal>
       <section style={{ paddingTop: 0, paddingBottom: 56 }}>
         <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
           <div
@@ -281,6 +283,7 @@ export default async function BlogListingPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       <style
         dangerouslySetInnerHTML={{
