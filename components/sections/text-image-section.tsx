@@ -4,6 +4,7 @@ import { PortableText } from '@portabletext/react'
 import { urlFor } from '@/lib/sanity/client'
 
 interface TextImageSectionProps {
+  eyebrow?: string
   heading?: string
   headingBordered?: boolean
   bodyText?: any[]
@@ -17,9 +18,23 @@ interface TextImageSectionProps {
   imagePosition?: 'left' | 'right'
 }
 
-export function TextImageSection({ heading, headingBordered, bodyText, bullets, bulletStyle, closingText, ctaText, ctaLink, ctaStyle, image, imagePosition }: TextImageSectionProps) {
+export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, bullets, bulletStyle, closingText, ctaText, ctaLink, ctaStyle, image, imagePosition }: TextImageSectionProps) {
   const hasImage = !!image?.asset
   const expectsImage = !!imagePosition
+
+  const eyebrowBlock = eyebrow && (
+    <div style={{
+      fontFamily: "'Montserrat', sans-serif",
+      fontWeight: 600,
+      fontSize: '11.5px',
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase' as const,
+      color: '#1A6AFF',
+      marginBottom: 16,
+    }}>
+      {eyebrow}
+    </div>
+  )
 
   const headingStyle: React.CSSProperties = {
     fontFamily: "'Montserrat', sans-serif",
@@ -149,6 +164,7 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
           alignItems: 'flex-start',
         }}>
           <div style={{ flex: '1 1 420px', minWidth: 300 }}>
+            {eyebrowBlock}
             {heading && <h2 style={{ ...headingStyle, margin: '0 0 20px' }}>{heading}</h2>}
             {bodyBlock}
             {closingBlock}
@@ -175,6 +191,7 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
           alignItems: 'flex-start',
         }}>
           <div style={{ flex: '1 1 340px', minWidth: 280 }}>
+            {eyebrowBlock}
             {heading && <h2 style={headingStyle}>{heading}</h2>}
           </div>
           <div style={{ flex: '1 1 520px', minWidth: 300 }}>
@@ -189,6 +206,7 @@ export function TextImageSection({ heading, headingBordered, bodyText, bullets, 
 
   const textBlock = (
     <div style={{ flex: '1 1 480px', minWidth: 300 }}>
+      {eyebrowBlock}
       {heading && <h2 style={{ ...headingStyle, margin: '0 0 20px' }}>{heading}</h2>}
       {bodyBlock}
       {ctaBlock}

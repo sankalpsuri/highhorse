@@ -2,13 +2,16 @@ interface Stat {
   _key?: string
   value?: string
   label?: string
+  isPlaceholder?: boolean
 }
 
 interface StatsSectionProps {
+  eyebrow?: string
   heading?: string
   bodyText?: string
   layout?: string
   theme?: string
+  warningText?: string
   stats?: Stat[]
 }
 
@@ -20,7 +23,17 @@ const circleOffsets = [
   { marginTop: -30, marginLeft: 24 },
 ]
 
-export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsSectionProps) {
+const sectionEyebrowStyle: React.CSSProperties = {
+  fontFamily: "'Montserrat', sans-serif",
+  fontWeight: 600,
+  fontSize: '11.5px',
+  letterSpacing: '0.1em',
+  textTransform: 'uppercase',
+  color: '#1A6AFF',
+  marginBottom: 16,
+}
+
+export function StatsSection({ eyebrow, heading, bodyText, layout, theme, warningText, stats }: StatsSectionProps) {
   const isScattered = layout === 'scattered'
   const isSplit = layout === 'split'
   const isDark = theme === 'dark'
@@ -30,6 +43,7 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
       <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
         <div className="rsp-grid-split rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 44, alignItems: 'center' }}>
           <div>
+            {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
             {heading && (
               <h2 style={{
                 fontFamily: "'Montserrat', sans-serif",
@@ -110,6 +124,7 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
             padding: '56px 40px',
             color: '#fff',
           }}>
+            {eyebrow && <div style={{ ...sectionEyebrowStyle, color: '#FF9D2E' }}>{eyebrow}</div>}
             {heading && (
               <h2 style={{
                 fontFamily: "'Montserrat', sans-serif",
@@ -183,18 +198,56 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
       <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-        {heading && (
-          <h2 style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 700,
-            fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-            lineHeight: 1.2,
-            margin: '0 0 16px',
-            color: '#111111',
-            textAlign: isScattered ? 'center' as const : 'left' as const,
-          }}>
-            {heading}
-          </h2>
+        {warningText ? (
+          <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 44 }}>
+            <div style={{ flex: '1 1 460px', minWidth: 300 }}>
+              {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
+              {heading && (
+                <h2 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                  lineHeight: 1.2,
+                  margin: 0,
+                  color: '#111111',
+                }}>
+                  {heading}
+                </h2>
+              )}
+            </div>
+            <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
+              <div style={{
+                border: '1px solid #EFD8B4',
+                background: '#FFF6EA',
+                borderRadius: 12,
+                padding: '16px 20px',
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 500,
+                fontSize: 13.5,
+                lineHeight: 1.6,
+                color: '#8A6636',
+              }}>
+                {warningText}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
+            {heading && (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                lineHeight: 1.2,
+                margin: '0 0 16px',
+                color: '#111111',
+                textAlign: isScattered ? 'center' as const : 'left' as const,
+              }}>
+                {heading}
+              </h2>
+            )}
+          </>
         )}
         {bodyText && (
           <p style={{
@@ -275,18 +328,40 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
             }}>
               {stats.map((stat, i) => (
                 <div key={stat._key || i} className="hh-card-hover" style={{
-                  padding: '32px 24px',
+                  padding: '30px 24px',
                   background: '#fff',
                   border: '1px solid #E4E4E4',
-                  borderRadius: 5,
+                  borderRadius: 16,
+                  display: 'flex',
+                  flexDirection: 'column' as const,
+                  gap: 10,
+                  boxShadow: '0 14px 34px rgba(10,10,12,0.04)',
                 }}>
+                  {stat.isPlaceholder && (
+                    <div style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 600,
+                      fontSize: 10,
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase' as const,
+                      color: '#B96A0C',
+                      background: '#FFF6EA',
+                      border: '1px solid #FFE0B8',
+                      borderRadius: 5,
+                      padding: '4px 8px',
+                      alignSelf: 'flex-start',
+                    }}>
+                      Placeholder
+                    </div>
+                  )}
                   {stat.value && (
                     <p style={{
                       fontFamily: "'Montserrat', sans-serif",
                       fontWeight: 800,
                       fontSize: 'clamp(2rem, 3vw, 2.8rem)',
-                      lineHeight: 1.1,
-                      margin: '0 0 8px',
+                      lineHeight: 1,
+                      letterSpacing: '-0.03em',
+                      margin: 0,
                       color: '#111111',
                     }}>
                       {stat.value}
@@ -295,7 +370,8 @@ export function StatsSection({ heading, bodyText, layout, theme, stats }: StatsS
                   {stat.label && (
                     <p style={{
                       fontFamily: "'Poppins', sans-serif",
-                      fontSize: 14,
+                      fontWeight: 500,
+                      fontSize: 14.5,
                       lineHeight: 1.5,
                       color: '#5c5c5c',
                       margin: 0,

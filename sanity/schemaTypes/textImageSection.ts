@@ -5,6 +5,7 @@ export default defineType({
   title: 'Text + Image Section',
   type: 'object',
   fields: [
+    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string', description: 'Small uppercase label above the heading.'}),
     defineField({name: 'heading', title: 'Heading', type: 'string'}),
     defineField({
       name: 'headingBordered',

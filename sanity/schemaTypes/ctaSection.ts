@@ -13,7 +13,7 @@ export default defineType({
       name: 'variant',
       title: 'Variant',
       type: 'string',
-      options: {list: [{title: 'Default', value: 'default'}, {title: 'Tan', value: 'tan'}]},
+      options: {list: [{title: 'Default', value: 'default'}, {title: 'Tan', value: 'tan'}, {title: 'Blue', value: 'blue'}]},
       initialValue: 'default',
     }),
     defineField({

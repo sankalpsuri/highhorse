@@ -46,6 +46,8 @@ interface ServicePageProps {
     summary?: string
     accentStyle?: string
     pageBuilder?: any[]
+    faqHeading?: string
+    faqEyebrow?: string
     caseStudiesHeading?: string
     caseStudiesSubtext?: string
     relatedCaseStudies?: CaseStudyEntry[]
@@ -273,18 +275,44 @@ export function ServicePage({ data }: ServicePageProps) {
           background: '#F5F5F4',
           borderTop: '1px solid #E4E4E4',
         }}>
-          <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-            <h2 style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 700,
-              fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-              lineHeight: 1.2,
-              margin: '0 0 32px',
-              color: '#111111',
-            }}>
-              Frequently asked questions
-            </h2>
-            <FaqAccordion faqs={data.relatedFaqs} />
+          <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'flex', gap: 64, flexWrap: 'wrap' as const, alignItems: 'flex-start' }}>
+            <div style={{ flex: '1 1 320px', minWidth: 280 }}>
+              {data.faqEyebrow && (
+                <div style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 600,
+                  fontSize: '11.5px',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase' as const,
+                  color: '#1A6AFF',
+                  marginBottom: 16,
+                }}>
+                  {data.faqEyebrow}
+                </div>
+              )}
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                lineHeight: 1.2,
+                margin: '0 0 20px',
+                color: '#111111',
+              }}>
+                {data.faqHeading || 'Frequently asked questions'}
+              </h2>
+              <Link href="/faq" style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 600,
+                fontSize: 14,
+                color: '#1A6AFF',
+                textDecoration: 'none',
+              }}>
+                All questions →
+              </Link>
+            </div>
+            <div style={{ flex: '1 1 520px', minWidth: 300 }}>
+              <FaqAccordion faqs={data.relatedFaqs} />
+            </div>
           </div>
         </section>
         </ScrollReveal>

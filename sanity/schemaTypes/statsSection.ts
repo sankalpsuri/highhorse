@@ -5,6 +5,7 @@ export default defineType({
   title: 'Stats Section',
   type: 'object',
   fields: [
+    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string', description: 'Small uppercase label above the heading.'}),
     defineField({name: 'heading', title: 'Heading', type: 'string'}),
     defineField({name: 'bodyText', title: 'Body text', type: 'text', rows: 3}),
     defineField({
@@ -22,6 +23,7 @@ export default defineType({
       initialValue: 'light',
       description: 'Dark renders stats inside a dark rounded panel.',
     }),
+    defineField({name: 'warningText', title: 'Warning text', type: 'string', description: 'Amber warning banner shown beside the heading (e.g. placeholder disclaimer).'}),
     defineField({
       name: 'stats',
       title: 'Stats',
@@ -32,6 +34,7 @@ export default defineType({
           fields: [
             {name: 'value', title: 'Value', type: 'string', description: 'e.g. "200+"'},
             {name: 'label', title: 'Label', type: 'string', description: 'e.g. "Projects Finished"'},
+            {name: 'isPlaceholder', title: 'Placeholder?', type: 'boolean', description: 'Mark as placeholder — shows a badge and muted styling.'},
           ],
         },
       ],

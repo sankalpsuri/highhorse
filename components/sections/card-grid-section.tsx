@@ -6,6 +6,7 @@ const badgeColors: Record<string, { bg: string; text: string }> = {
   peach: { bg: '#FFEDD5', text: '#9A3412' },
   lavender: { bg: '#EDE9FE', text: '#5B21B6' },
   gray: { bg: '#F3F4F6', text: '#374151' },
+  blue: { bg: '#E4ECFF', text: '#1A6AFF' },
 }
 
 interface Card {
@@ -18,8 +19,10 @@ interface Card {
 }
 
 interface CardGridSectionProps {
+  eyebrow?: string
   heading?: string
   subtext?: string
+  headerLayout?: string
   style?: string
   background?: string
   columns?: number
@@ -35,9 +38,20 @@ const tintBgColors: Record<string, string> = {
   peach: 'rgba(255, 237, 213, 0.35)',
   lavender: 'rgba(237, 233, 254, 0.35)',
   gray: 'rgba(243, 244, 246, 0.5)',
+  blue: 'rgba(228, 236, 255, 0.4)',
 }
 
-export function CardGridSection({ heading, subtext, style, background, columns, tintStyle, cards, accentStyle }: CardGridSectionProps) {
+const sectionEyebrowStyle: React.CSSProperties = {
+  fontFamily: "'Montserrat', sans-serif",
+  fontWeight: 600,
+  fontSize: '11.5px',
+  letterSpacing: '0.1em',
+  textTransform: 'uppercase',
+  color: '#1A6AFF',
+  marginBottom: 16,
+}
+
+export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style, background, columns, tintStyle, cards, accentStyle }: CardGridSectionProps) {
   const bg = background === 'cream' ? '#FDF8F0' : background === 'white' ? '#fff' : '#F5F5F4'
   const isClean = style === 'clean'
 
@@ -51,6 +65,7 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
     return (
       <section style={{ background: bg, borderTop: background === 'white' ? 'none' : '1px solid #E4E4E4', borderBottom: background === 'white' ? 'none' : '1px solid #E4E4E4' }}>
         <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+          {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
           {heading && (
             <h2 style={{
               fontFamily: "'Montserrat', sans-serif",
@@ -234,29 +249,65 @@ export function CardGridSection({ heading, subtext, style, background, columns, 
   return (
     <section style={{ background: bg, borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
       <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-        {heading && (
-          <h2 style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 700,
-            fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-            lineHeight: 1.2,
-            margin: '0 0 16px',
-            color: '#111111',
-          }}>
-            {heading}
-          </h2>
-        )}
-        {subtext && (
-          <p style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: 16,
-            lineHeight: 1.7,
-            color: '#5c5c5c',
-            maxWidth: 680,
-            margin: '0 0 48px',
-          }}>
-            {subtext}
-          </p>
+        {headerLayout === 'split' ? (
+          <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 48 }}>
+            <div style={{ flex: '1 1 460px', minWidth: 300 }}>
+              {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
+              {heading && (
+                <h2 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                  lineHeight: 1.2,
+                  margin: 0,
+                  color: '#111111',
+                }}>
+                  {heading}
+                </h2>
+              )}
+            </div>
+            <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
+              {subtext && (
+                <p style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  color: '#5c5c5c',
+                  margin: 0,
+                }}>
+                  {subtext}
+                </p>
+              )}
+            </div>
+          </div>
+        ) : (
+          <>
+            {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
+            {heading && (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                lineHeight: 1.2,
+                margin: '0 0 16px',
+                color: '#111111',
+              }}>
+                {heading}
+              </h2>
+            )}
+            {subtext && (
+              <p style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: 16,
+                lineHeight: 1.7,
+                color: '#5c5c5c',
+                maxWidth: 680,
+                margin: '0 0 48px',
+              }}>
+                {subtext}
+              </p>
+            )}
+          </>
         )}
         {cards && cards.length > 0 && (
           style === 'dashed' ? (

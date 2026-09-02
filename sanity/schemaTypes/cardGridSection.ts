@@ -5,8 +5,16 @@ export default defineType({
   title: 'Card Grid Section',
   type: 'object',
   fields: [
+    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string', description: 'Small uppercase label above the heading.'}),
     defineField({name: 'heading', title: 'Heading', type: 'string'}),
     defineField({name: 'subtext', title: 'Subtext', type: 'text', rows: 3}),
+    defineField({
+      name: 'headerLayout',
+      title: 'Header layout',
+      type: 'string',
+      options: {list: [{title: 'Stacked', value: 'stacked'}, {title: 'Split (heading left, subtext right)', value: 'split'}]},
+      initialValue: 'stacked',
+    }),
     defineField({
       name: 'style',
       title: 'Style',
@@ -60,6 +68,7 @@ export default defineType({
                   {title: 'Peach', value: 'peach'},
                   {title: 'Lavender', value: 'lavender'},
                   {title: 'Gray', value: 'gray'},
+                  {title: 'Blue', value: 'blue'},
                 ],
               },
             }),

@@ -34,15 +34,22 @@ export const servicePageQuery = groq`
       _type == "heroSection" => {
         badgeText,
         badgeStyle,
+        eyebrowText,
+        eyebrowDotColor,
+        heroWidget,
         headline,
         subheadline,
         ctaText,
         ctaLink,
+        secondaryCtaText,
+        secondaryCtaLink,
+        relatedServiceTags[]{ _key, label, href },
         heroImage{ ..., asset-> },
         textAlign,
         mobileImageSquare
       },
       _type == "textImageSection" => {
+        eyebrow,
         heading,
         headingBordered,
         bodyText,
@@ -56,8 +63,10 @@ export const servicePageQuery = groq`
         imagePosition
       },
       _type == "cardGridSection" => {
+        eyebrow,
         heading,
         subtext,
+        headerLayout,
         style,
         background,
         columns,
@@ -80,16 +89,21 @@ export const servicePageQuery = groq`
         textAlign
       },
       _type == "statsSection" => {
+        eyebrow,
         heading,
         bodyText,
         layout,
         theme,
-        stats[]{ _key, value, label }
+        warningText,
+        stats[]{ _key, value, label, isPlaceholder }
       },
       _type == "processStepsSection" => {
+        eyebrow,
         heading,
         headingBordered,
         subtext,
+        headerLayout,
+        containerStyle,
         columns,
         steps[]{ _key, stepTitle, stepDescription }
       },
@@ -108,12 +122,14 @@ export const servicePageQuery = groq`
         items[]{ _key, image{ ..., asset-> }, badgeText, mediaType }
       },
       _type == "challengeGridSection" => {
+        eyebrow,
         layout,
         heading,
         subtext,
         ctaText,
         ctaLink,
-        challenges
+        challenges,
+        cardColors
       },
       _type == "checklistSection" => {
         layout,
@@ -146,6 +162,8 @@ export const servicePageQuery = groq`
         posterImage{ ..., asset-> }
       }
     },
+    faqHeading,
+    faqEyebrow,
     caseStudiesHeading,
     caseStudiesSubtext,
     relatedCaseStudies[]{

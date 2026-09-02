@@ -126,6 +126,8 @@ export default defineType({
         },
       ],
     }),
+    defineField({name: 'faqHeading', title: 'FAQ section heading', type: 'string', description: 'Override "Frequently asked questions".'}),
+    defineField({name: 'faqEyebrow', title: 'FAQ section eyebrow', type: 'string'}),
     defineField({
       name: 'relatedFaqs',
       title: 'FAQs for this page',
