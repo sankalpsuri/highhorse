@@ -12,6 +12,7 @@ const badgeColors: Record<string, { bg: string; text: string }> = {
 interface Card {
   _key?: string
   icon?: any
+  svgPath?: string
   title?: string
   description?: string
   badgeColor?: string
@@ -52,6 +53,170 @@ const sectionEyebrowStyle: React.CSSProperties = {
 }
 
 export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style, background, columns, tintStyle, cards, accentStyle }: CardGridSectionProps) {
+  if (style === 'dark') {
+    return (
+      <section style={{ background: '#0A0A0C', color: '#F5F5F4', position: 'relative', overflow: 'hidden' }}>
+        {/* Grid-line pattern */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px)',
+          backgroundSize: '56px 56px',
+          maskImage: 'radial-gradient(100% 80% at 50% 0%,#000 30%,transparent 85%)',
+          WebkitMaskImage: 'radial-gradient(100% 80% at 50% 0%,#000 30%,transparent 85%)',
+          pointerEvents: 'none',
+        }} />
+        {/* Blue radial glow */}
+        <div style={{
+          position: 'absolute',
+          top: -140,
+          left: '20%',
+          width: 560,
+          height: 560,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle,rgba(26,106,255,0.28),rgba(26,106,255,0) 68%)',
+          pointerEvents: 'none',
+        }} />
+        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '100px 32px', position: 'relative' }}>
+          <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 56 }}>
+            <div style={{ flex: '1 1 460px', minWidth: 300 }}>
+              {eyebrow && (
+                <div style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 600,
+                  fontSize: '11.5px',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase' as const,
+                  color: '#FF9D2E',
+                  marginBottom: 16,
+                }}>
+                  {eyebrow}
+                </div>
+              )}
+              {heading && (
+                <h2 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
+                  lineHeight: 1.16,
+                  margin: 0,
+                  maxWidth: 600,
+                  color: '#F5F5F4',
+                }}>
+                  {heading}
+                </h2>
+              )}
+            </div>
+            <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
+              {subtext && (
+                <p style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  color: '#9A9A97',
+                  margin: 0,
+                }}>
+                  {subtext}
+                </p>
+              )}
+            </div>
+          </div>
+          {cards && cards.length > 0 && (
+            <div className="rsp-grid-3" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: 18,
+            }}>
+              {cards.map((card, i) => {
+                const num = String(i + 1).padStart(2, '0')
+                return (
+                  <div
+                    key={card._key || i}
+                    className="hh-dark-card-hover"
+                    style={{
+                      border: '1px solid #232326',
+                      borderRadius: 16,
+                      background: 'rgba(255,255,255,0.03)',
+                      padding: 28,
+                      display: 'flex',
+                      flexDirection: 'column' as const,
+                      gap: 14,
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                      <div style={{
+                        width: 46,
+                        height: 46,
+                        borderRadius: 12,
+                        background: 'rgba(255,157,46,0.12)',
+                        border: '1px solid rgba(255,157,46,0.5)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                      }}>
+                        {card.svgPath ? (
+                          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d={card.svgPath} />
+                          </svg>
+                        ) : card.icon?.asset ? (
+                          <Image
+                            src={urlFor(card.icon).width(46).auto('format').url()}
+                            alt=""
+                            width={23}
+                            height={23}
+                            style={{ objectFit: 'scale-down' }}
+                          />
+                        ) : (
+                          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5" />
+                          </svg>
+                        )}
+                      </div>
+                      <div style={{ flex: 1, height: 1, background: '#232326' }} />
+                      <div style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontWeight: 700,
+                        fontSize: '11.5px',
+                        letterSpacing: '0.12em',
+                        color: '#5a5a57',
+                      }}>
+                        {num}
+                      </div>
+                    </div>
+                    {card.title && (
+                      <h3 style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontWeight: 700,
+                        fontSize: 18,
+                        lineHeight: 1.32,
+                        margin: 0,
+                        color: '#F5F5F4',
+                      }}>
+                        {card.title}
+                      </h3>
+                    )}
+                    {card.description && (
+                      <p style={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontSize: 14.5,
+                        lineHeight: 1.62,
+                        color: '#9A9A97',
+                        margin: 0,
+                      }}>
+                        {card.description}
+                      </p>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
   const bg = background === 'cream' ? '#FDF8F0' : background === 'white' ? '#fff' : '#F5F5F4'
   const isClean = style === 'clean'
 

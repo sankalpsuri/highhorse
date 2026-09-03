@@ -74,6 +74,7 @@ export const servicePageQuery = groq`
         cards[]{
           _key,
           icon{ ..., asset-> },
+          svgPath,
           title,
           description,
           badgeColor,

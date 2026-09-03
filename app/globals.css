@@ -48,6 +48,13 @@ body {
   transform: translateY(-4px);
   border-color: #C9D8FB;
 }
+.hh-dark-card-hover {
+  transition: border-color 0.2s, transform 0.2s;
+}
+.hh-dark-card-hover:hover {
+  border-color: #FF9D2E !important;
+  transform: translateY(-3px);
+}
 
 .hh-btn-hover {
   transition: background 0.15s, opacity 0.15s;

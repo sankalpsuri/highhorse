@@ -354,19 +354,22 @@ export function StatsSection({ eyebrow, heading, bodyText, layout, theme, warnin
                       Placeholder
                     </div>
                   )}
-                  {stat.value && (
-                    <p style={{
-                      fontFamily: "'Montserrat', sans-serif",
-                      fontWeight: 800,
-                      fontSize: 'clamp(2rem, 3vw, 2.8rem)',
-                      lineHeight: 1,
-                      letterSpacing: '-0.03em',
-                      margin: 0,
-                      color: '#111111',
-                    }}>
-                      {stat.value}
-                    </p>
-                  )}
+                  {stat.value && (() => {
+                    const isPhrase = stat.value.length > 6
+                    return (
+                      <p style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontWeight: isPhrase ? 700 : 800,
+                        fontSize: isPhrase ? 'clamp(1.1rem, 1.8vw, 1.35rem)' : 'clamp(2rem, 3vw, 2.8rem)',
+                        lineHeight: isPhrase ? 1.3 : 1,
+                        letterSpacing: isPhrase ? '-0.01em' : '-0.03em',
+                        margin: 0,
+                        color: '#111111',
+                      }}>
+                        {stat.value}
+                      </p>
+                    )
+                  })()}
                   {stat.label && (
                     <p style={{
                       fontFamily: "'Poppins', sans-serif",
