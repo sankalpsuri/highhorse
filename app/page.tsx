@@ -340,7 +340,7 @@ export default async function HomePage() {
               <div className={styles.founderPhotoFrame} />
               <div className={styles.founderPhoto}>
                 <Image
-                  src="/assets/Founder Image.png"
+                  src="/assets/Founder Image.jpg"
                   alt="Sankalp Suri, Founder of High Horse"
                   width={3636}
                   height={3375}

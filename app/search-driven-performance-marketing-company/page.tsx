@@ -19,7 +19,7 @@ const ASSETS = {
   visionIcon: '/assets/our vision(1).png',
   aimIcon: '/assets/our aim(1).png',
   storyBanner: '/assets/2(54).jpg',
-  founderBanner: '/assets/Founder Image.png',
+  founderBanner: '/assets/Founder Image.jpg',
   industryFinance: '/assets/Finance (BFSI)(1).jpg',
   industryEcommerce: '/assets/Ecommerce(1).jpg',
   industryHealthcare: '/assets/Healthcare(2).jpg',
