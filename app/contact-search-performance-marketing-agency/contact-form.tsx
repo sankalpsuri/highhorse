@@ -162,8 +162,9 @@ export function ContactForm() {
     <div className={styles.page}>
       <div className={styles.layout}>
         {/* ── Sidebar ──────────────────────────────────────── */}
-        <div className={styles.sidebar}>
-          <div className={styles.sidebarLabel}>Find your search opportunity</div>
+        <div className={styles.sidebar} style={{ position: 'relative' }}>
+          <div className="hh-glow-blue" aria-hidden="true" style={{ top: -120, right: -80, opacity: 0.7 }} />
+          <div className={styles.sidebarLabel} style={{ position: 'relative' }}>Find your search opportunity</div>
           <h1 className={styles.sidebarHeading}>Tell us about your business.</h1>
           <p className={styles.sidebarText}>
             Four short steps, about two minutes. We use your answers to review your category and

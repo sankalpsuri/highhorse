@@ -8,8 +8,8 @@
 
 /* ── Hero ───────────────────────────────────────────────────── */
 .hero {
-  background: #F5F5F4;
-  border-bottom: 1px solid #E4E4E4;
+  background: #FFFFFF;
+  border-bottom: 1px solid #EAEAE8;
   position: relative;
   overflow: hidden;
 }
@@ -17,7 +17,7 @@
 .heroInner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 88px 32px 96px;
+  padding: 88px 32px 72px;
   text-align: left;
 }
 
@@ -45,9 +45,9 @@
 }
 
 .heroTitle {
-  font: 800 clamp(2.2rem, 3.8vw, 3.4rem)/1.1 'Montserrat', sans-serif;
+  font: 800 clamp(2.4rem, 4.2vw, 3.9rem)/1.1 'Montserrat', sans-serif;
   margin: 0 0 24px;
-  max-width: 720px;
+  max-width: 900px;
   letter-spacing: -0.01em;
   text-align: left;
 }
@@ -58,7 +58,7 @@
 
 .heroBody {
   font: 400 17px/1.65 'Poppins', sans-serif;
-  color: #5C5C5C;
+  color: #55555A;
   max-width: 680px;
   margin: 0 0 36px;
   text-wrap: pretty;
@@ -68,115 +68,20 @@
 .heroCta {
   display: inline-block;
   font: 600 14px 'Montserrat', sans-serif;
-  background: #1A6AFF;
+  background: #0A0A0C;
   color: #fff;
-  padding: 15px 30px;
-  border-radius: 5px;
+  padding: 16px 28px;
+  border-radius: 6px;
   text-decoration: none;
   border: none;
   cursor: pointer;
+  box-shadow: 0 10px 26px rgba(10, 10, 12, 0.2);
   transition: background 0.15s;
 }
 
 .heroCta:hover {
-  background: #144FC0;
+  background: #232326;
   color: #fff;
-}
-
-/* ── Section Shared ────────────────────────────────────────── */
-.section {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 96px 32px;
-}
-
-.sectionBg {
-  background: #F5F5F4;
-  border-top: 1px solid #E4E4E4;
-  border-bottom: 1px solid #E4E4E4;
-}
-
-.sectionTitle {
-  font: 700 clamp(1.8rem, 2.6vw, 2.5rem)/1.2 'Montserrat', sans-serif;
-  margin: 0 0 16px;
-  max-width: 680px;
-  text-wrap: pretty;
-  text-align: left;
-}
-
-.sectionSub {
-  font: 400 16px/1.65 'Poppins', sans-serif;
-  color: #5C5C5C;
-  max-width: 640px;
-  margin: 0 0 48px;
-  text-wrap: pretty;
-  text-align: left;
-}
-
-/* ── Triple Grid (Mission / What We Do) ────────────────────── */
-.tripleGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-@media (max-width: 999px) {
-  .tripleGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 599px) {
-  .tripleGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.mvaCard {
-  border: 1px solid #E4E4E4;
-  border-radius: 8px;
-  padding: 32px 28px;
-  background: #fff;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-
-.mvaCard:hover {
-  box-shadow: 0 12px 28px rgba(16, 16, 16, 0.08);
-  transform: translateY(-2px);
-}
-
-.mvaIconWrap {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  background: #EAF1FF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  color: #1A6AFF;
-}
-
-.mvaIconImg {
-  display: block;
-  max-width: 28px;
-  max-height: 28px;
-  object-fit: contain;
-}
-
-.assetImg {
-  object-fit: contain;
-}
-
-.mvaTitle {
-  font: 600 16px 'Montserrat', sans-serif;
-  margin-bottom: 10px;
-}
-
-.mvaBody {
-  font: 400 14px/1.6 'Poppins', sans-serif;
-  color: #5C5C5C;
-  text-wrap: pretty;
 }
 
 /* ── Placeholders ──────────────────────────────────────────── */
@@ -213,7 +118,6 @@
   animation: marquee 30s linear infinite;
 }
 
-
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -228,6 +132,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 160px;
   height: 64px;
   padding: 0 8px;
   border-radius: 16px;
@@ -235,9 +140,8 @@
 }
 
 .marqueeLogoImg {
-  height: 64px;
-  width: auto;
-  max-width: 180px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -251,114 +155,21 @@
   justify-content: center;
 }
 
-/* ── Two-Column Layout ─────────────────────────────────────── */
-.twoCol {
-  display: flex;
-  gap: 64px;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-
-.twoColText {
-  flex: 1 1 420px;
-  min-width: 300px;
-}
-
-.twoColMedia {
-  flex: 1 1 400px;
-  min-width: 280px;
-}
-
-/* ── Banner Images ─────────────────────────────────────────── */
-.bannerWrap {
-  width: 100%;
-  border-radius: 12px;
+/* ── Founder Photo ────────────────────────────────────────── */
+.founderPhoto {
+  flex: 1 1 320px;
+  min-width: 260px;
+  aspect-ratio: 4 / 5;
+  background: #F7F7F6;
+  border-right: 1px solid #E6E6E4;
   overflow: hidden;
 }
 
-.bannerImg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.bannerPlaceholder {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border: 2px dashed #E4E4E4;
-  border-radius: 12px;
-  background: #F5F5F4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-}
-
-/* ── Body Paragraphs ───────────────────────────────────────── */
-.bodyPara {
-  font: 400 15px/1.7 'Poppins', sans-serif;
-  color: #5C5C5C;
-  margin: 0 0 16px;
-  text-wrap: pretty;
-}
-
-.bodyParaBold {
-  font: 600 15px/1.7 'Poppins', sans-serif;
-  color: #101010;
-  margin: 0 0 16px;
-}
-
-/* ── Bullet Lists ──────────────────────────────────────────── */
-.thatMeansLabel {
-  font: 600 14px 'Montserrat', sans-serif;
-  color: #101010;
-  margin: 24px 0 14px;
-}
-
-.bulletList {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.bulletItem {
-  display: flex;
-  gap: 14px;
-  align-items: baseline;
-  font: 400 14.5px/1.55 'Poppins', sans-serif;
-  color: #5C5C5C;
-}
-
-.bullet {
-  width: 6px;
-  height: 6px;
-  background: #1A6AFF;
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 8px;
-}
-
-/* ── Founder Quote ─────────────────────────────────────────── */
-.founderQuote {
-  margin: 0 0 16px;
-  padding: 0;
-  border: none;
-}
-
-.founderAttribution {
-  font: 600 14px 'Montserrat', sans-serif;
-  color: #101010;
-  margin-top: 8px;
-}
-
-/* ── Industry Grid ─────────────────────────────────────────── */
+/* ── Industry Grid ────────────────────────────────────────── */
 .industryGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 18px;
 }
 
 @media (max-width: 1099px) {
@@ -379,65 +190,69 @@
   }
 }
 
-.industryCard {
-  border: 1px solid #E4E4E4;
-  border-radius: 8px;
-  overflow: hidden;
+/* ── Why Us Grid ──────────────────────────────────────────── */
+.whyGrid {
+  border: 1px solid #E6E6E4;
+  border-radius: 16px;
   background: #fff;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-
-.industryCard:hover {
-  box-shadow: 0 12px 28px rgba(16, 16, 16, 0.08);
-  transform: translateY(-2px);
-}
-
-.industryImgWrap {
-  width: 100%;
-  aspect-ratio: 3 / 2;
   overflow: hidden;
-  background: #F5F5F4;
-  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(10, 10, 12, 0.05);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
-.industryImg {
+/* ── CTA Buttons ──────────────────────────────────────────── */
+.ctaPrimary {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  font: 600 14px 'Montserrat', sans-serif;
+  background: #fff;
+  color: #0A0A0C;
+  padding: 17px 28px;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.12s;
 }
 
-.industryBody {
-  padding: 20px 20px 24px;
+.ctaPrimary:hover {
+  background: #F0F0EE;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
 }
 
-.industryTitle {
-  font: 600 15px 'Montserrat', sans-serif;
-  margin-bottom: 8px;
+.ctaPrimary:active {
+  background: #E4E4E1;
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.industryDesc {
-  font: 400 13.5px/1.55 'Poppins', sans-serif;
-  color: #5C5C5C;
-  text-wrap: pretty;
+.ctaSecondary {
+  display: block;
+  font: 600 14px 'Montserrat', sans-serif;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 17px 28px;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, transform 0.12s;
 }
 
-/* ── Responsive: Tablet (≤ 768px) ────────────────────────────── */
+.ctaSecondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+.ctaSecondary:active {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(0.97);
+}
+
+/* ── Responsive: Tablet (≤ 768px) ──────────────────────────── */
 @media (max-width: 768px) {
   .heroInner {
-    padding: 64px 28px 72px;
-  }
-
-  .section {
-    padding: 64px 28px;
-  }
-
-  .sectionSub {
-    margin-bottom: 36px;
-  }
-
-  .twoCol {
-    gap: 40px;
+    padding: 64px 28px 56px;
   }
 
   .marqueeTrack {
@@ -447,68 +262,42 @@
   .heroBody {
     font-size: 15.5px;
   }
+
+  .founderPhoto {
+    aspect-ratio: 16 / 9;
+    border-right: none;
+    border-bottom: 1px solid #E6E6E4;
+  }
+
+  .whyGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* ── Responsive: Mobile (≤ 480px) ────────────────────────────── */
+/* ── Responsive: Mobile (≤ 480px) ──────────────────────────── */
 @media (max-width: 480px) {
   .heroInner {
-    padding: 48px 20px 56px;
-  }
-
-  .section {
-    padding: 48px 20px;
-  }
-
-  .sectionSub {
-    margin-bottom: 28px;
-  }
-
-  .twoCol {
-    gap: 24px;
-  }
-
-  .twoColText {
-    min-width: 0;
-  }
-
-  .twoColMedia {
-    min-width: 0;
-  }
-
-  .mvaCard {
-    padding: 24px 20px;
+    padding: 48px 20px 40px;
   }
 
   .marqueeTrack {
     gap: 24px;
   }
 
-  .tripleGrid {
-    gap: 16px;
-  }
-
   .industryGrid {
-    gap: 16px;
-  }
-
-  .industryBody {
-    padding: 16px 16px 20px;
+    gap: 14px;
   }
 
   .heroCta {
-    padding: 13px 24px;
+    padding: 14px 24px;
     font-size: 13px;
   }
 }
 
-/* ── Responsive: Small Mobile (≤ 374px) ──────────────────────── */
+/* ── Responsive: Small Mobile (≤ 374px) ────────────────────── */
 @media (max-width: 374px) {
   .heroInner {
-    padding: 40px 16px 48px;
-  }
-
-  .section {
-    padding: 40px 16px;
+    padding: 40px 16px 36px;
   }
 
   .heroBadge {
@@ -520,45 +309,13 @@
     font-size: 11.5px;
   }
 
-  .mvaCard {
-    padding: 20px 16px;
-  }
-
-  .industryBody {
-    padding: 14px 14px 18px;
-  }
-
-  .tripleGrid {
-    gap: 12px;
-  }
-
-  .industryGrid {
-    gap: 12px;
-  }
-
-  .bulletItem {
-    font-size: 13.5px;
-  }
-
-  .bodyPara {
-    font-size: 14px;
-  }
-
-  .bodyParaBold {
-    font-size: 14px;
-  }
-
   .marqueeTrack {
     gap: 20px;
   }
 
   .marqueeLogo {
+    width: 120px;
     height: 52px;
     padding: 0 6px;
-  }
-
-  .marqueeLogoImg {
-    height: 52px;
-    max-width: 140px;
   }
 }

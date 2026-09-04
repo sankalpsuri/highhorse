@@ -338,7 +338,16 @@ export default async function HomePage() {
           <div className={styles.founderRow}>
             <div className={styles.founderPhotoWrap}>
               <div className={styles.founderPhotoFrame} />
-              <div className={styles.founderPhoto}>Founder photo — Sankalp Suri</div>
+              <div className={styles.founderPhoto}>
+                <Image
+                  src="/assets/Founder Image.png"
+                  alt="Sankalp Suri, Founder of High Horse"
+                  width={3636}
+                  height={3375}
+                  quality={90}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 12 }}
+                />
+              </div>
             </div>
             <div className={styles.founderContent}>
               <div className={styles.sectionLabel}>Who we are</div>

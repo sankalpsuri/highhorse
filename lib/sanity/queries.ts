@@ -60,7 +60,8 @@ export const servicePageQuery = groq`
         ctaLink,
         ctaStyle,
         image{ ..., asset-> },
-        imagePosition
+        imagePosition,
+        imageStyle
       },
       _type == "cardGridSection" => {
         eyebrow,

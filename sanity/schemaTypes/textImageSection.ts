@@ -49,6 +49,18 @@ export default defineType({
     }),
     defineField({name: 'image', title: 'Image', type: 'image', options: {hotspot: true}}),
     defineField({
+      name: 'imageStyle',
+      title: 'Image style',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Edge-to-edge (default)', value: 'edge'},
+          {title: 'Card (white border + shadow)', value: 'card'},
+        ],
+      },
+      description: 'Edge-to-edge fills the container directly. Card adds a white padded wrapper with shadow.',
+    }),
+    defineField({
       name: 'imagePosition',
       title: 'Image position',
       type: 'string',

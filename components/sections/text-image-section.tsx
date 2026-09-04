@@ -16,9 +16,10 @@ interface TextImageSectionProps {
   ctaStyle?: string
   image?: any
   imagePosition?: 'left' | 'right'
+  imageStyle?: 'card' | 'edge'
 }
 
-export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, bullets, bulletStyle, closingText, ctaText, ctaLink, ctaStyle, image, imagePosition }: TextImageSectionProps) {
+export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, bullets, bulletStyle, closingText, ctaText, ctaLink, ctaStyle, image, imagePosition, imageStyle }: TextImageSectionProps) {
   const hasImage = !!image?.asset
   const expectsImage = !!imagePosition
 
@@ -217,36 +218,47 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
     </div>
   )
 
+  const isCard = imageStyle === 'card'
+
+  const imageContent = hasImage ? (
+    <Image
+      src={urlFor(image).url()}
+      alt={heading || ''}
+      width={1600}
+      height={1200}
+      sizes={isCard ? '(max-width: 767px) 100vw, 520px' : '(max-width: 767px) 100vw, 580px'}
+      quality={90}
+      style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
+    />
+  ) : (
+    <div style={{
+      aspectRatio: '4/3',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: "'Poppins', sans-serif",
+      fontSize: 14,
+      color: '#8a8a86',
+      background: '#F7F7F6',
+      borderRadius: 14,
+    }}>
+      Image placeholder
+    </div>
+  )
+
   const imageBlock = (
     <div style={{ flex: '1 1 420px', minWidth: 300 }}>
-      <div style={{ border: '1px solid #E6E6E4', borderRadius: 16, background: '#fff', padding: 26, boxShadow: '0 18px 40px rgba(10,10,12,0.05)' }}>
-        <div style={{ borderRadius: 14, overflow: 'hidden', background: '#F7F7F6', border: '1px solid #E6E6E4', aspectRatio: '4/3', minHeight: 300 }}>
-          {hasImage ? (
-            <Image
-              src={urlFor(image).width(1200).auto('format').url()}
-              alt={heading || ''}
-              width={1200}
-              height={900}
-              sizes="(max-width: 767px) 100vw, 520px"
-              quality={90}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          ) : (
-            <div style={{
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: 14,
-              color: '#8a8a86',
-            }}>
-              Image placeholder
-            </div>
-          )}
+      {isCard ? (
+        <div style={{ border: '1px solid #E6E6E4', borderRadius: 16, background: '#fff', padding: 26, boxShadow: '0 18px 40px rgba(10,10,12,0.05)' }}>
+          <div style={{ borderRadius: 14, overflow: 'hidden', background: '#F7F7F6', border: '1px solid #E6E6E4' }}>
+            {imageContent}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div style={{ borderRadius: 14, overflow: 'hidden' }}>
+          {imageContent}
+        </div>
+      )}
     </div>
   )
 

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { ScrollReveal } from '@/components/scroll-reveal'
 import { AuditCaptureBar } from './audit-form'
 
 export const metadata: Metadata = {
@@ -74,6 +75,7 @@ export default function FreeWebsiteAuditPage() {
       </section>
 
       {/* ── What You'll Receive ──────────────────────────────── */}
+      <ScrollReveal>
       <section className="audit-details-section">
         <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
           <div className="audit-details-grid">
@@ -119,7 +121,7 @@ export default function FreeWebsiteAuditPage() {
                   desc: 'Content structure, messaging clarity, and conversion path review.',
                 },
               ].map((item) => (
-                <div key={item.title} className="audit-detail-card">
+                <div key={item.title} className="audit-detail-card hh-card-hover">
                   <div
                     style={{
                       width: 6,
@@ -159,8 +161,10 @@ export default function FreeWebsiteAuditPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ── CTA Reinforcement ────────────────────────────────── */}
+      <ScrollReveal>
       <section style={{ padding: '64px 0' }}>
         <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px' }}>
           <div className="audit-cta-panel">
@@ -191,6 +195,7 @@ export default function FreeWebsiteAuditPage() {
             </p>
             <Link
               href={CONTACT_HREF}
+              className="hh-btn-hover"
               style={{
                 display: 'inline-block',
                 background: '#1A6AFF',
@@ -208,6 +213,7 @@ export default function FreeWebsiteAuditPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       <style
         dangerouslySetInnerHTML={{

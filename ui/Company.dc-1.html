@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin:0; background:#FFFFFF; }
+  * { box-sizing:border-box; }
+  a { color:#1A6AFF; text-decoration:none; }
+  a:hover { color:#144FC0; }
+  ::selection { background:#1A6AFF; color:#fff; }
+</style>
+</helmet>
+
+<div style="font-family:'Poppins',sans-serif;color:#0A0A0C;background:#FFFFFF;overflow-x:clip">
+
+<!-- NAV -->
+<div style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.82);backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6);border-bottom:1px solid #EAEAE8" onMouseLeave="{{ clearActiveMenu }}">
+  <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:74px">
+    <a href="./High Horse Homepage v2.dc.html" style="display:flex;align-items:center;gap:10px;color:#0A0A0C">
+      <img src="./assets/hh-logo.png" alt="High Horse" style="width:26px;height:26px;object-fit:contain;flex-shrink:0">
+      <span style="font:800 17px 'Montserrat',sans-serif;letter-spacing:0.04em">HIGH HORSE</span>
+    </a>
+    <sc-if value="{{ wideNav }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:22px;flex-wrap:nowrap;justify-content:flex-end;flex:0 0 auto">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="4">
+          <a href="{{ link.href }}" onMouseEnter="{{ link.onEnter }}" onClick="{{ link.onTap }}" style="font:500 14px 'Poppins',sans-serif;color:#0A0A0C;white-space:nowrap">{{ link.label }}</a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+      <sc-if value="{{ showAudit }}" hint-placeholder-val="{{ true }}">
+        <a href="./Contact.dc.html" style="display:inline-flex;align-items:center;gap:8px;font:600 13.5px 'Montserrat',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;background:rgba(255,255,255,0.7);padding:11px 18px;border-radius:6px;white-space:nowrap" style-hover="border-color:#FF9D2E;background:#FFF9F1">
+          <span style="width:7px;height:7px;border-radius:50%;background:#FF9D2E;flex-shrink:0"></span>Free Website Audit
+        </a>
+      </sc-if>
+      <a href="./Contact.dc.html" style="font:600 13.5px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;padding:12px 20px;border-radius:6px;white-space:nowrap;box-shadow:0 6px 18px rgba(10,10,12,0.18)">Find Your Search Opportunity</a>
+      <sc-if value="{{ narrowNav }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width:40px;height:40px;border:1px solid #E6E6E4;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0">
+          <div style="width:16px">
+            <div style="height:1.5px;background:#0A0A0C;margin-bottom:4px"></div>
+            <div style="height:1.5px;background:#0A0A0C;margin-bottom:4px"></div>
+            <div style="height:1.5px;background:#0A0A0C"></div>
+          </div>
+        </button>
+      </sc-if>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:1px solid #EAEAE8;padding:16px 32px;display:flex;flex-direction:column;gap:14px;background:#fff">
+      <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="4">
+        <a href="{{ link.href }}" onClick="{{ closeMenu }}" style="font:500 15px 'Poppins',sans-serif;color:#0A0A0C">{{ link.label }}</a>
+      </sc-for>
+      <a href="./Contact.dc.html" onClick="{{ closeMenu }}" style="font:600 14px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;padding:12px 20px;border-radius:6px;text-align:center;margin-top:6px">Find Your Search Opportunity</a>
+      <a href="./Contact.dc.html" onClick="{{ closeMenu }}" style="font:600 14px 'Montserrat',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;padding:12px 20px;border-radius:6px;display:flex;align-items:center;justify-content:center;gap:8px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#FF9D2E;flex-shrink:0"></span>Free Website Audit
+      </a>
+    </div>
+  </sc-if>
+  <sc-if value="{{ activeMenuData }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,0.94);backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);border-bottom:1px solid #EAEAE8;box-shadow:0 28px 56px rgba(10,10,12,0.12);overflow-y:auto;overflow-x:hidden;max-height:calc(100vh - 74px)">
+      <div style="max-width:1280px;margin:0 auto;padding:28px 32px 30px;display:flex;gap:24px;flex-wrap:wrap;position:relative">
+        <div style="flex:1 1 560px;min-width:280px;display:flex;gap:16px;flex-wrap:wrap">
+          <sc-for list="{{ activeMenuData.columns }}" as="col" hint-placeholder-count="2">
+            <div style="flex:1 1 220px;min-width:200px;border:1px solid #EDEDEB;border-radius:12px;background:rgba(255,255,255,0.7);padding:20px 20px 16px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+                <div style="width:6px;height:6px;border-radius:50%;background:#FF9D2E;flex-shrink:0"></div>
+                <div style="font:600 10.5px 'Montserrat',sans-serif;letter-spacing:0.11em;text-transform:uppercase;color:#9A9A96">{{ col.title }}</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:2px">
+                <sc-for list="{{ col.items }}" as="it" hint-placeholder-count="5">
+                  <a href="{{ it.href }}" onClick="{{ clearActiveMenu }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;font:400 14px 'Poppins',sans-serif;color:#0A0A0C;padding:9px 10px;border-radius:7px;transition:background .15s,color .15s" style-hover="background:#F4F7FF;color:#1A6AFF">
+                    <span>{{ it.label }}</span>
+                    <span style="font:500 13px 'Poppins',sans-serif;color:#C4C4C0">→</span>
+                  </a>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="flex:1 1 280px;min-width:250px;border:1px solid #E6E6E4;border-radius:12px;background:#0A0A0C;color:#F5F5F4;padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;position:relative;overflow:hidden">
+          <div style="position:absolute;top:-90px;right:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(26,106,255,0.42),rgba(26,106,255,0) 68%);pointer-events:none"></div>
+          <div style="position:relative">
+            <div style="font:600 10.5px 'Montserrat',sans-serif;letter-spacing:0.11em;text-transform:uppercase;color:#FF9D2E;margin-bottom:12px">Where this leads</div>
+            <div style="font:400 15px/1.6 'Poppins',sans-serif;color:#D4D4D1;text-wrap:pretty">{{ activeMenuData.blurb }}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;position:relative">
+            <a href="{{ activeMenuData.cta.href }}" onClick="{{ clearActiveMenu }}" style="font:600 13px 'Montserrat',sans-serif;color:#fff;background:#1A6AFF;padding:13px 18px;border-radius:7px;text-align:center">{{ activeMenuData.cta.label }}</a>
+            <a href="./Contact.dc.html" onClick="{{ clearActiveMenu }}" style="font:600 13px 'Montserrat',sans-serif;color:#fff;border:1px solid #2E2E31;padding:13px 18px;border-radius:7px;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px" style-hover="border-color:#FF9D2E">
+              <span style="width:7px;height:7px;border-radius:50%;background:#FF9D2E;flex-shrink:0"></span>Free Website Audit
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+<!-- HERO -->
+<div id="founder" style="position:relative;overflow:hidden;background:#FFFFFF;border-bottom:1px solid #EAEAE8">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(10,10,12,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,12,0.045) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(120% 90% at 60% 0%,#000 20%,transparent 78%);-webkit-mask-image:radial-gradient(120% 90% at 60% 0%,#000 20%,transparent 78%);pointer-events:none"></div>
+  <div style="position:absolute;top:-180px;right:-140px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(26,106,255,0.18),rgba(26,106,255,0) 66%);pointer-events:none"></div>
+  <div style="max-width:1280px;margin:0 auto;padding:88px 32px 72px;position:relative">
+    <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid #E6E6E4;background:rgba(255,255,255,0.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:100px;padding:7px 14px 7px 11px;margin-bottom:24px">
+      <div style="width:7px;height:7px;border-radius:50%;background:#FF9D2E"></div>
+      <span style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.09em;text-transform:uppercase;color:#55555A">Company</span>
+    </div>
+    <h1 style="font:800 clamp(2.4rem,4.2vw,3.9rem)/1.08 'Montserrat',sans-serif;margin:0 0 24px;letter-spacing:-0.015em;max-width:900px;text-wrap:pretty">We don’t just help brands get seen. We help them <span style="color:#1A6AFF">get chosen</span>.</h1>
+    <p style="font:400 17.5px/1.65 'Poppins',sans-serif;color:#55555A;max-width:640px;margin:0 0 30px;text-wrap:pretty">High Horse helps brands turn search intent into revenue through SEO, AI visibility, ads, websites, automation, and performance-driven growth systems.</p>
+    <a href="./Contact.dc.html" style="font:600 14px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;padding:16px 28px;border-radius:6px;box-shadow:0 10px 26px rgba(10,10,12,0.2);display:inline-flex">Join Now</a>
+  </div>
+</div>
+
+<!-- MISSION / VISION / AIM -->
+<div style="background:#F7F7F6;border-bottom:1px solid #EAEAE8">
+  <div style="max-width:1280px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+    <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
+      <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;padding:30px;display:flex;flex-direction:column;gap:14px;box-shadow:0 14px 34px rgba(10,10,12,0.04)">
+        <div style="width:7px;height:7px;border-radius:50%;background:{{ p.accent }}"></div>
+        <div style="font:700 19px/1.3 'Montserrat',sans-serif">{{ p.title }}</div>
+        <div style="font:400 15px/1.68 'Poppins',sans-serif;color:#55555A;text-wrap:pretty">{{ p.body }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<div>
+  <div style="max-width:1280px;margin:0 auto;padding:64px 32px">
+    <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#9A9A96;margin-bottom:22px">Our clients</div>
+    <div style="display:flex;align-items:center;gap:36px;flex-wrap:wrap">
+      <img src="./assets/case-5mtd.jpg" alt="5 Minutes to Delhi" style="height:26px;width:auto;object-fit:contain;opacity:.7">
+      <img src="./assets/case-bawa.jpg" alt="Bawa" style="height:26px;width:auto;object-fit:contain;opacity:.7">
+      <img src="./assets/case-fech.jpg" alt="Fech Moving & Cleaning" style="height:26px;width:auto;object-fit:contain;opacity:.7">
+      <img src="./assets/case-gurukul.jpg" alt="Gurukul" style="height:26px;width:auto;object-fit:contain;opacity:.7">
+      <img src="./assets/case-easyaccess.jpg" alt="Easy Access" style="height:26px;width:auto;object-fit:contain;opacity:.7">
+      <img src="./assets/case-visioworld.jpg" alt="Visio World" style="height:26px;width:auto;object-fit:contain;opacity:.7">
+      <img src="./assets/case-antharaaah.jpg" alt="Antharaaah" style="height:26px;width:auto;object-fit:contain;opacity:.7">
+      <img src="./assets/case-partyrack.jpg" alt="Party Rack" style="height:26px;width:auto;object-fit:contain;opacity:.7">
+      <img src="./assets/case-setmi.jpg" alt="Setmi" style="height:26px;width:auto;object-fit:contain;opacity:.7">
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<div style="background:#F7F7F6;border-top:1px solid #EAEAE8;border-bottom:1px solid #EAEAE8">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px;display:flex;gap:56px;flex-wrap:wrap;align-items:center">
+    <div style="flex:1 1 460px;min-width:300px">
+      <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#1A6AFF;margin-bottom:16px">Our story</div>
+      <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0 0 20px;max-width:540px;text-wrap:pretty">Turning brands into bestsellers</h2>
+      <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#55555A;margin:0 0 14px;text-wrap:pretty">High Horse started with a simple belief: every business deserves the opportunity to grow online, regardless of its size.</p>
+      <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#55555A;margin:0 0 14px;text-wrap:pretty">As we worked with more businesses, we noticed a common challenge: brands were investing in websites, ads, and content, but very few had a complete system connecting everything together. Some ranked but couldn’t convert. Others ran ads without long-term growth. Many had great products but poor visibility.</p>
+      <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#55555A;margin:0 0 14px;text-wrap:pretty">We realised businesses didn’t just need marketing services. They needed a growth partner who understood how modern search actually works. That insight became the foundation of High Horse — helping brands capture demand wherever customers search, and turning that demand into revenue.</p>
+      <p style="font:500 16px/1.7 'Poppins',sans-serif;color:#0A0A0C;margin:0;text-wrap:pretty">Most of our growth continues to come through referrals — a reflection of the trust and long-term relationships we build with our clients.</p>
+    </div>
+    <div style="flex:1 1 420px;min-width:300px">
+      <div style="border-radius:16px;overflow:hidden;background:#F7F7F6;border:1px solid #E6E6E4;aspect-ratio:4/3;min-height:300px;box-shadow:0 18px 40px rgba(10,10,12,0.05)">
+        <image-slot id="company-story" shape="rounded" placeholder="Supporting image: our story" style="width:100%;height:100%"></image-slot>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT WE DO -->
+<div id="capabilities">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px">
+    <div style="max-width:760px;margin-bottom:52px">
+      <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#1A6AFF;margin-bottom:16px">What we do</div>
+      <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0 0 16px;text-wrap:pretty">Better brand performance, one connected system</h2>
+      <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#55555A;margin:0;text-wrap:pretty">We build search-driven growth systems combining visibility, advertising, websites, and automation to help brands attract, convert, and scale faster.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="3">
+        <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;padding:30px;display:flex;flex-direction:column;gap:16px;box-shadow:0 14px 34px rgba(10,10,12,0.04)">
+          <div style="width:46px;height:46px;border-radius:12px;background:#0A0A0C;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.icon }}"></path></svg>
+          </div>
+          <div style="font:700 19px/1.3 'Montserrat',sans-serif">{{ s.title }}</div>
+          <div style="font:400 15px/1.68 'Poppins',sans-serif;color:#55555A;text-wrap:pretty">{{ s.body }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- THINKING (dark) -->
+<div style="background:#0A0A0C;color:#F5F5F4;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-140px;left:20%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(26,106,255,0.28),rgba(26,106,255,0) 68%);pointer-events:none"></div>
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px;position:relative;display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start">
+    <div style="flex:1 1 420px;min-width:300px">
+      <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#FF9D2E;margin-bottom:16px">How we think</div>
+      <h2 style="font:700 clamp(1.9rem,2.8vw,2.5rem)/1.16 'Montserrat',sans-serif;margin:0 0 20px;max-width:500px;text-wrap:pretty">The thinking behind every successful brand</h2>
+      <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#9A9A97;margin:0 0 14px;text-wrap:pretty">Real growth doesn’t come from marketing activity alone. It comes from understanding how customers search, what they need, and building the experience that earns their trust.</p>
+      <p style="font:500 16px/1.7 'Poppins',sans-serif;color:#F5F5F4;margin:0">We work as an extension of your business, not just another external agency. Your goals become our goals. Your growth becomes our focus.</p>
+    </div>
+    <div style="flex:1 1 380px;min-width:300px;border:1px solid #232326;border-radius:16px;background:rgba(255,255,255,0.03);padding:8px 30px">
+      <sc-for list="{{ thinking }}" as="t" hint-placeholder-count="6">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid #1C1C1F;font:400 15.5px/1.5 'Poppins',sans-serif;color:#E4E4E1">
+          <span style="width:6px;height:6px;border-radius:50%;background:#1A6AFF;flex-shrink:0;margin-top:8px"></span>
+          <span>{{ t }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- FOUNDER -->
+<div style="background:#F7F7F6;border-top:1px solid #EAEAE8;border-bottom:1px solid #EAEAE8">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px">
+    <div style="border:1px solid #E6E6E4;border-radius:20px;background:#fff;box-shadow:0 18px 40px rgba(10,10,12,0.05);display:flex;gap:0;flex-wrap:wrap;overflow:hidden">
+      <div style="flex:1 1 320px;min-width:260px;aspect-ratio:4/5;background:#F7F7F6;border-right:1px solid #E6E6E4">
+        <image-slot id="founder-photo" shape="rect" placeholder="Founder photo" style="width:100%;height:100%"></image-slot>
+      </div>
+      <div style="flex:1 1 480px;min-width:280px;padding:48px">
+        <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#1A6AFF;margin-bottom:16px">A message from the founder</div>
+        <p style="font:400 17px/1.7 'Poppins',sans-serif;color:#3A3A3E;margin:0 0 14px;text-wrap:pretty">“When I started High Horse, I didn’t want to build just another marketing agency. I wanted to build something that actually worked — a team that helps businesses grow in ways they can measure and defend.”</p>
+        <p style="font:400 17px/1.7 'Poppins',sans-serif;color:#3A3A3E;margin:0 0 14px;text-wrap:pretty">“Too many businesses spend on marketing without knowing what it’s producing. We exist to change that. Everything we do is tied to a number — a lead, a sale, a revenue figure — because that’s the only way to know if marketing is working.”</p>
+        <p style="font:400 17px/1.7 'Poppins',sans-serif;color:#3A3A3E;margin:0 0 22px;text-wrap:pretty">“We’re not the biggest agency, and we don’t try to be. We focus on being the most useful — the team that understands your business, your market, and your customers deeply enough to build systems that produce results.”</p>
+        <div style="font:700 15px 'Montserrat',sans-serif">Sankalp Suri</div>
+        <div style="font:400 13.5px 'Poppins',sans-serif;color:#9A9A96">Founder, High Horse</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INDUSTRIES -->
+<div>
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px">
+    <div style="max-width:760px;margin-bottom:44px">
+      <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#1A6AFF;margin-bottom:16px">Industries</div>
+      <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0 0 16px;text-wrap:pretty">Industries we work with</h2>
+      <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#55555A;margin:0;text-wrap:pretty">From ecommerce and finance to healthcare and education — our strategies are built for industries where search-driven growth creates the biggest impact.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
+      <sc-for list="{{ industries }}" as="i" hint-placeholder-count="8">
+        <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;overflow:hidden;box-shadow:0 14px 34px rgba(10,10,12,0.04)">
+          <div style="aspect-ratio:16/10;background:#F7F7F6;border-bottom:1px solid #E6E6E4">
+            <image-slot id="{{ i.slot }}" shape="rect" placeholder="{{ i.name }} photo" style="width:100%;height:100%"></image-slot>
+          </div>
+          <div style="padding:22px">
+            <div style="font:700 17px 'Montserrat',sans-serif;margin-bottom:8px">{{ i.name }}</div>
+            <div style="font:400 14px/1.6 'Poppins',sans-serif;color:#55555A;text-wrap:pretty">{{ i.body }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div style="background:#F7F7F6;border-top:1px solid #EAEAE8;border-bottom:1px solid #EAEAE8">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px">
+    <div style="max-width:720px;margin-bottom:44px">
+      <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#1A6AFF;margin-bottom:16px">Why us</div>
+      <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0 0 16px;text-wrap:pretty">Why High Horse stands ahead</h2>
+      <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#55555A;margin:0;text-wrap:pretty">We don’t believe in marketing for the sake of marketing. Every strategy, campaign, and system we build is measured by one thing: did it create business growth?</p>
+    </div>
+    <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;overflow:hidden;box-shadow:0 18px 40px rgba(10,10,12,0.05);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+      <sc-for list="{{ standsAhead }}" as="w" hint-placeholder-count="10">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:20px 26px;border-top:1px solid #EFEFEE">
+          <span style="width:6px;height:6px;border-radius:50%;background:#FF9D2E;flex-shrink:0;margin-top:8px"></span>
+          <span style="font:400 15px/1.55 'Poppins',sans-serif;color:#3A3A3E;text-wrap:pretty">{{ w }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div style="background:#1A6AFF;color:#fff;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(100% 90% at 50% 0%,#000 20%,transparent 82%);-webkit-mask-image:radial-gradient(100% 90% at 50% 0%,#000 20%,transparent 82%);pointer-events:none"></div>
+  <div style="position:absolute;top:-180px;left:-80px;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.24),rgba(255,255,255,0) 70%);pointer-events:none"></div>
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px;position:relative;display:flex;gap:64px;flex-wrap:wrap;align-items:center">
+    <div style="flex:1 1 500px;min-width:300px">
+      <h2 style="font:700 clamp(2rem,3vw,2.8rem)/1.14 'Montserrat',sans-serif;margin:0 0 20px;max-width:600px;text-wrap:pretty">Let’s build your search opportunity.</h2>
+      <p style="font:400 17px/1.7 'Poppins',sans-serif;color:rgba(255,255,255,0.86);margin:0;max-width:540px;text-wrap:pretty">Tell us about your business and where you want it to go. We will show you where the opportunity is before you commit to anything.</p>
+    </div>
+    <div style="flex:1 1 300px;min-width:260px;display:flex;flex-direction:column;gap:12px">
+      <a href="./Contact.dc.html" style="font:600 14px 'Montserrat',sans-serif;background:#fff;color:#0A0A0C;padding:17px 28px;border-radius:6px;text-align:center">Find your search opportunity</a>
+      <a href="./FAQ.dc.html" style="font:600 14px 'Montserrat',sans-serif;color:#fff;border:1px solid rgba(255,255,255,0.6);padding:17px 28px;border-radius:6px;text-align:center" style-hover="border-color:#fff;background:rgba(255,255,255,0.08)">Read the FAQ</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="background:#0A0A0C;color:#F5F5F4">
+  <div style="max-width:1280px;margin:0 auto;padding:64px 32px 40px;display:flex;gap:56px;flex-wrap:wrap;justify-content:space-between">
+    <div style="flex:1 1 260px;min-width:220px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <img src="./assets/hh-logo.png" alt="High Horse" style="width:22px;height:22px;object-fit:contain;filter:invert(1) brightness(2)">
+        <span style="font:800 15px 'Montserrat',sans-serif;letter-spacing:0.04em">HIGH HORSE</span>
+      </div>
+      <div style="font:400 14px 'Poppins',sans-serif;color:#9a9a97">We turn intent into revenue.</div>
+      <div style="font:400 11.5px 'Poppins',sans-serif;color:#6a6a67;margin-top:20px;letter-spacing:0.09em;text-transform:uppercase">Search Marketing Agency</div>
+      <img src="./assets/google-partner-badge.png" alt="Google Partner" style="width:96px;margin-top:20px;border-radius:5px">
+    </div>
+    <div style="flex:1 1 180px;min-width:160px">
+      <div style="font:600 11px 'Montserrat',sans-serif;letter-spacing:0.09em;text-transform:uppercase;color:#6a6a67;margin-bottom:16px">Navigate</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ footerNav }}" as="link" hint-placeholder-count="6">
+          <a href="{{ link.href }}" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">{{ link.label }}</a>
+        </sc-for>
+      </div>
+    </div>
+    <div style="flex:1 1 180px;min-width:160px">
+      <div style="font:600 11px 'Montserrat',sans-serif;letter-spacing:0.09em;text-transform:uppercase;color:#6a6a67;margin-bottom:16px">Connect</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">LinkedIn</a>
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">YouTube</a>
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">Privacy Policy</a>
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:0 auto;padding:20px 32px;border-top:1px solid #232326;font:400 12px 'Poppins',sans-serif;color:#5a5a57">© 2026 High Horse. Contact: hello@highhorse.example</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { menuOpen: false, activeMenu: null, vw: null };
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ vw: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  home = './High Horse Homepage v2.dc.html';
+
+  pillars = [
+    { title: 'Our Mission', accent: '#1A6AFF', body: 'To help brands grow through smarter visibility, better systems, and performance-driven execution. We combine search, AI, advertising, and automation into strategies that produce measurable results — building reliable growth systems that help brands scale with clarity, consistency, and confidence.' },
+    { title: 'Our Vision', accent: '#FF9D2E', body: 'A future where businesses of every size can compete effectively online, not through massive budgets but through smarter strategy and stronger visibility. As search evolves through AI, voice, and automation, we help brands stay ahead of change instead of reacting to it later.' },
+    { title: 'Our Aim', accent: '#1A6AFF', body: 'To help businesses grow with clarity, consistency, and measurable results, building search-driven growth systems that attract the right audience, increase visibility, and turn intent into revenue.' },
+  ];
+
+  services = [
+    { title: 'Search Intelligence & Discovery', body: 'SEO, AI-powered search visibility (AEO/GEO), content strategy, and keyword intelligence — everything that helps your brand get found when your customers are actively searching.', icon: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M16.2 16.2L21 21' },
+    { title: 'Performance Advertising & Demand Capture', body: 'Google Ads, Shopping campaigns, retargeting, and paid media strategy, designed to capture demand at the moment of intent and convert clicks into qualified leads and sales.', icon: 'M4 4v16h16 M8 15l4-5 3 3 5-7' },
+    { title: 'Experience, Systems & Automation', body: 'Website development, UI/UX design, CRM integration, marketing automation, and conversion optimization — the systems that turn traffic into customers and customers into repeat buyers.', icon: 'M12 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6z M4 20a8 8 0 0 1 16 0' },
+  ];
+
+  thinking = [
+    'Understanding how customers search',
+    'Identifying high-intent opportunities',
+    'Building visibility across channels',
+    'Improving user experience',
+    'Tracking performance continuously',
+    'Optimising every stage of the funnel',
+  ];
+
+  industries = [
+    { name: 'Finance (BFSI)', body: 'Search and performance systems for banks, NBFCs, insurance, and fintech, built to generate qualified leads in a regulated, competitive space.', slot: 'ind-finance' },
+    { name: 'Ecommerce & Retail', body: 'Product visibility, shopping campaigns, marketplace optimization, and conversion systems that turn browsers into buyers.', slot: 'ind-ecommerce' },
+    { name: 'Healthcare', body: 'Patient acquisition, local search visibility, and trust-building strategies for hospitals, clinics, diagnostics, and health-tech platforms.', slot: 'ind-healthcare' },
+    { name: 'Education', body: 'Enrollment-focused campaigns, search visibility, and lead systems for universities, ed-tech platforms, coaching institutes, and training providers.', slot: 'ind-education' },
+    { name: 'Travel & Tourism', body: 'Destination marketing, hotel and experience visibility, seasonal campaign strategy, and booking-focused performance systems.', slot: 'ind-travel' },
+    { name: 'Logistics', body: 'Lead generation and brand visibility for freight, warehousing, supply chain, and last-mile delivery businesses operating in competitive B2B markets.', slot: 'ind-logistics' },
+    { name: 'Real Estate', body: 'Search-driven lead systems for developers, brokers, and property platforms, built to capture high-intent buyers and investors at the moment of search.', slot: 'ind-realestate' },
+    { name: 'SaaS', body: 'Product-led growth campaigns, trial-to-paid conversion systems, and search visibility for software companies targeting technical and business decision-makers.', slot: 'ind-saas' },
+  ];
+
+  standsAhead = [
+    'We measure success by revenue, not by rankings or impressions.',
+    'We combine SEO, paid media, AI visibility, websites, and automation into one connected system.',
+    'We don’t outsource — every deliverable is produced by our in-house team.',
+    'We start with data and search intelligence, not assumptions.',
+    'We build for compounding returns — systems that get stronger over time, not campaigns that expire.',
+    'We work as an extension of your team, not as an outside vendor.',
+    'We are transparent about what’s working, what isn’t, and where the opportunity is.',
+    'We prioritize fewer clients and deeper partnerships over volume.',
+    'We invest in understanding your business, your customers, and your competitive landscape before we build anything.',
+    'We are a certified Google Partner with hands-on experience across India and the GCC.',
+  ];
+
+  get navLinksData() {
+    const h = this.home;
+    return [
+      { label: 'Who We Are', href: './Company.dc.html#founder' },
+      { label: 'What We Do', href: './Company.dc.html#capabilities' },
+      { label: 'Case Studies', href: h + '#case-studies' },
+      { label: 'Learn With Us', href: './FAQ.dc.html' },
+    ];
+  }
+
+  get megaMenus() {
+    const h = this.home;
+    return [
+      {
+        blurb: 'Led by Sankalp Suri, with direct senior involvement in strategy and results.',
+        columns: [{ title: 'About High Horse', items: [
+          { label: 'Company', href: './Company.dc.html#founder' },
+          { label: 'Careers', href: './Contact.dc.html' },
+          { label: 'Partnership', href: './Contact.dc.html' },
+        ] }],
+        cta: { label: 'About High Horse', href: './Company.dc.html#founder' },
+      },
+      {
+        blurb: 'Everything we offer, across finding demand, capturing it, and building the systems that convert it.',
+        columns: [
+          { title: 'Search Intelligence', items: [
+            { label: 'AEO / GEO', href: './AEO GEO Services.dc.html' },
+            { label: 'Voice SEO', href: './Voice SEO Services.dc.html' },
+            { label: 'SEO', href: './Company.dc.html#capabilities' },
+            { label: 'Content Marketing', href: './Company.dc.html#capabilities' },
+          ] },
+          { title: 'Performance Marketing', items: [
+            { label: 'Search Ads', href: './Company.dc.html#capabilities' },
+            { label: 'Shopping Ads', href: './Company.dc.html#capabilities' },
+            { label: 'PPC Ads', href: './Company.dc.html#capabilities' },
+            { label: 'Visual Ads', href: './Company.dc.html#capabilities' },
+            { label: 'Retargeting', href: './Company.dc.html#capabilities' },
+            { label: 'ChatGPT Ads', href: './ChatGPT Ads Services.dc.html' },
+          ] },
+          { title: 'Experience & Systems', items: [
+            { label: 'UI/UX', href: './Company.dc.html#capabilities' },
+            { label: 'Website Development', href: './Company.dc.html#capabilities' },
+            { label: 'Marketplace Optimisation', href: './Company.dc.html#capabilities' },
+            { label: 'Workflow Automation', href: './Company.dc.html#capabilities' },
+          ] },
+        ],
+        cta: { label: 'View Capabilities', href: './Company.dc.html#capabilities' },
+      },
+      null,
+      {
+        blurb: 'Practical tools and writing for teams running their own search programmes.',
+        columns: [{ title: 'Resources', items: [
+          { label: 'FAQ', href: './FAQ.dc.html' },
+          { label: 'Calculator', href: './Contact.dc.html' },
+          { label: 'Tutorials', href: './Contact.dc.html' },
+          { label: 'Guides', href: './Contact.dc.html' },
+          { label: 'Templates', href: './Contact.dc.html' },
+          { label: 'Blog', href: './Contact.dc.html' },
+        ] }],
+        cta: { label: 'Talk to Us', href: './Contact.dc.html' },
+      },
+    ];
+  }
+
+  renderVals() {
+    const vw = this.state.vw ?? 1440;
+    const menus = this.megaMenus;
+    return {
+      pillars: this.pillars,
+      services: this.services,
+      thinking: this.thinking,
+      industries: this.industries,
+      standsAhead: this.standsAhead,
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      activeMenuData: this.state.activeMenu !== null ? menus[this.state.activeMenu] : null,
+      clearActiveMenu: () => this.setState({ activeMenu: null }),
+      navLinks: this.navLinksData.map((l, i) => ({ ...l, onEnter: () => this.setState({ activeMenu: i }), onTap: (e) => { if (menus[i]) { e.preventDefault(); this.setState(s => ({ activeMenu: s.activeMenu === i ? null : i })); } } })),
+      footerNav: [
+        { label: 'Company', href: './Company.dc.html#founder' },
+        { label: 'ChatGPT Ads', href: './ChatGPT Ads Services.dc.html' },
+        { label: 'AEO & GEO', href: './AEO GEO Services.dc.html' },
+        { label: 'Voice SEO', href: './Voice SEO Services.dc.html' },
+        { label: 'FAQ', href: './FAQ.dc.html' },
+        { label: 'Contact', href: './Contact.dc.html' },
+      ],
+      wideNav: vw >= 880,
+      narrowNav: vw < 880,
+      showAudit: vw >= 1180,
+    };
+  }
+}
+</script>
+</body>
+</html>
