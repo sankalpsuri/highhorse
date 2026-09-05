@@ -1148,15 +1148,20 @@
   color: #B4B4B0;
 }
 
-.outcomeChain {
+.outcomeChainWrap {
   margin-top: 32px;
+}
+
+.outcomeChain {
   border: 1px solid #E6E6E4;
   border-radius: 14px;
   background: #F7F7F6;
   padding: 26px 28px;
+}
+
+.chainTrack {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -1164,6 +1169,10 @@
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.chainNodeDup {
+  display: none;
 }
 
 .chainBox {
@@ -1181,6 +1190,36 @@
   height: 2px;
   background-image: linear-gradient(90deg, #FF9D2E 0 5px, transparent 5px 10px);
   background-size: 10px 2px;
+}
+
+@media (max-width: 767px) {
+  .outcomeChain {
+    overflow: hidden;
+    padding: 20px 0;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+
+  .chainTrack {
+    width: max-content;
+    animation: chainMarquee 18s linear infinite;
+  }
+
+  .chainTrack:hover,
+  .chainTrack:active {
+    animation-play-state: paused;
+  }
+
+  .chainNodeDup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+@keyframes chainMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* ── Founder + Fit ─────────────────────────────────────────── */

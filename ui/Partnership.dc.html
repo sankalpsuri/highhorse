@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#FFFFFF; }
+  * { box-sizing:border-box; }
+  a { color:#1A6AFF; text-decoration:none; }
+  a:hover { color:#144FC0; }
+  ::selection { background:#1A6AFF; color:#fff; }
+</style>
+</helmet>
+
+<div style="font-family:'Poppins',sans-serif;color:#0A0A0C;background:#FFFFFF;overflow-x:clip">
+
+<!-- NAV -->
+<div style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.82);backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6);border-bottom:1px solid #EAEAE8" onMouseLeave="{{ clearActiveMenu }}">
+  <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:74px">
+    <a href="./High Horse Homepage v2.dc.html" style="display:flex;align-items:center;gap:10px;color:#0A0A0C">
+      <img src="./assets/hh-logo.png" alt="High Horse" style="width:26px;height:26px;object-fit:contain;flex-shrink:0">
+      <span style="font:800 17px 'Montserrat',sans-serif;letter-spacing:0.04em">HIGH HORSE</span>
+    </a>
+    <sc-if value="{{ wideNav }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:22px;flex-wrap:nowrap;justify-content:flex-end;flex:0 0 auto">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="4">
+          <a href="{{ link.href }}" onMouseEnter="{{ link.onEnter }}" onClick="{{ link.onTap }}" style="font:500 14px 'Poppins',sans-serif;color:#0A0A0C;white-space:nowrap">{{ link.label }}</a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+      <sc-if value="{{ showAudit }}" hint-placeholder-val="{{ true }}">
+        <a href="./Contact.dc.html" style="display:inline-flex;align-items:center;gap:8px;font:600 13.5px 'Montserrat',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;background:rgba(255,255,255,0.7);padding:11px 18px;border-radius:6px;white-space:nowrap" style-hover="border-color:#FF9D2E;background:#FFF9F1">
+          <span style="width:7px;height:7px;border-radius:50%;background:#FF9D2E;flex-shrink:0"></span>Free Website Audit
+        </a>
+      </sc-if>
+      <a href="./Contact.dc.html" style="font:600 13.5px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;padding:12px 20px;border-radius:6px;white-space:nowrap;box-shadow:0 6px 18px rgba(10,10,12,0.18)">Find Your Search Opportunity</a>
+      <sc-if value="{{ narrowNav }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width:40px;height:40px;border:1px solid #E6E6E4;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0">
+          <div style="width:16px">
+            <div style="height:1.5px;background:#0A0A0C;margin-bottom:4px"></div>
+            <div style="height:1.5px;background:#0A0A0C;margin-bottom:4px"></div>
+            <div style="height:1.5px;background:#0A0A0C"></div>
+          </div>
+        </button>
+      </sc-if>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:1px solid #EAEAE8;padding:16px 32px;display:flex;flex-direction:column;gap:14px;background:#fff">
+      <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="4">
+        <a href="{{ link.href }}" onClick="{{ closeMenu }}" style="font:500 15px 'Poppins',sans-serif;color:#0A0A0C">{{ link.label }}</a>
+      </sc-for>
+      <a href="./Contact.dc.html" onClick="{{ closeMenu }}" style="font:600 14px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;padding:12px 20px;border-radius:6px;text-align:center;margin-top:6px">Find Your Search Opportunity</a>
+      <a href="./Contact.dc.html" onClick="{{ closeMenu }}" style="font:600 14px 'Montserrat',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;padding:12px 20px;border-radius:6px;display:flex;align-items:center;justify-content:center;gap:8px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#FF9D2E;flex-shrink:0"></span>Free Website Audit
+      </a>
+    </div>
+  </sc-if>
+  <sc-if value="{{ activeMenuData }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,0.94);backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);border-bottom:1px solid #EAEAE8;box-shadow:0 28px 56px rgba(10,10,12,0.12);overflow-y:auto;overflow-x:hidden;max-height:calc(100vh - 74px)">
+      <div style="max-width:1280px;margin:0 auto;padding:28px 32px 30px;display:flex;gap:24px;flex-wrap:wrap;position:relative">
+        <div style="flex:1 1 560px;min-width:280px;display:flex;gap:16px;flex-wrap:wrap">
+          <sc-for list="{{ activeMenuData.columns }}" as="col" hint-placeholder-count="2">
+            <div style="flex:1 1 220px;min-width:200px;border:1px solid #EDEDEB;border-radius:12px;background:rgba(255,255,255,0.7);padding:20px 20px 16px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+                <div style="width:6px;height:6px;border-radius:50%;background:#FF9D2E;flex-shrink:0"></div>
+                <div style="font:600 10.5px 'Montserrat',sans-serif;letter-spacing:0.11em;text-transform:uppercase;color:#9A9A96">{{ col.title }}</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:2px">
+                <sc-for list="{{ col.items }}" as="it" hint-placeholder-count="5">
+                  <a href="{{ it.href }}" onClick="{{ clearActiveMenu }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;font:400 14px 'Poppins',sans-serif;color:#0A0A0C;padding:9px 10px;border-radius:7px;transition:background .15s,color .15s" style-hover="background:#F4F7FF;color:#1A6AFF">
+                    <span>{{ it.label }}</span>
+                    <span style="font:500 13px 'Poppins',sans-serif;color:#C4C4C0">→</span>
+                  </a>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="flex:1 1 280px;min-width:250px;border:1px solid #E6E6E4;border-radius:12px;background:#0A0A0C;color:#F5F5F4;padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;position:relative;overflow:hidden">
+          <div style="position:absolute;top:-90px;right:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(26,106,255,0.42),rgba(26,106,255,0) 68%);pointer-events:none"></div>
+          <div style="position:relative">
+            <div style="font:600 10.5px 'Montserrat',sans-serif;letter-spacing:0.11em;text-transform:uppercase;color:#FF9D2E;margin-bottom:12px">Where this leads</div>
+            <div style="font:400 15px/1.6 'Poppins',sans-serif;color:#D4D4D1;text-wrap:pretty">{{ activeMenuData.blurb }}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;position:relative">
+            <a href="{{ activeMenuData.cta.href }}" onClick="{{ clearActiveMenu }}" style="font:600 13px 'Montserrat',sans-serif;color:#fff;background:#1A6AFF;padding:13px 18px;border-radius:7px;text-align:center">{{ activeMenuData.cta.label }}</a>
+            <a href="./Contact.dc.html" onClick="{{ clearActiveMenu }}" style="font:600 13px 'Montserrat',sans-serif;color:#fff;border:1px solid #2E2E31;padding:13px 18px;border-radius:7px;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px" style-hover="border-color:#FF9D2E">
+              <span style="width:7px;height:7px;border-radius:50%;background:#FF9D2E;flex-shrink:0"></span>Free Website Audit
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+<!-- HERO -->
+<div style="position:relative;overflow:hidden;background:#FFFFFF;border-bottom:1px solid #EAEAE8">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(10,10,12,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,12,0.045) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(120% 90% at 60% 0%,#000 20%,transparent 78%);-webkit-mask-image:radial-gradient(120% 90% at 60% 0%,#000 20%,transparent 78%);pointer-events:none"></div>
+  <div style="position:absolute;top:-180px;right:-140px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(26,106,255,0.18),rgba(26,106,255,0) 66%);pointer-events:none"></div>
+  <div style="max-width:1280px;margin:0 auto;padding:88px 32px 72px;position:relative">
+    <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid #E6E6E4;background:rgba(255,255,255,0.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:100px;padding:7px 14px 7px 11px;margin-bottom:24px">
+      <div style="width:7px;height:7px;border-radius:50%;background:#FF9D2E"></div>
+      <span style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.09em;text-transform:uppercase;color:#55555A">Partnership Program</span>
+    </div>
+    <h1 style="font:800 clamp(2.4rem,4.2vw,3.9rem)/1.08 'Montserrat',sans-serif;margin:0 0 24px;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">Partner With <span style="color:#1A6AFF">Us</span></h1>
+    <p style="font:400 17.5px/1.65 'Poppins',sans-serif;color:#55555A;max-width:620px;margin:0 0 30px;text-wrap:pretty">We believe in growing together through strong collaborations. Whether you are a skilled freelancer looking for consistent project opportunities or a sales partner aiming to earn through referrals, we offer a transparent and mutually beneficial partnership model.</p>
+    <a href="./Contact.dc.html" style="font:600 14px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;padding:16px 28px;border-radius:6px;box-shadow:0 10px 26px rgba(10,10,12,0.2);display:inline-flex">Connect with Us</a>
+  </div>
+</div>
+
+<!-- PARTNER TYPE 1 -->
+<div style="background:#F7F7F6;border-bottom:1px solid #EAEAE8">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px;display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start">
+    <div style="flex:1 1 480px;min-width:300px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+        <div style="width:46px;height:46px;border-radius:12px;background:#0A0A0C;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6z M4 20a8 8 0 0 1 16 0"></path></svg>
+        </div>
+        <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#1A6AFF">Model 01</div>
+      </div>
+      <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0 0 20px;max-width:520px;text-wrap:pretty">Freelance Project Partners</h2>
+      <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#55555A;margin:0 0 26px;text-wrap:pretty">If you are a freelancer or independent professional, you can collaborate with us on a project basis. We assign relevant work based on your skill set, and you get paid for each successfully completed project. This model is ideal for designers, developers, writers, editors, marketers, and other creative professionals who want consistent work without long-term commitment.</p>
+      <a href="./Contact.dc.html" style="display:inline-flex;font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;padding:15px 26px;border-radius:6px;box-shadow:0 10px 26px rgba(26,106,255,0.28)">Become Freelance Partner</a>
+    </div>
+    <div style="flex:1 1 380px;min-width:300px;border:1px solid #E6E6E4;border-radius:16px;background:#fff;padding:8px 28px;box-shadow:0 14px 34px rgba(10,10,12,0.04)">
+      <div style="font:600 10.5px 'Montserrat',sans-serif;letter-spacing:0.11em;text-transform:uppercase;color:#9A9A96;padding:22px 0 6px">Freelance Partner Terms</div>
+      <sc-for list="{{ freelanceTerms }}" as="t" hint-placeholder-count="5">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-top:1px solid #F0F0EE;font:400 14.5px/1.55 'Poppins',sans-serif;color:#3A3A3E">
+          <span style="width:6px;height:6px;border-radius:50%;background:#1A6AFF;flex-shrink:0;margin-top:8px"></span>
+          <span style="text-wrap:pretty">{{ t }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- PARTNER TYPE 2 -->
+<div>
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px;display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start">
+    <div style="flex:1 1 380px;min-width:300px;order:2;border:1px solid #E6E6E4;border-radius:16px;background:#fff;padding:8px 28px;box-shadow:0 14px 34px rgba(10,10,12,0.04)">
+      <div style="font:600 10.5px 'Montserrat',sans-serif;letter-spacing:0.11em;text-transform:uppercase;color:#9A9A96;padding:22px 0 6px">Sales Partner Terms</div>
+      <sc-for list="{{ salesTerms }}" as="t" hint-placeholder-count="6">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-top:1px solid #F0F0EE;font:400 14.5px/1.55 'Poppins',sans-serif;color:#3A3A3E">
+          <span style="width:6px;height:6px;border-radius:50%;background:#FF9D2E;flex-shrink:0;margin-top:8px"></span>
+          <span style="text-wrap:pretty">{{ t }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="flex:1 1 480px;min-width:300px;order:1">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+        <div style="width:46px;height:46px;border-radius:12px;background:#0A0A0C;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l6-6 4 4 6-8 M14 6h6v6"></path></svg>
+        </div>
+        <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#1A6AFF">Model 02</div>
+      </div>
+      <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0 0 20px;max-width:520px;text-wrap:pretty">White Label Sales Partners</h2>
+      <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#55555A;margin:0 0 26px;text-wrap:pretty">If you have a strong network or sales capability, you can become our white label sales partner. You bring clients or projects to us, and we execute the work under our team. You earn a fixed commission or percentage on every successful conversion or project closure generated through your efforts.</p>
+      <a href="./Contact.dc.html" style="display:inline-flex;font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;padding:15px 26px;border-radius:6px;box-shadow:0 10px 26px rgba(26,106,255,0.28)">Become Sales Partner</a>
+    </div>
+  </div>
+</div>
+
+<!-- TERMS & CONDITIONS (dark) -->
+<div style="background:#0A0A0C;color:#F5F5F4;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(100% 80% at 50% 0%,#000 30%,transparent 85%);-webkit-mask-image:radial-gradient(100% 80% at 50% 0%,#000 30%,transparent 85%);pointer-events:none"></div>
+  <div style="position:absolute;top:-140px;left:20%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(26,106,255,0.28),rgba(26,106,255,0) 68%);pointer-events:none"></div>
+  <div style="max-width:1280px;margin:0 auto;padding:100px 32px;position:relative">
+    <div style="max-width:720px;margin-bottom:52px">
+      <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#FF9D2E;margin-bottom:16px">Partnership terms &amp; conditions</div>
+      <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0 0 16px;text-wrap:pretty">To ensure smooth collaboration and maintain quality standards</h2>
+      <p style="font:400 16px/1.7 'Poppins',sans-serif;color:#9A9A97;margin:0;text-wrap:pretty">The following terms apply to all partners, both Freelance and White Label Sales Partners.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
+      <sc-for list="{{ termGroups }}" as="g" hint-placeholder-count="3">
+        <div style="border:1px solid #232326;border-radius:16px;background:rgba(255,255,255,0.03);padding:28px;display:flex;flex-direction:column;gap:16px">
+          <div style="font:700 11px 'Montserrat',sans-serif;letter-spacing:0.1em;color:#5a5a57">{{ g.n }}</div>
+          <h3 style="font:700 18px/1.32 'Montserrat',sans-serif;margin:0">{{ g.title }}</h3>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="4">
+              <div style="display:flex;align-items:flex-start;gap:10px;font:400 14px/1.6 'Poppins',sans-serif;color:#9A9A97">
+                <span style="width:5px;height:5px;border-radius:50%;background:#FF9D2E;flex-shrink:0;margin-top:8px"></span>
+                <span style="text-wrap:pretty">{{ it }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="border:1px solid #232326;border-radius:16px;background:rgba(255,255,255,0.05);padding:26px 28px;margin-top:20px;font:400 15px/1.65 'Poppins',sans-serif;color:#D4D4D1;text-wrap:pretty">By joining as a partner, you acknowledge that you have read, understood, and agreed to these terms and conditions.</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div style="background:#1A6AFF;color:#fff;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(100% 90% at 50% 0%,#000 20%,transparent 82%);-webkit-mask-image:radial-gradient(100% 90% at 50% 0%,#000 20%,transparent 82%);pointer-events:none"></div>
+  <div style="position:absolute;top:-180px;left:-80px;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.24),rgba(255,255,255,0) 70%);pointer-events:none"></div>
+  <div style="max-width:1280px;margin:0 auto;padding:96px 32px;position:relative;display:flex;gap:64px;flex-wrap:wrap;align-items:center">
+    <div style="flex:1 1 500px;min-width:300px">
+      <h2 style="font:700 clamp(2rem,3vw,2.8rem)/1.14 'Montserrat',sans-serif;margin:0 0 20px;max-width:600px;text-wrap:pretty">Ready to grow together?</h2>
+      <p style="font:400 17px/1.7 'Poppins',sans-serif;color:rgba(255,255,255,0.86);margin:0;max-width:540px;text-wrap:pretty">Tell us which partnership model fits you, and we will get back to you with the next steps.</p>
+    </div>
+    <a href="./Contact.dc.html" style="flex:0 0 auto;font:600 14px 'Montserrat',sans-serif;background:#fff;color:#0A0A0C;padding:17px 30px;border-radius:6px">Connect with Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="background:#0A0A0C;color:#F5F5F4">
+  <div style="max-width:1280px;margin:0 auto;padding:64px 32px 40px;display:flex;gap:56px;flex-wrap:wrap;justify-content:space-between">
+    <div style="flex:1 1 260px;min-width:220px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <img src="./assets/hh-logo.png" alt="High Horse" style="width:22px;height:22px;object-fit:contain;filter:invert(1) brightness(2)">
+        <span style="font:800 15px 'Montserrat',sans-serif;letter-spacing:0.04em">HIGH HORSE</span>
+      </div>
+      <div style="font:400 14px 'Poppins',sans-serif;color:#9a9a97">We turn intent into revenue.</div>
+      <div style="font:400 11.5px 'Poppins',sans-serif;color:#6a6a67;margin-top:20px;letter-spacing:0.09em;text-transform:uppercase">Search Marketing Agency</div>
+      <img src="./assets/google-partner-badge.png" alt="Google Partner" style="width:96px;margin-top:20px;border-radius:5px">
+    </div>
+    <div style="flex:1 1 180px;min-width:160px">
+      <div style="font:600 11px 'Montserrat',sans-serif;letter-spacing:0.09em;text-transform:uppercase;color:#6a6a67;margin-bottom:16px">Navigate</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ footerNav }}" as="link" hint-placeholder-count="6">
+          <a href="{{ link.href }}" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">{{ link.label }}</a>
+        </sc-for>
+      </div>
+    </div>
+    <div style="flex:1 1 180px;min-width:160px">
+      <div style="font:600 11px 'Montserrat',sans-serif;letter-spacing:0.09em;text-transform:uppercase;color:#6a6a67;margin-bottom:16px">Connect</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">LinkedIn</a>
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">YouTube</a>
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">Privacy Policy</a>
+        <a href="#" style="font:400 14px 'Poppins',sans-serif;color:#d4d4d1">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:0 auto;padding:20px 32px;border-top:1px solid #232326;font:400 12px 'Poppins',sans-serif;color:#5a5a57">© 2026 High Horse. Contact: contact@highhorse.in</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { menuOpen: false, activeMenu: null, vw: null };
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ vw: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  home = './High Horse Homepage v2.dc.html';
+
+  freelanceTerms = [
+    'Project allocation is not guaranteed and depends on availability, performance, and business requirements.',
+    'Timely delivery is mandatory; repeated delays may result in reduced priority or termination.',
+    'Quality standards must be strictly followed as per project brief; rework may be required at no additional cost if guidelines are not met.',
+    'Payment will only be released after final approval and completion of deliverables.',
+    'Any failure to respond within a reasonable timeframe may lead to reassignment of the project.',
+  ];
+
+  salesTerms = [
+    'Commission is applicable only on 100% successful payments received from the client.',
+    'No commission will be paid on incomplete, cancelled, or disputed transactions.',
+    'Final pricing, discounting, and negotiation authority remains solely with our company.',
+    'Leads must be genuine and not previously contacted or existing in our database.',
+    'Misrepresentation of services, pricing, or brand identity will lead to immediate termination and forfeiture of commission.',
+    'Commission structure may be revised with prior notice based on business requirements.',
+  ];
+
+  termGroups = [
+    { n: '01', title: 'General Terms', items: [
+      'All partnerships are non-exclusive unless explicitly agreed in writing.',
+      'We reserve the right to accept, reject, or discontinue any partnership at our sole discretion.',
+      'All communication, project updates, and approvals must happen only through official channels.',
+      'Any unauthorized commitment or promise made to a client or third party on our behalf is strictly prohibited.',
+      'Confidentiality of all internal processes, pricing, client data, and business strategies must be maintained at all times.',
+    ] },
+    { n: '02', title: 'Termination & Compliance', items: [
+      'We reserve the right to terminate any partnership without prior notice in case of misconduct, policy violation, or reputational risk.',
+      'Any pending payments at the time of termination will be evaluated based on completed and approved work only.',
+      'Partners must comply with all applicable laws and ethical business practices.',
+    ] },
+    { n: '03', title: 'Acceptance', items: [
+      'By joining as a partner, you acknowledge that you have read, understood, and agreed to these terms and conditions.',
+    ] },
+  ];
+
+  get navLinksData() {
+    return [
+      { label: 'Who We Are', href: './Company.dc.html#founder' },
+      { label: 'What We Do', href: './Company.dc.html#capabilities' },
+      { label: 'Case Studies', href: this.home + '#case-studies' },
+      { label: 'Learn With Us', href: './FAQ.dc.html' },
+    ];
+  }
+
+  get megaMenus() {
+    return [
+      {
+        blurb: 'Led by Sankalp Suri, with direct senior involvement in strategy and results.',
+        columns: [{ title: 'About High Horse', items: [
+          { label: 'Company', href: './Company.dc.html#founder' },
+          { label: 'Careers', href: './Careers.dc.html' },
+          { label: 'Partnership', href: './Partnership.dc.html' },
+        ] }],
+        cta: { label: 'About High Horse', href: './Company.dc.html#founder' },
+      },
+      {
+        blurb: 'Everything we offer, across finding demand, capturing it, and building the systems that convert it.',
+        columns: [
+          { title: 'Search Intelligence', items: [
+            { label: 'AEO / GEO', href: './AEO GEO Services.dc.html' },
+            { label: 'Voice SEO', href: './Voice SEO Services.dc.html' },
+            { label: 'SEO', href: './Company.dc.html#capabilities' },
+            { label: 'Content Marketing', href: './Company.dc.html#capabilities' },
+          ] },
+          { title: 'Performance Marketing', items: [
+            { label: 'Search Ads', href: './Company.dc.html#capabilities' },
+            { label: 'Shopping Ads', href: './Company.dc.html#capabilities' },
+            { label: 'PPC Ads', href: './Company.dc.html#capabilities' },
+            { label: 'Visual Ads', href: './Company.dc.html#capabilities' },
+            { label: 'Retargeting', href: './Company.dc.html#capabilities' },
+            { label: 'ChatGPT Ads', href: './ChatGPT Ads Services.dc.html' },
+          ] },
+          { title: 'Experience & Systems', items: [
+            { label: 'UI/UX', href: './Company.dc.html#capabilities' },
+            { label: 'Website Development', href: './Company.dc.html#capabilities' },
+            { label: 'Marketplace Optimisation', href: './Company.dc.html#capabilities' },
+            { label: 'Workflow Automation', href: './Company.dc.html#capabilities' },
+          ] },
+        ],
+        cta: { label: 'View Capabilities', href: './Company.dc.html#capabilities' },
+      },
+      null,
+      {
+        blurb: 'Practical tools and writing for teams running their own search programmes.',
+        columns: [{ title: 'Resources', items: [
+          { label: 'FAQ', href: './FAQ.dc.html' },
+          { label: 'Calculator', href: './Contact.dc.html' },
+          { label: 'Tutorials', href: './Contact.dc.html' },
+          { label: 'Guides', href: './Contact.dc.html' },
+          { label: 'Templates', href: './Contact.dc.html' },
+          { label: 'Blog', href: './Contact.dc.html' },
+        ] }],
+        cta: { label: 'Talk to Us', href: './Contact.dc.html' },
+      },
+    ];
+  }
+
+  renderVals() {
+    const vw = this.state.vw ?? 1440;
+    const menus = this.megaMenus;
+    return {
+      freelanceTerms: this.freelanceTerms,
+      salesTerms: this.salesTerms,
+      termGroups: this.termGroups,
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      activeMenuData: this.state.activeMenu !== null ? menus[this.state.activeMenu] : null,
+      clearActiveMenu: () => this.setState({ activeMenu: null }),
+      navLinks: this.navLinksData.map((l, i) => ({ ...l, onEnter: () => this.setState({ activeMenu: i }), onTap: (e) => { if (menus[i]) { e.preventDefault(); this.setState(s => ({ activeMenu: s.activeMenu === i ? null : i })); } } })),
+      footerNav: [
+        { label: 'Company', href: './Company.dc.html#founder' },
+        { label: 'Careers', href: './Careers.dc.html' },
+        { label: 'Partnership', href: './Partnership.dc.html' },
+        { label: 'ChatGPT Ads', href: './ChatGPT Ads Services.dc.html' },
+        { label: 'FAQ', href: './FAQ.dc.html' },
+        { label: 'Contact', href: './Contact.dc.html' },
+      ],
+      wideNav: vw >= 880,
+      narrowNav: vw < 880,
+      showAudit: vw >= 1180,
+    };
+  }
+}
+</script>
+</body>
+</html>

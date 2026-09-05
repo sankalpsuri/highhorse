@@ -264,9 +264,14 @@
   }
 
   .founderPhoto {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: unset;
     border-right: none;
     border-bottom: 1px solid #E6E6E4;
+  }
+
+  .founderPhoto img {
+    width: 100% !important;
+    height: auto !important;
   }
 
   .whyGrid {

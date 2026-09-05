@@ -69,13 +69,26 @@ export function OutcomeMeters() {
         ))}
       </div>
 
-      <div className={styles.outcomeChain}>
-        {outcomeChain.map((label, i) => (
-          <div key={label} className={styles.chainNode}>
-            <div className={styles.chainBox}>{label}</div>
-            {i < outcomeChain.length - 1 && <div className={styles.chainArrow} />}
+      <div className={styles.outcomeChainWrap}>
+        <div className={styles.outcomeChain}>
+          <div className={styles.chainTrack}>
+            {outcomeChain.map((label, i) => (
+              <div key={label} className={styles.chainNode}>
+                <div className={styles.chainBox}>{label}</div>
+                {i < outcomeChain.length - 1 && <div className={styles.chainArrow} />}
+              </div>
+            ))}
+            <div className={styles.chainNodeDup} aria-hidden>
+              <div className={styles.chainArrow} />
+            </div>
+            {outcomeChain.map((label, i) => (
+              <div key={`dup-${label}`} className={styles.chainNodeDup} aria-hidden>
+                <div className={styles.chainBox}>{label}</div>
+                {i < outcomeChain.length - 1 && <div className={styles.chainArrow} />}
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   )

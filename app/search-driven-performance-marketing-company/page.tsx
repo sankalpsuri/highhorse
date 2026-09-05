@@ -18,7 +18,7 @@ const ASSETS = {
   missionIcon: '/assets/Our Mission(1).png',
   visionIcon: '/assets/our vision(1).png',
   aimIcon: '/assets/our aim(1).png',
-  storyBanner: '/assets/2(54).jpg',
+  storyBanner: '/assets/re size.jpg',
   founderBanner: '/assets/Founder Image.jpg',
   industryFinance: '/assets/Finance (BFSI)(1).jpg',
   industryEcommerce: '/assets/Ecommerce(1).jpg',
@@ -349,7 +349,7 @@ export default async function CompanyPage() {
               overflow: 'hidden',
               background: '#F7F7F6',
               border: '1px solid #E6E6E4',
-              aspectRatio: '7/8',
+              aspectRatio: '4/3',
               minHeight: 300,
               boxShadow: '0 18px 40px rgba(10,10,12,0.05)',
             }}>
