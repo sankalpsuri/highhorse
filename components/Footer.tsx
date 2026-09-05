@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { FooterSocials } from './footer-socials'
 import styles from './footer.module.css'
 
 const navColumns = [
@@ -91,6 +92,9 @@ export function Footer() {
               Tagore Garden Extension, Delhi, 110027
             </address>
           </div>
+          <div className={styles.socialsMobile}>
+            <FooterSocials />
+          </div>
         </div>
 
         {navColumns.map((col) => (
@@ -105,6 +109,10 @@ export function Footer() {
             </div>
           </div>
         ))}
+
+        <div className={styles.socialsDesktop}>
+          <FooterSocials />
+        </div>
       </div>
 
       <div className={styles.bottom}>

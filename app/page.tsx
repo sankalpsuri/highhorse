@@ -123,15 +123,29 @@ export default async function HomePage() {
         {/* ── JOURNEY STRIP ─────────────────────────────────── */}
         <div className={styles.journeyWrap}>
           <div className={styles.journeyStrip}>
-            {journey.map((j, i) => (
-              <div key={j.n} className={styles.journeyItem}>
-                <div className={styles.journeyItemContent}>
-                  <div className={styles.journeyNum}>{j.n}</div>
-                  <div className={styles.journeyTitle}>{j.title}</div>
+            <div className={styles.journeyTrack}>
+              {journey.map((j, i) => (
+                <div key={j.n} className={styles.journeyItem}>
+                  <div className={styles.journeyItemContent}>
+                    <div className={styles.journeyNum}>{j.n}</div>
+                    <div className={styles.journeyTitle}>{j.title}</div>
+                  </div>
+                  {i < journey.length - 1 && <div className={styles.journeyArrow} />}
                 </div>
-                {i < journey.length - 1 && <div className={styles.journeyArrow} />}
+              ))}
+              <div className={styles.journeyItemDup} aria-hidden="true">
+                <div className={styles.journeyArrow} />
+                {journey.map((j, i) => (
+                  <div key={`dup-${j.n}`} className={styles.journeyItem}>
+                    <div className={styles.journeyItemContent}>
+                      <div className={styles.journeyNum}>{j.n}</div>
+                      <div className={styles.journeyTitle}>{j.title}</div>
+                    </div>
+                    {i < journey.length - 1 && <div className={styles.journeyArrow} />}
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>

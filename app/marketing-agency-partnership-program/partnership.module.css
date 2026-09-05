@@ -1,15 +1,15 @@
 /* ── Page ───────────────────────────────────────────────────── */
 .page {
   font-family: 'Poppins', sans-serif;
-  color: #101010;
+  color: #0A0A0C;
   background: #fff;
   overflow-x: hidden;
 }
 
 /* ── Hero ───────────────────────────────────────────────────── */
 .hero {
-  background: #F5F5F4;
-  border-bottom: 1px solid #E4E4E4;
+  background: #FFFFFF;
+  border-bottom: 1px solid #EAEAE8;
   position: relative;
   overflow: hidden;
 }
@@ -17,336 +17,558 @@
 .heroInner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 88px 32px 96px;
+  padding: 88px 32px 72px;
   text-align: left;
 }
 
 .heroBadge {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid #E4E4E4;
+  gap: 9px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid #E6E6E4;
   border-radius: 100px;
-  padding: 8px 18px 8px 12px;
-  margin-bottom: 28px;
-  box-shadow: 0 4px 12px rgba(16, 16, 16, 0.06);
-  text-decoration: none;
+  padding: 7px 14px 7px 11px;
+  margin-bottom: 24px;
 }
 
-.heroBadge:hover {
-  opacity: 0.75;
+.heroBadgeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FF9D2E;
 }
 
 .heroBadgeText {
-  font: 500 12.5px 'Poppins', sans-serif;
-  color: #5C5C5C;
+  font: 600 11.5px 'Montserrat', sans-serif;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #55555A;
 }
 
 .heroTitle {
-  font: 800 clamp(2.2rem, 3.8vw, 3.4rem)/1.1 'Montserrat', sans-serif;
+  font: 800 clamp(2.4rem, 4.2vw, 3.9rem)/1.08 'Montserrat', sans-serif;
   margin: 0 0 24px;
-  max-width: 720px;
-  letter-spacing: -0.01em;
+  max-width: 760px;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
   text-align: left;
 }
 
+.heroAccent {
+  color: #1A6AFF;
+}
+
 .heroBody {
-  font: 400 17px/1.65 'Poppins', sans-serif;
-  color: #5C5C5C;
-  max-width: 680px;
-  margin: 0 0 36px;
+  font: 400 17.5px/1.65 'Poppins', sans-serif;
+  color: #55555A;
+  max-width: 620px;
+  margin: 0 0 30px;
   text-wrap: pretty;
   text-align: left;
 }
 
 .heroCta {
-  display: inline-block;
+  display: inline-flex;
   font: 600 14px 'Montserrat', sans-serif;
-  background: #1A6AFF;
+  background: #0A0A0C;
   color: #fff;
-  padding: 15px 30px;
-  border-radius: 5px;
+  padding: 16px 28px;
+  border-radius: 6px;
   text-decoration: none;
   border: none;
   cursor: pointer;
+  box-shadow: 0 10px 26px rgba(10, 10, 12, 0.2);
   transition: background 0.15s;
 }
 
 .heroCta:hover {
-  background: #144FC0;
+  background: #232326;
   color: #fff;
 }
 
-/* ── Section Shared ────────────────────────────────────────── */
-.section {
+/* ── Partner Sections (shared) ────────────────────────────────── */
+.sectionGray {
+  background: #F7F7F6;
+  border-bottom: 1px solid #EAEAE8;
+}
+
+.sectionWhite {
+  background: #FFFFFF;
+}
+
+.partnerLayout {
   max-width: 1280px;
   margin: 0 auto;
   padding: 96px 32px;
-}
-
-.sectionBg {
-  background: #F5F5F4;
-  border-top: 1px solid #E4E4E4;
-  border-bottom: 1px solid #E4E4E4;
-}
-
-.sectionTitle {
-  font: 700 clamp(1.8rem, 2.6vw, 2.5rem)/1.2 'Montserrat', sans-serif;
-  margin: 0 0 16px;
-  max-width: 680px;
-  text-wrap: pretty;
-  text-align: left;
-}
-
-/* ── Partner Cards ─────────────────────────────────────────── */
-.cardGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-}
-
-@media (max-width: 799px) {
-  .cardGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.partnerCard {
-  border: 1px solid #E4E4E4;
-  border-radius: 8px;
-  padding: 40px 32px;
-  background: #fff;
   display: flex;
-  flex-direction: column;
+  gap: 56px;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-.cardIconWrap {
-  width: 56px;
-  height: 56px;
+.partnerText {
+  flex: 1 1 480px;
+  min-width: 300px;
+}
+
+.partnerLabelRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.partnerIconBox {
+  width: 46px;
+  height: 46px;
   border-radius: 12px;
-  background: #EAF1FF;
+  background: #0A0A0C;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  flex-shrink: 0;
 }
 
-.cardIcon {
-  max-width: 28px;
-  max-height: 28px;
-  object-fit: contain;
+.partnerModelLabel {
+  font: 600 11.5px 'Montserrat', sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1A6AFF;
 }
 
-.iconPlaceholder {
-  width: 56px;
-  height: 56px;
-  border: 2px dashed #E4E4E4;
-  border-radius: 12px;
-  background: #F5F5F4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.placeholderLabel {
-  font: 400 9px/1.3 'Poppins', sans-serif;
-  color: #8a8a86;
-  text-align: center;
-  word-break: break-all;
-  padding: 4px;
-}
-
-.cardTitle {
-  font: 700 clamp(1.25rem, 2vw, 1.5rem)/1.25 'Montserrat', sans-serif;
-  margin: 0 0 16px;
-  text-align: left;
-}
-
-.cardBody {
-  font: 400 14.5px/1.65 'Poppins', sans-serif;
-  color: #5C5C5C;
-  margin: 0 0 28px;
+.partnerTitle {
+  font: 700 clamp(1.9rem, 2.8vw, 2.6rem)/1.16 'Montserrat', sans-serif;
+  margin: 0 0 20px;
+  max-width: 520px;
   text-wrap: pretty;
 }
 
-.cardSubheading {
-  font: 700 15px 'Montserrat', sans-serif;
-  color: #101010;
-  margin: 0 0 16px;
+.partnerBody {
+  font: 400 16px/1.7 'Poppins', sans-serif;
+  color: #55555A;
+  margin: 0 0 26px;
+  text-wrap: pretty;
 }
 
-.cardCta {
-  display: inline-block;
+.partnerCta {
+  display: inline-flex;
   font: 600 14px 'Montserrat', sans-serif;
   background: #1A6AFF;
   color: #fff;
-  padding: 14px 28px;
-  border-radius: 5px;
+  padding: 15px 26px;
+  border-radius: 6px;
   text-decoration: none;
-  text-align: center;
-  border: none;
-  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(26, 106, 255, 0.28);
   transition: background 0.15s;
-  margin-top: auto;
-  align-self: flex-start;
 }
 
-.cardCta:hover {
+.partnerCta:hover {
   background: #144FC0;
   color: #fff;
 }
 
-/* ── Bullet Lists ──────────────────────────────────────────── */
-.bulletList {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 28px;
+/* ── Terms Card (light) ──────────────────────────────────────── */
+.termsCard {
+  flex: 1 1 380px;
+  min-width: 300px;
+  border: 1px solid #E6E6E4;
+  border-radius: 16px;
+  background: #fff;
+  padding: 8px 28px;
+  box-shadow: 0 14px 34px rgba(10, 10, 12, 0.04);
+}
+
+.termsCardSales {
+  order: 2;
+}
+
+.termsCardHeading {
+  font: 600 10.5px 'Montserrat', sans-serif;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #9A9A96;
+  padding: 22px 0 6px;
+}
+
+.termsCardItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid #F0F0EE;
+  font: 400 14.5px/1.55 'Poppins', sans-serif;
+  color: #3A3A3E;
+}
+
+.termsCardBullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1A6AFF;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.termsCardItemOrange {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid #F0F0EE;
+  font: 400 14.5px/1.55 'Poppins', sans-serif;
+  color: #3A3A3E;
+}
+
+.termsCardBulletOrange {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FF9D2E;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* ── Terms & Conditions (dark) ───────────────────────────────── */
+.termsDark {
+  background: #0A0A0C;
+  color: #F5F5F4;
+  position: relative;
+  overflow: hidden;
+}
+
+.termsDarkGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(100% 80% at 50% 0%, #000 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(100% 80% at 50% 0%, #000 30%, transparent 85%);
+  pointer-events: none;
+}
+
+.termsDarkGlow {
+  position: absolute;
+  top: -140px;
+  left: 20%;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26, 106, 255, 0.28), rgba(26, 106, 255, 0) 68%);
+  pointer-events: none;
+}
+
+.termsDarkInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 100px 32px;
+  position: relative;
+}
+
+.termsDarkHeader {
+  max-width: 720px;
+  margin-bottom: 52px;
+}
+
+.termsDarkLabel {
+  font: 600 11.5px 'Montserrat', sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FF9D2E;
+  margin-bottom: 16px;
+}
+
+.termsDarkTitle {
+  font: 700 clamp(1.9rem, 2.8vw, 2.6rem)/1.16 'Montserrat', sans-serif;
+  margin: 0 0 16px;
+  text-wrap: pretty;
+}
+
+.termsDarkSub {
+  font: 400 16px/1.7 'Poppins', sans-serif;
+  color: #9A9A97;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.termsDarkCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.termsDarkCard {
+  border: 1px solid #232326;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.termsDarkCardNum {
+  font: 700 11px 'Montserrat', sans-serif;
+  letter-spacing: 0.1em;
+  color: #5A5A57;
+}
+
+.termsDarkCardTitle {
+  font: 700 18px/1.32 'Montserrat', sans-serif;
+  margin: 0;
+}
+
+.termsDarkCardItems {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.bulletItem {
+.termsDarkCardItem {
   display: flex;
-  gap: 14px;
-  align-items: baseline;
-  font: 400 14px/1.55 'Poppins', sans-serif;
-  color: #5C5C5C;
+  align-items: flex-start;
+  gap: 10px;
+  font: 400 14px/1.6 'Poppins', sans-serif;
+  color: #9A9A97;
 }
 
-.bullet {
-  width: 6px;
-  height: 6px;
-  background: #1A6AFF;
+.termsDarkCardBullet {
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
+  background: #FF9D2E;
   flex-shrink: 0;
   margin-top: 8px;
 }
 
-/* ── Terms Section ─────────────────────────────────────────── */
-.termsHeading {
-  font: 600 17px/1.3 'Montserrat', sans-serif;
-  color: #101010;
-  margin: 36px 0 16px;
+.termsDarkDisclaimer {
+  border: 1px solid #232326;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 26px 28px;
+  margin-top: 20px;
+  font: 400 15px/1.65 'Poppins', sans-serif;
+  color: #D4D4D1;
+  text-wrap: pretty;
 }
 
-.bodyPara {
-  font: 400 15px/1.7 'Poppins', sans-serif;
-  color: #5C5C5C;
-  margin: 0 0 16px;
+/* ── CTA Section (blue) ──────────────────────────────────────── */
+.ctaSection {
+  background: #1A6AFF;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(100% 90% at 50% 0%, #000 20%, transparent 82%);
+  -webkit-mask-image: radial-gradient(100% 90% at 50% 0%, #000 20%, transparent 82%);
+  pointer-events: none;
+}
+
+.ctaGlow {
+  position: absolute;
+  top: -180px;
+  left: -80px;
+  width: 540px;
+  height: 540px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+}
+
+.ctaInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 96px 32px;
+  position: relative;
+  display: flex;
+  gap: 64px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.ctaText {
+  flex: 1 1 500px;
+  min-width: 300px;
+}
+
+.ctaTitle {
+  font: 700 clamp(2rem, 3vw, 2.8rem)/1.14 'Montserrat', sans-serif;
+  margin: 0 0 20px;
+  max-width: 600px;
   text-wrap: pretty;
-  max-width: 760px;
+}
+
+.ctaSub {
+  font: 400 17px/1.7 'Poppins', sans-serif;
+  color: rgba(255, 255, 255, 0.86);
+  margin: 0;
+  max-width: 540px;
+  text-wrap: pretty;
+}
+
+.ctaBtn {
+  flex: 0 0 auto;
+  font: 600 14px 'Montserrat', sans-serif;
+  background: #fff;
+  color: #0A0A0C;
+  padding: 17px 30px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.ctaBtn:hover {
+  background: #F0F0EE;
+  color: #0A0A0C;
 }
 
 /* ── Responsive: Tablet (≤ 768px) ────────────────────────────── */
 @media (max-width: 768px) {
   .heroInner {
-    padding: 64px 28px 72px;
+    padding: 64px 28px 56px;
   }
 
-  .section {
-    padding: 64px 28px;
+  .partnerLayout {
+    padding: 72px 28px;
+    gap: 40px;
+  }
+
+  .termsDarkInner {
+    padding: 72px 28px;
+  }
+
+  .ctaInner {
+    padding: 72px 28px;
+    gap: 40px;
   }
 
   .heroBody {
     font-size: 15.5px;
   }
 
-  .cardGrid {
-    gap: 24px;
+  .termsCardSales {
+    order: 0;
   }
 }
 
 /* ── Responsive: Mobile (≤ 480px) ────────────────────────────── */
 @media (max-width: 480px) {
   .heroInner {
-    padding: 48px 20px 56px;
+    padding: 48px 20px 40px;
   }
 
-  .section {
-    padding: 48px 20px;
+  .partnerLayout {
+    padding: 56px 20px;
+    gap: 28px;
   }
 
-  .partnerCard {
-    padding: 28px 20px;
+  .termsDarkInner {
+    padding: 56px 20px;
   }
 
-  .cardGrid {
-    gap: 20px;
+  .termsDarkHeader {
+    margin-bottom: 36px;
+  }
+
+  .ctaInner {
+    padding: 56px 20px;
+    gap: 28px;
+  }
+
+  .partnerText {
+    min-width: 0;
+  }
+
+  .termsCard {
+    min-width: 0;
+    padding: 4px 20px;
+  }
+
+  .termsDarkCard {
+    padding: 22px 20px;
+  }
+
+  .termsDarkDisclaimer {
+    padding: 20px;
   }
 
   .heroCta {
-    padding: 13px 24px;
+    padding: 14px 24px;
     font-size: 13px;
   }
 
-  .cardCta {
-    padding: 12px 22px;
+  .partnerCta {
+    padding: 13px 22px;
     font-size: 13px;
-  }
-
-  .termsHeading {
-    margin-top: 28px;
-    font-size: 16px;
-  }
-
-  .bulletItem {
-    font-size: 13.5px;
-  }
-
-  .bodyPara {
-    font-size: 14px;
   }
 }
 
 /* ── Responsive: Small Mobile (≤ 374px) ──────────────────────── */
 @media (max-width: 374px) {
   .heroInner {
-    padding: 40px 16px 48px;
+    padding: 40px 16px 36px;
   }
 
-  .section {
-    padding: 40px 16px;
+  .partnerLayout {
+    padding: 48px 16px;
+    gap: 24px;
+  }
+
+  .termsDarkInner {
+    padding: 48px 16px;
+  }
+
+  .ctaInner {
+    padding: 48px 16px;
+    gap: 24px;
   }
 
   .heroBadge {
-    padding: 6px 14px 6px 10px;
-    gap: 8px;
+    padding: 6px 12px 6px 9px;
+    gap: 7px;
   }
 
   .heroBadgeText {
-    font-size: 11.5px;
+    font-size: 10.5px;
   }
 
-  .partnerCard {
-    padding: 24px 16px;
+  .termsCard {
+    padding: 4px 16px;
   }
 
-  .cardBody {
+  .termsCardItem {
     font-size: 13.5px;
   }
 
-  .cardSubheading {
-    font-size: 14px;
+  .termsCardItemOrange {
+    font-size: 13.5px;
   }
 
-  .bulletItem {
-    font-size: 13px;
-    gap: 10px;
-  }
-
-  .termsHeading {
-    margin-top: 24px;
+  .partnerBody {
     font-size: 15px;
   }
 
-  .bodyPara {
-    font-size: 13.5px;
+  .termsDarkCard {
+    padding: 20px 16px;
   }
 
-  .cardGrid {
-    gap: 16px;
+  .termsDarkCardItem {
+    font-size: 13px;
+  }
+
+  .termsDarkDisclaimer {
+    font-size: 14px;
+    padding: 18px 16px;
   }
 }

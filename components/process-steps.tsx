@@ -22,6 +22,7 @@ export function ProcessSteps() {
           key={step.n}
           className={`${styles.step} ${i === active ? styles.stepActive : ''}`}
           onMouseEnter={() => setActive(i)}
+          onClick={() => setActive(i)}
         >
           <div className={styles.stepRail} />
           <div className={styles.stepHeader}>
