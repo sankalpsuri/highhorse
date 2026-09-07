@@ -12,41 +12,90 @@ interface CaseStudyCard {
 }
 
 interface CaseStudyCardsSectionProps {
+  eyebrow?: string
   heading?: string
   subtext?: string
+  headerLayout?: string
   cards?: CaseStudyCard[]
   accentStyle?: string
 }
 
-export function CaseStudyCardsSection({ heading, subtext, cards }: CaseStudyCardsSectionProps) {
+const sectionEyebrowStyle: React.CSSProperties = {
+  fontFamily: "'Montserrat', sans-serif",
+  fontWeight: 600,
+  fontSize: '11.5px',
+  letterSpacing: '0.1em',
+  textTransform: 'uppercase',
+  color: '#1A6AFF',
+  marginBottom: 16,
+}
+
+export function CaseStudyCardsSection({ eyebrow, heading, subtext, headerLayout, cards }: CaseStudyCardsSectionProps) {
   if (!cards || cards.length === 0) return null
+  const isSplit = headerLayout === 'split'
 
   return (
     <section>
       <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-        {heading && (
-          <h2 style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 700,
-            fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-            lineHeight: 1.2,
-            margin: '0 0 16px',
-            color: '#111111',
-          }}>
-            {heading}
-          </h2>
-        )}
-        {subtext && (
-          <p style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: 16,
-            lineHeight: 1.7,
-            color: '#5c5c5c',
-            maxWidth: 640,
-            margin: '0 0 32px',
-          }}>
-            {subtext}
-          </p>
+        {isSplit ? (
+          <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 44 }}>
+            <div style={{ flex: '1 1 460px', minWidth: 300 }}>
+              {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
+              {heading && (
+                <h2 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                  lineHeight: 1.2,
+                  margin: 0,
+                  color: '#111111',
+                }}>
+                  {heading}
+                </h2>
+              )}
+            </div>
+            <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
+              {subtext && (
+                <p style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  color: '#5c5c5c',
+                  margin: 0,
+                }}>
+                  {subtext}
+                </p>
+              )}
+            </div>
+          </div>
+        ) : (
+          <>
+            {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
+            {heading && (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                lineHeight: 1.2,
+                margin: '0 0 16px',
+                color: '#111111',
+              }}>
+                {heading}
+              </h2>
+            )}
+            {subtext && (
+              <p style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: 16,
+                lineHeight: 1.7,
+                color: '#5c5c5c',
+                maxWidth: 640,
+                margin: '0 0 32px',
+              }}>
+                {subtext}
+              </p>
+            )}
+          </>
         )}
         <div className="rsp-grid-2" style={{
           display: 'grid',

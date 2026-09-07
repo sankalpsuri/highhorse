@@ -3,6 +3,9 @@ import Link from 'next/link'
 interface ChallengeGridSectionProps {
   eyebrow?: string
   layout?: string
+  headerLayout?: string
+  background?: string
+  cardStyle?: string
   heading?: string
   subtext?: string
   ctaText?: string
@@ -25,11 +28,15 @@ const colorPalettes: Record<string, { bg: string; border: string; chip: string; 
   blue: { bg: '#F4F7FF', border: '#D5E1FF', chip: '#E4ECFF', tone: '#1A6AFF' },
   peach: { bg: '#FFF6EA', border: '#FFE0B8', chip: '#FFEFD8', tone: '#B96A0C' },
   gray: { bg: '#F7F7F6', border: '#E6E6E4', chip: '#EFEFEE', tone: '#55555A' },
+  amber: { bg: '#fff', border: '#E6E6E4', chip: '#FFF3E2', tone: '#B96A0C' },
 }
 
 const defaultPalette = { bg: '#fff', border: '#E4E4E4', chip: 'rgba(26, 106, 255, 0.1)', tone: '#1A6AFF' }
 
-export function ChallengeGridSection({ eyebrow, layout, heading, subtext, ctaText, ctaLink, challenges, cardColors }: ChallengeGridSectionProps) {
+export function ChallengeGridSection({ eyebrow, layout, headerLayout, background, cardStyle, heading, subtext, ctaText, ctaLink, challenges, cardColors }: ChallengeGridSectionProps) {
+  const sectionBg = background === 'white' ? '#FFFFFF' : '#F5F5F4'
+  const isCompact = cardStyle === 'compact'
+  const isInlineCta = headerLayout === 'inline-cta'
   if (layout === 'split') {
     return (
       <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
@@ -100,59 +107,158 @@ export function ChallengeGridSection({ eyebrow, layout, heading, subtext, ctaTex
   }
 
   return (
-    <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
+    <section style={{ background: sectionBg, borderTop: background === 'white' ? 'none' : '1px solid #E4E4E4', borderBottom: background === 'white' ? 'none' : '1px solid #E4E4E4' }}>
       <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-        <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 40 }}>
-          <div style={{ flex: '1 1 460px', minWidth: 300 }}>
-            {eyebrow && <div style={eyebrowStyle}>{eyebrow}</div>}
-            {heading && (
-              <h2 style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 700,
-                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-                lineHeight: 1.2,
-                margin: 0,
-                color: '#111111',
-              }}>
-                {heading}
-              </h2>
-            )}
-          </div>
-          <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
+        {isInlineCta ? (
+          <>
+            <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' as const, alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 44 }}>
+              <div style={{ flex: '1 1 560px', minWidth: 300 }}>
+                {eyebrow && <div style={eyebrowStyle}>{eyebrow}</div>}
+                {heading && (
+                  <h2 style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                    lineHeight: 1.2,
+                    margin: 0,
+                    color: '#111111',
+                    maxWidth: 700,
+                  }}>
+                    {heading}
+                  </h2>
+                )}
+              </div>
+              {ctaText && ctaLink && (
+                <Link
+                  href={ctaLink}
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 600,
+                    fontSize: 13,
+                    color: '#1A6AFF',
+                    border: '1px solid #1A6AFF',
+                    padding: '13px 20px',
+                    borderRadius: 6,
+                    textDecoration: 'none',
+                    whiteSpace: 'nowrap' as const,
+                  }}
+                >
+                  {ctaText}
+                </Link>
+              )}
+            </div>
             {subtext && (
               <p style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: 16,
                 lineHeight: 1.7,
                 color: '#5c5c5c',
-                margin: 0,
+                maxWidth: 760,
+                margin: '0 0 40px',
               }}>
                 {subtext}
               </p>
             )}
-          </div>
-        </div>
-        {ctaText && ctaLink && (
-          <div style={{ marginBottom: 32 }}>
-            <Link
-              href={ctaLink}
-              style={{
-                display: 'inline-block',
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 600,
-                fontSize: 14,
-                background: '#1A6AFF',
-                color: '#fff',
-                padding: '15px 30px',
-                borderRadius: 5,
-                textDecoration: 'none',
-              }}
-            >
-              {ctaText}
-            </Link>
-          </div>
+          </>
+        ) : (
+          <>
+            <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 40 }}>
+              <div style={{ flex: '1 1 460px', minWidth: 300 }}>
+                {eyebrow && <div style={eyebrowStyle}>{eyebrow}</div>}
+                {heading && (
+                  <h2 style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                    lineHeight: 1.2,
+                    margin: 0,
+                    color: '#111111',
+                  }}>
+                    {heading}
+                  </h2>
+                )}
+              </div>
+              <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
+                {subtext && (
+                  <p style={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: 16,
+                    lineHeight: 1.7,
+                    color: '#5c5c5c',
+                    margin: 0,
+                  }}>
+                    {subtext}
+                  </p>
+                )}
+              </div>
+            </div>
+            {ctaText && ctaLink && (
+              <div style={{ marginBottom: 32 }}>
+                <Link
+                  href={ctaLink}
+                  style={{
+                    display: 'inline-block',
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 600,
+                    fontSize: 14,
+                    background: '#1A6AFF',
+                    color: '#fff',
+                    padding: '15px 30px',
+                    borderRadius: 5,
+                    textDecoration: 'none',
+                  }}
+                >
+                  {ctaText}
+                </Link>
+              </div>
+            )}
+          </>
         )}
         {challenges && challenges.length > 0 && (
+          isCompact ? (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+              gap: 16,
+            }}>
+              {challenges.map((text, i) => {
+                const palette = cardColors?.[i] ? (colorPalettes[cardColors[i]] || defaultPalette) : defaultPalette
+                return (
+                  <div key={i} className="hh-card-hover" style={{
+                    border: `1px solid ${palette.border}`,
+                    borderRadius: 12,
+                    background: palette.bg,
+                    padding: 22,
+                    display: 'flex',
+                    gap: 12,
+                    alignItems: 'flex-start',
+                  }}>
+                    <span style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 11,
+                      letterSpacing: '0.06em',
+                      color: palette.tone,
+                      background: palette.chip,
+                      borderRadius: 5,
+                      padding: '5px 8px',
+                      flexShrink: 0,
+                    }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: 14.5,
+                      lineHeight: 1.55,
+                      color: '#3A3A3E',
+                    }}>
+                      {text}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          ) : (
           <div className="rsp-grid-4" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
@@ -213,6 +319,7 @@ export function ChallengeGridSection({ eyebrow, layout, heading, subtext, ctaTex
               )
             })}
           </div>
+          )
         )}
       </div>
     </section>

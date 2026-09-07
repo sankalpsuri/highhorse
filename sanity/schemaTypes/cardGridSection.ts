@@ -19,7 +19,7 @@ export default defineType({
       name: 'style',
       title: 'Style',
       type: 'string',
-      options: {list: [{title: 'Default', value: 'default'}, {title: 'Dashed border', value: 'dashed'}, {title: 'Clean (no borders)', value: 'clean'}]},
+      options: {list: [{title: 'Default', value: 'default'}, {title: 'Dashed border', value: 'dashed'}, {title: 'Clean (no borders)', value: 'clean'}, {title: 'Dark', value: 'dark'}]},
       initialValue: 'default',
     }),
     defineField({

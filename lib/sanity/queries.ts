@@ -126,6 +126,9 @@ export const servicePageQuery = groq`
       _type == "challengeGridSection" => {
         eyebrow,
         layout,
+        headerLayout,
+        background,
+        cardStyle,
         heading,
         subtext,
         ctaText,
@@ -152,8 +155,10 @@ export const servicePageQuery = groq`
         logos[]{ _key, name, image{ ..., asset-> }, displayText, bgColor, textColor }
       },
       _type == "caseStudyCardsSection" => {
+        eyebrow,
         heading,
         subtext,
+        headerLayout,
         cards[]{ _key, clientName, badgeColor, resultChartImage{ ..., asset-> }, results }
       },
       _type == "videoShowcaseSection" => {

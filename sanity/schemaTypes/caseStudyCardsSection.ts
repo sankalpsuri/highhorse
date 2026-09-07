@@ -5,8 +5,16 @@ export default defineType({
   title: 'Case Study Cards Section',
   type: 'object',
   fields: [
+    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string', description: 'Small uppercase label above the heading.'}),
     defineField({name: 'heading', title: 'Heading', type: 'string'}),
     defineField({name: 'subtext', title: 'Subtext', type: 'text', rows: 3}),
+    defineField({
+      name: 'headerLayout',
+      title: 'Header layout',
+      type: 'string',
+      options: {list: [{title: 'Stacked', value: 'stacked'}, {title: 'Split (heading left, subtext right)', value: 'split'}]},
+      initialValue: 'stacked',
+    }),
     defineField({
       name: 'cards',
       title: 'Cards',

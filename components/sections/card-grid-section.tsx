@@ -129,6 +129,7 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
             }}>
               {cards.map((card, i) => {
                 const num = String(i + 1).padStart(2, '0')
+                const hasCardVisual = card.svgPath || card.icon?.asset
                 return (
                   <div
                     key={card._key || i}
@@ -143,6 +144,7 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
                       gap: 14,
                     }}
                   >
+                    {hasCardVisual && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                       <div style={{
                         width: 46,
@@ -167,11 +169,7 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
                             height={23}
                             style={{ objectFit: 'scale-down' }}
                           />
-                        ) : (
-                          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5" />
-                          </svg>
-                        )}
+                        ) : null}
                       </div>
                       <div style={{ flex: 1, height: 1, background: '#232326' }} />
                       <div style={{
@@ -184,6 +182,7 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
                         {num}
                       </div>
                     </div>
+                    )}
                     {card.title && (
                       <h3 style={{
                         fontFamily: "'Montserrat', sans-serif",
