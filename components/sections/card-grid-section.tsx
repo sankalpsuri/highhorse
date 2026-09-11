@@ -121,96 +121,170 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
               )}
             </div>
           </div>
-          {cards && cards.length > 0 && (
-            <div className="rsp-grid-3" style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: 18,
-            }}>
-              {cards.map((card, i) => {
-                const num = String(i + 1).padStart(2, '0')
-                const hasCardVisual = card.svgPath || card.icon?.asset
-                return (
-                  <div
-                    key={card._key || i}
-                    className="hh-dark-card-hover"
-                    style={{
-                      border: '1px solid #232326',
-                      borderRadius: 16,
-                      background: 'rgba(255,255,255,0.03)',
-                      padding: 28,
-                      display: 'flex',
-                      flexDirection: 'column' as const,
-                      gap: 14,
-                    }}
-                  >
-                    {hasCardVisual && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                      <div style={{
-                        width: 46,
-                        height: 46,
-                        borderRadius: 12,
-                        background: 'rgba(255,157,46,0.12)',
-                        border: '1px solid rgba(255,157,46,0.5)',
+          {cards && cards.length > 0 && (() => {
+            const isComparison = cards.some(c => c.bullets?.length)
+            if (isComparison) {
+              return (
+                <div className="rsp-grid-2" style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gap: 24,
+                }}>
+                  {cards.map((card, i) => {
+                    const isMuted = card.badgeColor === 'gray'
+                    return (
+                      <div
+                        key={card._key || i}
+                        style={{
+                          border: isMuted
+                            ? '1px solid rgba(180,220,240,0.12)'
+                            : '1px solid rgba(160,162,252,0.22)',
+                          borderRadius: 20,
+                          background: isMuted
+                            ? 'rgba(180,220,240,0.06)'
+                            : 'rgba(160,162,252,0.10)',
+                          padding: '40px 36px',
+                        }}
+                      >
+                        {card.title && (
+                          <h3 style={{
+                            fontFamily: "'Montserrat', sans-serif",
+                            fontWeight: 800,
+                            fontSize: 21,
+                            lineHeight: 1.3,
+                            margin: '0 0 24px',
+                            color: isMuted ? '#8a9aab' : '#F5F5F4',
+                          }}>
+                            {card.title}
+                          </h3>
+                        )}
+                        {card.bullets && card.bullets.length > 0 && (
+                          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                            {card.bullets.map((bullet, j) => (
+                              <li key={j} style={{
+                                display: 'flex',
+                                gap: 12,
+                                alignItems: 'baseline',
+                                marginBottom: 12,
+                              }}>
+                                <span style={{
+                                  width: 5,
+                                  height: 5,
+                                  borderRadius: '50%',
+                                  background: isMuted ? '#4a5a6a' : '#a0a2fc',
+                                  flexShrink: 0,
+                                  marginTop: 7,
+                                  display: 'inline-block',
+                                }} />
+                                <span style={{
+                                  fontFamily: "'Poppins', sans-serif",
+                                  fontSize: 15,
+                                  lineHeight: 1.55,
+                                  color: isMuted ? '#6a7a8a' : '#C8C8D5',
+                                }}>
+                                  {bullet}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+              )
+            }
+            return (
+              <div className="rsp-grid-3" style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: 18,
+              }}>
+                {cards.map((card, i) => {
+                  const num = String(i + 1).padStart(2, '0')
+                  const hasCardVisual = card.svgPath || card.icon?.asset
+                  return (
+                    <div
+                      key={card._key || i}
+                      className="hh-dark-card-hover"
+                      style={{
+                        border: '1px solid #232326',
+                        borderRadius: 16,
+                        background: 'rgba(255,255,255,0.03)',
+                        padding: 28,
                         display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                      }}>
-                        {card.svgPath ? (
-                          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d={card.svgPath} />
-                          </svg>
-                        ) : card.icon?.asset ? (
-                          <Image
-                            src={urlFor(card.icon).width(46).auto('format').url()}
-                            alt=""
-                            width={23}
-                            height={23}
-                            style={{ objectFit: 'scale-down' }}
-                          />
-                        ) : null}
+                        flexDirection: 'column' as const,
+                        gap: 14,
+                      }}
+                    >
+                      {hasCardVisual && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                        <div style={{
+                          width: 46,
+                          height: 46,
+                          borderRadius: 12,
+                          background: 'rgba(255,157,46,0.12)',
+                          border: '1px solid rgba(255,157,46,0.5)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                        }}>
+                          {card.svgPath ? (
+                            <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d={card.svgPath} />
+                            </svg>
+                          ) : card.icon?.asset ? (
+                            <Image
+                              src={urlFor(card.icon).width(46).auto('format').url()}
+                              alt=""
+                              width={23}
+                              height={23}
+                              style={{ objectFit: 'scale-down' }}
+                            />
+                          ) : null}
+                        </div>
+                        <div style={{ flex: 1, height: 1, background: '#232326' }} />
+                        <div style={{
+                          fontFamily: "'Montserrat', sans-serif",
+                          fontWeight: 700,
+                          fontSize: '11.5px',
+                          letterSpacing: '0.12em',
+                          color: '#5a5a57',
+                        }}>
+                          {num}
+                        </div>
                       </div>
-                      <div style={{ flex: 1, height: 1, background: '#232326' }} />
-                      <div style={{
-                        fontFamily: "'Montserrat', sans-serif",
-                        fontWeight: 700,
-                        fontSize: '11.5px',
-                        letterSpacing: '0.12em',
-                        color: '#5a5a57',
-                      }}>
-                        {num}
-                      </div>
+                      )}
+                      {card.title && (
+                        <h3 style={{
+                          fontFamily: "'Montserrat', sans-serif",
+                          fontWeight: 700,
+                          fontSize: 18,
+                          lineHeight: 1.32,
+                          margin: 0,
+                          color: '#F5F5F4',
+                        }}>
+                          {card.title}
+                        </h3>
+                      )}
+                      {card.description && (
+                        <p style={{
+                          fontFamily: "'Poppins', sans-serif",
+                          fontSize: 14.5,
+                          lineHeight: 1.62,
+                          color: '#9A9A97',
+                          margin: 0,
+                        }}>
+                          {card.description}
+                        </p>
+                      )}
                     </div>
-                    )}
-                    {card.title && (
-                      <h3 style={{
-                        fontFamily: "'Montserrat', sans-serif",
-                        fontWeight: 700,
-                        fontSize: 18,
-                        lineHeight: 1.32,
-                        margin: 0,
-                        color: '#F5F5F4',
-                      }}>
-                        {card.title}
-                      </h3>
-                    )}
-                    {card.description && (
-                      <p style={{
-                        fontFamily: "'Poppins', sans-serif",
-                        fontSize: 14.5,
-                        lineHeight: 1.62,
-                        color: '#9A9A97',
-                        margin: 0,
-                      }}>
-                        {card.description}
-                      </p>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-          )}
+                  )
+                })}
+              </div>
+            )
+          })()}
         </div>
       </section>
     )
