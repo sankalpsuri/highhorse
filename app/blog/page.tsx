@@ -91,7 +91,8 @@ export default async function BlogListingPage() {
                 style={{
                   flex: 1,
                   minWidth: 260,
-                  aspectRatio: '16 / 9',
+                  position: 'relative',
+                  aspectRatio: '2 / 1',
                   borderRadius: 12,
                   background: '#f5f5f4',
                   overflow: 'hidden',
@@ -102,11 +103,12 @@ export default async function BlogListingPage() {
               >
                 {featured.mainImage?.asset ? (
                   <Image
-                    src={urlFor(featured.mainImage).width(700).auto('format').url()}
+                    src={urlFor(featured.mainImage).width(1200).auto('format').url()}
                     alt={featured.mainImage.alt || featured.title}
-                    width={700}
-                    height={394}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    fill
+                    sizes="(max-width: 860px) calc(100vw - 80px), 530px"
+                    style={{ objectFit: 'cover' }}
+                    quality={90}
                     priority
                   />
                 ) : (

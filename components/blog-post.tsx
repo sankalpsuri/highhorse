@@ -119,11 +119,13 @@ export function BlogPost({ data }: BlogPostProps) {
               }}
             >
               <Image
-                src={urlFor(data.mainImage).width(1100).auto('format').url()}
+                src={urlFor(data.mainImage).width(1800).auto('format').url()}
                 alt={data.mainImage.alt || data.title}
-                width={1100}
-                height={550}
+                width={1800}
+                height={900}
+                sizes="(max-width: 1140px) calc(100vw - 48px), 1092px"
                 style={{ width: '100%', height: 'auto', display: 'block' }}
+                quality={90}
                 priority
               />
             </div>

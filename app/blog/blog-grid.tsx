@@ -186,6 +186,7 @@ export function BlogGrid({ posts }: { posts: BlogListItem[] }) {
               >
                 <div
                   style={{
+                    position: 'relative',
                     aspectRatio: '16 / 9',
                     borderRadius: 12,
                     marginBottom: 14,
@@ -195,11 +196,12 @@ export function BlogGrid({ posts }: { posts: BlogListItem[] }) {
                 >
                   {post.mainImage?.asset ? (
                     <Image
-                      src={urlFor(post.mainImage).width(500).auto('format').url()}
+                      src={urlFor(post.mainImage).width(800).auto('format').url()}
                       alt={post.mainImage.alt || post.title}
-                      width={500}
-                      height={281}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      fill
+                      sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 860px) calc(50vw - 37px), 347px"
+                      style={{ objectFit: 'cover' }}
+                      quality={90}
                     />
                   ) : (
                     <div
