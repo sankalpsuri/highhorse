@@ -101,7 +101,7 @@ export function BlogPost({ data }: BlogPostProps) {
               )}
               {formattedDate && (
                 <>
-                  <span>&middot;</span>
+                  {data.author?.name && <span>&middot;</span>}
                   <time dateTime={data.publishedAt}>{formattedDate}</time>
                 </>
               )}

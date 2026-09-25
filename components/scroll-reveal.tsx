@@ -21,7 +21,7 @@ export function ScrollReveal({ children, className, delay = 0 }: { children: Rea
           observer.disconnect()
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0, rootMargin: '0px 0px -60px 0px' }
     )
 
     observer.observe(el)

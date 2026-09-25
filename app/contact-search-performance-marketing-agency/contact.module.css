@@ -493,6 +493,7 @@
 
   .formArea {
     min-width: 0;
+    order: -1;
   }
 
   .formBody {
