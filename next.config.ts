@@ -315,7 +315,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/blog/best-ai-automation-tools-for-marketing-teams-in-2025",
+        source:
+          "/blog/best-ai-automation-tools-for-marketing-teams-in-2025",
         destination:
           "/blog/boost-productivity-5x-best-ai-automation-tools-for-marketing-teams-in-2026",
         permanent: true,
@@ -327,7 +328,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/blog/how-to-start-an-ecommerce-business-from-scratch-in-2025",
+        source:
+          "/blog/how-to-start-an-ecommerce-business-from-scratch-in-2025",
         destination:
           "/blog/how-to-start-an-ecommerce-business-from-scratch-in-2026",
         permanent: true,
@@ -337,6 +339,244 @@ const nextConfig: NextConfig = {
       {
         source: "/aboutus",
         destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+
+      // ==========================================
+      // NEW REDIRECTS - PROVIDED URLS
+      // ==========================================
+
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-sector-15a",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-naraina",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-okhla",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-18",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-50",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-15a",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-shushant-lok",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-87",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-kirti-nagar",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-sohna-road",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-83",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-65",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-60",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-vasant-vihar",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-27",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-43",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-arun-vihar",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-wazirpur",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-86",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-gtp-nagar",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-49",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-bilaspur",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-udyog-nagar",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-sector-49",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-defence-colony",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-sector-43",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-gurugram",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-jor-bagh",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-sector-44",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-gurugram",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-wazirpur",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-khan-market",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-85",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-jaypee-green",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/social-media-marketing-agency/social-media-marketing-agency-in-sector-44",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source:
+          "/digital-marketing-agency/digital-marketing-agency-in-greater-kailash",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+
+      // Existing Nested Wix Location Pages
+      {
+        source: "/digital-marketing-agency/:path*",
+        destination: "/search-driven-performance-marketing-company",
+        permanent: true,
+      },
+      {
+        source: "/social-media-marketing-agency/:path*",
+        destination: "/display-and-visual-advertising-campaign-management",
+        permanent: true,
+      },
+      {
+        source: "/blank-2",
+        destination: "/",
         permanent: true,
       },
     ];
