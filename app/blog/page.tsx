@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { sanityFetch, urlFor } from '@/lib/sanity/client'
@@ -103,7 +103,7 @@ export default async function BlogListingPage() {
               >
                 {featured.mainImage?.asset ? (
                   <Image
-                    src={urlFor(featured.mainImage).width(1200).auto('format').url()}
+                    src={urlFor(featured.mainImage).url()}
                     alt={featured.mainImage.alt || featured.title}
                     fill
                     sizes="(max-width: 860px) calc(100vw - 80px), 530px"

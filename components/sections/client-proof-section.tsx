@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 
 interface CaseStudy {
@@ -53,10 +53,10 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
               <div key={cs.slug} className="hh-card-hover" style={{ background: '#fff', border: '1px solid #E4E4E4', borderRadius: 12, overflow: 'hidden' }}>
                 {cs.proofImage?.asset ? (
                   <Image
-                    src={urlFor(cs.proofImage).width(1200).auto('format').url()}
+                    src={urlFor(cs.proofImage).url()}
                     alt={`${cs.clientName} proof`}
-                    width={1200}
-                    height={686}
+                    width={1400}
+                    height={800}
                     sizes="(max-width: 767px) 100vw, 50vw"
                     quality={90}
                     style={{
@@ -83,10 +83,10 @@ export function ClientProofSection({ heading, bodyText, caseStudies }: ClientPro
                 <div style={{ padding: '16px 20px' }}>
                   {cs.logo?.asset ? (
                     <Image
-                      src={urlFor(cs.logo).width(200).auto('format').url()}
+                      src={urlFor(cs.logo).url()}
                       alt={cs.clientName}
-                      width={100}
-                      height={40}
+                      width={200}
+                      height={80}
                       quality={90}
                       style={{ width: 100, height: 'auto', objectFit: 'contain' }}
                     />

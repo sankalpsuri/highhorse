@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 
 interface GalleryImage {
@@ -56,10 +56,10 @@ export function ImageGallerySection({ heading, bodyText, images }: ImageGalleryS
               }}>
                 {item.image?.asset ? (
                   <Image
-                    src={urlFor(item.image).width(1200).auto('format').url()}
+                    src={urlFor(item.image).url()}
                     alt={item.caption || ''}
-                    width={1200}
-                    height={750}
+                    width={1600}
+                    height={1000}
                     sizes="(max-width: 767px) 100vw, 33vw"
                     quality={90}
                     style={{ width: '100%', height: 'auto', display: 'block', maxWidth: 800 }}

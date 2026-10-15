@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 
 interface ChecklistSectionProps {
@@ -80,7 +80,7 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
           <div style={{ borderRadius: 16, overflow: 'hidden' }}>
             {image?.asset ? (
               <Image
-                src={urlFor(image).width(1200).auto('format').url()}
+                src={urlFor(image).url()}
                 alt={heading || ''}
                 width={1200}
                 height={900}
@@ -114,7 +114,7 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
     const imgBlock = (
       <div style={{ flex: '1 1 400px', minWidth: 280, maxWidth: 520 }}>
         <Image
-          src={urlFor(image).width(1200).auto('format').url()}
+          src={urlFor(image).url()}
           alt={heading || ''}
           width={1200}
           height={750}

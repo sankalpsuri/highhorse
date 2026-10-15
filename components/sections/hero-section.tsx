@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { FcGoogle } from 'react-icons/fc'
 import { urlFor } from '@/lib/sanity/client'
 
@@ -278,7 +278,7 @@ export function HeroSection({ badgeText, badgeStyle, eyebrowText, eyebrowDotColo
         {!hasWidget && heroImage?.asset ? (
           <div className={mobileImageSquare ? 'hero-img-mobile-square' : undefined} style={{ marginTop: 16 }}>
             <Image
-              src={urlFor(heroImage).width(2560).auto('format').url()}
+              src={urlFor(heroImage).url()}
               alt={headline}
               width={2560}
               height={1200}

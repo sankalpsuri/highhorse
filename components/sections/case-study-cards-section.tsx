@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 
 const brandColor = { bg: 'rgba(26, 106, 255, 0.06)', border: '#CFE0FF' }
@@ -116,7 +116,7 @@ export function CaseStudyCardsSection({ eyebrow, heading, subtext, headerLayout,
               {card.resultChartImage?.asset ? (
                 <div style={{ marginBottom: 14, borderRadius: 10, overflow: 'hidden' }}>
                   <Image
-                    src={urlFor(card.resultChartImage).width(1200).auto('format').url()}
+                    src={urlFor(card.resultChartImage).url()}
                     alt={`${card.clientName} chart`}
                     width={1200}
                     height={400}

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { SanityImage } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 
 interface Logo {
@@ -78,8 +79,8 @@ export function TechSliderSection({ heading, subtext, logos, filesystemLogos }: 
       title={logo.name}
     >
       {logo.image?.asset ? (
-        <Image
-          src={urlFor(logo.image).width(80).auto('format').url()}
+        <SanityImage
+          src={urlFor(logo.image).url()}
           alt={logo.name || ''}
           width={80}
           height={80}

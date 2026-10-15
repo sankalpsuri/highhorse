@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/client'
 
@@ -196,7 +196,7 @@ export function BlogGrid({ posts }: { posts: BlogListItem[] }) {
                 >
                   {post.mainImage?.asset ? (
                     <Image
-                      src={urlFor(post.mainImage).width(800).auto('format').url()}
+                      src={urlFor(post.mainImage).url()}
                       alt={post.mainImage.alt || post.title}
                       fill
                       sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 860px) calc(50vw - 37px), 347px"

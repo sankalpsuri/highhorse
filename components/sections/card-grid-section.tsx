@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 
 const badgeColors: Record<string, { bg: string; text: string }> = {
@@ -236,10 +236,11 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
                             </svg>
                           ) : card.icon?.asset ? (
                             <Image
-                              src={urlFor(card.icon).width(46).auto('format').url()}
+                              src={urlFor(card.icon).url()}
                               alt=""
-                              width={23}
-                              height={23}
+                              width={46}
+                              height={46}
+                              quality={90}
                               style={{ objectFit: 'scale-down' }}
                             />
                           ) : null}
@@ -340,10 +341,10 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
                   {card.icon?.asset && (
                     <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(26, 106, 255, 0.1)', position: 'relative', marginBottom: 14 }}>
                       <Image
-                        src={urlFor(card.icon).width(80).auto('format').url()}
+                        src={urlFor(card.icon).url()}
                         alt={card.title || ''}
                         fill
-                        sizes="24px"
+                        sizes="44px"
                         quality={90}
                         style={{ objectFit: 'scale-down', padding: 10 }}
                       />
@@ -407,7 +408,7 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
             {card.icon?.asset && (
               <div style={{ marginBottom: 16, width: 40, height: 40, position: 'relative' }}>
                 <Image
-                  src={urlFor(card.icon).width(80).auto('format').url()}
+                  src={urlFor(card.icon).url()}
                   alt={card.title || ''}
                   fill
                   sizes="40px"

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { sanityFetch, urlFor } from '@/lib/sanity/client'
 import { homeFeaturedCaseStudiesQuery } from '@/lib/sanity/queries'
 import styles from '@/app/home.module.css'
@@ -46,10 +46,11 @@ export async function CaseStudiesGrid() {
             <div className={styles.caseImage}>
               {cs.coverImage && (
                 <Image
-                  src={urlFor(cs.coverImage).width(600).height(450).auto('format').url()}
+                  src={urlFor(cs.coverImage).url()}
                   alt={cs.clientName}
                   width={600}
                   height={450}
+                  quality={90}
                   style={{ objectFit: 'contain' }}
                 />
               )}

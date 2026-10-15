@@ -1,18 +1,20 @@
 import { PortableText, type PortableTextComponents } from '@portabletext/react'
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 
 const components: PortableTextComponents = {
   types: {
     image: ({ value }) => {
-      const url = urlFor(value).width(800).auto('format').url()
+      const url = urlFor(value).url()
       return (
         <figure className="my-8">
           <Image
             src={url}
             alt={value.alt || ''}
-            width={800}
-            height={450}
+            width={1600}
+            height={900}
+            sizes="(max-width: 768px) 100vw, 720px"
+            quality={90}
             className="w-full rounded-lg"
           />
           {value.caption && (

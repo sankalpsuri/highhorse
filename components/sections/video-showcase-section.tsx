@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 
 interface VideoShowcaseSectionProps {
@@ -13,7 +13,8 @@ interface VideoShowcaseSectionProps {
 
 export function VideoShowcaseSection({ heading, subtext, videoUrl, videoFile, posterImage }: VideoShowcaseSectionProps) {
   const src = videoFile?.asset?.url || videoUrl
-  const poster = posterImage?.asset ? urlFor(posterImage).width(2560).auto('format').url() : undefined
+  const posterUrl = posterImage?.asset ? urlFor(posterImage).url() : undefined
+  const poster = posterImage?.asset ? urlFor(posterImage).width(2560).quality(90).auto('format').url() : undefined
 
   return (
     <section>
@@ -64,7 +65,7 @@ export function VideoShowcaseSection({ heading, subtext, videoUrl, videoFile, po
             </video>
           ) : poster ? (
             <Image
-              src={poster}
+              src={posterUrl!}
               alt={heading || 'Video poster'}
               width={2560}
               height={1440}

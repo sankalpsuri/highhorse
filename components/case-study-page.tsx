@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/client'
 import { PortableTextBody } from '@/components/portable-text-body'
@@ -61,12 +61,12 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
           <div style={{ padding: '40px 0 0', textAlign: 'center' }}>
             {data.logo?.asset ? (
               <Image
-                src={urlFor(data.logo).format('png').url()}
+                src={urlFor(data.logo).url()}
                 alt={data.clientName}
-                width={140}
-                height={44}
-                unoptimized
-                style={{ objectFit: 'contain', margin: '0 auto' }}
+                width={280}
+                height={88}
+                quality={90}
+                style={{ objectFit: 'contain', margin: '0 auto', width: 140, height: 'auto' }}
               />
             ) : (
               <div
@@ -129,7 +129,7 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
             >
               {data.coverImage?.asset ? (
                 <Image
-                  src={urlFor(data.coverImage).width(800).height(440).auto('format').url()}
+                  src={urlFor(data.coverImage).url()}
                   alt={data.clientName}
                   width={800}
                   height={440}
@@ -376,7 +376,7 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
                     img?.asset ? (
                       <Image
                         key={i}
-                        src={urlFor(img).width(800).auto('format').url()}
+                        src={urlFor(img).url()}
                         alt={`${data.clientName} result ${i + 1}`}
                         width={800}
                         height={520}
@@ -477,7 +477,7 @@ export function CaseStudyPage({ data }: CaseStudyPageProps) {
                       >
                         {cs.coverImage?.asset ? (
                           <Image
-                            src={urlFor(cs.coverImage).width(1200).auto('format').url()}
+                            src={urlFor(cs.coverImage).url()}
                             alt={cs.clientName}
                             width={1200}
                             height={675}

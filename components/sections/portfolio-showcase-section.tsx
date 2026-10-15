@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 
 interface PortfolioItem {
@@ -67,7 +67,7 @@ export function PortfolioShowcaseSection({ heading, subtext, items }: PortfolioS
                 }}>
                   {item.image?.asset && (
                     <Image
-                      src={urlFor(item.image).width(1200).auto('format').url()}
+                      src={urlFor(item.image).url()}
                       alt={item.title || ''}
                       fill
                       sizes="(max-width: 767px) 100vw, 50vw"

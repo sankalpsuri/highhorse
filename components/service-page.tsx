@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { existsSync, readdirSync } from 'fs'
 import { join, extname } from 'path'
 import { urlFor } from '@/lib/sanity/client'
@@ -189,10 +189,10 @@ export function ServicePage({ data }: ServicePageProps) {
                 >
                   {cs.coverImage?.asset ? (
                     <Image
-                      src={urlFor(cs.coverImage).width(1200).auto('format').url()}
+                      src={urlFor(cs.coverImage).url()}
                       alt={cs.clientName}
-                      width={1200}
-                      height={680}
+                      width={1400}
+                      height={795}
                       sizes="(max-width: 767px) 100vw, 50vw"
                       quality={90}
                       style={{ width: '100%', height: 'auto', display: 'block' }}

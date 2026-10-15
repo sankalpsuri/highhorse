@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/client'
 import { PortableTextBody } from '@/components/portable-text-body'
@@ -87,11 +87,12 @@ export function BlogPost({ data }: BlogPostProps) {
             >
               {data.author?.image?.asset && (
                 <Image
-                  src={urlFor(data.author.image).width(80).height(80).auto('format').url()}
+                  src={urlFor(data.author.image).url()}
                   alt={data.author.name}
-                  width={32}
-                  height={32}
-                  style={{ borderRadius: '50%', objectFit: 'cover' }}
+                  width={64}
+                  height={64}
+                  quality={90}
+                  style={{ borderRadius: '50%', objectFit: 'cover', width: 32, height: 32 }}
                 />
               )}
               {data.author?.name && (
@@ -119,10 +120,10 @@ export function BlogPost({ data }: BlogPostProps) {
               }}
             >
               <Image
-                src={urlFor(data.mainImage).width(1800).auto('format').url()}
+                src={urlFor(data.mainImage).url()}
                 alt={data.mainImage.alt || data.title}
-                width={1800}
-                height={900}
+                width={2200}
+                height={1100}
                 sizes="(max-width: 1140px) calc(100vw - 48px), 1092px"
                 style={{ width: '100%', height: 'auto', display: 'block' }}
                 quality={90}
@@ -177,11 +178,12 @@ export function BlogPost({ data }: BlogPostProps) {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     {data.author.image?.asset && (
                       <Image
-                        src={urlFor(data.author.image).width(72).height(72).auto('format').url()}
+                        src={urlFor(data.author.image).url()}
                         alt={data.author.name}
-                        width={36}
-                        height={36}
-                        style={{ borderRadius: '50%', objectFit: 'cover' }}
+                        width={72}
+                        height={72}
+                        quality={90}
+                        style={{ borderRadius: '50%', objectFit: 'cover', width: 36, height: 36 }}
                       />
                     )}
                     <div>

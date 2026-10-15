@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { sanityFetch, urlFor } from '@/lib/sanity/client'
@@ -68,14 +68,16 @@ export default async function CaseStudiesPage() {
                 >
                   {cs.logo?.asset ? (
                     <Image
-                      src={urlFor(cs.logo).format('png').url()}
+                      src={urlFor(cs.logo).url()}
                       alt={cs.clientName}
-                      width={80}
-                      height={26}
-                      unoptimized
+                      width={160}
+                      height={52}
+                      quality={90}
                       style={{
                         objectFit: 'contain',
                         objectPosition: 'left',
+                        width: 80,
+                        height: 26,
                       }}
                     />
                   ) : (

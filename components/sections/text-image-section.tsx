@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { PortableText } from '@portabletext/react'
 import { urlFor } from '@/lib/sanity/client'
 

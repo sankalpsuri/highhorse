@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 
 interface MasonryItem {
@@ -62,7 +62,7 @@ export function PortfolioMasonryGrid({ heading, subtext, items }: PortfolioMason
                 }}>
                   {hasImage ? (
                     <Image
-                      src={urlFor(item.image).width(1200).auto('format').url()}
+                      src={urlFor(item.image).url()}
                       alt={item.badgeText || `Portfolio item ${i + 1}`}
                       width={1200}
                       height={800}
