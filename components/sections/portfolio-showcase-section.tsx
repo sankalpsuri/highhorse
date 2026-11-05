@@ -1,5 +1,6 @@
 import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
+import { SectionHeader } from '@/components/section-header'
 
 interface PortfolioItem {
   _key?: string
@@ -18,21 +19,21 @@ interface PortfolioShowcaseSectionProps {
 export function PortfolioShowcaseSection({ heading, subtext, items }: PortfolioShowcaseSectionProps) {
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-        <div style={{ maxWidth: 640, marginBottom: 40 }}>
-          {heading && (
+      <div className="rsp-section">
+        <SectionHeader
+          heading={heading ? (
             <h2 style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 700,
               fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
               lineHeight: 1.2,
-              margin: '0 0 16px',
+              margin: 0,
               color: '#111111',
             }}>
               {heading}
             </h2>
-          )}
-          {subtext && (
+          ) : <span />}
+          description={subtext ? (
             <p style={{
               fontFamily: "'Poppins', sans-serif",
               fontSize: 16,
@@ -42,8 +43,8 @@ export function PortfolioShowcaseSection({ heading, subtext, items }: PortfolioS
             }}>
               {subtext}
             </p>
-          )}
-        </div>
+          ) : undefined}
+        />
         {items && items.length > 0 && (
           <div className="rsp-grid-2" style={{
             display: 'grid',

@@ -36,6 +36,10 @@ export default defineType({
     defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string', description: 'Small uppercase label above the heading.'}),
     defineField({name: 'heading', title: 'Heading', type: 'string'}),
     defineField({name: 'subtext', title: 'Subtext', type: 'text', rows: 3}),
+    defineField({name: 'descriptionParagraphs', title: 'Description paragraphs', type: 'array', of: [{type: 'string'}], description: 'Multi-paragraph description for the left column in split layout.'}),
+    defineField({name: 'splitStyle', title: 'Split style', type: 'string', options: {list: [{title: 'Default (plain rows)', value: 'default'}, {title: 'Numbered card', value: 'numbered-card'}]}, description: 'Right-side rendering in split layout.', hidden: ({parent}) => parent?.layout !== 'split'}),
+    defineField({name: 'cardHeader', title: 'Card header', type: 'string', description: 'Header label inside the numbered card (e.g. "Our approach focuses on").', hidden: ({parent}) => parent?.splitStyle !== 'numbered-card'}),
+    defineField({name: 'closingText', title: 'Closing text', type: 'text', rows: 3, description: 'Paragraph shown below the card grid.'}),
     defineField({name: 'ctaText', title: 'CTA button text', type: 'string'}),
     defineField({name: 'ctaLink', title: 'CTA link', type: 'string'}),
     defineField({

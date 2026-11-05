@@ -16,7 +16,88 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ── Section Spacing Scale ───────────────────────────────────── */
+:root {
+  --color-cream: rgb(253, 248, 240);
+  --section-pad-y: 96px;
+  --eyebrow-to-heading: 16px;
+  --heading-to-desc: 16px;
+  --desc-to-content: 40px;
+  --heading-max-w: 720px;
+  --desc-max-w: 680px;
+  --card-gap: 20px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-pad-y: 72px;
+    --desc-to-content: 32px;
+    --card-gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-pad-y: 56px;
+    --heading-to-desc: 14px;
+    --desc-to-content: 28px;
+  }
+}
+
+/* ── Bullets ────────────────────────────────────────────────────
+   All bulleted lists use circular markers, 6 px, brand blue #1A6AFF
+   unless a section deliberately overrides the color. Never square. */
+.hh-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1A6AFF;
+  flex-shrink: 0;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+/* ── Section Container ───────────────────────────────────────── */
+.rsp-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--section-pad-y) 32px;
+}
+
+/* ── SectionHeader ───────────────────────────────────────────── */
+.sh-eyebrow { margin-bottom: var(--eyebrow-to-heading); }
+.sh-heading { margin-bottom: var(--heading-to-desc); max-width: var(--heading-max-w); }
+.sh-heading.sh-last { margin-bottom: var(--desc-to-content); }
+.sh-desc { margin-bottom: var(--desc-to-content); max-width: var(--desc-max-w); }
+
+.sh-split {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: var(--desc-to-content);
+}
+.sh-split .sh-left { flex: 1 1 460px; min-width: 260px; }
+.sh-split .sh-right { flex: 1 1 380px; min-width: 260px; align-self: flex-end; }
+.sh-split .sh-eyebrow { margin-bottom: var(--eyebrow-to-heading); }
+
+.sh-inline-cta {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--heading-to-desc);
+}
+.sh-inline-cta.sh-no-desc { margin-bottom: var(--desc-to-content); }
+.sh-inline-cta-left { flex: 1 1 560px; min-width: 260px; }
+
+@media (max-width: 768px) {
+  .sh-split { gap: 24px; }
+  .sh-inline-cta { gap: 24px; }
 }
 
 .google-partner-badge {
@@ -120,7 +201,7 @@ body {
   .rsp-grid-3,
   .rsp-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
   .rsp-grid-5 { grid-template-columns: repeat(2, 1fr) !important; }
-  .rsp-section { padding: 64px 20px !important; }
+  .rsp-section { padding: var(--section-pad-y) 20px !important; }
   .rsp-hero-pad { padding: 56px 20px 64px !important; }
   .rsp-dark-pad { padding: 40px 24px !important; }
   .hero-img-mobile-square { aspect-ratio: 1 / 1; }
@@ -138,7 +219,7 @@ body {
   .rsp-grid-3,
   .rsp-grid-4,
   .rsp-grid-5 { grid-template-columns: 1fr !important; }
-  .rsp-section { padding: 48px 16px !important; }
+  .rsp-section { padding: var(--section-pad-y) 16px !important; }
   .rsp-hero-pad { padding: 40px 16px 48px !important; }
   .rsp-dark-pad { padding: 32px 16px !important; }
   .tech-marquee-track > div { width: 100px !important; font-size: 28px !important; }

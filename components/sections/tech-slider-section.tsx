@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { SanityImage } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
+import { SectionHeader } from '@/components/section-header'
 
 interface Logo {
   _key?: string
@@ -95,31 +96,32 @@ export function TechSliderSection({ heading, subtext, logos, filesystemLogos }: 
 
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-        {heading && (
-          <h2 style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 700,
-            fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-            lineHeight: 1.2,
-            margin: '0 0 16px',
-            color: '#111111',
-          }}>
-            {heading}
-          </h2>
-        )}
-        {subtext && (
-          <p style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: 16,
-            lineHeight: 1.7,
-            color: '#5c5c5c',
-            maxWidth: 680,
-            margin: '0 0 36px',
-          }}>
-            {subtext}
-          </p>
-        )}
+      <div className="rsp-section">
+        <SectionHeader
+          heading={heading ? (
+            <h2 style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 700,
+              fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+              lineHeight: 1.2,
+              margin: 0,
+              color: '#111111',
+            }}>
+              {heading}
+            </h2>
+          ) : <span />}
+          description={subtext ? (
+            <p style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 16,
+              lineHeight: 1.7,
+              color: '#5c5c5c',
+              margin: 0,
+            }}>
+              {subtext}
+            </p>
+          ) : undefined}
+        />
         <div style={{
           overflow: 'hidden',
           width: '100%',

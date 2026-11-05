@@ -14,7 +14,7 @@ const caseStudies: CaseStudy[] = [
   { name: 'FECH Moving & Cleaning', sector: 'Local Services', blurb: 'Taking FECH to the top search results for moving and cleaning.', image: '/assets/Home Fetch.jpg' },
   { name: 'Party Rack', sector: 'E-commerce · Party Supplies', blurb: 'Helped Party Rack start from scratch and go online.', image: '/assets/Home Party.jpg' },
   { name: 'Just Pure', sector: 'E-commerce · B2C', blurb: 'Built a Shopify website to power B2C ecommerce growth for Just Pure.', image: '/assets/Home Just Pure.jpg' },
-  { name: 'Visioworld (Speedex)', sector: 'Consumer Electronics', blurb: 'Website and marketplace optimisation driving top search rankings.', image: '/assets/Home Visualstudio.jpg' },
+  { name: 'Speedex', sector: 'Consumer Electronics', blurb: 'Website and marketplace optimisation driving top search rankings.', image: '/assets/Home Visualstudio.jpg' },
   { name: 'Setmi India', sector: 'B2B Industrial Electronics', blurb: "Powering Setmi India's sales journey.", image: '/assets/Home setmi.jpg' },
   { name: 'Easy Access Management Consultancies', sector: 'Business Consultancy', blurb: 'Consistent lead generation for business setup in Dubai, UAE.', image: '/assets/Home Easy Access.jpg' },
   { name: 'Bawa Polymers', sector: 'Industrial Manufacturing', blurb: "Boosting Bawa's online presence in the insulating varnish industry.", image: '/assets/Home Bawa.jpg' },

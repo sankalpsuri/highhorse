@@ -1,5 +1,7 @@
 import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
+import { IconBadge } from '@/components/icon-badge'
+import { SectionHeader } from '@/components/section-header'
 
 interface ChecklistSectionProps {
   layout?: string
@@ -12,28 +14,15 @@ interface ChecklistSectionProps {
 
 export function ChecklistSection({ layout, heading, subtext, items, image, imagePosition }: ChecklistSectionProps) {
   const checkIcon = (
-    <span style={{
-      flexShrink: 0,
-      width: 22,
-      height: 22,
-      borderRadius: 6,
-      background: 'rgba(26, 106, 255, 0.1)',
-      color: '#1A6AFF',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: 12,
-      fontWeight: 800,
-      marginTop: 2,
-    }}>
-      ✓
-    </span>
+    <IconBadge size="sm">
+      <span style={{ fontSize: 14, fontWeight: 800 }}>✓</span>
+    </IconBadge>
   )
 
   if (layout === 'split') {
     return (
       <section>
-        <div className="rsp-grid-split rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 48, alignItems: 'start' }}>
+        <div className="rsp-grid-split rsp-section" style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 48, alignItems: 'start' }}>
           <div>
             {heading && (
               <h2 style={{
@@ -41,7 +30,7 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
                 fontWeight: 700,
                 fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
                 lineHeight: 1.28,
-                margin: '0 0 14px',
+                margin: '0 0 var(--heading-to-desc)',
                 color: '#111111',
               }}>
                 {heading}
@@ -53,7 +42,7 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
                 fontSize: 15,
                 lineHeight: 1.7,
                 color: '#5c5c5c',
-                margin: '0 0 22px',
+                margin: '0 0 var(--desc-to-content)',
               }}>
                 {subtext}
               </p>
@@ -127,20 +116,20 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
 
     const contentBlock = (
       <div style={{ flex: '1 1 480px', minWidth: 300 }}>
-        <div style={{ marginBottom: 28 }}>
-          {heading && (
+        <SectionHeader
+          heading={heading ? (
             <h2 style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 700,
               fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
               lineHeight: 1.2,
-              margin: '0 0 16px',
+              margin: 0,
               color: '#111111',
             }}>
               {heading}
             </h2>
-          )}
-          {subtext && (
+          ) : <span />}
+          description={subtext ? (
             <p style={{
               fontFamily: "'Poppins', sans-serif",
               fontSize: 16,
@@ -150,27 +139,15 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
             }}>
               {subtext}
             </p>
-          )}
-        </div>
+          ) : undefined}
+        />
         {items && items.length > 0 && (
           <div style={{ display: 'grid', gap: 12 }}>
             {items.map((item, i) => (
               <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                <span style={{
-                  flexShrink: 0,
-                  width: 26,
-                  height: 26,
-                  borderRadius: 8,
-                  background: 'rgba(26, 106, 255, 0.1)',
-                  color: '#1A6AFF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 13,
-                  fontWeight: 800,
-                }}>
-                  ✓
-                </span>
+                <IconBadge size="sm">
+                  <span style={{ fontSize: 14, fontWeight: 800 }}>✓</span>
+                </IconBadge>
                 <p style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: 14.5,
@@ -190,9 +167,6 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
     return (
       <section>
         <div className="rsp-section" style={{
-          maxWidth: 1280,
-          margin: '0 auto',
-          padding: '96px 32px',
           display: 'flex',
           gap: 64,
           flexWrap: 'wrap' as const,
@@ -206,21 +180,21 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
 
   return (
     <section>
-      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-        <div style={{ maxWidth: 640, marginBottom: 40 }}>
-          {heading && (
+      <div className="rsp-section">
+        <SectionHeader
+          heading={heading ? (
             <h2 style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 700,
               fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
               lineHeight: 1.2,
-              margin: '0 0 16px',
+              margin: 0,
               color: '#111111',
             }}>
               {heading}
             </h2>
-          )}
-          {subtext && (
+          ) : <span />}
+          description={subtext ? (
             <p style={{
               fontFamily: "'Poppins', sans-serif",
               fontSize: 16,
@@ -230,8 +204,8 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
             }}>
               {subtext}
             </p>
-          )}
-        </div>
+          ) : undefined}
+        />
         {items && items.length > 0 && (
           <div className="rsp-grid-2" style={{
             display: 'grid',
@@ -244,21 +218,9 @@ export function ChecklistSection({ layout, heading, subtext, items, image, image
                 gap: 14,
                 alignItems: 'flex-start',
               }}>
-                <span style={{
-                  flexShrink: 0,
-                  width: 26,
-                  height: 26,
-                  borderRadius: 8,
-                  background: 'rgba(26, 106, 255, 0.1)',
-                  color: '#1A6AFF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 13,
-                  fontWeight: 800,
-                }}>
-                  ✓
-                </span>
+                <IconBadge size="sm">
+                  <span style={{ fontSize: 14, fontWeight: 800 }}>✓</span>
+                </IconBadge>
                 <p style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: 14.5,

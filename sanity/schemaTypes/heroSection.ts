@@ -23,6 +23,13 @@ export default defineType({
       description: 'Coded UI widget shown in the hero instead of an image.',
     }),
     defineField({name: 'headline', title: 'Headline', type: 'string', validation: (Rule) => Rule.required()}),
+    defineField({
+      name: 'headlineHighlights',
+      title: 'Headline highlights',
+      type: 'array',
+      of: [{type: 'string'}],
+      description: 'Phrases in the headline to highlight in brand blue. Matched case-insensitively.',
+    }),
     defineField({name: 'subheadline', title: 'Subheadline', type: 'text', rows: 3}),
     defineField({name: 'ctaText', title: 'CTA button text', type: 'string'}),
     defineField({name: 'ctaLink', title: 'CTA link', type: 'string', description: 'Internal path or external URL'}),
@@ -50,6 +57,13 @@ export default defineType({
       initialValue: 'left',
     }),
     defineField({name: 'mobileImageSquare', title: 'Square hero image on mobile', type: 'boolean'}),
+    defineField({
+      name: 'heroBackground',
+      title: 'Hero background',
+      type: 'string',
+      options: {list: [{title: 'Default (light gray)', value: 'gray'}, {title: 'White', value: 'white'}]},
+      initialValue: 'gray',
+    }),
     defineField({
       name: 'badgeStyle',
       title: 'Badge style',

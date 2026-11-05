@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { FooterSocials } from './footer-socials'
+import { CONTACT_EMAIL } from '@/lib/constants'
 import styles from './footer.module.css'
 
 const navColumns = [
@@ -81,8 +82,8 @@ export function Footer() {
 
           <div className={styles.contactBlock}>
             <div className={styles.contactTitle}>Contact</div>
-            <a href="mailto:contact@highhorse.in" className={styles.contactLink}>
-              contact@highhorse.in
+            <a href={`mailto:${CONTACT_EMAIL}`} className={styles.contactLink}>
+              {CONTACT_EMAIL}
             </a>
             <a href="tel:+918287194831" className={styles.contactLink}>
               Tel: +91-82871 94831
@@ -117,8 +118,8 @@ export function Footer() {
 
       <div className={styles.bottom}>
         &copy; 2026 High Horse. Contact:{' '}
-        <a href="mailto:contact@highhorse.in" className={styles.bottomLink}>
-          contact@highhorse.in
+        <a href={`mailto:${CONTACT_EMAIL}`} className={styles.bottomLink}>
+          {CONTACT_EMAIL}
         </a>
       </div>
     </footer>

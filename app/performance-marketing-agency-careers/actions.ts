@@ -1,6 +1,7 @@
 "use server"
 
 import { getSupabaseServer } from "@/lib/supabase/server"
+import { CONTACT_EMAIL } from "@/lib/constants"
 
 const ACCEPTED_EXTENSIONS = [".pdf", ".doc", ".docx"]
 const ACCEPTED_MIME_TYPES = [
@@ -67,10 +68,10 @@ export async function submitCareerApplication(
       })
 
     if (uploadError) {
-      console.error("[careers] Resume upload failed:", uploadError.message)
+      console.error("[careers] Resume upload failed:", JSON.stringify({ message: uploadError.message, name: uploadError.name }))
       return {
         success: false,
-        error: "Failed to upload resume. Please try again.",
+        error: `Failed to upload resume. Please try again or email ${CONTACT_EMAIL}.`,
       }
     }
 
@@ -88,21 +89,20 @@ export async function submitCareerApplication(
       })
 
     if (insertError) {
-      console.error("[careers] DB insert failed:", insertError.message, insertError.code, insertError.details)
+      console.error("[careers] DB insert failed:", JSON.stringify({ message: insertError.message, code: insertError.code, details: insertError.details, hint: insertError.hint }))
       await supabase.storage.from("resumes").remove([storagePath])
       return {
         success: false,
-        error: "Failed to save application. Please try again.",
+        error: `Failed to save application. Please try again or email ${CONTACT_EMAIL}.`,
       }
     }
 
     return { success: true }
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err)
-    console.error("[careers] Unexpected error:", message)
+    console.error("[careers] Unexpected error:", err instanceof Error ? err.stack ?? err.message : String(err))
     return {
       success: false,
-      error: "Failed to save your application. Please try again or email contact@highhorse.in.",
+      error: `Failed to save your application. Please try again or email ${CONTACT_EMAIL}.`,
     }
   }
 }

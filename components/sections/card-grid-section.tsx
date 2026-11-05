@@ -1,5 +1,7 @@
 import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
+import { IconBadge } from '@/components/icon-badge'
+import { SectionHeader } from '@/components/section-header'
 
 const badgeColors: Record<string, { bg: string; text: string }> = {
   mint: { bg: '#D1FAE5', text: '#065F46' },
@@ -13,9 +15,11 @@ interface Card {
   _key?: string
   icon?: any
   svgPath?: string
+  tag?: string
   title?: string
   description?: string
   badgeColor?: string
+  listLabel?: string
   bullets?: string[]
 }
 
@@ -23,6 +27,12 @@ interface CardGridSectionProps {
   eyebrow?: string
   heading?: string
   subtext?: string
+  subtextParagraphs?: string[]
+  listLabel?: string
+  closingText?: string
+  showGlow?: boolean
+  darkCardStyle?: string
+  cardContainerStyle?: string
   headerLayout?: string
   style?: string
   background?: string
@@ -49,13 +59,43 @@ const sectionEyebrowStyle: React.CSSProperties = {
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
   color: '#1A6AFF',
-  marginBottom: 16,
 }
 
-export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style, background, columns, tintStyle, cards, accentStyle }: CardGridSectionProps) {
+export function CardGridSection({ eyebrow, heading, subtext, subtextParagraphs, listLabel, closingText, showGlow, darkCardStyle, cardContainerStyle, headerLayout, style, background, columns, tintStyle, cards, accentStyle }: CardGridSectionProps) {
+  const descParagraphs = subtextParagraphs?.length ? subtextParagraphs : null
+
+  /* ───── Dark style ───── */
   if (style === 'dark') {
+    const darkDesc = descParagraphs
+      ? (
+        <div>
+          {descParagraphs.map((text, i) => (
+            <p key={i} style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 16,
+              lineHeight: 1.7,
+              color: '#9A9A97',
+              margin: i < descParagraphs.length - 1 ? '0 0 6px' : '0',
+            }}>
+              {text}
+            </p>
+          ))}
+        </div>
+      )
+      : subtext ? (
+        <p style={{
+          fontFamily: "'Poppins', sans-serif",
+          fontSize: 16,
+          lineHeight: 1.7,
+          color: '#9A9A97',
+          margin: 0,
+        }}>
+          {subtext}
+        </p>
+      ) : undefined
+
     return (
-      <section style={{ background: '#0A0A0C', color: '#F5F5F4', position: 'relative', overflow: 'hidden' }}>
+      <section data-surface="dark" style={{ background: '#0A0A0C', color: '#F5F5F4', position: 'relative', overflow: 'hidden' }}>
         {/* Grid-line pattern */}
         <div style={{
           position: 'absolute',
@@ -66,61 +106,60 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
           WebkitMaskImage: 'radial-gradient(100% 80% at 50% 0%,#000 30%,transparent 85%)',
           pointerEvents: 'none',
         }} />
-        {/* Blue radial glow */}
-        <div style={{
-          position: 'absolute',
-          top: -140,
-          left: '20%',
-          width: 560,
-          height: 560,
-          borderRadius: '50%',
-          background: 'radial-gradient(circle,rgba(26,106,255,0.28),rgba(26,106,255,0) 68%)',
-          pointerEvents: 'none',
-        }} />
-        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '100px 32px', position: 'relative' }}>
-          <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 56 }}>
-            <div style={{ flex: '1 1 460px', minWidth: 300 }}>
-              {eyebrow && (
-                <div style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 600,
-                  fontSize: '11.5px',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase' as const,
-                  color: '#FF9D2E',
-                  marginBottom: 16,
-                }}>
-                  {eyebrow}
-                </div>
-              )}
-              {heading && (
-                <h2 style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 700,
-                  fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
-                  lineHeight: 1.16,
-                  margin: 0,
-                  maxWidth: 600,
-                  color: '#F5F5F4',
-                }}>
-                  {heading}
-                </h2>
-              )}
+        {showGlow !== false && (
+          <div style={{
+            position: 'absolute',
+            top: -140,
+            left: '20%',
+            width: 560,
+            height: 560,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle,rgba(26,106,255,0.28),rgba(26,106,255,0) 68%)',
+            pointerEvents: 'none',
+          }} />
+        )}
+        <div className="rsp-section" style={{ position: 'relative' }}>
+          <SectionHeader
+            layout="split"
+            eyebrow={eyebrow ? (
+              <span style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 600,
+                fontSize: '11.5px',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase' as const,
+                color: '#FF9D2E',
+              }}>
+                {eyebrow}
+              </span>
+            ) : undefined}
+            heading={heading ? (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
+                lineHeight: 1.16,
+                margin: 0,
+                color: '#F5F5F4',
+              }}>
+                {heading}
+              </h2>
+            ) : <span />}
+            description={darkDesc}
+          />
+          {listLabel && (
+            <div style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 600,
+              fontSize: '10.5px',
+              letterSpacing: '0.11em',
+              textTransform: 'uppercase' as const,
+              color: '#9A9A96',
+              marginBottom: 18,
+            }}>
+              {listLabel}
             </div>
-            <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
-              {subtext && (
-                <p style={{
-                  fontFamily: "'Poppins', sans-serif",
-                  fontSize: 16,
-                  lineHeight: 1.7,
-                  color: '#9A9A97',
-                  margin: 0,
-                }}>
-                  {subtext}
-                </p>
-              )}
-            </div>
-          </div>
+          )}
           {cards && cards.length > 0 && (() => {
             const isComparison = cards.some(c => c.bullets?.length)
             if (isComparison) {
@@ -153,7 +192,7 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
                             fontSize: 21,
                             lineHeight: 1.3,
                             margin: '0 0 24px',
-                            color: isMuted ? '#8a9aab' : '#F5F5F4',
+                            color: isMuted ? '#d4d4d8' : '#F5F5F4',
                           }}>
                             {card.title}
                           </h3>
@@ -167,20 +206,15 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
                                 alignItems: 'baseline',
                                 marginBottom: 12,
                               }}>
-                                <span style={{
-                                  width: 5,
-                                  height: 5,
-                                  borderRadius: '50%',
-                                  background: isMuted ? '#4a5a6a' : '#a0a2fc',
-                                  flexShrink: 0,
+                                <span className="hh-bullet" style={{
+                                  background: isMuted ? '#8a8a8e' : '#a0a2fc',
                                   marginTop: 7,
-                                  display: 'inline-block',
                                 }} />
                                 <span style={{
                                   fontFamily: "'Poppins', sans-serif",
                                   fontSize: 15,
                                   lineHeight: 1.55,
-                                  color: isMuted ? '#6a7a8a' : '#C8C8D5',
+                                  color: isMuted ? '#b8b8c0' : '#C8C8D5',
                                 }}>
                                   {bullet}
                                 </span>
@@ -194,6 +228,55 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
                 </div>
               )
             }
+
+            if (darkCardStyle === 'numbered') {
+              return (
+                <div className="rsp-grid-5" style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                  gap: 18,
+                  marginBottom: closingText ? 40 : 0,
+                }}>
+                  {cards.map((card, i) => (
+                    <div
+                      key={card._key || i}
+                      className="hh-dark-card-hover"
+                      style={{
+                        border: '1px solid #232326',
+                        borderRadius: 16,
+                        background: 'rgba(255,255,255,0.03)',
+                        padding: 26,
+                        display: 'flex',
+                        flexDirection: 'column' as const,
+                        gap: 14,
+                      }}
+                    >
+                      <div style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontWeight: 700,
+                        fontSize: '11px',
+                        letterSpacing: '0.1em',
+                        color: '#FF9D2E',
+                      }}>
+                        {String(i + 1).padStart(2, '0')}
+                      </div>
+                      {card.title && (
+                        <h3 style={{
+                          fontFamily: "'Montserrat', sans-serif",
+                          fontWeight: 600,
+                          fontSize: 16,
+                          lineHeight: 1.4,
+                          margin: 0,
+                        }}>
+                          {card.title}
+                        </h3>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )
+            }
+
             return (
               <div className="rsp-grid-3" style={{
                 display: 'grid',
@@ -219,32 +302,22 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
                     >
                       {hasCardVisual && (
                       <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                        <div style={{
-                          width: 46,
-                          height: 46,
-                          borderRadius: 12,
-                          background: 'rgba(255,157,46,0.12)',
-                          border: '1px solid rgba(255,157,46,0.5)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                        }}>
+                        <IconBadge variant="darkGlow">
                           {card.svgPath ? (
-                            <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                               <path d={card.svgPath} />
                             </svg>
                           ) : card.icon?.asset ? (
                             <Image
                               src={urlFor(card.icon).url()}
                               alt=""
-                              width={46}
-                              height={46}
+                              width={24}
+                              height={24}
                               quality={90}
                               style={{ objectFit: 'scale-down' }}
                             />
                           ) : null}
-                        </div>
+                        </IconBadge>
                         <div style={{ flex: 1, height: 1, background: '#232326' }} />
                         <div style={{
                           fontFamily: "'Montserrat', sans-serif",
@@ -286,13 +359,55 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
               </div>
             )
           })()}
+          {closingText && (
+            <p style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 16,
+              lineHeight: 1.7,
+              color: '#D4D4D1',
+              margin: 0,
+              maxWidth: 760,
+            }}>
+              {closingText}
+            </p>
+          )}
         </div>
       </section>
     )
   }
 
-  const bg = background === 'cream' ? '#FDF8F0' : background === 'white' ? '#fff' : '#F5F5F4'
+  /* ───── Light styles ───── */
+  const bg = background === 'cream' ? 'var(--color-cream)' : background === 'white' ? '#fff' : '#F5F5F4'
   const isClean = style === 'clean'
+  const isWhiteBg = background === 'white'
+
+  const lightDesc = descParagraphs
+    ? (
+      <div>
+        {descParagraphs.map((text, i) => (
+          <p key={i} style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: 16,
+            lineHeight: 1.7,
+            color: '#55555A',
+            margin: i < descParagraphs.length - 1 ? '0 0 6px' : '0',
+          }}>
+            {text}
+          </p>
+        ))}
+      </div>
+    )
+    : subtext ? (
+      <p style={{
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: 16,
+        lineHeight: 1.7,
+        color: '#5c5c5c',
+        margin: 0,
+      }}>
+        {subtext}
+      </p>
+    ) : undefined
 
   const gridCols = columns
     ? `repeat(${columns}, 1fr)`
@@ -300,62 +415,218 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
 
   const gridClass = columns === 5 ? 'rsp-grid-5' : columns === 4 ? 'rsp-grid-4' : columns === 3 ? 'rsp-grid-3' : columns === 2 ? 'rsp-grid-2' : undefined
 
-  if (isClean) {
+  /* ───── Tagged style (chip + per-card list labels + orange-dot bullets) ───── */
+  if (style === 'tagged') {
     return (
-      <section style={{ background: bg, borderTop: background === 'white' ? 'none' : '1px solid #E4E4E4', borderBottom: background === 'white' ? 'none' : '1px solid #E4E4E4' }}>
-        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-          {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
-          {heading && (
-            <h2 style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 700,
-              fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-              lineHeight: 1.2,
-              margin: '0 0 16px',
-              color: '#111111',
-            }}>
-              {heading}
-            </h2>
-          )}
-          {subtext && (
-            <p style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: 16,
-              lineHeight: 1.7,
-              color: '#5c5c5c',
-              maxWidth: 680,
-              margin: '0 0 36px',
-            }}>
-              {subtext}
-            </p>
-          )}
+      <section style={{ background: isWhiteBg ? '#fff' : bg, borderTop: isWhiteBg ? 'none' : '1px solid #E4E4E4', borderBottom: isWhiteBg ? 'none' : '1px solid #E4E4E4' }}>
+        <div className="rsp-section">
+          <SectionHeader
+            layout={headerLayout === 'split' ? 'split' : 'stacked'}
+            eyebrow={eyebrow ? <span style={sectionEyebrowStyle}>{eyebrow}</span> : undefined}
+            heading={heading ? (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
+                lineHeight: 1.16,
+                margin: 0,
+                color: '#111111',
+              }}>
+                {heading}
+              </h2>
+            ) : <span />}
+            description={lightDesc}
+          />
           {cards && cards.length > 0 && (
             <div className={gridClass} style={{
               display: 'grid',
-              gridTemplateColumns: gridCols,
-              columnGap: 56,
-              rowGap: 36,
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: 18,
+              marginBottom: closingText ? 32 : 0,
             }}>
               {cards.map((card, i) => (
-                <div key={card._key || i}>
-                  {card.icon?.asset && (
-                    <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(26, 106, 255, 0.1)', position: 'relative', marginBottom: 14 }}>
-                      <Image
-                        src={urlFor(card.icon).url()}
-                        alt={card.title || ''}
-                        fill
-                        sizes="44px"
-                        quality={90}
-                        style={{ objectFit: 'scale-down', padding: 10 }}
-                      />
+                <div
+                  key={card._key || i}
+                  className="hh-card-hover"
+                  style={{
+                    border: '1px solid #E6E6E4',
+                    borderRadius: 16,
+                    background: '#fff',
+                    padding: 32,
+                    display: 'flex',
+                    flexDirection: 'column' as const,
+                    gap: 16,
+                  }}
+                >
+                  {card.tag && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                      <span style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontWeight: 700,
+                        fontSize: 12,
+                        letterSpacing: '0.08em',
+                        color: '#1A6AFF',
+                        background: '#EAF1FF',
+                        border: '1px solid #C9D8FB',
+                        borderRadius: 6,
+                        padding: '6px 10px',
+                      }}>
+                        {card.tag}
+                      </span>
                     </div>
                   )}
                   {card.title && (
                     <h3 style={{
                       fontFamily: "'Montserrat', sans-serif",
                       fontWeight: 700,
-                      fontSize: 16,
-                      margin: '0 0 8px',
+                      fontSize: 19,
+                      lineHeight: 1.3,
+                      margin: 0,
+                    }}>
+                      {card.title}
+                    </h3>
+                  )}
+                  {card.description && (
+                    <p style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: 15,
+                      lineHeight: 1.65,
+                      color: '#55555A',
+                      margin: 0,
+                    }}>
+                      {card.description}
+                    </p>
+                  )}
+                  {card.listLabel && (
+                    <div style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 600,
+                      fontSize: '10.5px',
+                      letterSpacing: '0.11em',
+                      textTransform: 'uppercase' as const,
+                      color: '#9A9A96',
+                      marginTop: 4,
+                    }}>
+                      {card.listLabel}
+                    </div>
+                  )}
+                  {card.bullets && card.bullets.length > 0 && (
+                    <div style={{ display: 'flex', flexDirection: 'column' as const, borderTop: '1px solid #EFEFEE' }}>
+                      {card.bullets.map((bullet, j) => (
+                        <div key={j} style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 12,
+                          padding: '12px 0',
+                          borderBottom: '1px solid #EFEFEE',
+                        }}>
+                          <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#FF9D2E', flexShrink: 0 }} />
+                          <span style={{
+                            fontFamily: "'Poppins', sans-serif",
+                            fontWeight: 500,
+                            fontSize: 14.5,
+                            lineHeight: 1.45,
+                            color: '#0A0A0C',
+                          }}>
+                            {bullet}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+          {closingText && (
+            <p style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 500,
+              fontSize: 16,
+              lineHeight: 1.7,
+              color: '#0A0A0C',
+              margin: 0,
+              maxWidth: 760,
+            }}>
+              {closingText}
+            </p>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  /* ───── Clean style ───── */
+  if (isClean) {
+    const borderedCards = isWhiteBg
+    return (
+      <section style={{ background: bg, borderTop: isWhiteBg ? 'none' : '1px solid #E4E4E4', borderBottom: isWhiteBg ? 'none' : '1px solid #E4E4E4' }}>
+        <div className="rsp-section">
+          <SectionHeader
+            layout={headerLayout === 'split' ? 'split' : 'stacked'}
+            eyebrow={eyebrow ? <span style={sectionEyebrowStyle}>{eyebrow}</span> : undefined}
+            heading={heading ? (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                lineHeight: 1.2,
+                margin: 0,
+                color: '#111111',
+              }}>
+                {heading}
+              </h2>
+            ) : <span />}
+            description={lightDesc}
+          />
+          {cards && cards.length > 0 && (
+            <div className={gridClass} style={{
+              display: 'grid',
+              gridTemplateColumns: borderedCards ? 'repeat(auto-fit, minmax(270px, 1fr))' : gridCols,
+              columnGap: borderedCards ? 18 : 56,
+              rowGap: borderedCards ? 18 : 36,
+            }}>
+              {cards.map((card, i) => (
+                <div
+                  key={card._key || i}
+                  className={borderedCards ? 'hh-card-hover' : undefined}
+                  style={borderedCards ? {
+                    border: '1px solid #E6E6E4',
+                    borderRadius: 16,
+                    background: '#fff',
+                    padding: 26,
+                    display: 'flex',
+                    flexDirection: 'column' as const,
+                    gap: 14,
+                  } : undefined}
+                >
+                  {(card.svgPath || card.icon?.asset) && (
+                    <div style={{ marginBottom: borderedCards ? 0 : 14 }}>
+                      <IconBadge>
+                        {card.svgPath ? (
+                          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#1A6AFF" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                            <path d={card.svgPath} />
+                          </svg>
+                        ) : card.icon?.asset ? (
+                          <Image
+                            src={urlFor(card.icon).url()}
+                            alt={card.title || ''}
+                            width={24}
+                            height={24}
+                            quality={90}
+                            style={{ objectFit: 'scale-down' }}
+                          />
+                        ) : null}
+                      </IconBadge>
+                    </div>
+                  )}
+                  {card.title && (
+                    <h3 style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 700,
+                      fontSize: borderedCards ? 16.5 : 16,
+                      lineHeight: borderedCards ? 1.32 : undefined,
+                      margin: borderedCards ? 0 : '0 0 8px',
                       color: '#111111',
                     }}>
                       {card.title}
@@ -366,7 +637,7 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
                       fontFamily: "'Poppins', sans-serif",
                       fontSize: 14,
                       lineHeight: 1.6,
-                      color: '#5c5c5c',
+                      color: borderedCards ? '#55555A' : '#5c5c5c',
                       margin: 0,
                     }}>
                       {card.description}
@@ -381,6 +652,92 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
     )
   }
 
+  /* ───── Unified container style ───── */
+  if (cardContainerStyle === 'unified') {
+    return (
+      <section style={{ background: bg, borderTop: isWhiteBg ? 'none' : '1px solid #E4E4E4', borderBottom: isWhiteBg ? 'none' : '1px solid #E4E4E4' }}>
+        <div className="rsp-section">
+          <SectionHeader
+            layout={headerLayout === 'split' ? 'split' : 'stacked'}
+            eyebrow={eyebrow ? <span style={sectionEyebrowStyle}>{eyebrow}</span> : undefined}
+            heading={heading ? (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                lineHeight: 1.2,
+                margin: 0,
+                color: '#111111',
+              }}>
+                {heading}
+              </h2>
+            ) : <span />}
+            description={lightDesc}
+          />
+          {cards && cards.length > 0 && (
+            <div style={{
+              border: '1px solid #E6E6E4',
+              borderRadius: 16,
+              background: '#fff',
+              overflow: 'hidden',
+              boxShadow: '0 18px 40px rgba(10,10,12,0.05)',
+              display: 'flex',
+              flexWrap: 'wrap' as const,
+            }}>
+              {cards.map((card, i) => {
+                const num = String(i + 1).padStart(2, '0')
+                return (
+                  <div key={card._key || i} style={{
+                    flex: '1 1 260px',
+                    minWidth: 230,
+                    padding: 28,
+                    borderRight: '1px solid #EFEFEE',
+                    borderBottom: '1px solid #EFEFEE',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+                      <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#1A6AFF' }} />
+                      <div style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontWeight: 700,
+                        fontSize: '11px',
+                        letterSpacing: '0.1em',
+                        color: '#9A9A96',
+                      }}>
+                        {num}
+                      </div>
+                    </div>
+                    {card.title && (
+                      <div style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontWeight: 600,
+                        fontSize: 15.5,
+                        lineHeight: 1.35,
+                        marginBottom: 10,
+                      }}>
+                        {card.title}
+                      </div>
+                    )}
+                    {card.description && (
+                      <div style={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontSize: 13.5,
+                        lineHeight: 1.6,
+                        color: '#55555A',
+                      }}>
+                        {card.description}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  /* ───── Default / dashed styles ───── */
   const gridContent = (
     <div className={gridClass} style={{
       display: 'grid',
@@ -406,15 +763,17 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
             background: cardBg,
           }}>
             {card.icon?.asset && (
-              <div style={{ marginBottom: 16, width: 40, height: 40, position: 'relative' }}>
-                <Image
-                  src={urlFor(card.icon).url()}
-                  alt={card.title || ''}
-                  fill
-                  sizes="40px"
-                  quality={90}
-                  style={{ objectFit: 'scale-down' }}
-                />
+              <div style={{ marginBottom: 16 }}>
+                <IconBadge size="sm">
+                  <Image
+                    src={urlFor(card.icon).url()}
+                    alt={card.title || ''}
+                    width={20}
+                    height={20}
+                    quality={90}
+                    style={{ objectFit: 'scale-down' }}
+                  />
+                </IconBadge>
               </div>
             )}
             {card.title && badge && (
@@ -459,14 +818,7 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {card.bullets.map((bullet, j) => (
                   <li key={j} style={{ display: 'flex', gap: 10, alignItems: 'baseline', marginBottom: 8 }}>
-                    <span style={{
-                      width: 5,
-                      height: 5,
-                      background: '#1A6AFF',
-                      flexShrink: 0,
-                      marginTop: 6,
-                      display: 'inline-block',
-                    }} />
+                    <span className="hh-bullet" style={{ marginTop: 6 }} />
                     <span style={{
                       fontFamily: "'Poppins', sans-serif",
                       fontSize: 13.5,
@@ -487,67 +839,24 @@ export function CardGridSection({ eyebrow, heading, subtext, headerLayout, style
 
   return (
     <section style={{ background: bg, borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-        {headerLayout === 'split' ? (
-          <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 48 }}>
-            <div style={{ flex: '1 1 460px', minWidth: 300 }}>
-              {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
-              {heading && (
-                <h2 style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 700,
-                  fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-                  lineHeight: 1.2,
-                  margin: 0,
-                  color: '#111111',
-                }}>
-                  {heading}
-                </h2>
-              )}
-            </div>
-            <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
-              {subtext && (
-                <p style={{
-                  fontFamily: "'Poppins', sans-serif",
-                  fontSize: 16,
-                  lineHeight: 1.7,
-                  color: '#5c5c5c',
-                  margin: 0,
-                }}>
-                  {subtext}
-                </p>
-              )}
-            </div>
-          </div>
-        ) : (
-          <>
-            {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
-            {heading && (
-              <h2 style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 700,
-                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-                lineHeight: 1.2,
-                margin: '0 0 16px',
-                color: '#111111',
-              }}>
-                {heading}
-              </h2>
-            )}
-            {subtext && (
-              <p style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: 16,
-                lineHeight: 1.7,
-                color: '#5c5c5c',
-                maxWidth: 680,
-                margin: '0 0 48px',
-              }}>
-                {subtext}
-              </p>
-            )}
-          </>
-        )}
+      <div className="rsp-section">
+        <SectionHeader
+          layout={headerLayout === 'split' ? 'split' : 'stacked'}
+          eyebrow={eyebrow ? <span style={sectionEyebrowStyle}>{eyebrow}</span> : undefined}
+          heading={heading ? (
+            <h2 style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 700,
+              fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+              lineHeight: 1.2,
+              margin: 0,
+              color: '#111111',
+            }}>
+              {heading}
+            </h2>
+          ) : <span />}
+          description={lightDesc}
+        />
         {cards && cards.length > 0 && (
           style === 'dashed' ? (
             <div style={{

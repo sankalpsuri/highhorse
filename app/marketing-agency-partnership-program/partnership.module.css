@@ -120,16 +120,7 @@
   margin-bottom: 16px;
 }
 
-.partnerIconBox {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  background: #0A0A0C;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
+/* partnerIconBox removed — now uses shared IconBadge */
 
 .partnerModelLabel {
   font: 600 11.5px 'Montserrat', sans-serif;
@@ -140,7 +131,7 @@
 
 .partnerTitle {
   font: 700 clamp(1.9rem, 2.8vw, 2.6rem)/1.16 'Montserrat', sans-serif;
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   max-width: 520px;
   text-wrap: pretty;
 }
@@ -264,13 +255,13 @@
 .termsDarkInner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 100px 32px;
+  padding: 96px 32px;
   position: relative;
 }
 
 .termsDarkHeader {
   max-width: 720px;
-  margin-bottom: 52px;
+  margin-bottom: 40px;
 }
 
 .termsDarkLabel {
@@ -336,8 +327,8 @@
 }
 
 .termsDarkCardBullet {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #FF9D2E;
   flex-shrink: 0;
@@ -404,7 +395,7 @@
 
 .ctaTitle {
   font: 700 clamp(2rem, 3vw, 2.8rem)/1.14 'Montserrat', sans-serif;
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   max-width: 600px;
   text-wrap: pretty;
 }

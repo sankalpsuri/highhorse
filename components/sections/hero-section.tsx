@@ -16,6 +16,7 @@ interface HeroSectionProps {
   eyebrowDotColor?: string
   heroWidget?: string
   headline: string
+  headlineHighlights?: string[]
   subheadline?: string
   ctaText?: string
   ctaLink?: string
@@ -25,6 +26,28 @@ interface HeroSectionProps {
   heroImage?: any
   textAlign?: string
   mobileImageSquare?: boolean
+  heroBackground?: string
+}
+
+function renderHighlightedHeadline(text: string, highlights: string[]): React.ReactNode {
+  if (!highlights.length) return text
+  const sorted = [...highlights].sort((a, b) => b.length - a.length)
+  const pattern = sorted
+    .map((h) => h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+    .join('|')
+  const re = new RegExp(`(${pattern})`, 'gi')
+  const testRe = new RegExp(`^(?:${pattern})$`, 'i')
+  const parts = text.split(re)
+  const seen = new Set<string>()
+  return parts.map((part, i) => {
+    if (testRe.test(part)) {
+      const key = part.toLowerCase()
+      if (seen.has(key)) return part
+      seen.add(key)
+      return <span key={i} style={{ color: '#1A6AFF' }}>{part}</span>
+    }
+    return part
+  })
 }
 
 const dotColors: Record<string, string> = {
@@ -98,13 +121,13 @@ function SponsoredPlacementWidget() {
   )
 }
 
-export function HeroSection({ badgeText, badgeStyle, eyebrowText, eyebrowDotColor, heroWidget, headline, subheadline, ctaText, ctaLink, secondaryCtaText, secondaryCtaLink, relatedServiceTags, heroImage, textAlign, mobileImageSquare }: HeroSectionProps) {
+export function HeroSection({ badgeText, badgeStyle, eyebrowText, eyebrowDotColor, heroWidget, heroBackground, headline, headlineHighlights, subheadline, ctaText, ctaLink, secondaryCtaText, secondaryCtaLink, relatedServiceTags, heroImage, textAlign, mobileImageSquare }: HeroSectionProps) {
   const centered = textAlign === 'center'
   const hasWidget = heroWidget === 'sponsored-placement'
   const hasSideContent = hasWidget || heroImage?.asset
 
   return (
-    <section style={{ background: '#F5F5F4', borderBottom: '1px solid #E4E4E4', position: 'relative', overflow: 'hidden' }}>
+    <section style={{ background: heroBackground === 'white' ? '#FFFFFF' : '#F5F5F4', borderBottom: heroBackground === 'white' ? 'none' : '1px solid #E4E4E4', position: 'relative', overflow: 'hidden' }}>
       <div className="hh-grid-bg" aria-hidden="true" />
       <div className="hh-glow-blue" aria-hidden="true" />
       {hasWidget && (
@@ -185,7 +208,7 @@ export function HeroSection({ badgeText, badgeStyle, eyebrowText, eyebrowDotColo
             letterSpacing: '-0.01em',
             color: '#111111',
           }}>
-            {headline}
+            {headlineHighlights?.length ? renderHighlightedHeadline(headline, headlineHighlights) : headline}
           </h1>
           {subheadline && (
             <p style={{

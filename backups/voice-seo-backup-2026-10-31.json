@@ -1,0 +1,94 @@
+{
+  "_id": "servicePage-voice-seo",
+  "title": "Voice SEO",
+  "slug": { "_type": "slug", "current": "voice-search-seo-optimization-services" },
+  "section": "services",
+  "summary": "Be the answer when customers use voice search",
+  "accentStyle": null,
+  "expertCtaLabel": null,
+  "faqHeading": null,
+  "faqEyebrow": null,
+  "caseStudiesHeading": null,
+  "caseStudiesSubtext": null,
+  "seo": {
+    "_type": "seo",
+    "metaTitle": "Voice Search Optimization Services | Get Found by Customers",
+    "metaDescription": "Optimize your business for voice search and help customers find your brand faster with strategies built for conversational and voice-driven search."
+  },
+  "pageBuilder": [
+    {
+      "_key": "hero-1",
+      "_type": "heroSection",
+      "headline": "Be The Answer When Customers Use Voice Search",
+      "headlineHighlights": ["Answer", "Customers", "Voice"],
+      "subheadline": "Voice search is rapidly changing how people discover information online. Instead of typing queries, users now ask questions through voice assistants and smart devices. High Horse helps businesses optimise their digital presence for voice-driven search queries, ensuring your brand appears in voice assistant responses and conversational search results.",
+      "ctaText": "Book a Strategy Call",
+      "ctaLink": "/contact-search-performance-marketing-agency",
+      "hasHeroImage": true
+    },
+    {
+      "_key": "text-image-1",
+      "_type": "textImageSection",
+      "heading": "Understanding Voice Search Optimization",
+      "bodyText": "Voice SEO is the process of optimising your website and content so it can be discovered and delivered through voice-based search queries. Unlike traditional searches, voice queries are more conversational and question-based. Voice assistants such as **Google Assistant, Siri, and Alexa** prioritise content that provides clear, structured answers. Voice SEO focuses on ensuring that search engines can easily interpret your content and deliver it when users ask voice-based questions."
+    },
+    {
+      "_key": "text-image-2",
+      "_type": "textImageSection",
+      "heading": "The Growing Impact of Voice Search",
+      "bodyText": "Voice search is becoming a key part of the digital discovery process. Millions of users rely on voice assistants to find local services, compare products, and gather information instantly. If your content is not optimised for voice queries:",
+      "bullets": [
+        "Your competitors may appear in voice responses instead of your brand",
+        "Your website may miss conversational search traffic",
+        "Your business may lose early-stage discovery opportunities"
+      ],
+      "imagePosition": "right",
+      "hasImage": true
+    },
+    {
+      "_key": "text-image-3",
+      "_type": "textImageSection",
+      "heading": "How Voice SEO Helps Businesses Grow",
+      "bodyText": "Voice SEO helps businesses capture search demand generated through conversational queries. Benefits include:",
+      "bullets": [
+        "Increased visibility in voice assistant responses",
+        "More website traffic from conversational queries",
+        "Stronger presence in local search results",
+        "Higher chances of appearing in featured snippets",
+        "Improved brand credibility and authority"
+      ],
+      "imagePosition": "left",
+      "hasImage": true
+    },
+    {
+      "_key": "card-grid-1",
+      "_type": "cardGridSection",
+      "heading": "Key Components of Voice SEO",
+      "subtext": "Effective voice search optimization requires multiple elements working together. Our Voice SEO approach includes:",
+      "cards": [
+        { "_key": "vc-1", "title": "Conversational Content Structure", "description": "Content written in a natural language format aligned with how users speak.", "hasIcon": true },
+        { "_key": "vc-2", "title": "Question-Based Content Strategy", "description": "Optimising pages around common questions customers ask.", "hasIcon": true },
+        { "_key": "vc-3", "title": "Featured Snippet Optimization", "description": "Structuring answers in formats search engines prefer for voice responses.", "hasIcon": true },
+        { "_key": "vc-4", "title": "Local SEO Signals", "description": "Improving local visibility for voice searches related to nearby services.", "hasIcon": true },
+        { "_key": "vc-5", "title": "Mobile Optimization", "description": "Ensuring fast-loading, mobile-friendly pages that voice search users can easily access.", "hasIcon": true },
+        { "_key": "vc-6", "title": "Structured Data Markup", "description": "Helping search engines interpret your website content accurately.", "hasIcon": true }
+      ]
+    },
+    {
+      "_key": "cta-1",
+      "_type": "ctaSection",
+      "heading": "Ready to Optimize Your Business for Voice Search?",
+      "bodyText": "Voice-driven discovery is becoming a major part of how customers search for information. High Horse helps businesses implement Voice SEO strategies that improve visibility in voice assistant responses and conversational search results. Start preparing your brand for the future of search.",
+      "ctaText": "Request a Pitch Deck",
+      "ctaLink": "/contact-search-performance-marketing-agency"
+    }
+  ],
+  "relatedFaqs": [
+    { "_id": "faq-voice-seo-1", "question": "How is voice search different from normal Google searches?", "answer": "Voice searches are longer, conversational questions. Users expect quick answers, so search engines prioritise structured, clear, and authoritative content.", "order": 1 },
+    { "_id": "faq-voice-seo-2", "question": "Which types of businesses benefit most from Voice SEO?", "answer": "Voice SEO tends to deliver the strongest results for businesses with a local presence—restaurants, clinics, home services, retail stores—because voice queries often include \"near me\" or location-specific phrasing. Service-based businesses that answer common how-to or what-is questions also benefit, since voice assistants frequently pull from featured snippets and FAQ-style content. That said, any business whose customers ask natural-language questions about products, services, or availability can gain visibility through voice search optimisation.", "order": 2 },
+    { "_id": "faq-voice-seo-3", "question": "How long does it take to see results from Voice SEO?", "answer": "Voice SEO is an extension of organic search optimisation, so timelines depend on factors like your current domain authority, content quality, and competition in your space. Some businesses see their content surfacing in voice results within a few weeks of structured-data and content updates, while more competitive industries may take several months of sustained effort. During a strategy call we can give a more specific outlook based on your current search presence.", "order": 3 },
+    { "_id": "faq-voice-seo-4", "question": "Can Voice SEO improve local search visibility?", "answer": "Yes—voice search and local search are closely connected. A large share of voice queries are location-based (\"best dentist near me,\" \"plumber open now\"), and voice assistants pull answers from Google Business Profiles, local packs, and schema-marked pages. Optimising for voice means ensuring your business information is accurate, your content answers location-relevant questions naturally, and your structured data is properly implemented—all of which strengthen local visibility in traditional search as well.", "order": 4 },
+    { "_id": "faq-voice-seo-5", "question": "What does High Horse do differently in Voice SEO?", "answer": "We combine conversational keyword research, structured content frameworks, featured snippet optimization, and local SEO signals to improve voice search visibility.", "order": 5 }
+  ],
+  "relatedCaseStudies": null
+}

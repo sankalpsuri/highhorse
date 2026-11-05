@@ -105,7 +105,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #1A6AFF;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .sectionTitle {
@@ -119,7 +119,7 @@
   font: 400 16px/1.65 'Poppins', sans-serif;
   color: #5C5C5C;
   max-width: 640px;
-  margin: 0 0 48px;
+  margin: 0 0 40px;
   text-wrap: pretty;
 }
 
@@ -155,24 +155,7 @@
   transform: translateY(-2px);
 }
 
-.benefitIcon {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  background: #EAF1FF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  color: #1A6AFF;
-}
-
-.benefitIconImg {
-  display: block;
-  max-width: 28px;
-  max-height: 28px;
-  object-fit: contain;
-}
+/* benefitIcon and benefitIconImg removed — now uses shared IconBadge */
 
 .benefitTitle {
   font: 600 16px 'Montserrat', sans-serif;
@@ -205,7 +188,7 @@
 
 .lookingTitle {
   font: 700 clamp(1.9rem, 2.8vw, 2.6rem)/1.16 'Montserrat', sans-serif;
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   max-width: 460px;
   text-wrap: pretty;
 }
@@ -289,7 +272,7 @@
 .oppInner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 100px 32px;
+  padding: 96px 32px;
   position: relative;
 }
 
@@ -311,7 +294,7 @@
   font: 400 16px/1.7 'Poppins', sans-serif;
   color: #9A9A97;
   max-width: 640px;
-  margin: 0 0 52px;
+  margin: 0 0 40px;
   text-wrap: pretty;
 }
 
@@ -337,24 +320,7 @@
   transform: translateY(-3px);
 }
 
-.oppIcon {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  background: rgba(255, 157, 46, 0.12);
-  border: 1px solid rgba(255, 157, 46, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.oppIconImg {
-  display: block;
-  max-width: 23px;
-  max-height: 23px;
-  object-fit: contain;
-}
+/* oppIcon and oppIconImg removed — now uses shared IconBadge */
 
 .oppTitle {
   font: 700 18px/1.32 'Montserrat', sans-serif;

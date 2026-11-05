@@ -9,6 +9,8 @@ export default defineType({
     defineField({name: 'bodyText', title: 'Body text', type: 'blockContent'}),
     defineField({name: 'ctaText', title: 'CTA button text', type: 'string'}),
     defineField({name: 'ctaLink', title: 'CTA link', type: 'string'}),
+    defineField({name: 'secondaryCtaText', title: 'Secondary CTA text', type: 'string'}),
+    defineField({name: 'secondaryCtaLink', title: 'Secondary CTA link', type: 'string'}),
     defineField({
       name: 'variant',
       title: 'Variant',

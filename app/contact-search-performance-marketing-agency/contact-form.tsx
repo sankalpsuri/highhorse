@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import { submitContactForm } from './actions'
+import { CONTACT_EMAIL } from '@/lib/constants'
 import styles from './contact.module.css'
 
 const stepDefs = [
@@ -191,7 +192,7 @@ export function ContactForm() {
             })}
           </div>
           <div className={styles.emailFallback}>
-            Prefer email? <a href="mailto:contact@highhorse.in">contact@highhorse.in</a>
+            Prefer email? <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
           </div>
         </div>
 

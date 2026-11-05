@@ -245,7 +245,7 @@
 
 /* Category group */
 .group {
-  margin-bottom: 44px;
+  margin-bottom: 40px;
 }
 
 .groupHeader {
@@ -527,7 +527,7 @@
 
 .ctaHeading {
   font: 700 clamp(2rem, 3vw, 2.8rem)/1.14 'Montserrat', sans-serif;
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   max-width: 620px;
   text-wrap: pretty;
 }

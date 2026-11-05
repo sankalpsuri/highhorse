@@ -1,3 +1,5 @@
+import { SectionHeader } from '@/components/section-header'
+
 interface Stat {
   _key?: string
   value?: string
@@ -30,7 +32,6 @@ const sectionEyebrowStyle: React.CSSProperties = {
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
   color: '#1A6AFF',
-  marginBottom: 16,
 }
 
 export function StatsSection({ eyebrow, heading, bodyText, layout, theme, warningText, stats }: StatsSectionProps) {
@@ -41,16 +42,16 @@ export function StatsSection({ eyebrow, heading, bodyText, layout, theme, warnin
   if (isSplit) {
     return (
       <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-        <div className="rsp-grid-split rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 44, alignItems: 'center' }}>
+        <div className="rsp-grid-split rsp-section" style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 44, alignItems: 'center' }}>
           <div>
-            {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
+            {eyebrow && <div className="sh-eyebrow"><span style={sectionEyebrowStyle}>{eyebrow}</span></div>}
             {heading && (
               <h2 style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 700,
                 fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
                 lineHeight: 1.26,
-                margin: '0 0 14px',
+                margin: '0 0 var(--heading-to-desc)',
                 color: '#111111',
               }}>
                 {heading}
@@ -117,38 +118,39 @@ export function StatsSection({ eyebrow, heading, bodyText, layout, theme, warnin
   if (isDark) {
     return (
       <section>
-        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+        <div className="rsp-section">
           <div className="rsp-dark-pad" style={{
             background: '#111111',
             borderRadius: 24,
             padding: '56px 40px',
             color: '#fff',
           }}>
-            {eyebrow && <div style={{ ...sectionEyebrowStyle, color: '#FF9D2E' }}>{eyebrow}</div>}
-            {heading && (
-              <h2 style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 700,
-                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-                lineHeight: 1.2,
-                margin: '0 0 16px',
-                color: '#fff',
-              }}>
-                {heading}
-              </h2>
-            )}
-            {bodyText && (
-              <p style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: 16,
-                lineHeight: 1.7,
-                color: '#8a8a86',
-                maxWidth: 680,
-                margin: '0 0 48px',
-              }}>
-                {bodyText}
-              </p>
-            )}
+            <SectionHeader
+              eyebrow={eyebrow ? <span style={{ ...sectionEyebrowStyle, color: '#FF9D2E' }}>{eyebrow}</span> : undefined}
+              heading={heading ? (
+                <h2 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                  lineHeight: 1.2,
+                  margin: 0,
+                  color: '#fff',
+                }}>
+                  {heading}
+                </h2>
+              ) : <span />}
+              description={bodyText ? (
+                <p style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  color: '#8a8a86',
+                  margin: 0,
+                }}>
+                  {bodyText}
+                </p>
+              ) : undefined}
+            />
             {stats && stats.length > 0 && (
               <div className="rsp-grid-4" style={{
                 display: 'grid',
@@ -197,25 +199,24 @@ export function StatsSection({ eyebrow, heading, bodyText, layout, theme, warnin
 
   return (
     <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+      <div className="rsp-section">
         {warningText ? (
-          <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 44 }}>
-            <div style={{ flex: '1 1 460px', minWidth: 300 }}>
-              {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
-              {heading && (
-                <h2 style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 700,
-                  fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-                  lineHeight: 1.2,
-                  margin: 0,
-                  color: '#111111',
-                }}>
-                  {heading}
-                </h2>
-              )}
-            </div>
-            <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
+          <SectionHeader
+            layout="split"
+            eyebrow={eyebrow ? <span style={sectionEyebrowStyle}>{eyebrow}</span> : undefined}
+            heading={heading ? (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                lineHeight: 1.2,
+                margin: 0,
+                color: '#111111',
+              }}>
+                {heading}
+              </h2>
+            ) : <span />}
+            description={(
               <div style={{
                 border: '1px solid #EFD8B4',
                 background: '#FFF6EA',
@@ -229,38 +230,37 @@ export function StatsSection({ eyebrow, heading, bodyText, layout, theme, warnin
               }}>
                 {warningText}
               </div>
-            </div>
-          </div>
+            )}
+          />
         ) : (
-          <>
-            {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
-            {heading && (
+          <SectionHeader
+            eyebrow={eyebrow ? <span style={sectionEyebrowStyle}>{eyebrow}</span> : undefined}
+            heading={heading ? (
               <h2 style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 700,
                 fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
                 lineHeight: 1.2,
-                margin: '0 0 16px',
+                margin: 0,
                 color: '#111111',
                 textAlign: isScattered ? 'center' as const : 'left' as const,
               }}>
                 {heading}
               </h2>
-            )}
-          </>
-        )}
-        {bodyText && (
-          <p style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: 16,
-            lineHeight: 1.7,
-            color: '#5c5c5c',
-            maxWidth: 680,
-            margin: isScattered ? '0 auto 56px' : '0 0 48px',
-            textAlign: isScattered ? 'center' as const : 'left' as const,
-          }}>
-            {bodyText}
-          </p>
+            ) : <span />}
+            description={bodyText ? (
+              <p style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: 16,
+                lineHeight: 1.7,
+                color: '#5c5c5c',
+                margin: isScattered ? '0 auto' : 0,
+                textAlign: isScattered ? 'center' as const : 'left' as const,
+              }}>
+                {bodyText}
+              </p>
+            ) : undefined}
+          />
         )}
         {stats && stats.length > 0 && (
           isScattered ? (

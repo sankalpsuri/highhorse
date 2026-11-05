@@ -1,6 +1,7 @@
 "use server"
 
 import { getSupabaseServer } from "@/lib/supabase/server"
+import { CONTACT_EMAIL } from "@/lib/constants"
 
 interface ContactPayload {
   goals: string[]
@@ -60,20 +61,19 @@ export async function submitContactForm(
     })
 
     if (error) {
-      console.error("[contact] Supabase insert failed:", error.message, error.code, error.details)
+      console.error("[contact] Supabase insert failed:", JSON.stringify({ message: error.message, code: error.code, details: error.details, hint: error.hint }))
       return {
         success: false,
-        error: "Failed to save your submission. Please try again or email hello@highhorse.in.",
+        error: `Failed to save your submission. Please try again or email ${CONTACT_EMAIL}.`,
       }
     }
 
     return { success: true }
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err)
-    console.error("[contact] Unexpected error:", message)
+    console.error("[contact] Unexpected error:", err instanceof Error ? err.stack ?? err.message : String(err))
     return {
       success: false,
-      error: "Failed to save your submission. Please try again or email hello@highhorse.in.",
+      error: `Failed to save your submission. Please try again or email ${CONTACT_EMAIL}.`,
     }
   }
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ScrollReveal } from '@/components/scroll-reveal'
+import { IconBadge } from '@/components/icon-badge'
 import styles from './partnership.module.css'
 
 export const metadata: Metadata = {
@@ -94,11 +95,11 @@ export default function PartnershipPage() {
         <div className={styles.partnerLayout}>
           <div className={styles.partnerText}>
             <div className={styles.partnerLabelRow}>
-              <div className={styles.partnerIconBox}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <IconBadge variant="ink">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M12 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6z M4 20a8 8 0 0 1 16 0" />
                 </svg>
-              </div>
+              </IconBadge>
               <div className={styles.partnerModelLabel}>Model 01</div>
             </div>
             <h2 className={styles.partnerTitle}>Freelance Project Partners</h2>
@@ -141,11 +142,11 @@ export default function PartnershipPage() {
           </div>
           <div className={styles.partnerText}>
             <div className={styles.partnerLabelRow}>
-              <div className={styles.partnerIconBox}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <IconBadge variant="ink">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M4 20l6-6 4 4 6-8 M14 6h6v6" />
                 </svg>
-              </div>
+              </IconBadge>
               <div className={styles.partnerModelLabel}>Model 02</div>
             </div>
             <h2 className={styles.partnerTitle}>White Label Sales Partners</h2>

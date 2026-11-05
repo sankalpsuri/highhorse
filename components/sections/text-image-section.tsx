@@ -24,14 +24,13 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
   const expectsImage = !!imagePosition
 
   const eyebrowBlock = eyebrow && (
-    <div style={{
+    <div className="sh-eyebrow" style={{
       fontFamily: "'Montserrat', sans-serif",
       fontWeight: 600,
       fontSize: '11.5px',
       letterSpacing: '0.1em',
       textTransform: 'uppercase' as const,
       color: '#1A6AFF',
-      marginBottom: 16,
     }}>
       {eyebrow}
     </div>
@@ -158,9 +157,6 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
     return (
       <section style={{ background: '#F5F5F4' }}>
         <div className="rsp-section" style={{
-          maxWidth: 1280,
-          margin: '0 auto',
-          padding: '96px 32px',
           display: 'flex',
           gap: 64,
           flexWrap: 'wrap' as const,
@@ -168,7 +164,7 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
         }}>
           <div style={{ flex: '1 1 420px', minWidth: 300 }}>
             {eyebrowBlock}
-            {heading && <h2 style={{ ...headingStyle, margin: '0 0 20px' }}>{heading}</h2>}
+            {heading && <h2 style={{ ...headingStyle, margin: '0 0 var(--heading-to-desc)' }}>{heading}</h2>}
             {bodyBlock}
             {closingBlock}
             {ctaBlock}
@@ -185,15 +181,12 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
     return (
       <section style={{ background: '#F5F5F4' }}>
         <div className="rsp-section" style={{
-          maxWidth: 1280,
-          margin: '0 auto',
-          padding: '96px 32px',
           display: 'flex',
           gap: 64,
           flexWrap: 'wrap' as const,
           alignItems: 'flex-start',
         }}>
-          <div style={{ flex: '1 1 340px', minWidth: 280 }}>
+          <div style={{ flex: '1 1 340px', minWidth: 280, maxWidth: 'var(--heading-max-w)' }}>
             {eyebrowBlock}
             {heading && <h2 style={headingStyle}>{heading}</h2>}
           </div>
@@ -210,7 +203,7 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
   const textBlock = (
     <div style={{ flex: '1 1 460px', minWidth: 300 }}>
       {eyebrowBlock}
-      {heading && <h2 style={{ ...headingStyle, margin: '0 0 20px' }}>{heading}</h2>}
+      {heading && <h2 style={{ ...headingStyle, margin: '0 0 var(--heading-to-desc)' }}>{heading}</h2>}
       {bodyBlock}
       {bulletsBlock}
       {closingBlock}
@@ -265,9 +258,6 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
   return (
     <section style={{ background: '#F7F7F6', borderTop: '1px solid #EAEAE8', borderBottom: '1px solid #EAEAE8' }}>
       <div className="rsp-section" style={{
-        maxWidth: 1280,
-        margin: '0 auto',
-        padding: '96px 32px',
         display: 'flex',
         gap: 56,
         flexWrap: 'wrap' as const,

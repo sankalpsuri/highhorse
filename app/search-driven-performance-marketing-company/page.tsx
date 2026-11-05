@@ -6,6 +6,8 @@ import { join } from 'path'
 import { sanityFetch } from '@/lib/sanity/client'
 import { getClientLogos } from '@/lib/get-client-logos'
 import { ScrollReveal } from '@/components/scroll-reveal'
+import { IconBadge } from '@/components/icon-badge'
+import { SectionHeader } from '@/components/section-header'
 import styles from './company.module.css'
 
 export const metadata: Metadata = {
@@ -18,16 +20,16 @@ const ASSETS = {
   missionIcon: '/assets/Our Mission(1).png',
   visionIcon: '/assets/our vision(1).png',
   aimIcon: '/assets/our aim(1).png',
-  storyBanner: '/assets/re size.jpg',
+  storyBanner: '/assets/Our Story.jpg',
   founderBanner: '/assets/Founder Image.jpg',
   industryFinance: '/assets/easy(1).jpg',
   industryEcommerce: '/assets/Speedx(1).jpg',
-  industryHealthcare: '/assets/Healthcare(2).jpg',
+  industryHealthcare: '/assets/Healthcare.jpg',
   industryEducation: '/assets/school(1).jpg',
   industryTravel: '/assets/Antharrah(1).jpg',
   industryLogistics: '/assets/fetch(1).jpg',
-  industryRealEstate: '/assets/Real Estate(1).jpg',
-  industrySaas: '/assets/Saas (2).jpg',
+  industryRealEstate: '/assets/Real estates.jpg',
+  industrySaas: '/assets/Saas.jpg',
 }
 
 function fileExists(src: string): boolean {
@@ -160,7 +162,7 @@ const whyBullets = [
 ]
 
 export default async function CompanyPage() {
-  const clientLogos = getClientLogos()
+  const clientLogos = await getClientLogos()
   const findSlug = await getCaseStudySlugLookup()
 
   return (
@@ -208,13 +210,13 @@ export default async function CompanyPage() {
               gap: 14,
               boxShadow: '0 14px 34px rgba(10,10,12,0.04)',
             }}>
-              <div style={{ width: 48, height: 48, borderRadius: 10, background: '#EAF1FF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <IconBadge>
                 {fileExists(c.icon) ? (
-                  <Image src={c.icon} alt={c.title} width={28} height={28} style={{ objectFit: 'contain' }} />
+                  <Image src={c.icon} alt={c.title} width={24} height={24} style={{ objectFit: 'contain' }} />
                 ) : (
-                  <div style={{ width: 28, height: 28 }} />
+                  <div style={{ width: 24, height: 24 }} />
                 )}
-              </div>
+              </IconBadge>
               <div style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 700, fontSize: 19, lineHeight: 1.3 }}>{c.title}</div>
               <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: 15, lineHeight: 1.68, color: '#55555A' }}>{c.body}</div>
             </div>
@@ -243,13 +245,15 @@ export default async function CompanyPage() {
               <div className={styles.marqueeTrack}>
                 {clientLogos.map((logo, i) => {
                   const slug = findSlug(logo.name)
+                  const logoStyle = { '--lw': logo.displayWidth, '--lh': logo.displayHeight } as React.CSSProperties
                   const img = (
                     <Image
                       src={logo.src}
                       alt={logo.name}
-                      width={180}
-                      height={64}
+                      width={logo.width}
+                      height={logo.height}
                       className={styles.marqueeLogoImg}
+                      style={logoStyle}
                       unoptimized
                     />
                   )
@@ -268,9 +272,10 @@ export default async function CompanyPage() {
                     <Image
                       src={logo.src}
                       alt=""
-                      width={180}
-                      height={64}
+                      width={logo.width}
+                      height={logo.height}
                       className={styles.marqueeLogoImg}
+                      style={{ '--lw': logo.displayWidth, '--lh': logo.displayHeight } as React.CSSProperties}
                       unoptimized
                     />
                   </div>
@@ -292,23 +297,19 @@ export default async function CompanyPage() {
       <ScrollReveal>
       <section style={{ background: '#F7F7F6', borderTop: '1px solid #EAEAE8', borderBottom: '1px solid #EAEAE8' }}>
         <div className="rsp-section" style={{
-          maxWidth: 1280,
-          margin: '0 auto',
-          padding: '96px 32px',
           display: 'flex',
           gap: 56,
           flexWrap: 'wrap' as const,
           alignItems: 'center',
         }}>
           <div style={{ flex: '1 1 460px', minWidth: 300 }}>
-            <div style={{
+            <div className="sh-eyebrow" style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 600,
               fontSize: '11.5px',
               letterSpacing: '0.1em',
               textTransform: 'uppercase' as const,
               color: '#1A6AFF',
-              marginBottom: 16,
             }}>
               Our story
             </div>
@@ -317,7 +318,7 @@ export default async function CompanyPage() {
               fontWeight: 700,
               fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
               lineHeight: 1.16,
-              margin: '0 0 20px',
+              margin: '0 0 var(--heading-to-desc)',
               maxWidth: 540,
             }}>
               Turning brands into bestsellers
@@ -385,33 +386,38 @@ export default async function CompanyPage() {
       {/* ── 5. What We Do ────────────────────────────────────── */}
       <ScrollReveal>
       <section id="capabilities">
-        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-          <div style={{ maxWidth: 760, marginBottom: 52 }}>
-            <div style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 600,
-              fontSize: '11.5px',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase' as const,
-              color: '#1A6AFF',
-              marginBottom: 16,
-            }}>
-              What we do
-            </div>
-            <h2 style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 700,
-              fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
-              lineHeight: 1.16,
-              margin: '0 0 16px',
-            }}>
-              Better brand performance, one connected system
-            </h2>
-            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 16, lineHeight: 1.7, color: '#55555A', margin: 0 }}>
-              We build search-driven growth systems combining visibility, advertising, websites, and
-              automation to help brands attract, convert, and scale faster.
-            </p>
-          </div>
+        <div className="rsp-section">
+          <SectionHeader
+            eyebrow={(
+              <span style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 600,
+                fontSize: '11.5px',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase' as const,
+                color: '#1A6AFF',
+              }}>
+                What we do
+              </span>
+            )}
+            heading={(
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
+                lineHeight: 1.16,
+                margin: 0,
+              }}>
+                Better brand performance, one connected system
+              </h2>
+            )}
+            description={(
+              <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 16, lineHeight: 1.7, color: '#55555A', margin: 0 }}>
+                We build search-driven growth systems combining visibility, advertising, websites, and
+                automation to help brands attract, convert, and scale faster.
+              </p>
+            )}
+          />
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 18 }}>
             {whatWeDoCards.map((c) => (
               <div key={c.title} className="hh-card-hover" style={{
@@ -424,20 +430,11 @@ export default async function CompanyPage() {
                 gap: 16,
                 boxShadow: '0 14px 34px rgba(10,10,12,0.04)',
               }}>
-                <div style={{
-                  width: 46,
-                  height: 46,
-                  borderRadius: 12,
-                  background: '#0A0A0C',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}>
-                  <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <IconBadge variant="ink">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d={c.icon} />
                   </svg>
-                </div>
+                </IconBadge>
                 <div style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 700, fontSize: 19, lineHeight: 1.3 }}>{c.title}</div>
                 <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: 15, lineHeight: 1.68, color: '#55555A' }}>{c.desc}</div>
               </div>
@@ -461,9 +458,6 @@ export default async function CompanyPage() {
           pointerEvents: 'none',
         }} aria-hidden="true" />
         <div className="rsp-section" style={{
-          maxWidth: 1280,
-          margin: '0 auto',
-          padding: '96px 32px',
           position: 'relative',
           display: 'flex',
           gap: 56,
@@ -471,14 +465,13 @@ export default async function CompanyPage() {
           alignItems: 'flex-start',
         }}>
           <div style={{ flex: '1 1 420px', minWidth: 300 }}>
-            <div style={{
+            <div className="sh-eyebrow" style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 600,
               fontSize: '11.5px',
               letterSpacing: '0.1em',
               textTransform: 'uppercase' as const,
               color: '#FF9D2E',
-              marginBottom: 16,
             }}>
               How we think
             </div>
@@ -487,7 +480,7 @@ export default async function CompanyPage() {
               fontWeight: 700,
               fontSize: 'clamp(1.9rem, 2.8vw, 2.5rem)',
               lineHeight: 1.16,
-              margin: '0 0 20px',
+              margin: '0 0 var(--heading-to-desc)',
               maxWidth: 500,
             }}>
               The thinking behind every successful brand
@@ -533,7 +526,7 @@ export default async function CompanyPage() {
       {/* ── 7. Founder Message ───────────────────────────────── */}
       <ScrollReveal>
       <section style={{ background: '#F7F7F6', borderTop: '1px solid #EAEAE8', borderBottom: '1px solid #EAEAE8' }}>
-        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+        <div className="rsp-section">
           <div style={{
             border: '1px solid #E6E6E4',
             borderRadius: 20,
@@ -608,33 +601,38 @@ export default async function CompanyPage() {
       {/* ── 8. Industries ────────────────────────────────────── */}
       <ScrollReveal>
       <section>
-        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-          <div style={{ maxWidth: 760, marginBottom: 44 }}>
-            <div style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 600,
-              fontSize: '11.5px',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase' as const,
-              color: '#1A6AFF',
-              marginBottom: 16,
-            }}>
-              Industries
-            </div>
-            <h2 style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 700,
-              fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
-              lineHeight: 1.16,
-              margin: '0 0 16px',
-            }}>
-              Industries we work with
-            </h2>
-            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 16, lineHeight: 1.7, color: '#55555A', margin: 0 }}>
-              From ecommerce and finance to healthcare and education &mdash; our strategies are built for
-              industries where search-driven growth creates the biggest impact.
-            </p>
-          </div>
+        <div className="rsp-section">
+          <SectionHeader
+            eyebrow={(
+              <span style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 600,
+                fontSize: '11.5px',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase' as const,
+                color: '#1A6AFF',
+              }}>
+                Industries
+              </span>
+            )}
+            heading={(
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
+                lineHeight: 1.16,
+                margin: 0,
+              }}>
+                Industries we work with
+              </h2>
+            )}
+            description={(
+              <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 16, lineHeight: 1.7, color: '#55555A', margin: 0 }}>
+                From ecommerce and finance to healthcare and education &mdash; our strategies are built for
+                industries where search-driven growth creates the biggest impact.
+              </p>
+            )}
+          />
           <div className={styles.industryGrid}>
             {industries.map((ind) => (
               <div key={ind.title} className="hh-card-hover" style={{
@@ -672,33 +670,38 @@ export default async function CompanyPage() {
       {/* ── 9. Why High Horse Stands Ahead ───────────────────── */}
       <ScrollReveal>
       <section style={{ background: '#F7F7F6', borderTop: '1px solid #EAEAE8', borderBottom: '1px solid #EAEAE8' }}>
-        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-          <div style={{ maxWidth: 720, marginBottom: 44 }}>
-            <div style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 600,
-              fontSize: '11.5px',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase' as const,
-              color: '#1A6AFF',
-              marginBottom: 16,
-            }}>
-              Why us
-            </div>
-            <h2 style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 700,
-              fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
-              lineHeight: 1.16,
-              margin: '0 0 16px',
-            }}>
-              Why High Horse stands ahead
-            </h2>
-            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 16, lineHeight: 1.7, color: '#55555A', margin: 0 }}>
-              We don&rsquo;t believe in marketing for the sake of marketing. Every strategy, campaign,
-              and system we build is measured by one thing: did it create business growth?
-            </p>
-          </div>
+        <div className="rsp-section">
+          <SectionHeader
+            eyebrow={(
+              <span style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 600,
+                fontSize: '11.5px',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase' as const,
+                color: '#1A6AFF',
+              }}>
+                Why us
+              </span>
+            )}
+            heading={(
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
+                lineHeight: 1.16,
+                margin: 0,
+              }}>
+                Why High Horse stands ahead
+              </h2>
+            )}
+            description={(
+              <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 16, lineHeight: 1.7, color: '#55555A', margin: 0 }}>
+                We don&rsquo;t believe in marketing for the sake of marketing. Every strategy, campaign,
+                and system we build is measured by one thing: did it create business growth?
+              </p>
+            )}
+          />
           <div className={styles.whyGrid}>
             {whyBullets.map((b) => (
               <div key={b} style={{
@@ -735,9 +738,6 @@ export default async function CompanyPage() {
           pointerEvents: 'none',
         }} aria-hidden="true" />
         <div className="rsp-section" style={{
-          maxWidth: 1280,
-          margin: '0 auto',
-          padding: '96px 32px',
           position: 'relative',
           display: 'flex',
           gap: 64,
@@ -750,7 +750,7 @@ export default async function CompanyPage() {
               fontWeight: 700,
               fontSize: 'clamp(2rem, 3vw, 2.8rem)',
               lineHeight: 1.14,
-              margin: '0 0 20px',
+              margin: '0 0 var(--heading-to-desc)',
               maxWidth: 600,
             }}>
               Let&rsquo;s build your search opportunity.

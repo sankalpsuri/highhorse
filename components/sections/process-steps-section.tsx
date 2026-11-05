@@ -1,3 +1,6 @@
+import { IconBadge } from '@/components/icon-badge'
+import { SectionHeader } from '@/components/section-header'
+
 interface Step {
   _key?: string
   stepTitle?: string
@@ -22,7 +25,6 @@ const sectionEyebrowStyle: React.CSSProperties = {
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
   color: '#1A6AFF',
-  marginBottom: 16,
 }
 
 export function ProcessStepsSection({ eyebrow, heading, headingBordered, subtext, headerLayout, containerStyle, columns, steps }: ProcessStepsSectionProps) {
@@ -45,43 +47,23 @@ export function ProcessStepsSection({ eyebrow, heading, headingBordered, subtext
     } : {}),
   }
 
-  const header = isSplit ? (
-    <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 52 }}>
-      <div style={{ flex: '1 1 460px', minWidth: 300 }}>
-        {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
-        {heading && <h2 style={headingStyle}>{heading}</h2>}
-      </div>
-      <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
-        {subtext && (
-          <p style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: 16,
-            lineHeight: 1.7,
-            color: '#5c5c5c',
-            margin: 0,
-          }}>
-            {subtext}
-          </p>
-        )}
-      </div>
-    </div>
-  ) : (
-    <>
-      {eyebrow && <div style={sectionEyebrowStyle}>{eyebrow}</div>}
-      {heading && <h2 style={{ ...headingStyle, margin: '0 0 16px' }}>{heading}</h2>}
-      {subtext && (
+  const header = (
+    <SectionHeader
+      layout={isSplit ? 'split' : 'stacked'}
+      eyebrow={eyebrow ? <span style={sectionEyebrowStyle}>{eyebrow}</span> : undefined}
+      heading={heading ? <h2 style={headingStyle}>{heading}</h2> : <span />}
+      description={subtext ? (
         <p style={{
           fontFamily: "'Poppins', sans-serif",
           fontSize: 16,
           lineHeight: 1.7,
           color: '#5c5c5c',
-          maxWidth: 680,
-          margin: '0 0 48px',
+          margin: 0,
         }}>
           {subtext}
         </p>
-      )}
-    </>
+      ) : undefined}
+    />
   )
 
   const gridClass = columns === 5 ? 'rsp-grid-5' : columns === 4 ? 'rsp-grid-4' : columns === 3 ? 'rsp-grid-3' : columns === 2 ? 'rsp-grid-2' : undefined
@@ -89,7 +71,7 @@ export function ProcessStepsSection({ eyebrow, heading, headingBordered, subtext
   if (isUnified && steps && steps.length > 0) {
     return (
       <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-        <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+        <div className="rsp-section">
           {header}
           <div style={{
             border: '1px solid #E4E4E4',
@@ -108,17 +90,17 @@ export function ProcessStepsSection({ eyebrow, heading, headingBordered, subtext
                 borderRight: '1px solid #EFEFEE',
                 borderBottom: '1px solid #EFEFEE',
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                  <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#1A6AFF' }} />
-                  <div style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontWeight: 700,
-                    fontSize: 11,
-                    letterSpacing: '0.1em',
-                    color: '#9A9A96',
-                  }}>
-                    {String(i + 1).padStart(2, '0')}
-                  </div>
+                <div style={{ marginBottom: 16 }}>
+                  <IconBadge size="sm">
+                    <span style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 13,
+                      letterSpacing: '0.06em',
+                    }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </IconBadge>
                 </div>
                 {step.stepTitle && (
                   <h3 style={{
@@ -168,17 +150,18 @@ export function ProcessStepsSection({ eyebrow, heading, headingBordered, subtext
                 border: '1px solid #E4E4E4',
                 borderRadius: 5,
               }}>
-                <span style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 800,
-                  fontSize: 32,
-                  lineHeight: 1,
-                  color: '#1A6AFF',
-                  display: 'block',
-                  marginBottom: 16,
-                }}>
-                  {String(i + 1).padStart(2, '0')}
-                </span>
+                <div style={{ marginBottom: 16 }}>
+                  <IconBadge>
+                    <span style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 16,
+                      letterSpacing: '0.06em',
+                    }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </IconBadge>
+                </div>
                 {step.stepTitle && (
                   <h3 style={{
                     fontFamily: "'Montserrat', sans-serif",

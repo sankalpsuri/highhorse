@@ -165,7 +165,7 @@ export function Header() {
             Free Website Audit
           </Link>
           <Link href={CONTACT_HREF} className={`${styles.ctaBtn} ${styles.desktopOnly}`}>
-            Find Your Search Opportunity
+            Contact us to Grow
           </Link>
           <button
             type="button"
@@ -242,7 +242,7 @@ export function Header() {
             )
           })}
           <Link href={CONTACT_HREF} className={styles.mobileCta} onClick={closeMenu}>
-            Find Your Search Opportunity
+            Contact us to Grow
           </Link>
           <Link href={AUDIT_HREF} className={styles.mobileCtaAudit} onClick={closeMenu}>
             <span className={styles.ctaBtnAuditDot} />

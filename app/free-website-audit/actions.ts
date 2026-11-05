@@ -1,6 +1,7 @@
 "use server"
 
 import { getSupabaseServer } from "@/lib/supabase/server"
+import { CONTACT_EMAIL } from "@/lib/constants"
 
 interface AuditPayload {
   email: string
@@ -36,20 +37,19 @@ export async function submitAuditRequest(
     })
 
     if (error) {
-      console.error("[audit] Supabase insert failed:", error.message, error.code, error.details)
+      console.error("[audit] Supabase insert failed:", JSON.stringify({ message: error.message, code: error.code, details: error.details, hint: error.hint }))
       return {
         success: false,
-        error: "Failed to save your request. Please try again or email contact@highhorse.in.",
+        error: `Failed to save your request. Please try again or email ${CONTACT_EMAIL}.`,
       }
     }
 
     return { success: true }
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err)
-    console.error("[audit] Unexpected error:", message)
+    console.error("[audit] Unexpected error:", err instanceof Error ? err.stack ?? err.message : String(err))
     return {
       success: false,
-      error: "Failed to save your request. Please try again or email contact@highhorse.in.",
+      error: `Failed to save your request. Please try again or email ${CONTACT_EMAIL}.`,
     }
   }
 }

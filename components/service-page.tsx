@@ -46,8 +46,10 @@ interface ServicePageProps {
     summary?: string
     accentStyle?: string
     pageBuilder?: any[]
+    expertCtaLabel?: string
     faqHeading?: string
     faqEyebrow?: string
+    faqBackground?: string
     caseStudiesHeading?: string
     caseStudiesSubtext?: string
     relatedCaseStudies?: CaseStudyEntry[]
@@ -118,10 +120,13 @@ export function ServicePage({ data }: ServicePageProps) {
     <article>
       {data.pageBuilder?.map((block, idx) => {
         const isHero = block._type === 'heroSection'
+        const resolved = data.expertCtaLabel && block.ctaText === 'Talk to SEO Expert'
+          ? { ...block, ctaText: data.expertCtaLabel }
+          : block
         const inner = (
           <PageBuilderSection
             key={block._key}
-            block={block}
+            block={resolved}
             relatedCaseStudies={data.relatedCaseStudies}
             accentStyle={data.accentStyle}
           />
@@ -272,30 +277,27 @@ export function ServicePage({ data }: ServicePageProps) {
       {data.relatedFaqs && data.relatedFaqs.length > 0 && (
         <ScrollReveal>
         <section style={{
-          background: '#F5F5F4',
-          borderTop: '1px solid #E4E4E4',
+          background: data.faqBackground === 'white' ? '#FFFFFF' : '#F5F5F4',
+          borderTop: data.faqBackground === 'white' ? 'none' : '1px solid #E4E4E4',
         }}>
-          <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'flex', gap: 64, flexWrap: 'wrap' as const, alignItems: 'flex-start' }}>
+          <div className="rsp-section" style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, alignItems: 'flex-start' }}>
             <div style={{ flex: '1 1 320px', minWidth: 280 }}>
-              {data.faqEyebrow && (
-                <div style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 600,
-                  fontSize: '11.5px',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase' as const,
-                  color: '#1A6AFF',
-                  marginBottom: 16,
-                }}>
-                  {data.faqEyebrow}
-                </div>
-              )}
+              <div className="sh-eyebrow" style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 600,
+                fontSize: '11.5px',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase' as const,
+                color: '#1A6AFF',
+              }}>
+                {data.faqEyebrow || 'Before you ask'}
+              </div>
               <h2 style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 700,
                 fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
                 lineHeight: 1.2,
-                margin: '0 0 20px',
+                margin: '0 0 var(--heading-to-desc)',
                 color: '#111111',
               }}>
                 {data.faqHeading || 'Frequently asked questions'}

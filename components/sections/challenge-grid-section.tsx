@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { IconBadge } from '@/components/icon-badge'
+import { SectionHeader } from '@/components/section-header'
 
 interface ChallengeGridSectionProps {
   eyebrow?: string
@@ -8,6 +10,10 @@ interface ChallengeGridSectionProps {
   cardStyle?: string
   heading?: string
   subtext?: string
+  descriptionParagraphs?: string[]
+  splitStyle?: string
+  cardHeader?: string
+  closingText?: string
   ctaText?: string
   ctaLink?: string
   challenges?: string[]
@@ -21,7 +27,6 @@ const eyebrowStyle: React.CSSProperties = {
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
   color: '#1A6AFF',
-  marginBottom: 16,
 }
 
 const colorPalettes: Record<string, { bg: string; border: string; chip: string; tone: string }> = {
@@ -33,23 +38,114 @@ const colorPalettes: Record<string, { bg: string; border: string; chip: string; 
 
 const defaultPalette = { bg: '#fff', border: '#E4E4E4', chip: 'rgba(26, 106, 255, 0.1)', tone: '#1A6AFF' }
 
-export function ChallengeGridSection({ eyebrow, layout, headerLayout, background, cardStyle, heading, subtext, ctaText, ctaLink, challenges, cardColors }: ChallengeGridSectionProps) {
+export function ChallengeGridSection({ eyebrow, layout, headerLayout, background, cardStyle, heading, subtext, descriptionParagraphs, splitStyle, cardHeader, closingText, ctaText, ctaLink, challenges, cardColors }: ChallengeGridSectionProps) {
   const sectionBg = background === 'white' ? '#FFFFFF' : '#F5F5F4'
   const isCompact = cardStyle === 'compact'
   const isInlineCta = headerLayout === 'inline-cta'
   if (layout === 'split') {
+    if (splitStyle === 'numbered-card') {
+      const paragraphs = descriptionParagraphs?.length ? descriptionParagraphs : subtext ? [subtext] : []
+      return (
+        <section style={{ background: sectionBg, borderTop: background === 'white' ? 'none' : '1px solid #E4E4E4', borderBottom: background === 'white' ? 'none' : '1px solid #E4E4E4' }}>
+          <div className="rsp-grid-split rsp-section" style={{ display: 'flex', gap: 56, flexWrap: 'wrap' as const, alignItems: 'center' }}>
+            <div style={{ flex: '1 1 380px', minWidth: 280 }}>
+              {eyebrow && <div style={{ marginBottom: 16 }}><span style={eyebrowStyle}>{eyebrow}</span></div>}
+              {heading && (
+                <h2 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                  lineHeight: 1.2,
+                  margin: '0 0 18px',
+                  color: '#111111',
+                }}>
+                  {heading}
+                </h2>
+              )}
+              {paragraphs.map((text, i) => (
+                <p key={i} style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  color: '#55555A',
+                  margin: i < paragraphs.length - 1 ? '0 0 14px' : '0',
+                }}>
+                  {text}
+                </p>
+              ))}
+            </div>
+            {challenges && challenges.length > 0 && (
+              <div style={{
+                flex: '1 1 500px',
+                minWidth: 300,
+                border: '1px solid #E6E6E4',
+                borderRadius: 16,
+                background: '#fff',
+                overflow: 'hidden',
+                boxShadow: '0 18px 40px rgba(10,10,12,0.05)',
+              }}>
+                {cardHeader && (
+                  <div style={{
+                    padding: '20px 26px',
+                    borderBottom: '1px solid #EFEFEE',
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 600,
+                    fontSize: '10.5px',
+                    letterSpacing: '0.11em',
+                    textTransform: 'uppercase' as const,
+                    color: '#9A9A96',
+                  }}>
+                    {cardHeader}
+                  </div>
+                )}
+                {challenges.map((text, i) => (
+                  <div key={i} style={{
+                    padding: '20px 26px',
+                    borderBottom: i < challenges.length - 1 ? '1px solid #EFEFEE' : 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 16,
+                  }}>
+                    <span style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 700,
+                      fontSize: '11px',
+                      letterSpacing: '0.1em',
+                      color: '#1A6AFF',
+                      flexShrink: 0,
+                    }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: 500,
+                      fontSize: 15,
+                      lineHeight: 1.45,
+                      color: '#0A0A0C',
+                    }}>
+                      {text}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )
+    }
+
     return (
       <section style={{ background: '#F5F5F4', borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' }}>
-        <div className="rsp-grid-split rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px', display: 'grid', gridTemplateColumns: '1.05fr 0.95fr', gap: 56, alignItems: 'start' }}>
+        <div className="rsp-grid-split rsp-section" style={{ display: 'grid', gridTemplateColumns: '1.05fr 0.95fr', gap: 56, alignItems: 'start' }}>
           <div>
-            {eyebrow && <div style={eyebrowStyle}>{eyebrow}</div>}
+            {eyebrow && <div className="sh-eyebrow"><span style={eyebrowStyle}>{eyebrow}</span></div>}
             {heading && (
               <h2 style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 700,
                 fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
                 lineHeight: 1.2,
-                margin: '0 0 14px',
+                margin: '0 0 var(--heading-to-desc)',
                 color: '#111111',
               }}>
                 {heading}
@@ -61,7 +157,7 @@ export function ChallengeGridSection({ eyebrow, layout, headerLayout, background
                 fontSize: 15,
                 lineHeight: 1.7,
                 color: '#5c5c5c',
-                margin: '0 0 24px',
+                margin: '0 0 var(--desc-to-content)',
               }}>
                 {subtext}
               </p>
@@ -108,92 +204,84 @@ export function ChallengeGridSection({ eyebrow, layout, headerLayout, background
 
   return (
     <section style={{ background: sectionBg, borderTop: background === 'white' ? 'none' : '1px solid #E4E4E4', borderBottom: background === 'white' ? 'none' : '1px solid #E4E4E4' }}>
-      <div className="rsp-section" style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+      <div className="rsp-section">
         {isInlineCta ? (
-          <>
-            <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' as const, alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 44 }}>
-              <div style={{ flex: '1 1 560px', minWidth: 300 }}>
-                {eyebrow && <div style={eyebrowStyle}>{eyebrow}</div>}
-                {heading && (
-                  <h2 style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontWeight: 700,
-                    fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-                    lineHeight: 1.2,
-                    margin: 0,
-                    color: '#111111',
-                    maxWidth: 700,
-                  }}>
-                    {heading}
-                  </h2>
-                )}
-              </div>
-              {ctaText && ctaLink && (
-                <Link
-                  href={ctaLink}
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontWeight: 600,
-                    fontSize: 13,
-                    color: '#1A6AFF',
-                    border: '1px solid #1A6AFF',
-                    padding: '13px 20px',
-                    borderRadius: 6,
-                    textDecoration: 'none',
-                    whiteSpace: 'nowrap' as const,
-                  }}
-                >
-                  {ctaText}
-                </Link>
-              )}
-            </div>
-            {subtext && (
+          <SectionHeader
+            layout="inline-cta"
+            eyebrow={eyebrow ? <span style={eyebrowStyle}>{eyebrow}</span> : undefined}
+            heading={heading ? (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                lineHeight: 1.2,
+                margin: 0,
+                color: '#111111',
+              }}>
+                {heading}
+              </h2>
+            ) : <span />}
+            description={subtext ? (
               <p style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: 16,
                 lineHeight: 1.7,
                 color: '#5c5c5c',
-                maxWidth: 760,
-                margin: '0 0 40px',
+                margin: 0,
               }}>
                 {subtext}
               </p>
-            )}
-          </>
+            ) : undefined}
+            cta={ctaText && ctaLink ? (
+              <Link
+                href={ctaLink}
+                style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 13,
+                  color: '#1A6AFF',
+                  border: '1px solid #1A6AFF',
+                  padding: '13px 20px',
+                  borderRadius: 6,
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap' as const,
+                }}
+              >
+                {ctaText}
+              </Link>
+            ) : undefined}
+          />
         ) : (
           <>
-            <div style={{ display: 'flex', gap: 64, flexWrap: 'wrap' as const, marginBottom: 40 }}>
-              <div style={{ flex: '1 1 460px', minWidth: 300 }}>
-                {eyebrow && <div style={eyebrowStyle}>{eyebrow}</div>}
-                {heading && (
-                  <h2 style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontWeight: 700,
-                    fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
-                    lineHeight: 1.2,
-                    margin: 0,
-                    color: '#111111',
-                  }}>
-                    {heading}
-                  </h2>
-                )}
-              </div>
-              <div style={{ flex: '1 1 380px', minWidth: 300, alignSelf: 'flex-end' }}>
-                {subtext && (
-                  <p style={{
-                    fontFamily: "'Poppins', sans-serif",
-                    fontSize: 16,
-                    lineHeight: 1.7,
-                    color: '#5c5c5c',
-                    margin: 0,
-                  }}>
-                    {subtext}
-                  </p>
-                )}
-              </div>
-            </div>
+            <SectionHeader
+              layout="split"
+              eyebrow={eyebrow ? <span style={eyebrowStyle}>{eyebrow}</span> : undefined}
+              heading={heading ? (
+                <h2 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 'clamp(1.8rem, 2.6vw, 2.5rem)',
+                  lineHeight: 1.2,
+                  margin: 0,
+                  color: '#111111',
+                }}>
+                  {heading}
+                </h2>
+              ) : <span />}
+              description={subtext ? (
+                <p style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  color: '#5c5c5c',
+                  margin: 0,
+                }}>
+                  {subtext}
+                </p>
+              ) : undefined}
+            />
             {ctaText && ctaLink && (
-              <div style={{ marginBottom: 32 }}>
+              <div style={{ marginBottom: 'var(--desc-to-content)' }}>
                 <Link
                   href={ctaLink}
                   style={{
@@ -214,12 +302,33 @@ export function ChallengeGridSection({ eyebrow, layout, headerLayout, background
             )}
           </>
         )}
+        {descriptionParagraphs && descriptionParagraphs.length > 0 && (
+          <div style={{ marginBottom: 24 }}>
+            {descriptionParagraphs.map((text, i) => {
+              const isLast = i === descriptionParagraphs.length - 1
+              return (
+                <p key={i} style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  fontWeight: isLast ? 500 : 400,
+                  color: isLast ? '#0A0A0C' : '#55555A',
+                  margin: i < descriptionParagraphs.length - 1 ? '0 0 14px' : '0 0 24px',
+                  maxWidth: 760,
+                }}>
+                  {text}
+                </p>
+              )
+            })}
+          </div>
+        )}
         {challenges && challenges.length > 0 && (
           isCompact ? (
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
               gap: 16,
+              marginBottom: closingText ? 32 : 0,
             }}>
               {challenges.map((text, i) => {
                 const palette = cardColors?.[i] ? (colorPalettes[cardColors[i]] || defaultPalette) : defaultPalette
@@ -280,18 +389,16 @@ export function ChallengeGridSection({ eyebrow, layout, headerLayout, background
                   gap: 14,
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                    <span style={{
-                      fontFamily: "'Montserrat', sans-serif",
-                      fontWeight: 700,
-                      fontSize: 11,
-                      letterSpacing: '0.06em',
-                      color: palette.tone,
-                      background: palette.chip,
-                      borderRadius: 5,
-                      padding: '5px 8px',
-                    }}>
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
+                    <IconBadge size="sm">
+                      <span style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontWeight: 700,
+                        fontSize: 13,
+                        letterSpacing: '0.06em',
+                      }}>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                    </IconBadge>
                     <div style={{ flex: 1, height: 1, background: palette.border }} />
                   </div>
                   <h3 style={{
@@ -320,6 +427,18 @@ export function ChallengeGridSection({ eyebrow, layout, headerLayout, background
             })}
           </div>
           )
+        )}
+        {closingText && (
+          <p style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: 16,
+            lineHeight: 1.7,
+            color: '#55555A',
+            margin: 0,
+            maxWidth: 760,
+          }}>
+            {closingText}
+          </p>
         )}
       </div>
     </section>

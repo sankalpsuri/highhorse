@@ -1,0 +1,55 @@
+/* ── IconBadge — sitewide icon/number badge shell ────────── */
+
+.badge {
+  --ib-bg: rgba(26, 106, 255, 0.08);
+  --ib-border: rgba(26, 106, 255, 0.16);
+  --ib-glyph: #1A6AFF;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--ib-bg);
+  border: 1px solid var(--ib-border);
+  color: var(--ib-glyph);
+}
+
+:global([data-surface="dark"]) .badge {
+  --ib-bg: #FFFFFF;
+  --ib-border: transparent;
+  --ib-glyph: #111;
+}
+
+/* Partnership page — black square, white icon (by request) */
+.ink {
+  --ib-bg: #0A0A0C;
+  --ib-border: #0A0A0C;
+  --ib-glyph: #FFFFFF;
+}
+
+/* Dark service cards — dark tile with orange border + glow.
+   .badge.darkGlow needed to beat [data-surface="dark"] .badge (0-2-0). */
+.badge.darkGlow {
+  --ib-bg: #14110d;
+  --ib-border: rgba(255, 157, 46, 0.6);
+  --ib-glyph: #FF9D2E;
+  box-shadow: 0 0 18px rgba(255, 157, 46, 0.18), inset 0 0 12px rgba(255, 157, 46, 0.06);
+}
+
+.sm {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.md {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+.lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+}

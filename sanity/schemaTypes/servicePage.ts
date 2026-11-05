@@ -126,8 +126,10 @@ export default defineType({
         },
       ],
     }),
+    defineField({name: 'expertCtaLabel', title: 'Expert CTA label', type: 'string', description: 'Text for the "Talk to … Expert" button. Falls back to "Talk to {service} Expert" if empty.'}),
     defineField({name: 'faqHeading', title: 'FAQ section heading', type: 'string', description: 'Override "Frequently asked questions".'}),
     defineField({name: 'faqEyebrow', title: 'FAQ section eyebrow', type: 'string'}),
+    defineField({name: 'faqBackground', title: 'FAQ background', type: 'string', options: {list: [{title: 'Default (light gray)', value: 'default'}, {title: 'White', value: 'white'}]}}),
     defineField({
       name: 'relatedFaqs',
       title: 'FAQs for this page',
