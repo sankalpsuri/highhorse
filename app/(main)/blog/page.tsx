@@ -5,7 +5,7 @@ import { sanityFetch, urlFor } from '@/lib/sanity/client'
 import { blogListingQuery } from '@/lib/sanity/queries'
 import { BlogGrid } from './blog-grid'
 import { ScrollReveal } from '@/components/scroll-reveal'
-import { NewsletterForm } from '@/app/case-studies/newsletter-form'
+import { NewsletterForm } from '@/app/(main)/case-studies/newsletter-form'
 
 export const metadata: Metadata = {
   title: 'Blog — High Horse',

@@ -2,7 +2,7 @@ import { SanityImage as Image } from '@/components/sanity-image'
 import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/client'
 import { PortableTextBody } from '@/components/portable-text-body'
-import { NewsletterForm } from '@/app/case-studies/newsletter-form'
+import { NewsletterForm } from '@/app/(main)/case-studies/newsletter-form'
 import { ScrollReveal } from '@/components/scroll-reveal'
 
 const industryLabels: Record<string, string> = {

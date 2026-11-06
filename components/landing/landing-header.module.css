@@ -1,0 +1,145 @@
+/* ── Landing header — white bar ───────────────────────────── */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #FFFFFF;
+  border-bottom: 1px solid #EAEAE8;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* ── Logo (NOT a link) ───────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font: 800 17px 'Montserrat', sans-serif;
+  letter-spacing: 0.08em;
+  color: #0A0A0C;
+  white-space: nowrap;
+}
+
+/* ── Right side ──────────────────────────────────────────── */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #0A0A0C;
+  transition: opacity 0.15s;
+}
+
+.contactItem:hover {
+  opacity: 0.75;
+}
+
+.contactText {
+  font: 500 13.5px 'Poppins', sans-serif;
+  color: #0A0A0C;
+  white-space: nowrap;
+}
+
+.ctaBtn {
+  font: 600 13.5px 'Montserrat', sans-serif;
+  color: #FFFFFF;
+  background: #0A0A0C;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.ctaBtn:hover {
+  background: #222;
+}
+
+/* ── Email badge — hidden on very small screens ─────────── */
+.emailItem {
+  composes: contactItem;
+}
+
+/* ── Below 640px: mobile compact layout ─────────────────── */
+@media (max-width: 639px) {
+  .inner {
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  .logo {
+    flex-shrink: 1;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .logoText {
+    font-size: 15px;
+  }
+
+  .contactText {
+    display: none;
+  }
+
+  .right {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .ctaBtn {
+    height: 40px;
+    padding: 0 14px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+}
+
+/* ── 640px–767px: hide text, keep badges ─────────────────── */
+@media (min-width: 640px) and (max-width: 767px) {
+  .inner {
+    padding: 12px 16px;
+  }
+
+  .contactText {
+    display: none;
+  }
+
+  .right {
+    gap: 10px;
+  }
+}
+
+/* ── Below 360px: hide email badge ───────────────────────── */
+@media (max-width: 359px) {
+  .emailItem {
+    display: none;
+  }
+}

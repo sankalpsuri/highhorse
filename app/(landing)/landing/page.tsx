@@ -5,17 +5,20 @@ import { sanityFetch } from '@/lib/sanity/client'
 import { homeGeneralFaqsQuery } from '@/lib/sanity/queries'
 import { HeroSearchWidget } from '@/components/hero-search-widget'
 import { ProcessSteps } from '@/components/process-steps'
-import { CaseStudyCards } from '@/components/client-logo-grid'
 import { FaqAccordion } from '@/components/faq-accordion'
-import { LeakFunnel } from '@/components/leak-funnel'
-import { OutcomeMeters } from '@/components/outcome-meters'
 import { ScrollReveal } from '@/components/scroll-reveal'
-import styles from './home.module.css'
+import { LandingCaseStudyCards } from '@/components/landing/landing-case-studies'
+import { LandingQuoteBtn } from '@/components/landing/landing-quote-btn'
+import styles from '@/app/home.module.css'
+
+const LANDING_SLUG = 'landing'
 
 export const metadata: Metadata = {
   title: 'High Horse — Search Marketing Agency',
   description:
     'Turn search intent into revenue. We capture demand across paid, organic, and AI search and connect it to qualified leads, sales, and measurable revenue.',
+  robots: { index: false, follow: false },
+  alternates: { canonical: `/${LANDING_SLUG}` },
 }
 
 const journey = [
@@ -59,7 +62,7 @@ const aiLogos = [
 
 const CONTACT_HREF = '/contact-search-performance-marketing-agency'
 
-export default async function HomePage() {
+export default async function LandingPage() {
   const faqs = await sanityFetch<Array<{ _id: string; question: string; answer: any }>>(
     homeGeneralFaqsQuery
   )
@@ -88,14 +91,7 @@ export default async function HomePage() {
               Right now, people are searching for what you sell. We make sure they find you, turn
               that demand into leads and sales, and show you exactly how much revenue it produced.
             </p>
-            <div className={styles.heroCtas}>
-              <Link href={CONTACT_HREF} className={styles.btnPrimary}>
-                Find Your Search Opportunity
-              </Link>
-              <a href="#how-we-work" className={styles.btnOutline}>
-                See How We Work
-              </a>
-            </div>
+            {/* CTA buttons removed on landing page */}
             <p className={styles.heroNote}>
               For established businesses with real search demand and serious growth ambitions.
             </p>
@@ -208,9 +204,9 @@ export default async function HomePage() {
         </div>
       </div>
 
-      {/* ── CASE STUDY CARDS ─────────────────────────────────── */}
+      {/* ── CASE STUDY CARDS (with CTA card) ─────────────────── */}
       <div id="case-studies">
-        <div className={styles.section}>
+        <div className={styles.section} style={{ paddingBottom: 0 }}>
           <div className={styles.caseStudiesHeader}>
             <div className={styles.caseStudiesHeaderLeft}>
               <div className={styles.sectionLabel}>Evidence over claims</div>
@@ -218,38 +214,16 @@ export default async function HomePage() {
                 Search and digital growth work across industries.
               </h2>
             </div>
-            <Link href={CONTACT_HREF} className={styles.caseStudiesCta}>
-              Talk About Your Category
-            </Link>
+            {/* CTA link removed on landing page */}
           </div>
           <ScrollReveal>
-            <CaseStudyCards />
+            <LandingCaseStudyCards />
           </ScrollReveal>
         </div>
       </div>
 
-      {/* ── THE LEAK FUNNEL ──────────────────────────────────── */}
-      <div id="the-problem" className={styles.leakSection}>
-        <div className={styles.section}>
-          <div className={styles.sectionIntro}>
-            <div className={styles.sectionIntroLeft}>
-              <div className={styles.sectionLabel}>The opportunity already exists</div>
-              <h2 className={styles.sectionHeading}>
-                Your customers are searching. The question is who captures them.
-              </h2>
-            </div>
-            <div className={styles.sectionIntroRight}>
-              <p className={styles.bodyText}>
-                Demand leaks at five points between a search and a sale. The problem is rarely more
-                traffic — it is finding which point is losing you business.
-              </p>
-            </div>
-          </div>
-          <ScrollReveal>
-            <LeakFunnel />
-          </ScrollReveal>
-        </div>
-      </div>
+      {/* REMOVED: Leak funnel ("Your customers are searching...") */}
+      {/* REMOVED: Outcome meters ("More qualified business...") */}
 
       {/* ── HOW WE WORK ──────────────────────────────────────── */}
       <div id="how-we-work">
@@ -320,29 +294,7 @@ export default async function HomePage() {
               ))}
             </div>
           </ScrollReveal>
-        </div>
-      </div>
-
-      {/* ── OUTCOME METERS ───────────────────────────────────── */}
-      <div style={{ background: '#fff' }}>
-        <div className={styles.section}>
-          <div className={styles.sectionIntro}>
-            <div className={styles.sectionIntroLeft}>
-              <div className={styles.sectionLabel}>What changes</div>
-              <h2 className={styles.sectionHeading}>
-                More qualified business from the demand that already exists.
-              </h2>
-            </div>
-            <div className={styles.sectionIntroRight}>
-              <p className={styles.bodyText}>
-                Rankings, clicks and traffic are useful only when they contribute to a commercial
-                outcome. These are the directions we move.
-              </p>
-            </div>
-          </div>
-          <ScrollReveal>
-            <OutcomeMeters />
-          </ScrollReveal>
+          <LandingQuoteBtn />
         </div>
       </div>
 
@@ -433,7 +385,7 @@ export default async function HomePage() {
               Ask your question
             </Link>
           </div>
-          <FaqAccordion faqs={faqs} />
+          <FaqAccordion faqs={faqs} variant="landing" />
         </div>
       </div>
 
@@ -453,14 +405,6 @@ export default async function HomePage() {
                 one meaningful opportunity worth investigating — and whether High Horse is the right
                 fit.
               </p>
-              <div className={styles.ctaCtas}>
-                <Link href={CONTACT_HREF} className={styles.ctaBtnWhite}>
-                  Find Your Search Opportunity
-                </Link>
-                <a href="#how-we-work" className={styles.ctaLinkWhite}>
-                  See How We Work
-                </a>
-              </div>
               <p className={styles.ctaDisclaimer}>
                 No guaranteed rankings. No generic packages. No forced recommendation.
               </p>

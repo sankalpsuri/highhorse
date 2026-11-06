@@ -10,7 +10,12 @@ interface FaqItem {
   answer: any
 }
 
-export function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
+interface FaqAccordionProps {
+  faqs: FaqItem[]
+  variant?: 'landing'
+}
+
+export function FaqAccordion({ faqs, variant }: FaqAccordionProps) {
   const [openIdx, setOpenIdx] = useState<number | null>(0)
 
   if (faqs.length === 0) {
@@ -24,7 +29,7 @@ export function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
   }
 
   return (
-    <div className={styles.faqList}>
+    <div className={`${styles.faqList} ${variant === 'landing' ? styles.faqListLanding : ''}`}>
       {faqs.map((faq, i) => {
         const isOpen = openIdx === i
         return (

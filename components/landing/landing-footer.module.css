@@ -1,0 +1,139 @@
+/* ── Landing footer — dark ────────────────────────────────── */
+
+.footer {
+  background: #0A0A0C;
+  color: #F5F5F4;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 32px 48px;
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+@media (max-width: 899px) {
+  .inner {
+    flex-direction: column;
+    gap: 48px;
+    padding: 56px 16px 36px;
+  }
+}
+
+/* ── Left column ─────────────────────────────────────────── */
+.left {
+  flex: 1 1 380px;
+  min-width: 260px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 36px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.logoImg {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.logoText {
+  font: 800 16px 'Montserrat', sans-serif;
+  letter-spacing: 0.08em;
+  color: #F5F5F4;
+}
+
+.eyebrow {
+  font: 600 11px 'Montserrat', sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FF9D2E;
+  margin-bottom: 12px;
+}
+
+.heading {
+  font: 700 clamp(1.5rem, 2.6vw, 2.2rem)/1.18 'Montserrat', sans-serif;
+  margin: 0 0 12px;
+  color: #F5F5F4;
+}
+
+.sub {
+  font: 400 14.5px/1.55 'Poppins', sans-serif;
+  color: #7A7A78;
+  margin: 0 0 32px;
+}
+
+.contactRows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.iconBadge {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #1A1A1C;
+  border: 1px solid #2A2A2C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FF9D2E;
+  flex-shrink: 0;
+}
+
+.contactText {
+  font: 400 14px 'Poppins', sans-serif;
+  color: #C4C4C0;
+}
+
+.partnerBadge {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Right column ────────────────────────────────────────── */
+.right {
+  flex: 1 1 440px;
+  min-width: 280px;
+  max-width: 520px;
+}
+
+@media (max-width: 899px) {
+  .right {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* ── Bottom bar ──────────────────────────────────────────── */
+.bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 32px;
+  border-top: 1px solid #1A1A1C;
+  font: 400 13px 'Poppins', sans-serif;
+  color: #55555A;
+  text-align: center;
+}
+
+@media (max-width: 899px) {
+  .bottom {
+    padding: 16px 16px;
+  }
+}

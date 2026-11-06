@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin:0; background:#FFFFFF; }
+  * { box-sizing:border-box; }
+  a { color:#1A6AFF; text-decoration:none; }
+  a:hover { color:#144FC0; }
+  ::selection { background:#1A6AFF; color:#fff; }
+  @keyframes hhpulse { 0%,100% { opacity:.35; transform:scale(1); } 50% { opacity:1; transform:scale(1.35); } }
+  @keyframes hhmarquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @keyframes hhrise { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  @keyframes hhdash { to { background-position:120px 0; } }
+</style>
+</helmet>
+
+<div style="font-family:'Poppins',sans-serif;color:#0A0A0C;background:#FFFFFF;overflow-x:clip">
+
+<!-- NAV -->
+<div style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.82);backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6);border-bottom:1px solid #EAEAE8">
+  <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;height:74px">
+    <div style="display:flex;align-items:center;gap:10px;color:#0A0A0C;flex-shrink:0">
+      <img src="./assets/hh-logo.png" alt="High Horse" style="width:26px;height:26px;object-fit:contain;flex-shrink:0">
+      <span style="font:800 17px 'Montserrat',sans-serif;letter-spacing:0.04em">HIGH HORSE</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:22px;flex-shrink:0">
+      <a href="tel:+918287194831" style="display:flex;align-items:center;gap:10px;color:#0A0A0C;transition:color .15s" style-hover="color:#1A6AFF">
+        <span style="width:34px;height:34px;border-radius:9px;background:#EAF1FF;border:1px solid #C9D8FB;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A6AFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></span>
+        <sc-if value="{{ showContactText }}" hint-placeholder-val="{{ true }}"><span style="font:500 14px 'Poppins',sans-serif;white-space:nowrap">+91-82871 94831</span></sc-if>
+      </a>
+      <a href="mailto:contact@highhorse.in" style="display:flex;align-items:center;gap:10px;color:#0A0A0C;transition:color .15s" style-hover="color:#1A6AFF">
+        <span style="width:34px;height:34px;border-radius:9px;background:#EAF1FF;border:1px solid #C9D8FB;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A6AFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z M3 7l9 6 9-6"></path></svg></span>
+        <sc-if value="{{ showContactText }}" hint-placeholder-val="{{ true }}"><span style="font:500 14px 'Poppins',sans-serif;white-space:nowrap">contact@highhorse.in</span></sc-if>
+      </a>
+      <button onClick="{{ openForm }}" style="font:600 13.5px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;border:none;cursor:pointer;padding:12px 22px;border-radius:6px;white-space:nowrap;box-shadow:0 6px 18px rgba(10,10,12,0.18);transition:transform .18s" style-hover="transform:translateY(-2px)">Contact Us</button>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div style="position:relative;overflow:hidden;background:#07080D;color:#F5F5F4">
+  <div style="position:absolute;top:-220px;right:-120px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(26,106,255,0.32),rgba(26,106,255,0) 66%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-300px;left:-200px;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle,rgba(132,84,230,0.34),rgba(132,84,230,0) 64%);pointer-events:none"></div>
+  <div style="position:absolute;top:30%;left:38%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(40,170,190,0.14),rgba(40,170,190,0) 66%);pointer-events:none"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(100% 80% at 30% 20%,#000 20%,transparent 80%);-webkit-mask-image:radial-gradient(100% 80% at 30% 20%,#000 20%,transparent 80%);pointer-events:none"></div>
+  <div style="max-width:1280px;margin:0 auto;padding:72px 32px 84px;position:relative;display:flex;gap:56px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+    <div style="flex:1 1 520px;min-width:300px;display:flex;flex-direction:column;align-items:flex-start;gap:24px">
+      <div style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.24);background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:100px;padding:8px 18px 8px 10px">
+        <span style="width:26px;height:26px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><img src="./assets/logo-google.webp" alt="Google" style="width:16px;height:16px;object-fit:contain"></span>
+        <span style="font:500 14px 'Poppins',sans-serif;color:#F5F5F4">Verified <span style="color:#8FB4FF;font-weight:600">Google Partner</span> Agency</span>
+      </div>
+      <h1 style="font:800 clamp(2.3rem,4.2vw,3.7rem)/1.12 'Montserrat',sans-serif;margin:0;letter-spacing:-0.015em;max-width:640px;text-wrap:pretty"><span style="color:#8FB4FF">Strategic SEO</span> That Gets You <span style="color:#8FB4FF">Ranked, Visible &amp; Profitable</span></h1>
+      <div style="font:700 clamp(1.2rem,1.7vw,1.5rem)/1.3 'Montserrat',sans-serif;color:#FFFFFF">Top SEO Services in India</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:24px;height:24px;border-radius:7px;background:rgba(26,106,255,0.18);border:1px solid rgba(91,146,255,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8FB4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+          <span style="font:400 16px 'Poppins',sans-serif;color:#E6E6E4">40+ Industries Served</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:24px;height:24px;border-radius:7px;background:rgba(26,106,255,0.18);border:1px solid rgba(91,146,255,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8FB4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+          <span style="font:400 16px 'Poppins',sans-serif;color:#E6E6E4">₹5Cr+ revenue generated</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:24px;height:24px;border-radius:7px;background:rgba(26,106,255,0.18);border:1px solid rgba(91,146,255,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8FB4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+          <span style="font:400 16px 'Poppins',sans-serif;color:#E6E6E4">90% referral business rate</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex:0 1 440px;min-width:300px;background:#fff;color:#0A0A0C;border-radius:18px;box-shadow:0 30px 70px rgba(0,0,0,0.4);overflow:hidden">
+      <sc-if value="{{ heroIdle }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submitHero }}" style="padding:30px 28px 28px;display:flex;flex-direction:column;gap:16px">
+          <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font:500 13px 'Poppins',sans-serif;color:#0A0A0C">Name <span style="color:#D93636">*</span></span>
+              <input name="name" type="text" required="required" placeholder="Your full name" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #D9D9D6;border-radius:8px;padding:13px 14px;outline:none;background:#fff;width:100%;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
+            </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font:500 13px 'Poppins',sans-serif;color:#0A0A0C">Email <span style="color:#D93636">*</span></span>
+              <input name="email" type="email" required="required" placeholder="you@company.com" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #D9D9D6;border-radius:8px;padding:13px 14px;outline:none;background:#fff;width:100%;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
+            </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font:500 13px 'Poppins',sans-serif;color:#0A0A0C">Phone <span style="color:#D93636">*</span></span>
+            <div style="display:flex;border:1px solid #D9D9D6;border-radius:8px;background:#fff;overflow:hidden" style-focus-within="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
+              <select name="code" style="font:500 14px 'Poppins',sans-serif;color:#0A0A0C;border:none;border-right:1px solid #E6E6E4;background:#F7F7F6;padding:0 10px;outline:none;cursor:pointer">
+                <option value="+91">IN +91</option>
+                <option value="+1">US +1</option>
+                <option value="+44">UK +44</option>
+                <option value="+971">AE +971</option>
+              </select>
+              <input name="phone" type="tel" required="required" placeholder="82871 94831" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:none;padding:13px 14px;outline:none;background:transparent;flex:1;min-width:0">
+            </div>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font:500 13px 'Poppins',sans-serif;color:#0A0A0C">Website URL <span style="color:#D93636">*</span></span>
+              <input name="website" type="url" required="required" placeholder="https://yourwebsite.com" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #D9D9D6;border-radius:8px;padding:13px 14px;outline:none;background:#fff;width:100%;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
+            </label>
+          <button type="submit" style="align-self:center;font:600 14px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;border:none;cursor:pointer;padding:15px 30px;border-radius:100px;margin-top:6px;box-shadow:0 10px 24px rgba(10,10,12,0.22);transition:transform .18s,background .18s" style-hover="transform:translateY(-2px);background:#1A6AFF">Book a Strategy Call</button>
+        </form>
+      </sc-if>
+      <sc-if value="{{ heroSent }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:44px 30px;display:flex;flex-direction:column;align-items:flex-start;gap:14px">
+          <div style="width:48px;height:48px;border-radius:12px;background:#EAF1FF;border:1px solid #C9D8FB;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A6AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
+          <h3 style="font:700 22px/1.2 'Montserrat',sans-serif;margin:0">Thank you, {{ heroName }}.</h3>
+          <p style="font:400 15px/1.6 'Poppins',sans-serif;color:#55555A;margin:0">Your strategy call request has been received. Our team will contact you shortly.</p>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENT LOGOS -->
+<div style="background:#FFFFFF">
+  <div style="max-width:1280px;margin:0 auto;padding:88px 32px 44px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+    <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0;text-wrap:pretty">What Do <span style="color:#1A6AFF">High-Growth Brands</span> Rely On?</h2>
+    <p style="font:500 clamp(1.05rem,1.4vw,1.25rem)/1.5 'Poppins',sans-serif;color:#3A3A3E;margin:0;max-width:640px;text-wrap:balance">SEO partner that turns search visibility into consistent business growth.</p>
+  </div>
+  <div style="overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
+    <div style="display:flex;width:max-content;animation:hhmarquee 38s linear infinite" style-hover="animation-play-state:paused">
+      <sc-for list="{{ logoLoop }}" as="lg" hint-placeholder-count="12">
+        <div style="height:96px;padding:0 44px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span style="font:800 26px 'Montserrat',sans-serif;letter-spacing:0.02em;color:#9A9A96;white-space:nowrap;transition:color .2s" style-hover="color:#0A0A0C">{{ lg }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:center;padding:44px 32px 96px">
+    <button onClick="{{ openForm }}" style="font:600 15px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;border:none;cursor:pointer;padding:20px 44px;border-radius:100px;box-shadow:0 10px 26px rgba(10,10,12,0.2);transition:transform .18s,background .18s" style-hover="transform:translateY(-2px);background:#1A6AFF">Free SEO Strategy Call</button>
+  </div>
+</div>
+
+<!-- TRACK RECORD -->
+<div style="background:#F7F7F6;border-top:1px solid #EAEAE8;border-bottom:1px solid #EAEAE8">
+  <div style="max-width:1180px;margin:0 auto;padding:96px 32px;display:flex;flex-direction:column;gap:64px">
+    <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0;text-align:center;text-wrap:pretty">A <span style="color:#1A6AFF">Track Record</span> Built on <span style="color:#1A6AFF">Performance</span></h2>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <img src="./assets/client-bawa.png" alt="Bawa Insulating Material" style="height:52px;width:auto;max-width:260px;object-fit:contain;object-position:left center;align-self:flex-start">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px">
+        <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;overflow:hidden;aspect-ratio:5/4;box-shadow:0 14px 34px rgba(10,10,12,0.08);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-4px);box-shadow:0 22px 44px rgba(10,10,12,0.12);border-color:#C9D8FB"><img src="./assets/serp-1.png" alt="Google result: insulating varnish manufacturers in delhi" style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block"></div>
+        <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;overflow:hidden;aspect-ratio:5/4;box-shadow:0 14px 34px rgba(10,10,12,0.08);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-4px);box-shadow:0 22px 44px rgba(10,10,12,0.12);border-color:#C9D8FB"><img src="./assets/serp-4.png" alt="Google result: motor winding varnish" style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block"></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <img src="./assets/client-hioki.png" alt="HIOKI" style="height:40px;width:auto;max-width:260px;object-fit:contain;object-position:left center;align-self:flex-start">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px">
+        <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;overflow:hidden;aspect-ratio:5/4;box-shadow:0 14px 34px rgba(10,10,12,0.08);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-4px);box-shadow:0 22px 44px rgba(10,10,12,0.12);border-color:#C9D8FB"><img src="./assets/serp-6.png" alt="Google result: motor winding varnish" style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block"></div>
+        <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;overflow:hidden;aspect-ratio:5/4;box-shadow:0 14px 34px rgba(10,10,12,0.08);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-4px);box-shadow:0 22px 44px rgba(10,10,12,0.12);border-color:#C9D8FB"><img src="./assets/serp-5.png" alt="Google result: AC clamp meter" style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block"></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <img src="./assets/client-terra.png" alt="Terra" style="height:60px;width:auto;max-width:260px;object-fit:contain;object-position:left center;align-self:flex-start">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px">
+        <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;overflow:hidden;aspect-ratio:5/4;box-shadow:0 14px 34px rgba(10,10,12,0.08);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-4px);box-shadow:0 22px 44px rgba(10,10,12,0.12);border-color:#C9D8FB"><img src="./assets/serp-3.png" alt="Google result: curtain motor in delhi" style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block"></div>
+        <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;overflow:hidden;aspect-ratio:5/4;box-shadow:0 14px 34px rgba(10,10,12,0.08);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-4px);box-shadow:0 22px 44px rgba(10,10,12,0.12);border-color:#C9D8FB"><img src="./assets/serp-2.png" alt="Google result: curtain motors" style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block"></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <button onClick="{{ openForm }}" style="font:600 15px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;border:none;cursor:pointer;padding:20px 44px;border-radius:100px;box-shadow:0 10px 26px rgba(10,10,12,0.2);transition:transform .18s,background .18s" style-hover="transform:translateY(-2px);background:#1A6AFF">Increase Organic Traffic</button>
+    </div>
+  </div>
+</div>
+
+<!-- AI SEO SERVICES -->
+<div style="background:#FFFFFF">
+  <div style="max-width:1180px;margin:0 auto;padding:96px 32px;display:flex;flex-direction:column;gap:48px">
+    <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0;text-align:center;text-wrap:pretty">Top <span style="color:#1A6AFF">AI SEO Services</span> Helping <span style="color:#1A6AFF">Delhi NCR Businesses Grow</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+      <sc-for list="{{ aiServices }}" as="s" hint-placeholder-count="9">
+        <div style="border:1px solid #E6E6E4;border-radius:16px;background:#fff;padding:28px;display:flex;flex-direction:column;gap:16px;min-height:230px;transition:border-color .2s,transform .2s,box-shadow .2s" style-hover="border-color:#1A6AFF;transform:translateY(-4px);box-shadow:0 16px 34px rgba(10,10,12,0.08)">
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="width:48px;height:48px;border-radius:12px;background:#F4F4F2;border:1px solid #E6E6E4;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A0A0C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.icon }}"></path></svg>
+            </div>
+            <h3 style="font:700 19px/1.25 'Montserrat',sans-serif;margin:0;text-wrap:pretty">{{ s.title }}</h3>
+          </div>
+          <p style="font:400 14.5px/1.65 'Poppins',sans-serif;color:#3A3A3E;margin:0;text-wrap:pretty">{{ s.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <button onClick="{{ openForm }}" style="font:600 15px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;border:none;cursor:pointer;padding:20px 44px;border-radius:100px;box-shadow:0 10px 26px rgba(10,10,12,0.2);transition:transform .18s,background .18s" style-hover="transform:translateY(-2px);background:#1A6AFF">Talk to SEO Expert</button>
+    </div>
+  </div>
+</div>
+
+<!-- WHY HIGH HORSE STATS -->
+<div style="background:#F7F7F6;border-top:1px solid #EAEAE8;border-bottom:1px solid #EAEAE8">
+  <div style="max-width:1180px;margin:0 auto;padding:96px 32px;display:flex;gap:56px;flex-wrap:wrap;align-items:center">
+    <div style="flex:1 1 340px;min-width:280px;display:flex;flex-direction:column;align-items:flex-start;gap:20px">
+      <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.2 'Montserrat',sans-serif;margin:0;max-width:420px;text-wrap:pretty">Why <span style="color:#1A6AFF">Delhi NCR</span> Businesses Choose <span style="color:#1A6AFF">High Horse</span></h2>
+      <p style="font:400 15.5px/1.7 'Poppins',sans-serif;color:#3A3A3E;margin:0 0 16px;max-width:440px;text-wrap:pretty">Businesses choose High Horse for our AI-driven SEO strategies, transparent execution, and measurable results. We understand local search behavior, competitive markets, and focus on driving qualified traffic, higher rankings, and consistent growth not just reports.</p>
+      <button onClick="{{ openForm }}" style="font:600 15px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;border:none;cursor:pointer;padding:18px 34px;border-radius:100px;box-shadow:0 10px 26px rgba(10,10,12,0.2);transition:transform .18s,background .18s" style-hover="transform:translateY(-2px);background:#1A6AFF">Boost Your Rankings Today</button>
+    </div>
+    <div style="flex:1.5 1 520px;min-width:300px;display:flex;flex-wrap:wrap;justify-content:center;gap:18px">
+      <sc-for list="{{ whyStats }}" as="st" hint-placeholder-count="8">
+        <div style="flex:0 1 calc((100% - 36px) / 3);min-width:150px;min-height:150px;border:1px solid #E6E6E4;border-radius:16px;background:#fff;padding:24px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;transition:border-color .2s,transform .2s,box-shadow .2s" style-hover="border-color:#1A6AFF;transform:translateY(-4px);box-shadow:0 16px 34px rgba(10,10,12,0.08)">
+          <div style="font:700 clamp(1.8rem,2.6vw,2.3rem)/1 'Montserrat',sans-serif;color:#1A6AFF;letter-spacing:-0.01em">{{ st.v }}</div>
+          <div style="font:500 13.5px/1.45 'Poppins',sans-serif;color:#0A0A0C;max-width:150px;text-wrap:balance">{{ st.l }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- REAL RESULTS -->
+<div style="background:#FFFFFF">
+  <div style="max-width:1180px;margin:0 auto;padding:96px 32px;display:flex;flex-direction:column;gap:48px">
+    <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0;text-align:center;text-wrap:pretty">Real Results That Got Our <span style="color:#1A6AFF">Clients</span> on <span style="color:#1A6AFF">Google’s First Page</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(max(min(100%,340px),calc((100% - 24px) / 2)),1fr));gap:24px">
+      <sc-for list="{{ results }}" as="r" hint-placeholder-count="4">
+        <div style="border:1px solid #E6E6E4;border-radius:18px;background:#fff;padding:18px 18px 26px;display:flex;flex-direction:column;gap:22px;transition:border-color .2s,transform .2s,box-shadow .2s" style-hover="border-color:#1A6AFF;transform:translateY(-4px);box-shadow:0 18px 38px rgba(10,10,12,0.08)">
+          <div style="border-radius:12px;overflow:hidden;background:#F0F3F9;border:1px solid #EAEAE8">
+            <img src="{{ r.img }}" alt="{{ r.alt }}" style="width:100%;height:auto;display:block">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;padding:0 8px;flex:1">
+            <sc-for list="{{ r.points }}" as="pt" hint-placeholder-count="3">
+              <div style="display:flex;align-items:flex-start;gap:12px">
+                <span style="width:6px;height:6px;border-radius:50%;background:#1A6AFF;flex-shrink:0;margin-top:9px"></span>
+                <span style="font:400 15.5px/1.55 'Poppins',sans-serif;color:#0A0A0C;text-wrap:pretty">{{ pt }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <button onClick="{{ openForm }}" style="align-self:center;font:600 14px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;border:none;cursor:pointer;padding:16px 40px;border-radius:100px;box-shadow:0 10px 24px rgba(10,10,12,0.18);transition:transform .18s,background .18s" style-hover="transform:translateY(-2px);background:#1A6AFF">Book Free SEO Call</button>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- HOW WE WORK -->
+<div style="background:#0A0A0C;color:#F5F5F4;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(100% 80% at 50% 0%,#000 30%,transparent 85%);-webkit-mask-image:radial-gradient(100% 80% at 50% 0%,#000 30%,transparent 85%);pointer-events:none"></div>
+  <div style="position:absolute;top:-200px;right:-120px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(26,106,255,0.28),rgba(26,106,255,0) 66%);pointer-events:none"></div>
+  <div style="max-width:1180px;margin:0 auto;padding:100px 32px;position:relative;display:flex;flex-direction:column;gap:56px">
+    <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between">
+      <div style="flex:1 1 520px;min-width:280px">
+        <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#FF9D2E;margin-bottom:16px">10-step process</div>
+        <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.16 'Montserrat',sans-serif;margin:0;max-width:620px;text-wrap:pretty">How We Work to Ensure You <span style="color:#8FB4FF">Rank #1 on Google</span></h2>
+      </div>
+      <button onClick="{{ openForm }}" style="font:600 15px 'Montserrat',sans-serif;background:#fff;color:#0A0A0C;border:none;cursor:pointer;padding:18px 36px;border-radius:100px;white-space:nowrap;transition:transform .18s,background .18s,color .18s" style-hover="transform:translateY(-2px);background:#1A6AFF;color:#fff">Get a Free Audit</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));column-gap:0;row-gap:40px">
+      <sc-for list="{{ workSteps }}" as="w" hint-placeholder-count="10">
+        <div style="position:relative;padding:28px 22px 0 0;border-top:1px solid #2E2E31;display:flex;flex-direction:column;gap:18px;transition:border-color .25s" style-hover="border-color:#FF9D2E">
+          <div style="position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:#1A6AFF;box-shadow:0 0 0 4px rgba(26,106,255,0.2)"></div>
+          <div style="font:700 13px 'Montserrat',sans-serif;letter-spacing:0.08em;color:#FF9D2E">{{ w.n }}</div>
+          <div style="width:52px;height:52px;border-radius:13px;background:rgba(255,255,255,0.04);border:1px solid #2E2E31;display:flex;align-items:center;justify-content:center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F5F5F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ w.icon }}"></path></svg>
+          </div>
+          <div style="font:600 16.5px/1.35 'Montserrat',sans-serif;color:#F5F5F4;text-wrap:balance">{{ w.title }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div style="background:#FFFFFF">
+  <div style="max-width:1180px;margin:0 auto;padding:96px 32px;display:flex;flex-direction:column;gap:56px">
+    <h2 style="font:700 clamp(1.9rem,2.8vw,2.6rem)/1.2 'Montserrat',sans-serif;margin:0;max-width:560px;text-wrap:pretty"><span style="color:#1A6AFF">SEO Success</span> Stories Straight From Our <span style="color:#1A6AFF">Happy Clients</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:28px 18px;border:1px solid transparent;border-radius:18px;transition:border-color .2s,transform .2s,box-shadow .2s,background .2s" style-hover="border-color:#E6E6E4;background:#fff;transform:translateY(-4px);box-shadow:0 16px 34px rgba(10,10,12,0.07)">
+          <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;background:#F4F4F2;border:3px solid #fff;box-shadow:0 0 0 1px #E6E6E4,0 10px 24px rgba(10,10,12,0.1);flex-shrink:0">
+            <img src="{{ t.img }}" alt="{{ t.name }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ t.pos }};transform:scale({{ t.zoom }});transform-origin:{{ t.pos }};display:block">
+          </div>
+          <svg width="30" height="22" viewBox="0 0 30 22" fill="#1A6AFF" style="margin-top:6px"><path d="M0 22V13C0 5.8 3.6 1.4 10.8 0l1.6 3.2C8.6 4.4 6.6 6.8 6.2 10H12v12z M17 22V13c0-7.2 3.6-11.6 10.8-13l1.6 3.2C25.6 4.4 23.6 6.8 23.2 10H29v12z"></path></svg>
+          <div style="display:flex;flex-direction:column;gap:3px">
+            <div style="font:500 16px/1.4 'Poppins',sans-serif;color:#1A6AFF">{{ t.name }}</div>
+            <div style="font:700 15px/1.4 'Montserrat',sans-serif;color:#1A6AFF">{{ t.company }}</div>
+          </div>
+          <p style="font:400 14.5px/1.65 'Poppins',sans-serif;color:#144FC0;margin:8px 0 0;text-wrap:pretty">{{ t.quote }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="background:#0A0A0C;color:#F5F5F4">
+  <div style="max-width:1280px;margin:0 auto;padding:80px 32px 56px;display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start">
+    <div style="flex:1 1 340px;min-width:280px;display:flex;flex-direction:column;gap:22px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="./assets/hh-logo.png" alt="High Horse" style="width:22px;height:22px;object-fit:contain;filter:invert(1) brightness(2)">
+        <span style="font:800 15px 'Montserrat',sans-serif;letter-spacing:0.04em">HIGH HORSE</span>
+      </div>
+      <div>
+        <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#FF9D2E;margin-bottom:12px">Contact Us</div>
+        <h2 style="font:700 clamp(1.7rem,2.4vw,2.2rem)/1.18 'Montserrat',sans-serif;margin:0 0 10px;text-wrap:pretty">Tell us what you need</h2>
+        <p style="font:400 15px/1.6 'Poppins',sans-serif;color:#9A9A97;margin:0">We’ll get back to you within one business day.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,0.04);border:1px solid #2E2E31;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></span><span style="font:500 15px 'Poppins',sans-serif;color:#F5F5F4">+91-82871 94831</span></div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,0.04);border:1px solid #2E2E31;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9D2E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z M3 7l9 6 9-6"></path></svg></span><span style="font:500 15px 'Poppins',sans-serif;color:#F5F5F4">contact@highhorse.in</span></div>
+      </div>
+      <img src="./assets/google-partner-badge.png" alt="Google Partner" style="width:96px;border-radius:5px">
+    </div>
+    <div style="flex:1 1 520px;min-width:300px;border:1px solid #232326;border-radius:16px;background:rgba(255,255,255,0.03);padding:30px">
+      <sc-if value="{{ footIdle }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submitFooter }}" style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:16px;flex-wrap:wrap">
+            <label style="display:flex;flex-direction:column;gap:7px;flex:1 1 220px;min-width:200px">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">Name</span>
+            <input name="name" type="text" required="required" placeholder="Your full name" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)">
+          </label>
+            <label style="display:flex;flex-direction:column;gap:7px;flex:1 1 220px;min-width:200px">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">Email</span>
+            <input name="email" type="email" required="required" placeholder="you@company.com" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)">
+          </label>
+          </div>
+          <div style="display:flex"><label style="display:flex;flex-direction:column;gap:7px;flex:1 1 220px;min-width:200px">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">Phone Number</span>
+            <input name="phone" type="tel" required="required" placeholder="+91 00000 00000" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)">
+          </label></div>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">What problem are you facing?</span>
+            <input name="problem" type="text" required="required" placeholder="e.g. Low leads, high ad costs, poor rankings" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">What do you want from us?</span>
+            <textarea name="message" rows="4" required="required" placeholder="Describe your goals or the help you’re looking for" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s;line-height:1.55;resize:vertical" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)"></textarea>
+          </label>
+          <button type="submit" style="font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;border:none;cursor:pointer;padding:16px 24px;border-radius:6px;margin-top:4px;box-shadow:0 10px 26px rgba(26,106,255,0.32);transition:transform .18s,box-shadow .18s" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(26,106,255,0.4)">Submit</button>
+        </form>
+      </sc-if>
+      <sc-if value="{{ footSent }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:24px 4px;display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+          <div style="width:48px;height:48px;border-radius:12px;background:rgba(26,106,255,0.14);border:1px solid #1A6AFF;display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A6AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+          </div>
+          <h3 style="font:700 22px/1.2 'Montserrat',sans-serif;margin:0">Thank you, {{ footName }}.</h3>
+          <p style="font:400 15px/1.6 'Poppins',sans-serif;color:#9A9A97;margin:0">Your message has been received. Our team will contact you shortly.</p>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:0 auto;padding:20px 32px;border-top:1px solid #232326;font:400 12px 'Poppins',sans-serif;color:#5a5a57">© 2026 High Horse. All rights reserved.</div>
+</div>
+
+<!-- CONTACT POPUP -->
+<sc-if value="{{ formOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeForm }}" style="position:fixed;inset:0;z-index:100;background:rgba(10,10,12,0.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto">
+    <div onClick="{{ stop }}" style="width:100%;max-width:520px;margin:auto;flex-shrink:0;background:#fff;border:1px solid #E6E6E4;border-radius:16px;box-shadow:0 30px 70px rgba(10,10,12,0.3);position:relative;overflow:hidden;animation:hhrise .25s ease both">
+      <div style="height:4px;background:#1A6AFF"></div>
+      <button onClick="{{ closeForm }}" aria-label="Close" style="position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:8px;border:1px solid #E6E6E4;background:#fff;cursor:pointer;font:400 20px/1 'Poppins',sans-serif;color:#55555A" style-hover="border-color:#0A0A0C;color:#0A0A0C">×</button>
+      <sc-if value="{{ formIdle }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submitForm }}" style="padding:28px 28px 26px;display:flex;flex-direction:column;gap:14px">
+          <div>
+            <div style="font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#1A6AFF;margin-bottom:10px">Contact Us</div>
+            <h3 style="font:700 24px/1.2 'Montserrat',sans-serif;margin:0 40px 6px 0;text-wrap:pretty">Tell us what you need</h3>
+            <p style="font:400 14.5px/1.6 'Poppins',sans-serif;color:#55555A;margin:0">We’ll get back to you within one business day.</p>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">Name</span>
+            <input name="name" type="text" required="required" placeholder="Your full name" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">Email</span>
+            <input name="email" type="email" required="required" placeholder="you@company.com" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">Phone Number</span>
+            <input name="phone" type="tel" required="required" placeholder="+91 00000 00000" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">What problem are you facing?</span>
+            <input name="problem" type="text" required="required" placeholder="e.g. Low leads, high ad costs, poor rankings" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">What do you want from us?</span>
+            <textarea name="message" rows="3" required="required" placeholder="Describe your goals or the help you’re looking for" style="font:400 15px/1.55 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;resize:vertical;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)"></textarea>
+          </label>
+          <button type="submit" style="font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;border:none;cursor:pointer;padding:16px 24px;border-radius:6px;margin-top:4px;box-shadow:0 10px 26px rgba(26,106,255,0.32);transition:transform .18s,box-shadow .18s" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(26,106,255,0.4)">Submit</button>
+        </form>
+      </sc-if>
+      <sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:44px 32px 40px;display:flex;flex-direction:column;align-items:flex-start;gap:14px">
+          <div style="width:48px;height:48px;border-radius:12px;background:#EAF1FF;border:1px solid #C9D8FB;display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A6AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+          </div>
+          <h3 style="font:700 24px/1.2 'Montserrat',sans-serif;margin:0">Thank you, {{ sentName }}.</h3>
+          <p style="font:400 15px/1.6 'Poppins',sans-serif;color:#55555A;margin:0;text-wrap:pretty">Your message has been received. Our team will contact you shortly.</p>
+          <button onClick="{{ closeForm }}" style="font:600 13.5px 'Montserrat',sans-serif;background:#0A0A0C;color:#fff;border:none;cursor:pointer;padding:13px 22px;border-radius:6px;margin-top:6px">Close</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { formOpen: false, sent: null, footSent: null, heroSent: null, menuOpen: false, activeStep: 0, activeMenu: null, engine: 0, typed: '', caretOn: true, vw: null, openFaq: 0 };
+
+  engines = [
+    { label: 'Google', src: './assets/logo-google.webp', accent: '#4285F4' },
+    { label: 'ChatGPT', src: './assets/logo-chatgpt-white.png', accent: '#10A37F' },
+    { label: 'Gemini', src: './assets/logo-gemini.webp', accent: '#8E6FF0' },
+    { label: 'Perplexity', src: './assets/logo-perplexity.webp', accent: '#22B2B2' },
+    { label: 'Claude', src: './assets/logo-claude.png', accent: '#D97757' },
+    { label: 'Bing', src: './assets/logo-bing.svg', accent: '#00A4EF' },
+  ];
+
+  hexToRgba(hex, alpha) {
+    if (typeof hex !== 'string' || !/^#?[0-9a-fA-F]{6}$/.test(hex)) return `rgba(26,106,255,${alpha})`;
+    const h = hex.replace('#', '');
+    const r = parseInt(h.substring(0, 2), 16), g = parseInt(h.substring(2, 4), 16), b = parseInt(h.substring(4, 6), 16);
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+
+  queries = [
+    'best crm for real estate agents',
+    'industrial insulating varnish supplier near me',
+    'company formation consultants in dubai cost',
+    'is it worth hiring an seo agency for b2b',
+    'play school admission fees in gurgaon',
+    'top rated ready meals delivered india',
+    'alternatives to hubspot for small teams',
+    'moving and cleaning services same day',
+  ];
+
+  journeyRaw = [
+    { n: '01', title: 'Search' },
+    { n: '02', title: 'Visibility' },
+    { n: '03', title: 'Landing' },
+    { n: '04', title: 'Qualified lead' },
+    { n: '05', title: 'Sale' },
+    { n: '06', title: 'Revenue' },
+  ];
+
+  componentDidMount() {
+    this.qi = 0; this.ci = 0; this.phase = 'type';
+    this.tick = () => {
+      const q = this.queries[this.qi];
+      if (this.phase === 'type') {
+        this.ci++;
+        this.setState({ typed: q.slice(0, this.ci) });
+        if (this.ci >= q.length) { this.phase = 'hold'; this.timer = setTimeout(this.tick, 1500); return; }
+        this.timer = setTimeout(this.tick, 45 + Math.random() * 55);
+      } else if (this.phase === 'hold') {
+        this.phase = 'erase';
+        this.timer = setTimeout(this.tick, 250);
+      } else {
+        this.ci -= 2;
+        if (this.ci <= 0) {
+          this.ci = 0;
+          this.qi = (this.qi + 1) % this.queries.length;
+          this.phase = 'type';
+          this.setState({ typed: '', engine: this.qi % this.engines.length });
+          this.timer = setTimeout(this.tick, 400);
+          return;
+        }
+        this.setState({ typed: q.slice(0, this.ci) });
+        this.timer = setTimeout(this.tick, 22);
+      }
+    };
+    this.onResize = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    this.timer = setTimeout(this.tick, 600);
+    this.blink = setInterval(() => this.setState(s => ({ caretOn: !s.caretOn })), 530);
+    this.revealTimer = setTimeout(() => this.setupReveals(), 400);
+  }
+
+  setupReveals() {
+    if (this.pending) return;
+    const fold = window.innerHeight * 0.88;
+    this.pending = [];
+    document.querySelectorAll('[data-rv]').forEach(el => {
+      if (el.getBoundingClientRect().top > fold) {
+        el.style.transition = 'opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(22px)';
+        el.querySelectorAll('[data-grow]').forEach(b => {
+          b.dataset.target = b.style.width || '100%';
+          b.style.width = '0%';
+        });
+        el.querySelectorAll('[data-count]').forEach(c => { c.dataset.pendingCount = '1'; c.textContent = '0'; });
+        this.pending.push(el);
+      }
+    });
+
+    this.reveal = (el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.querySelectorAll('[data-grow]').forEach(b => {
+        if (b.dataset.target) setTimeout(() => { b.style.width = b.dataset.target; }, 120);
+      });
+      el.querySelectorAll('[data-count]').forEach(c => { if (c.dataset.pendingCount) { delete c.dataset.pendingCount; this.countUp(c); } });
+    };
+
+    this.sweep = () => {
+      this.rafQueued = false;
+      if (!this.pending.length) return;
+      const limit = window.innerHeight * 0.9;
+      this.pending = this.pending.filter(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < limit && r.bottom > 0) { this.reveal(el); return false; }
+        return true;
+      });
+    };
+
+    this.onScroll = () => {
+      if (this.rafQueued) return;
+      this.rafQueued = true;
+      requestAnimationFrame(this.sweep);
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.sweep();
+    // safety: nothing stays hidden if scroll events never arrive
+    this.failsafe = setTimeout(() => { (this.pending || []).forEach(el => this.reveal(el)); this.pending = []; }, 6000);
+  }
+
+  countUp(el) {
+    const target = parseFloat(el.dataset.count);
+    const dur = parseFloat(el.dataset.dur || 1200);
+    const start = Date.now();
+    const iv = setInterval(() => {
+      const t = Math.min(1, (Date.now() - start) / dur);
+      el.textContent = String(Math.round(target * (1 - Math.pow(1 - t, 3))));
+      if (t >= 1) clearInterval(iv);
+    }, 40);
+    setTimeout(() => { clearInterval(iv); el.textContent = String(target); }, dur + 150);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+    clearTimeout(this.revealTimer);
+    clearInterval(this.blink);
+    clearTimeout(this.failsafe);
+    if (this.onScroll) {
+      window.removeEventListener('scroll', this.onScroll);
+      window.removeEventListener('resize', this.onScroll);
+    }
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  faqDefs = [
+    {
+      question: 'What does working with High Horse cost?',
+      answer: 'There is no fixed package or rate card. Cost depends on the size of the search opportunity, how much of the work is paid media versus organic and technical, and how much needs building before results are possible. We tell you the number, and the reasoning behind it, before you commit to anything.',
+    },
+    {
+      question: 'How long before we see results?',
+      answer: 'Paid search can produce qualified enquiries within weeks, because you are buying demand that already exists. Organic and AI visibility compound over months, not days. We say up front which of the two your opportunity depends on, so you are not waiting on a timeline nobody explained.',
+    },
+    {
+      question: 'What does the engagement actually look like?',
+      answer: 'You work with a team built around search strategy, execution and measurement, with direct senior involvement in understanding the business, setting priorities and reviewing results. One owner, direct communication, and reporting that connects search activity to leads, sales and revenue rather than to activity.',
+    },
+    {
+      question: 'Do you work with businesses in my industry?',
+      answer: 'We have run programmes across industrial manufacturing, B2B electronics, e-commerce, education, hospitality, consultancy and local services, in India, the Gulf and beyond. The category matters less than whether real search demand exists in it, which is the first thing we check.',
+    },
+    {
+      question: 'What if there is not much search demand for what we sell?',
+      answer: 'Then we say so. Before proposing any work, we determine whether meaningful search demand exists, where the strongest opportunity is, and whether High Horse is the right fit. If search is not where your growth will come from, that is a more useful answer than a campaign.',
+    },
+  ];
+
+  caseStudies = [
+    { ratio: '4/3', img: './assets/case-5mtd.jpg', name: '5 Minutes to Delhi', sector: 'E-commerce · Ready Meals', blurb: 'Seamless digital transformation across web and marketplace.' },
+    { ratio: '4/3', img: './assets/case-bawa.jpg', name: 'Bawa Polymers', sector: 'Industrial Manufacturing', blurb: "Boosting Bawa's online presence in the insulating varnish industry." },
+    { ratio: '1572/772', img: './assets/case-gurukul.jpg', name: 'Gurukul', sector: 'Education · Play School', blurb: "Building Gurukul's digital presence with SEO and clear brand storytelling." },
+    { ratio: '1572/772', img: './assets/case-easyaccess.jpg', name: 'Easy Access Management Consultancies', sector: 'Business Consultancy', blurb: 'Consistent lead generation for business setup in Dubai, UAE.' },
+    { ratio: '4/3', img: './assets/case-visioworld.jpg', name: 'Visioworld (Speedex)', sector: 'Consumer Electronics', blurb: 'Website and marketplace optimisation driving top search rankings.' },
+    { ratio: '1572/772', img: './assets/case-antharaaah.jpg', name: 'Antharaaah Nature Stay', sector: 'Hospitality', blurb: 'SEO-optimised websites to seamless booking funnels that drive conversions.' },
+    { ratio: '1572/772', img: './assets/case-fech.jpg', name: 'FECH Moving & Cleaning', sector: 'Local Services', blurb: 'Taking FECH to the top search results for moving and cleaning.' },
+    { ratio: '4/3', img: './assets/case-partyrack.jpg', name: 'Party Rack', sector: 'E-commerce · Party Supplies', blurb: 'Helped Party Rack start from scratch and go online.' },
+    { ratio: '4/3', img: './assets/case-setmi.jpg', name: 'Setmi India', sector: 'B2B Industrial Electronics', blurb: "Powering Setmi India's sales journey." },
+  ];
+
+  megaMenus = [
+    {
+      blurb: 'Led by Sankalp Suri, with direct senior involvement in strategy and results.',
+      columns: [{ title: 'About High Horse', items: [
+        { label: 'Company', href: '#founder' },
+        { label: 'Careers', href: './Contact.dc.html' },
+        { label: 'Partnership', href: './Contact.dc.html' },
+      ] }],
+      cta: { label: 'About High Horse', href: '#founder' },
+    },
+    {
+      blurb: 'Everything we offer, across finding demand, capturing it, and building the systems that convert it.',
+      columns: [
+        { title: 'Search Intelligence', items: [
+          { label: 'AEO / GEO', href: '#capabilities' },
+          { label: 'Voice SEO', href: '#capabilities' },
+          { label: 'SEO', href: '#capabilities' },
+          { label: 'Content Marketing', href: '#capabilities' },
+        ] },
+        { title: 'Performance Marketing', items: [
+          { label: 'Search Ads', href: './Search Ads Services.dc.html' },
+          { label: 'Shopping Ads', href: '#capabilities' },
+          { label: 'PPC Ads', href: '#capabilities' },
+          { label: 'Visual Ads', href: '#capabilities' },
+          { label: 'Retargeting', href: '#capabilities' },
+        ] },
+        { title: 'Experience & Systems', items: [
+          { label: 'UI/UX', href: '#capabilities' },
+          { label: 'Website Development', href: '#capabilities' },
+          { label: 'Marketplace Optimisation', href: '#capabilities' },
+          { label: 'Workflow Automation', href: '#capabilities' },
+        ] },
+      ],
+      cta: { label: 'View Capabilities', href: '#capabilities' },
+    },
+    null,
+    {
+      blurb: 'Practical tools and writing for teams running their own search programmes.',
+      columns: [{ title: 'Resources', items: [
+        { label: 'Calculator', href: './Contact.dc.html' },
+        { label: 'Tutorials', href: './Contact.dc.html' },
+        { label: 'Guides', href: './Contact.dc.html' },
+        { label: 'Templates', href: './Contact.dc.html' },
+        { label: 'Insights', href: './Contact.dc.html' },
+        { label: 'Blog', href: './Contact.dc.html' },
+      ] }],
+      cta: { label: 'Talk to Us', href: './Contact.dc.html' },
+    },
+  ];
+
+  navLinks = [
+    { label: 'Who We Are', href: '#founder' },
+    { label: 'What We Do', href: '#capabilities' },
+    { label: 'Case Studies', href: '#case-studies' },
+    { label: 'Learn With Us', href: './Contact.dc.html' },
+  ];
+
+  footerNav = [
+    { label: 'How We Work', href: '#how-we-work' },
+    { label: 'Paid Search', href: '#capabilities' },
+    { label: 'Organic + AI Search', href: '#capabilities' },
+    { label: 'Case Studies', href: '#case-studies' },
+    { label: 'About', href: '#founder' },
+    { label: 'Contact', href: './Contact.dc.html' },
+  ];
+
+  stepsRaw = [
+    { n: '01', title: 'Understand the Business', desc: 'Market, product, customers, competitors and economics.' },
+    { n: '02', title: 'Map Search Demand', desc: 'What people search, and which searches matter commercially.' },
+    { n: '03', title: 'Find the Leaks', desc: 'Visibility, spend, conversion, follow-up, measurement.' },
+    { n: '04', title: 'Prioritise', desc: 'Focus on the actions with the strongest commercial potential.' },
+    { n: '05', title: 'Execute and Improve', desc: 'Paid, organic, local, AI search and conversion work.' },
+    { n: '06', title: 'Measure the Result', desc: 'Search → lead → opportunity → sale → revenue.' },
+  ];
+
+  capabilitiesRaw = [
+    { stage: 'Capture', title: 'Paid Search', desc: 'Capture high-intent demand while reducing wasted spend.', points: ['Google Ads', 'Search-term analysis', 'Campaign efficiency', 'Shopping', 'Lead quality'], note: null },
+    { stage: 'Earn', title: 'Organic Search', desc: 'Lasting visibility around the problems and products customers search for.', points: ['SEO strategy', 'Technical SEO', 'Search-led content', 'Local SEO', 'Business Profile'], note: null },
+    { stage: 'Be cited', title: 'AI Search', desc: 'Improve how the business is understood and surfaced across answer engines.', points: ['AI visibility analysis', 'Answer-focused content', 'Entity authority', 'Citation monitoring'], note: 'AI citations and visibility are never guaranteed.' },
+    { stage: 'Feeds both', title: 'Content Marketing and Engineering', desc: 'The material that earns rankings and gets cited, built and structured to be found.', points: ['Content strategy', 'Built for SEO and AEO/GEO', 'Structured data', 'Distribution', 'Refreshes'], note: null },
+    { stage: 'Close the loop', title: 'Conversion and Measurement', desc: 'Turn search traffic into qualified business and show what produced it.', points: ['Landing experiences', 'CRO', 'Call, form, WhatsApp tracking', 'Qualified-lead tracking', 'Revenue attribution'], note: null },
+  ];
+
+  outcomesRaw = [
+    { label: 'Customers already searching, captured', dir: 'up', w: '84%' },
+    { label: 'Wasted advertising spend', dir: 'down', w: '32%' },
+    { label: 'Existing traffic converted', dir: 'up', w: '76%' },
+    { label: 'Qualified lead quality', dir: 'up', w: '80%' },
+    { label: 'Acquisition inefficiency', dir: 'down', w: '28%' },
+    { label: 'Clarity on what creates revenue', dir: 'up', w: '92%' },
+  ];
+
+  outcomeChainRaw = ['Demand captured', 'Conversion improved', 'Waste reduced', 'Revenue measured'];
+
+  opportunityItems = [
+    'A competitor capturing valuable searches',
+    'A paid-search spending leak',
+    'A missing organic or local opportunity',
+    'A weak conversion path',
+    'A measurement gap',
+    'An underserved product, service or location',
+  ];
+
+  fitGood = ['Real search demand', 'Established or properly funded', 'Serious marketing investment', 'Willingness to measure real business results'];
+  fitBad = ['Looking for the cheapest SEO package', 'No clear marketing budget', 'Expecting guaranteed rankings or revenue', 'Refuses tracking or sales-data access'];
+
+  founderPoints = ['Business context before campaigns', 'Honest recommendations', 'Clear ownership', 'Direct communication', 'Revenue over activity'];
+
+  aiLogos = [
+    { label: 'ChatGPT', src: './assets/logo-chatgpt-white.png' },
+    { label: 'Perplexity', src: './assets/logo-perplexity.webp' },
+    { label: 'Google', src: './assets/logo-google.webp' },
+    { label: 'Gemini', src: './assets/logo-gemini.webp' },
+    { label: 'Claude', src: './assets/logo-claude.png' },
+  ];
+
+  renderVals() {
+    const vw = this.state.vw ?? 1440;
+    const activeAccent = this.engines[this.state.engine]?.accent ?? '#1A6AFF';
+
+    const steps = this.stepsRaw.map((s, i) => {
+      const active = i === this.state.activeStep;
+      return {
+        n: s.n, title: s.title, desc: s.desc,
+        wrapStyle: `position:relative;flex:1 1 200px;min-width:180px;padding:28px 22px 30px;border-right:1px solid #EFEFEE;cursor:default;background:${active ? '#FBFCFF' : '#fff'};transition:background .2s;`,
+        railStyle: `position:absolute;top:0;left:0;right:0;height:3px;background:${active ? '#1A6AFF' : '#EFEFEE'};transition:background .2s;`,
+        dotStyle: `width:9px;height:9px;border-radius:50%;flex-shrink:0;background:${active ? '#FF9D2E' : '#DCDCD9'};box-shadow:${active ? '0 0 0 4px rgba(255,157,46,0.18)' : 'none'};transition:all .2s;`,
+        numStyle: `font:700 20px 'Montserrat',sans-serif;letter-spacing:0.02em;color:${active ? '#1A6AFF' : '#C4C4C0'};transition:color .2s;`,
+        onEnter: () => this.setState({ activeStep: i }),
+      };
+    });
+
+    const mapCols = vw >= 1180 ? 5 : vw >= 760 ? 2 : 1;
+    const capabilities = this.capabilitiesRaw.map((c, i) => ({
+      ...c,
+      hasNext: i < this.capabilitiesRaw.length - 1 && mapCols > 1,
+      cardStyle: `background:rgba(255,255,255,0.04);border:1px solid #232326;border-radius:14px;padding:24px 22px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);`,
+      tagStyle: `font:600 10px 'Montserrat',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:${i === 3 ? '#FF9D2E' : '#5B9BFF'};border:1px solid ${i === 3 ? 'rgba(255,157,46,0.4)' : 'rgba(91,155,255,0.35)'};border-radius:100px;padding:5px 10px;`,
+    }));
+
+    return {
+      formOpen: this.state.formOpen,
+      formIdle: !this.state.sent,
+      formSent: !!this.state.sent,
+      sentName: this.state.sent || '',
+      showContactText: vw >= 900,
+      openForm: () => this.setState({ formOpen: true, sent: null }),
+      openFormLink: (e) => { e.preventDefault(); this.setState({ formOpen: true, sent: null, menuOpen: false }); },
+      closeForm: () => this.setState({ formOpen: false }),
+      stop: (e) => e.stopPropagation(),
+      submitForm: (e) => { e.preventDefault(); const d = new FormData(e.target); this.setState({ sent: String(d.get('name') || '').trim().split(' ')[0] || 'there' }); },
+      testimonials: [
+        { img: './assets/client-vishwanath.png', pos: '50% 40%', zoom: 1, name: 'Vishwanath Kapoor', company: 'Setmi India', quote: 'If you\u2019re looking for SEO support that actually delivers, High Horse is the real deal. We saw consistent month-over-month growth in traffic and conversions.' },
+        { img: './assets/client-prabhnoor.jpg', pos: '52% 24%', zoom: 2, name: 'Prabhnoor Bawa', company: 'BAWA Polymers', quote: 'Was referred to High Horse by a friend and glad I gave them a shot. From keyword research to content strategy, everything was done thoughtfully.' },
+        { img: './assets/client-sai.jpg', pos: '47% 25%', zoom: 3.2, name: 'Sai Sud', company: 'Sud & Sud', quote: 'I liked most about working with High Horse is they don\u2019t try to oversell you. They take time to explain, break things down in simple terms, and set goals.' },
+        { img: './assets/client-francis.jpg', pos: '45% 42%', zoom: 1.35, name: 'Francis Krajewski', company: '5 Minutes to Delhi', quote: 'Our site\u2019s ranking improved, but more importantly, we started getting quality leads. Appreciate their transparency and regular updates.' },
+      ],
+      workSteps: [
+        { n: '01', title: "Learn About SEO Standing", icon: 'M3 4h18v12H3z M7 20h10 M12 16v4 M6 12l3-3 3 2 5-5' },
+        { n: '02', title: "Complete Research", icon: 'M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z M20 20l-4.8-4.8 M8 10.5l2 2 3.5-3.5' },
+        { n: '03', title: "Technical Audit", icon: 'M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z M9 12l2 2 4-4' },
+        { n: '04', title: "Brainstorming & Strategy", icon: 'M9 18h6 M10 21h4 M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.2 1 2V16h5v-.1c0-.8.4-1.6 1-2A6 6 0 0 0 12 3z' },
+        { n: '05', title: "Keyword Research", icon: 'M14.5 4a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z M10.6 13.4L3 21 M5.5 18.5l2 2' },
+        { n: '06', title: "Competition Analysis", icon: 'M4 20V14 M9.5 20V9 M15 20V12 M20.5 20V5 M3 20h19' },
+        { n: '07', title: "Start Creating Better Content", icon: 'M4 20h4L19 9l-4-4L4 16z M13.5 6.5l4 4' },
+        { n: '08', title: "3-3-6 Roadmap Plan", icon: 'M6 3a3 3 0 0 0-3 3c0 2.2 3 5 3 5s3-2.8 3-5a3 3 0 0 0-3-3z M18 13a3 3 0 0 0-3 3c0 2.2 3 5 3 5s3-2.8 3-5a3 3 0 0 0-3-3z M6 11v2a3 3 0 0 0 3 3h3a3 3 0 0 1 3 3' },
+        { n: '09', title: "On page and Off Page SEO", icon: 'M3 4h18v14H3z M3 8h18 M7 12h5 M7 15h3 M15 12l4 6-2 .5-1 2z' },
+        { n: '10', title: "Monthly ROI Report", icon: 'M6 3h9l4 4v14H6z M15 3v4h4 M9 17v-3 M12 17v-5 M15 17v-2' },
+      ],
+      results: [
+        { img: './assets/gsc-terra.png', alt: 'Terra Google Search Console results', points: ['1000% growth in search impressions within 3 months for Terra', 'Multiple high-intent keywords reached Google\u2019s first page', 'Consistent rise in organic clicks and enquiries'] },
+        { img: './assets/gsc-bawa.png', alt: 'Bawa Polymers Google Search Console results', points: ['Organic traffic tripled within 12 months for Bawa', 'Significant lift in qualified visitors', 'Sustained month-on-month traffic growth'] },
+        { img: './assets/gsc-fech.png', alt: 'FECH Google Search Console results', points: ['5\u00d7 increase in organic leads within 12 months for FECH', 'Created and optimized multiple city-specific SEO pages', 'Higher lead quality and conversion rates'] },
+        { img: './assets/gsc-hioki.png', alt: 'HIOKI Google Search Console results', points: ['Tripled average keyword ranking positions within 12 months', 'Daily optimization of product-specific keywords', 'Significant increase in B2B leads'] },
+      ],
+      whyStats: [
+        { v: '200+', l: 'Projects Finished' },
+        { v: '95%', l: 'Client Retention Rate' },
+        { v: '15+', l: 'Industries Served' },
+        { v: '360', l: 'Degree Digital Marketing Solution' },
+        { v: '1000+', l: 'Keywords Ranked' },
+        { v: '6+', l: 'Presence across the globe' },
+        { v: '1M+', l: 'Organic Visits Generated' },
+        { v: '90%', l: 'Clients from Referrals' },
+      ],
+      aiServices: [
+        { title: 'Content Writing', body: 'As a top-rated SEO content marketing agency, we craft keyword-rich content that drives engagement\u2014ideal for brands needing expert content marketing or an online SEO strategy.', icon: 'M6 3h9l4 4v14H6z M15 3v4h4 M9 11h7 M9 14.5h7 M9 18h4' },
+        { title: 'Backlinks', body: 'Our backlink agency earns high-authority links to boost domain trust and SEO rankings. Trusted by businesses seeking a proven SEO expert or expert company.', icon: 'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1 M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1' },
+        { title: 'Ecommerce SEO', body: 'Boost your online store\u2019s visibility and sales with tailored Ecommerce SEO services. We optimize product pages and UX, like a top lead generation and travel SEO consultant.', icon: 'M3 4h2.5l2.2 11h10.6L20.5 8H6.6 M9.5 19.5a1 1 0 1 0 0 .1 M17 19.5a1 1 0 1 0 0 .1' },
+        { title: 'Legal SEO', body: 'Our Legal SEO services help Law Firms rank higher on Google with tailored strategies from a trusted SEO agency and expert company for better visibility.', icon: 'M12 3v18 M7 21h10 M5 7h14 M5 7l-3 7a3 3 0 0 0 6 0z M19 7l-3 7a3 3 0 0 0 6 0z' },
+        { title: 'Local SEO', body: 'Be the first business people find locally. Boost visibility, appear on Google Maps, attract nearby customers, increase walk-ins and calls with a top local SEO consultant.', icon: 'M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z M12 7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z' },
+        { title: 'Technical SEO', body: 'Enhance site performance with expert Technical SEO. As a trusted website optimization firm and Google Analytics agency, we fix backend issues, boost speed, and improve indexing.', icon: 'M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z M12 2.5v3 M12 18.5v3 M4.6 4.6l2.1 2.1 M17.3 17.3l2.1 2.1 M2.5 12h3 M18.5 12h3 M4.6 19.4l2.1-2.1 M17.3 6.7l2.1-2.1' },
+        { title: 'Answer Engine Optimization (AEO)', body: 'Optimize content to appear in featured snippets, knowledge panels, and instant answers that search engines display.', icon: 'M4 5h16v11H9l-5 4z M8 9.5h8 M8 12.5h5' },
+        { title: 'Generative Engine Optimization (GEO)', body: 'Help your brand appear in AI-generated answers by optimizing content structure, entities, and authority signals across the web.', icon: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z' },
+        { title: 'Voice Search Optimization', body: 'Optimize conversational queries and structured content so voice assistants can recommend your business in voice-based searches.', icon: 'M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z M5.5 11a6.5 6.5 0 0 0 13 0 M12 17.5V21 M8.5 21h7' },
+      ],
+      heroIdle: !this.state.heroSent,
+      heroSent: !!this.state.heroSent,
+      heroName: this.state.heroSent || '',
+      submitHero: (e) => { e.preventDefault(); const d = new FormData(e.target); this.setState({ heroSent: String(d.get('name') || '').trim().split(' ')[0] || 'there' }); },
+      logoLoop: (() => { const l = ['HIOKI', 'EASY ACCESS', 'Terra', '5 MINUTES TO DELHI', 'PARTY RACK', 'VISIOWORLD', 'GURUKUL', 'FECH']; return l.concat(l); })(),
+      footIdle: !this.state.footSent,
+      footSent: !!this.state.footSent,
+      footName: this.state.footSent || '',
+      submitFooter: (e) => { e.preventDefault(); const d = new FormData(e.target); this.setState({ footSent: String(d.get('name') || '').trim().split(' ')[0] || 'there' }); },
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      activeMenuData: this.state.activeMenu !== null ? this.megaMenus[this.state.activeMenu] : null,
+      clearActiveMenu: () => this.setState({ activeMenu: null }),
+      navLinks: this.navLinks.map((l, i) => ({ ...l, onEnter: () => this.setState({ activeMenu: i }), onTap: (e) => { if (this.megaMenus[i]) { e.preventDefault(); this.setState(s => ({ activeMenu: s.activeMenu === i ? null : i })); } } })),
+      footerNav: this.footerNav,
+      wideNav: vw >= 880,
+      narrowNav: vw < 880,
+      showAudit: vw >= 1180,
+      journey: this.journeyRaw.map((j, i) => ({ ...j, hasArrow: i < this.journeyRaw.length - 1 })),
+      steps,
+      capabilities,
+      mapGridStyle: `display:grid;grid-template-columns:repeat(${mapCols},1fr);gap:16px;align-items:start;`,
+      outcomeGridStyle: `display:grid;grid-template-columns:repeat(${vw >= 1080 ? 3 : vw >= 700 ? 2 : 1},1fr);gap:18px;`,
+      outcomes: this.outcomesRaw.map(o => ({
+        label: o.label,
+        dir: o.dir === 'up' ? '↑' : '↓',
+        dirStyle: `font:700 14px 'Montserrat',sans-serif;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:${o.dir === 'up' ? '#1A6AFF' : '#E07C00'};background:${o.dir === 'up' ? '#EAF1FF' : '#FFF3E2'};`,
+        barStyle: `width:${o.w};height:100%;border-radius:6px;background:${o.dir === 'up' ? 'linear-gradient(90deg,#1A6AFF,#5B9BFF)' : 'linear-gradient(90deg,#FF9D2E,#FFC078)'};transition:width 1.1s cubic-bezier(.2,.7,.2,1);`,
+      })),
+      outcomeChain: this.outcomeChainRaw.map((label, i) => ({ label, hasArrow: i < this.outcomeChainRaw.length - 1 })),
+      fitGridStyle: `display:grid;grid-template-columns:repeat(${vw >= 900 ? 2 : 1},1fr);gap:20px;`,
+      opportunityItems: this.opportunityItems,
+      fitGood: this.fitGood,
+      fitBad: this.fitBad,
+      founderPoints: this.founderPoints,
+      aiLogos: this.aiLogos,
+      caseStudies: this.caseStudies,
+      faqs: this.faqDefs.map((q, i) => {
+        const open = this.state.openFaq === i;
+        return {
+          question: q.question, answer: q.answer, open,
+          onClick: () => this.setState(s => ({ openFaq: s.openFaq === i ? null : i })),
+          iconStyle: `font:300 22px 'Poppins',sans-serif;color:#1A6AFF;line-height:1;flex-shrink:0;transition:transform .2s;transform:rotate(${open ? 45 : 0}deg);`,
+        };
+      }),
+      typedText: this.state.typed,
+      caretStyle: `display:inline-block;width:1.5px;height:16px;background:${activeAccent};margin-left:2px;vertical-align:-2px;opacity:${this.state.caretOn ? 1 : 0};transition:background .3s;`,
+      cardGlowStyle: `position:absolute;top:-110px;right:-70px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,${this.hexToRgba(activeAccent, 0.4)},${this.hexToRgba(activeAccent, 0)} 68%);pointer-events:none;transition:background .4s;`,
+      engineTabs: this.engines.map((e, i) => {
+        const on = i === this.state.engine;
+        return {
+          label: e.label, src: e.src,
+          onClick: () => this.setState({ engine: i }),
+          style: `display:flex;align-items:center;gap:6px;font:600 11.5px 'Montserrat',sans-serif;letter-spacing:0.03em;padding:7px 12px;border-radius:100px;cursor:pointer;white-space:nowrap;border:1px solid ${on ? e.accent : '#2A2A2C'};color:${on ? '#fff' : '#9A9A97'};background:${on ? this.hexToRgba(e.accent, 0.18) : '#141416'};transition:all .15s;`,
+        };
+      }),
+      resultRows: [0, 1, 2].map(i => {
+        const you = i === 1;
+        return {
+          style: 'display:flex;gap:12px;align-items:center;padding:9px 0;' + (i < 2 ? 'border-bottom:1px solid #1E1E21;' : ''),
+          barStyle: `height:8px;width:${[72, 60, 50][i]}%;background:${you ? activeAccent : '#2A2A2C'};border-radius:4px;transition:background .3s;`,
+          tag: you ? 'You' : 'Competitor',
+          tagStyle: `font:600 10px 'Montserrat',sans-serif;letter-spacing:0.05em;text-transform:uppercase;padding:4px 8px;border-radius:4px;flex-shrink:0;color:${you ? activeAccent : '#7a7a77'};background:${you ? this.hexToRgba(activeAccent, 0.16) : '#1A1A1D'};transition:all .3s;`,
+        };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

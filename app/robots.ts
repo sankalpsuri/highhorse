@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: '/high-horse/',
+        disallow: ['/high-horse/', '/landing', '/seo-landing'],
       },
     ],
     sitemap: 'https://highhorse.in/sitemap.xml',
