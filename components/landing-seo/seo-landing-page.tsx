@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback, type FormEvent } from "react"
+import { useState, useEffect, useRef, type FormEvent } from "react"
 import Image from "next/image"
 import { submitLandingLead, type LandingLeadResult } from "@/lib/submit-landing-lead"
 import {
@@ -87,17 +87,10 @@ export default function SeoLandingPage() {
   const [typed, setTyped] = useState("")
   const [caretOn, setCaretOn] = useState(true)
 
-  const [roadOn, setRoadOn] = useState(false)
-  const [roadStep, setRoadStep] = useState(-1)
-  const [noMotion, setNoMotion] = useState(false)
-
   const ctxRef = useRef({
     page_url: "", referrer: "", user_agent: "",
     utm_source: "", utm_medium: "", utm_campaign: "", utm_term: "", utm_content: "",
   })
-
-  const roadRef = useRef<HTMLDivElement>(null)
-  const roadAutoRef = useRef(true)
 
   useEffect(() => {
     const p = new URLSearchParams(window.location.search)
@@ -142,53 +135,6 @@ export default function SeoLandingPage() {
     timer = setTimeout(tick, 600)
     const blink = setInterval(() => setCaretOn(v => !v), 530)
     return () => { clearTimeout(timer); clearInterval(blink) }
-  }, [])
-
-  useEffect(() => {
-    const el = roadRef.current
-    if (!el) return
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setNoMotion(true)
-      setRoadOn(true)
-      setRoadStep(WORK_STEPS.length - 1)
-      return
-    }
-    let started = false
-    const start = () => {
-      if (started) return
-      started = true
-      setRoadOn(true)
-      roadAutoRef.current = true
-      let step = 0
-      const advance = () => {
-        setRoadStep(step)
-        step++
-        if (step < WORK_STEPS.length) setTimeout(advance, 450)
-      }
-      setTimeout(advance, 800)
-    }
-    if (!("IntersectionObserver" in window)) { start(); return }
-    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { start(); io.disconnect() } }, { threshold: 0.35 })
-    io.observe(el)
-    const fallback = setTimeout(() => {
-      if (!started && el) {
-        const r = el.getBoundingClientRect()
-        if (r.top < window.innerHeight && r.bottom > 0) start()
-      }
-    }, 1500)
-    const onScroll = () => {
-      if (started) return
-      const r = el.getBoundingClientRect()
-      if (r.top < window.innerHeight * 0.65 && r.bottom > 0) start()
-    }
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => { io.disconnect(); clearTimeout(fallback); window.removeEventListener("scroll", onScroll) }
-  }, [])
-
-  const goStep = useCallback((i: number) => {
-    roadAutoRef.current = false
-    setRoadOn(true)
-    setRoadStep(i)
   }, [])
 
   const openForm = () => { setFormOpen(true); setPopupSent(null); setPopupErrors({}) }
@@ -496,25 +442,18 @@ export default function SeoLandingPage() {
 
       {/* ═══ HOW WE WORK ═══ */}
       <section id="how-we-work" style={{ background: "#FAFAF8", borderTop: "1px solid #EEEEEC", borderBottom: "1px solid #EEEEEC" }}>
-        <div ref={roadRef} className={s.seoSec} style={{ maxWidth: 1240, margin: "0 auto", padding: "96px 32px", display: "flex", flexDirection: "column", alignItems: "center", gap: 56 }}>
+        <div className={s.seoSec} style={{ maxWidth: 1240, margin: "0 auto", padding: "96px 32px", display: "flex", flexDirection: "column", alignItems: "center", gap: 56 }}>
           <h2 style={{ font: "700 clamp(1.9rem,2.8vw,2.6rem)/1.2 'Montserrat', sans-serif", margin: 0, textAlign: "center", maxWidth: 720, color: "#0A0A0C" }}>How We Work to Ensure You <span style={{ color: "#1A6AFF" }}>Rank #1 on Google</span></h2>
           <div className={s.stepGrid} style={{ width: "100%", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", rowGap: 48 }}>
-            {WORK_STEPS.map((w, i) => {
-              const done = i <= roadStep
-              const cur = i === roadStep
-              return (
-                <div key={w.n} onClick={() => goStep(i)} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16, marginRight: -10, cursor: "pointer", opacity: roadOn ? 1 : 0, transform: roadOn ? "translateY(0)" : "translateY(18px)", transition: noMotion ? "none" : `opacity 0.5s ease ${roadOn && roadStep < 0 ? `${(i * 0.07).toFixed(2)}s` : "0s"}, transform 0.5s cubic-bezier(.2,.8,.3,1) ${roadOn && roadStep < 0 ? `${(i * 0.07).toFixed(2)}s` : "0s"}` }}>
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0A0A0C" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={w.icon} />
-                  </svg>
-                  <div style={{ position: "relative", width: "100%", height: 96, background: "#0A0A0C", clipPath: "polygon(0 0,calc(100% - 24px) 0,100% 50%,calc(100% - 24px) 100%,0 100%,24px 50%)", transition: noMotion ? "none" : "transform 0.2s" }} className={s.chevronHover}>
-                    <div style={{ position: "absolute", inset: 0, background: "var(--step-fill)", transformOrigin: "0 50%", transform: `scaleX(${done ? 1 : 0})`, transition: noMotion ? "none" : "transform 0.7s cubic-bezier(.6,.05,.3,1)" }} />
-                    <div style={{ position: "relative", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", padding: "0 34px 0 38px", boxSizing: "border-box", font: "700 15px/1.3 'Montserrat', sans-serif", color: "#FFFFFF", textAlign: "center" }}>{w.title}</div>
-                  </div>
-                  <div style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: done ? "var(--step-active)" : "var(--step-idle)", transition: noMotion ? "none" : "color 0.4s" }}>Step {w.n}</div>
-                </div>
-              )
-            })}
+            {WORK_STEPS.map((w) => (
+              <div key={w.n} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16, marginRight: -10 }}>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0A0A0C" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                  <path d={w.icon} />
+                </svg>
+                <div style={{ width: "100%", height: 96, background: "var(--step-fill)", clipPath: "polygon(0 0,calc(100% - 24px) 0,100% 50%,calc(100% - 24px) 100%,0 100%,24px 50%)", display: "flex", alignItems: "center", justifyContent: "center", padding: "0 34px 0 38px", boxSizing: "border-box", font: "700 15px/1.3 'Montserrat', sans-serif", color: "#FFFFFF", textAlign: "center" }}>{w.title}</div>
+                <div style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "var(--step-active)" }}>Step {w.n}</div>
+              </div>
+            ))}
           </div>
           <button type="button" onClick={openForm} style={{ font: "600 15px 'Montserrat', sans-serif", background: "#0A0A0C", color: "#fff", border: "none", cursor: "pointer", padding: "18px 36px", borderRadius: 100, transition: "transform 0.18s, background 0.18s" }} className={s.btnDarkHover}>Get a Free Audit</button>
         </div>

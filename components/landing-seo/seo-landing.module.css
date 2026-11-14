@@ -213,11 +213,6 @@
   box-shadow: 0 32px 64px rgba(10, 10, 12, 0.2);
 }
 
-/* ── How We Work chevron hover ────────────────────────── */
-.chevronHover:hover {
-  transform: translateY(-4px);
-}
-
 /* ── Nav links ─────────────────────────────────────────── */
 .navLink {
   display: flex;
@@ -467,7 +462,6 @@
 .stepGrid {
   --step-fill: #1A6AFF;
   --step-active: #0A0A0C;
-  --step-idle: #8a8a86;
 }
 
 @media (max-width: 767.98px) {
