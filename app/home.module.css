@@ -196,6 +196,32 @@
   margin: 0 0 20px;
 }
 
+.heroCtaWrap {
+  margin: 24px 0;
+}
+
+.heroCtaWrap > :first-child {
+  margin-top: 0;
+  background: #0A0A0C;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.heroCtaWrap > :first-child:hover {
+  background: #1a1a1c;
+}
+
+.heroCtaWrap > :first-child:focus-visible {
+  outline: 2px solid #0A0A0C;
+  outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  .heroCtaWrap > :first-child {
+    width: 100%;
+    min-height: 48px;
+  }
+}
+
 .partnerBadge {
   display: inline-flex;
   align-items: center;
@@ -1739,6 +1765,10 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
+.faqSectionLanding {
+  background: #ffffff;
+}
+
 .faqQuestionText {
   font: 600 15.5px/1.45 'Montserrat', sans-serif;
   color: #0A0A0C;
@@ -1987,4 +2017,54 @@
 .ctaListText {
   font: 400 14px/1.5 'Poppins', sans-serif;
   text-wrap: pretty;
+}
+
+/* ── Landing-page-only mobile section padding ──────────────── */
+.landingPage {}
+
+@media (max-width: 767.98px) {
+  .landingPage .heroInner {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .landingPage .journeyWrap {
+    padding-bottom: 30px;
+  }
+
+  .landingPage .proofGrid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .landingPage .section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .landingPage .faqInner {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .landingPage .ctaInner {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 374px) {
+  .landingPage .heroInner {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .landingPage .journeyWrap {
+    padding-bottom: 30px;
+  }
+
+  .landingPage .section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 }

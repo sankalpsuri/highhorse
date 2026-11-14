@@ -1,14 +1,36 @@
 export const SEO_LANDING_SLUG = "seo-landing"
 
-export const LOGO_LIST = [
-  "HIOKI",
-  "EASY ACCESS",
-  "Terra",
-  "5 MINUTES TO DELHI",
-  "PARTY RACK",
-  "VISIOWORLD",
-  "GURUKUL",
-  "FECH",
+export const ENGINES = [
+  { label: "Google", src: "/assets/landing-seo/logo-google.webp", accent: "#4285F4" },
+  { label: "ChatGPT", src: "/assets/landing-seo/logo-chatgpt.png", accent: "#10A37F" },
+  { label: "Gemini", src: "/assets/landing-seo/logo-gemini.webp", accent: "#8E6FF0" },
+  { label: "Perplexity", src: "/assets/landing-seo/logo-perplexity.webp", accent: "#22B2B2" },
+  { label: "Claude", src: "/assets/landing-seo/logo-claude.png", accent: "#D97757" },
+]
+
+export const SEARCH_QUERIES = [
+  "best crm for real estate agents",
+  "industrial insulating varnish supplier near me",
+  "company formation consultants in dubai cost",
+  "is it worth hiring an seo agency for b2b",
+  "play school admission fees in gurgaon",
+  "top rated ready meals delivered india",
+  "alternatives to hubspot for small teams",
+  "moving and cleaning services same day",
+]
+
+export const CASE_CARDS = [
+  { img: "/assets/landing-seo/case-hioki-v2.jpg", tag: "B2B Industrial Electronics", name: "Hioki", desc: "Scaled qualified B2B leads for Hioki through targeted Google Ads campaigns." },
+  { img: "/assets/landing-seo/case-fech-v2.jpg", tag: "Local Services", name: "FECH Moving & Cleaning", desc: "Taking FECH to the top search results for moving and cleaning." },
+  { img: "/assets/landing-seo/case-party-v2.jpg", tag: "E-commerce · Party Supplies", name: "Party Rack", desc: "Helped Party Rack start from scratch and go online." },
+  { img: "/assets/landing-seo/case-justpure-v2.jpg", tag: "E-commerce · B2C", name: "Just Pure", desc: "Built a Shopify website to power B2C ecommerce growth for Just Pure." },
+  { img: "/assets/landing-seo/case-speedex-v2.jpg", tag: "Consumer Electronics", name: "Speedex", desc: "Website and marketplace optimisation driving top search rankings." },
+  { img: "/assets/landing-seo/case-setmi-v2.jpg", tag: "B2B Industrial Electronics", name: "Setmi India", desc: "Powering Setmi India’s sales journey." },
+  { img: "/assets/landing-seo/case-easyaccess-v2.jpg", tag: "Business Consultancy", name: "Easy Access Management Consultancies", desc: "Consistent lead generation for business setup in Dubai, UAE." },
+  { img: "/assets/landing-seo/case-bawa-v2.jpg", tag: "Industrial Manufacturing", name: "Bawa Polymers", desc: "Boosting Bawa’s online presence in the insulating varnish industry." },
+  { img: "/assets/landing-seo/case-5min-v2.jpg", tag: "E-commerce · Ready Meals", name: "5 Minutes to Delhi", desc: "Seamless digital transformation across web and marketplace." },
+  { img: "/assets/landing-seo/case-antharaaah-v2.jpg", tag: "Hospitality", name: "Antharaaah Nature Stay", desc: "SEO-optimised websites to seamless booking funnels that drive conversions." },
+  { img: "/assets/landing-seo/case-gurukul-v2.jpg", tag: "Education · Play School", name: "Gurukul", desc: "Building Gurukul’s digital presence with SEO and clear brand storytelling." },
 ]
 
 export const AI_SERVICES = [
@@ -125,7 +147,7 @@ export const WORK_STEPS = [
 
 export const RESULTS = [
   {
-    img: "/assets/landing-seo/gsc-terra-cropped.png",
+    img: "/assets/landing-seo/gsc-terra-crop.png",
     alt: "Terra Google Search Console results",
     points: [
       "1000% growth in search impressions within 3 months for Terra",
@@ -134,7 +156,7 @@ export const RESULTS = [
     ],
   },
   {
-    img: "/assets/landing-seo/gsc-bawa-cropped.png",
+    img: "/assets/landing-seo/gsc-bawa-crop.png",
     alt: "Bawa Polymers Google Search Console results",
     points: [
       "Organic traffic tripled within 12 months for Bawa",
@@ -143,7 +165,7 @@ export const RESULTS = [
     ],
   },
   {
-    img: "/assets/landing-seo/gsc-fech-cropped.png",
+    img: "/assets/landing-seo/gsc-fech-crop.png",
     alt: "FECH Google Search Console results",
     points: [
       "5× increase in organic leads within 12 months for FECH",
@@ -152,7 +174,7 @@ export const RESULTS = [
     ],
   },
   {
-    img: "/assets/landing-seo/gsc-hioki-cropped.png",
+    img: "/assets/landing-seo/gsc-hioki-crop.png",
     alt: "HIOKI Google Search Console results",
     points: [
       "Tripled average keyword ranking positions within 12 months",

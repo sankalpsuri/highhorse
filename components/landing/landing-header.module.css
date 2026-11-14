@@ -105,6 +105,11 @@
     font-size: 15px;
   }
 
+  .contactItem,
+  .emailItem {
+    display: none;
+  }
+
   .contactText {
     display: none;
   }
@@ -137,9 +142,3 @@
   }
 }
 
-/* ── Below 360px: hide email badge ───────────────────────── */
-@media (max-width: 359px) {
-  .emailItem {
-    display: none;
-  }
-}

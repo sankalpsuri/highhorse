@@ -68,7 +68,7 @@ export default async function LandingPage() {
   )
 
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} ${styles.landingPage}`}>
       {/* ── HERO ─────────────────────────────────────────────── */}
       <div className={styles.hero}>
         <div className={styles.heroGrid} />
@@ -91,10 +91,12 @@ export default async function LandingPage() {
               Right now, people are searching for what you sell. We make sure they find you, turn
               that demand into leads and sales, and show you exactly how much revenue it produced.
             </p>
-            {/* CTA buttons removed on landing page */}
             <p className={styles.heroNote}>
               For established businesses with real search demand and serious growth ambitions.
             </p>
+            <div className={styles.heroCtaWrap}>
+              <LandingQuoteBtn />
+            </div>
             <a
               href="https://partnersdirectory.withgoogle.com/partners/6812870132"
               target="_blank"
@@ -370,7 +372,7 @@ export default async function LandingPage() {
       </div>
 
       {/* ── FAQ ──────────────────────────────────────────────── */}
-      <div className={styles.faqSection}>
+      <div className={`${styles.faqSection} ${styles.faqSectionLanding}`}>
         <div className={styles.faqInner}>
           <div className={styles.faqSidebar}>
             <div className={styles.sectionLabel}>Before you enquire</div>
