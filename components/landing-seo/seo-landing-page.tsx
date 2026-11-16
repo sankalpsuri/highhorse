@@ -235,7 +235,7 @@ export default function SeoLandingPage() {
             </h1>
             <div style={{ font: "700 clamp(1.2rem,1.7vw,1.5rem)/1.3 'Montserrat', sans-serif", color: "#FFFFFF" }}>Top SEO Services in India</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {["40+ Industries Served", "₹5Cr+ revenue generated", "90% referral business rate"].map((txt) => (
+              {["40+ Industries Served", "₹100Cr+ revenue generated for client", "90% referral business rate"].map((txt) => (
                 <div key={txt} style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <span style={{ width: 24, height: 24, borderRadius: 7, background: "rgba(26,106,255,0.18)", border: "1px solid rgba(91,146,255,0.5)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <CheckSvg />

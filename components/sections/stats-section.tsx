@@ -72,7 +72,7 @@ export function StatsSection({ eyebrow, heading, bodyText, layout, theme, warnin
           {stats && stats.length > 0 && (
             <div className="rsp-grid-3" style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
               gap: 14,
             }}>
               {stats.map((stat, i) => (

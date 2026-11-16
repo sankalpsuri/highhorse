@@ -332,15 +332,19 @@ export function ChallengeGridSection({ eyebrow, layout, headerLayout, background
             }}>
               {challenges.map((text, i) => {
                 const palette = cardColors?.[i] ? (colorPalettes[cardColors[i]] || defaultPalette) : defaultPalette
+                const sepIdx = text.indexOf(' — ')
+                const title = sepIdx >= 0 ? text.slice(0, sepIdx) : text
+                const body = sepIdx >= 0 ? text.slice(sepIdx + 3) : null
                 return (
                   <div key={i} className="hh-card-hover" style={{
                     border: `1px solid ${palette.border}`,
                     borderRadius: 12,
                     background: palette.bg,
-                    padding: 22,
+                    padding: body ? 24 : 22,
                     display: 'flex',
+                    flexDirection: body ? 'column' as const : 'row' as const,
                     gap: 12,
-                    alignItems: 'flex-start',
+                    alignItems: body ? 'flex-start' : 'flex-start',
                   }}>
                     <span style={{
                       fontFamily: "'Montserrat', sans-serif",
@@ -355,14 +359,38 @@ export function ChallengeGridSection({ eyebrow, layout, headerLayout, background
                     }}>
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <span style={{
-                      fontFamily: "'Poppins', sans-serif",
-                      fontSize: 14.5,
-                      lineHeight: 1.55,
-                      color: '#3A3A3E',
-                    }}>
-                      {text}
-                    </span>
+                    {body ? (
+                      <>
+                        <h3 style={{
+                          fontFamily: "'Montserrat', sans-serif",
+                          fontWeight: 700,
+                          fontSize: 16,
+                          lineHeight: 1.35,
+                          margin: 0,
+                          color: '#111111',
+                        }}>
+                          {title}
+                        </h3>
+                        <p style={{
+                          fontFamily: "'Poppins', sans-serif",
+                          fontSize: 14,
+                          lineHeight: 1.6,
+                          color: '#55555A',
+                          margin: 0,
+                        }}>
+                          {body}
+                        </p>
+                      </>
+                    ) : (
+                      <span style={{
+                        fontFamily: "'Poppins', sans-serif",
+                        fontSize: 14.5,
+                        lineHeight: 1.55,
+                        color: '#3A3A3E',
+                      }}>
+                        {text}
+                      </span>
+                    )}
                   </div>
                 )
               })}

@@ -28,6 +28,7 @@ export default defineType({
         list: [
           {title: 'Divider rows', value: 'divider'},
           {title: 'Stacked (bold title + description)', value: 'stacked'},
+          {title: 'Highlight (bold blue value inline)', value: 'value-highlight'},
         ],
       },
       description: 'How bullets render. "stacked" splits on " — " to show bold title above description.',
@@ -43,6 +44,7 @@ export default defineType({
         list: [
           {title: 'Pill (default)', value: 'pill'},
           {title: 'Rounded rectangle', value: 'rounded'},
+          {title: 'Blue (blue bg with shadow)', value: 'blue'},
         ],
       },
       description: 'Override the button shape for this section only.',
@@ -71,6 +73,18 @@ export default defineType({
         ],
       },
       initialValue: 'right',
+    }),
+    defineField({
+      name: 'background',
+      title: 'Background',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Default (gray)', value: 'default'},
+          {title: 'White', value: 'white'},
+        ],
+      },
+      description: 'Section background color. Only applies to text-only (no image) layouts.',
     }),
   ],
   preview: {

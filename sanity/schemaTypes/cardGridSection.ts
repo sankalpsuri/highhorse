@@ -25,7 +25,7 @@ export default defineType({
       name: 'style',
       title: 'Style',
       type: 'string',
-      options: {list: [{title: 'Default', value: 'default'}, {title: 'Dashed border', value: 'dashed'}, {title: 'Clean (no borders)', value: 'clean'}, {title: 'Dark', value: 'dark'}, {title: 'Tagged (chip + bullets)', value: 'tagged'}]},
+      options: {list: [{title: 'Default', value: 'default'}, {title: 'Dashed border', value: 'dashed'}, {title: 'Clean (no borders)', value: 'clean'}, {title: 'Dark', value: 'dark'}, {title: 'Tagged (chip + bullets)', value: 'tagged'}, {title: 'Icon grid (bordered cards with icons)', value: 'icon-grid'}, {title: 'Badge grid (numbered badge chips)', value: 'badge-grid'}, {title: 'Problem grid (orange numbered title-only)', value: 'problem-grid'}]},
       initialValue: 'default',
     }),
     defineField({
@@ -53,6 +53,8 @@ export default defineType({
       },
       description: 'Controls how badgeColor is applied. "badge" tints only the icon badge; "full" tints the entire card background.',
     }),
+    defineField({name: 'ctaText', title: 'CTA button text', type: 'string', description: 'Button shown in header (split layout only).'}),
+    defineField({name: 'ctaLink', title: 'CTA link', type: 'string', description: 'CTA button destination.'}),
     defineField({
       name: 'cards',
       title: 'Cards',

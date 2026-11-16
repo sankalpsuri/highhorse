@@ -125,18 +125,19 @@ export function HeroSection({ badgeText, badgeStyle, eyebrowText, eyebrowDotColo
   const centered = textAlign === 'center'
   const hasWidget = heroWidget === 'sponsored-placement'
   const hasSideContent = hasWidget || heroImage?.asset
+  const isWhiteBanner = heroBackground === 'white' && heroImage?.asset && !hasWidget
 
   return (
     <section style={{ background: heroBackground === 'white' ? '#FFFFFF' : '#F5F5F4', borderBottom: heroBackground === 'white' ? 'none' : '1px solid #E4E4E4', position: 'relative', overflow: 'hidden' }}>
       <div className="hh-grid-bg" aria-hidden="true" />
       <div className="hh-glow-blue" aria-hidden="true" />
-      {hasWidget && (
+      {(hasWidget || isWhiteBanner) && (
         <div aria-hidden="true" style={{ position: 'absolute', top: 220, right: 440, width: 420, height: 420, borderRadius: '50%', background: 'radial-gradient(circle,rgba(255,157,46,0.18),rgba(255,157,46,0) 66%)', pointerEvents: 'none' }} />
       )}
       <div className="rsp-hero-pad" style={{
         maxWidth: 1280,
         margin: '0 auto',
-        padding: hasWidget ? '80px 32px 64px' : '88px 32px 96px',
+        padding: hasWidget ? '80px 32px 64px' : isWhiteBanner ? '80px 32px 56px' : '88px 32px 96px',
         textAlign: centered ? 'center' as const : 'left' as const,
         position: 'relative',
         ...(hasWidget ? { display: 'flex', gap: 56, flexWrap: 'wrap' as const, alignItems: 'center' } : {}),
@@ -298,7 +299,7 @@ export function HeroSection({ badgeText, badgeStyle, eyebrowText, eyebrowDotColo
           )}
         </div>
         {hasWidget && <SponsoredPlacementWidget />}
-        {!hasWidget && heroImage?.asset ? (
+        {!hasWidget && !isWhiteBanner && heroImage?.asset ? (
           <div className={mobileImageSquare ? 'hero-img-mobile-square' : undefined} style={{ marginTop: 16 }}>
             <Image
               src={urlFor(heroImage).url()}
@@ -310,7 +311,7 @@ export function HeroSection({ badgeText, badgeStyle, eyebrowText, eyebrowDotColo
               style={{ width: '100%', height: 'auto', borderRadius: 8, maxWidth: 1280 }}
             />
           </div>
-        ) : !hasWidget && heroImage ? (
+        ) : !hasWidget && !isWhiteBanner && heroImage ? (
           <div style={{
             marginTop: 48,
             aspectRatio: '16 / 7',
@@ -327,6 +328,28 @@ export function HeroSection({ badgeText, badgeStyle, eyebrowText, eyebrowDotColo
           </div>
         ) : null}
       </div>
+      {isWhiteBanner && (
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px 96px', position: 'relative' }}>
+          <div style={{
+            borderRadius: 16,
+            overflow: 'hidden',
+            border: '1px solid #E6E6E4',
+            aspectRatio: '21 / 7',
+            minHeight: 220,
+            boxShadow: '0 30px 60px rgba(10,10,12,0.1)',
+          }}>
+            <Image
+              src={urlFor(heroImage).url()}
+              alt={headline}
+              width={2560}
+              height={854}
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              quality={90}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }

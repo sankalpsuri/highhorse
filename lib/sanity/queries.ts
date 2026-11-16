@@ -63,7 +63,8 @@ export const servicePageQuery = groq`
         ctaStyle,
         image{ ..., asset-> },
         imagePosition,
-        imageStyle
+        imageStyle,
+        background
       },
       _type == "cardGridSection" => {
         eyebrow,
@@ -80,6 +81,8 @@ export const servicePageQuery = groq`
         background,
         columns,
         tintStyle,
+        ctaText,
+        ctaLink,
         cards[]{
           _key,
           icon{ ..., asset-> },
@@ -175,6 +178,7 @@ export const servicePageQuery = groq`
         heading,
         subtext,
         headerLayout,
+        background,
         cards[]{ _key, clientName, badgeColor, resultChartImage{ ..., asset-> }, results }
       },
       _type == "videoShowcaseSection" => {

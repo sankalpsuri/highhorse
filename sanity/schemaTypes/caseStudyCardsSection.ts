@@ -9,6 +9,12 @@ export default defineType({
     defineField({name: 'heading', title: 'Heading', type: 'string'}),
     defineField({name: 'subtext', title: 'Subtext', type: 'text', rows: 3}),
     defineField({
+      name: 'background',
+      title: 'Background',
+      type: 'string',
+      options: {list: [{title: 'Default (white)', value: 'default'}, {title: 'Cream', value: 'cream'}]},
+    }),
+    defineField({
       name: 'headerLayout',
       title: 'Header layout',
       type: 'string',

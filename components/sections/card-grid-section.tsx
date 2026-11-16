@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { SanityImage as Image } from '@/components/sanity-image'
 import { urlFor } from '@/lib/sanity/client'
 import { IconBadge } from '@/components/icon-badge'
@@ -38,6 +39,8 @@ interface CardGridSectionProps {
   background?: string
   columns?: number
   tintStyle?: string
+  ctaText?: string
+  ctaLink?: string
   cards?: Card[]
   accentStyle?: string
 }
@@ -61,7 +64,7 @@ const sectionEyebrowStyle: React.CSSProperties = {
   color: '#1A6AFF',
 }
 
-export function CardGridSection({ eyebrow, heading, subtext, subtextParagraphs, listLabel, closingText, showGlow, darkCardStyle, cardContainerStyle, headerLayout, style, background, columns, tintStyle, cards, accentStyle }: CardGridSectionProps) {
+export function CardGridSection({ eyebrow, heading, subtext, subtextParagraphs, listLabel, closingText, showGlow, darkCardStyle, cardContainerStyle, headerLayout, style, background, columns, tintStyle, ctaText, ctaLink, cards, accentStyle }: CardGridSectionProps) {
   const descParagraphs = subtextParagraphs?.length ? subtextParagraphs : null
 
   /* ───── Dark style ───── */
@@ -231,9 +234,9 @@ export function CardGridSection({ eyebrow, heading, subtext, subtextParagraphs, 
 
             if (darkCardStyle === 'numbered') {
               return (
-                <div className="rsp-grid-5" style={{
+                <div className="rsp-grid-3" style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                   gap: 18,
                   marginBottom: closingText ? 40 : 0,
                 }}>
@@ -248,7 +251,7 @@ export function CardGridSection({ eyebrow, heading, subtext, subtextParagraphs, 
                         padding: 26,
                         display: 'flex',
                         flexDirection: 'column' as const,
-                        gap: 14,
+                        gap: 12,
                       }}
                     >
                       <div style={{
@@ -264,12 +267,23 @@ export function CardGridSection({ eyebrow, heading, subtext, subtextParagraphs, 
                         <h3 style={{
                           fontFamily: "'Montserrat', sans-serif",
                           fontWeight: 600,
-                          fontSize: 16,
+                          fontSize: 16.5,
                           lineHeight: 1.4,
                           margin: 0,
                         }}>
                           {card.title}
                         </h3>
+                      )}
+                      {card.description && (
+                        <p style={{
+                          fontFamily: "'Poppins', sans-serif",
+                          fontSize: 14,
+                          lineHeight: 1.6,
+                          color: '#9A9A97',
+                          margin: 0,
+                        }}>
+                          {card.description}
+                        </p>
                       )}
                     </div>
                   ))}
@@ -370,6 +384,362 @@ export function CardGridSection({ eyebrow, heading, subtext, subtextParagraphs, 
             }}>
               {closingText}
             </p>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  /* ───── Icon grid (bordered cards with icon badges on gray bg) ───── */
+  if (style === 'icon-grid') {
+    const iconGridDesc = descParagraphs?.length
+      ? (
+        <div>
+          {descParagraphs.map((text, i) => (
+            <p key={i} style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 16,
+              lineHeight: 1.7,
+              color: '#55555A',
+              margin: i < descParagraphs.length - 1 ? '0 0 6px' : '0',
+              maxWidth: 760,
+            }}>
+              {text}
+            </p>
+          ))}
+        </div>
+      )
+      : subtext ? (
+        <p style={{
+          fontFamily: "'Poppins', sans-serif",
+          fontSize: 16,
+          lineHeight: 1.7,
+          color: '#55555A',
+          margin: 0,
+          maxWidth: 760,
+        }}>
+          {subtext}
+        </p>
+      ) : undefined
+
+    const iconGridBg = background === 'white' ? '#FFFFFF' : '#F7F7F6'
+    const iconGridBorder = background === 'white' ? 'none' : '1px solid #EAEAE8'
+
+    return (
+      <section style={{ background: iconGridBg, borderTop: iconGridBorder, borderBottom: iconGridBorder }}>
+        <div className="rsp-section">
+          <SectionHeader
+            layout={headerLayout === 'split' ? 'split' : 'stacked'}
+            eyebrow={eyebrow ? <span style={sectionEyebrowStyle}>{eyebrow}</span> : undefined}
+            heading={heading ? (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
+                lineHeight: 1.16,
+                margin: 0,
+                maxWidth: 640,
+              }}>
+                {heading}
+              </h2>
+            ) : <span />}
+            description={iconGridDesc}
+          />
+          {cards && cards.length > 0 && (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
+              gap: 18,
+            }}>
+              {cards.map((card, i) => (
+                <div
+                  key={card._key || i}
+                  className="hh-card-hover"
+                  style={{
+                    border: '1px solid #E6E6E4',
+                    borderRadius: 16,
+                    background: '#fff',
+                    padding: 26,
+                    display: 'flex',
+                    flexDirection: 'column' as const,
+                    gap: 14,
+                  }}
+                >
+                  {(card.svgPath || card.icon?.asset) && (
+                    <div style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: 11,
+                      background: '#EAF1FF',
+                      border: '1px solid #C9D8FB',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                    }}>
+                      {card.svgPath ? (
+                        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#1A6AFF" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                          <path d={card.svgPath} />
+                        </svg>
+                      ) : card.icon?.asset ? (
+                        <Image
+                          src={urlFor(card.icon).url()}
+                          alt={card.title || ''}
+                          width={21}
+                          height={21}
+                          quality={90}
+                          style={{ objectFit: 'scale-down' }}
+                        />
+                      ) : null}
+                    </div>
+                  )}
+                  {card.title && (
+                    <h3 style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 16.5,
+                      lineHeight: 1.32,
+                      margin: 0,
+                    }}>
+                      {card.title}
+                    </h3>
+                  )}
+                  {card.description && (
+                    <p style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: 14,
+                      lineHeight: 1.6,
+                      color: '#55555A',
+                      margin: 0,
+                    }}>
+                      {card.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  /* ───── Badge grid (numbered badge chips on white bg) ───── */
+  if (style === 'badge-grid') {
+    const badgeGridDesc = descParagraphs?.length
+      ? (
+        <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 22, alignItems: 'flex-start' }}>
+          <div>{descParagraphs.map((text, i) => (
+            <p key={i} style={{ fontFamily: "'Poppins', sans-serif", fontSize: 16, lineHeight: 1.7, color: '#55555A', margin: i < descParagraphs.length - 1 ? '0 0 6px' : '0', maxWidth: 760 }}>{text}</p>
+          ))}</div>
+          {ctaText && ctaLink && (
+            <Link href={ctaLink} className="hh-btn-hover" style={{ display: 'inline-block', fontFamily: "'Montserrat', sans-serif", fontWeight: 600, fontSize: 14, background: '#1A6AFF', color: '#fff', padding: '15px 26px', borderRadius: 6, textDecoration: 'none', boxShadow: '0 10px 26px rgba(26,106,255,0.32)' }}>
+              {ctaText}
+            </Link>
+          )}
+        </div>
+      )
+      : (
+        <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 22, alignItems: 'flex-start' }}>
+          {subtext && <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 16, lineHeight: 1.7, color: '#55555A', margin: 0, maxWidth: 760 }}>{subtext}</p>}
+          {ctaText && ctaLink && (
+            <Link href={ctaLink} className="hh-btn-hover" style={{ display: 'inline-block', fontFamily: "'Montserrat', sans-serif", fontWeight: 600, fontSize: 14, background: '#1A6AFF', color: '#fff', padding: '15px 26px', borderRadius: 6, textDecoration: 'none', boxShadow: '0 10px 26px rgba(26,106,255,0.32)' }}>
+              {ctaText}
+            </Link>
+          )}
+        </div>
+      )
+
+    return (
+      <section style={{ background: '#FFFFFF' }}>
+        <div className="rsp-section">
+          <SectionHeader
+            layout="split"
+            eyebrow={eyebrow ? <span style={sectionEyebrowStyle}>{eyebrow}</span> : undefined}
+            heading={heading ? (
+              <h2 style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
+                lineHeight: 1.16,
+                margin: 0,
+                maxWidth: 640,
+              }}>
+                {heading}
+              </h2>
+            ) : <span />}
+            description={badgeGridDesc}
+          />
+          {cards && cards.length > 0 && (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+              gap: 18,
+            }}>
+              {cards.map((card, i) => (
+                <div
+                  key={card._key || i}
+                  className="hh-card-hover"
+                  style={{
+                    border: '1px solid #E6E6E4',
+                    borderRadius: 16,
+                    background: '#fff',
+                    padding: 28,
+                    display: 'flex',
+                    flexDirection: 'column' as const,
+                    gap: 14,
+                  }}
+                >
+                  <span style={{
+                    alignSelf: 'flex-start',
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 11,
+                    letterSpacing: '0.06em',
+                    color: '#1A6AFF',
+                    background: '#EAF1FF',
+                    border: '1px solid #C9D8FB',
+                    borderRadius: 6,
+                    padding: '6px 9px',
+                  }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  {card.title && (
+                    <h3 style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 16.5,
+                      lineHeight: 1.32,
+                      margin: 0,
+                    }}>
+                      {card.title}
+                    </h3>
+                  )}
+                  {card.description && (
+                    <p style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: 14,
+                      lineHeight: 1.6,
+                      color: '#55555A',
+                      margin: 0,
+                    }}>
+                      {card.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  /* ───── Problem grid (orange-numbered title-only cards on white bg) ───── */
+  if (style === 'problem-grid') {
+    return (
+      <section style={{ background: '#FFFFFF' }}>
+        <div className="rsp-section">
+          <div style={{
+            display: 'flex',
+            gap: 40,
+            flexWrap: 'wrap' as const,
+            alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            marginBottom: 44,
+          }}>
+            <div style={{ flex: '1 1 560px', minWidth: 300 }}>
+              {eyebrow && (
+                <div style={{ ...sectionEyebrowStyle, marginBottom: 16 }}>{eyebrow}</div>
+              )}
+              {heading && (
+                <h2 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 'clamp(1.9rem, 2.8vw, 2.6rem)',
+                  lineHeight: 1.16,
+                  margin: '0 0 18px',
+                  maxWidth: 640,
+                }}>
+                  {heading}
+                </h2>
+              )}
+              {subtext && (
+                <p style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  color: '#55555A',
+                  margin: 0,
+                  maxWidth: 760,
+                }}>
+                  {subtext}
+                </p>
+              )}
+            </div>
+            {ctaText && ctaLink && (
+              <Link href={ctaLink} style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 600,
+                fontSize: 13,
+                color: '#1A6AFF',
+                border: '1px solid #1A6AFF',
+                padding: '13px 20px',
+                borderRadius: 6,
+                whiteSpace: 'nowrap' as const,
+                textDecoration: 'none',
+              }}>
+                {ctaText}
+              </Link>
+            )}
+          </div>
+          {cards && cards.length > 0 && (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
+              gap: 16,
+            }}>
+              {cards.map((card, i) => (
+                <div
+                  key={card._key || i}
+                  className="hh-card-hover"
+                  style={{
+                    border: '1px solid #E6E6E4',
+                    borderRadius: 12,
+                    background: '#fff',
+                    padding: 24,
+                    display: 'flex',
+                    flexDirection: 'column' as const,
+                    gap: 12,
+                  }}
+                >
+                  <span style={{
+                    alignSelf: 'flex-start',
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 11,
+                    letterSpacing: '0.06em',
+                    color: '#B96A0C',
+                    background: '#FFF3E2',
+                    borderRadius: 5,
+                    padding: '5px 8px',
+                  }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  {card.title && (
+                    <h3 style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontWeight: 600,
+                      fontSize: 15.5,
+                      lineHeight: 1.45,
+                      margin: 0,
+                    }}>
+                      {card.title}
+                    </h3>
+                  )}
+                </div>
+              ))}
+            </div>
           )}
         </div>
       </section>
@@ -685,7 +1055,7 @@ export function CardGridSection({ eyebrow, heading, subtext, subtextParagraphs, 
               flexWrap: 'wrap' as const,
             }}>
               {cards.map((card, i) => {
-                const num = String(i + 1).padStart(2, '0')
+                const num = card.tag || String(i + 1).padStart(2, '0')
                 return (
                   <div key={card._key || i} style={{
                     flex: '1 1 260px',

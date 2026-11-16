@@ -17,9 +17,10 @@ interface TextImageSectionProps {
   image?: any
   imagePosition?: 'left' | 'right'
   imageStyle?: 'card' | 'edge'
+  background?: string
 }
 
-export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, bullets, bulletStyle, closingText, ctaText, ctaLink, ctaStyle, image, imagePosition, imageStyle }: TextImageSectionProps) {
+export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, bullets, bulletStyle, closingText, ctaText, ctaLink, ctaStyle, image, imagePosition, imageStyle, background }: TextImageSectionProps) {
   const hasImage = !!image?.asset
   const expectsImage = !!imagePosition
 
@@ -60,7 +61,31 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
   )
 
   const bulletsBlock = bullets && bullets.length > 0 && (
-    bulletStyle === 'stacked' ? (
+    bulletStyle === 'value-highlight' ? (
+      <div style={{ display: 'flex', flexDirection: 'column' as const, maxWidth: 600 }}>
+        {bullets.map((bullet, i) => {
+          const sepIdx = bullet.indexOf(' — ')
+          const val = sepIdx >= 0 ? bullet.slice(0, sepIdx) : null
+          const rest = sepIdx >= 0 ? bullet.slice(sepIdx + 3) : bullet
+          return (
+            <div key={i} style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 14,
+              padding: '16px 0',
+              borderBottom: '1px solid #E6E6E4',
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 15,
+              lineHeight: 1.5,
+              color: '#0A0A0C',
+            }}>
+              <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#1A6AFF', flexShrink: 0, marginTop: 9 }} />
+              <span>{val && <strong style={{ fontWeight: 600, color: '#1A6AFF' }}>{val}</strong>} {rest}</span>
+            </div>
+          )
+        })}
+      </div>
+    ) : bulletStyle === 'stacked' ? (
       <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 22, margin: '20px 0 0' }}>
         {bullets.map((bullet, i) => {
           const sepIdx = bullet.indexOf(' — ')
@@ -132,20 +157,23 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
     </p>
   )
 
+  const isBlueBtn = ctaStyle === 'blue'
   const ctaBlock = ctaText && ctaLink && (
     <div style={{ marginTop: 16 }}>
       <Link
         href={ctaLink}
+        className="hh-btn-hover"
         style={{
           display: 'inline-flex',
           fontFamily: "'Montserrat', sans-serif",
           fontWeight: 600,
           fontSize: 14,
-          background: '#0A0A0C',
+          background: isBlueBtn ? '#1A6AFF' : '#0A0A0C',
           color: '#fff',
-          padding: '15px 26px',
+          padding: isBlueBtn ? '16px 28px' : '15px 26px',
           borderRadius: 6,
           textDecoration: 'none',
+          ...(isBlueBtn ? { boxShadow: '0 10px 26px rgba(26,106,255,0.32)' } : {}),
         }}
       >
         {ctaText}
@@ -153,9 +181,12 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
     </div>
   )
 
+  const sectionBg = background === 'white' ? '#FFFFFF' : '#F5F5F4'
+  const sectionBorder = background === 'white' ? 'none' : '1px solid #E4E4E4'
+
   if (!expectsImage && bulletsBlock) {
     return (
-      <section style={{ background: '#F5F5F4' }}>
+      <section style={{ background: sectionBg, borderTop: sectionBorder, borderBottom: sectionBorder }}>
         <div className="rsp-section" style={{
           display: 'flex',
           gap: 64,
@@ -179,7 +210,7 @@ export function TextImageSection({ eyebrow, heading, headingBordered, bodyText, 
 
   if (!expectsImage) {
     return (
-      <section style={{ background: '#F5F5F4' }}>
+      <section style={{ background: sectionBg, borderTop: sectionBorder, borderBottom: sectionBorder }}>
         <div className="rsp-section" style={{
           display: 'flex',
           gap: 64,

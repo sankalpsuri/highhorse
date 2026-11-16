@@ -17,6 +17,7 @@ interface CaseStudyCardsSectionProps {
   heading?: string
   subtext?: string
   headerLayout?: string
+  background?: string
   cards?: CaseStudyCard[]
   accentStyle?: string
 }
@@ -30,12 +31,13 @@ const sectionEyebrowStyle: React.CSSProperties = {
   color: '#1A6AFF',
 }
 
-export function CaseStudyCardsSection({ eyebrow, heading, subtext, headerLayout, cards }: CaseStudyCardsSectionProps) {
+export function CaseStudyCardsSection({ eyebrow, heading, subtext, headerLayout, background, cards }: CaseStudyCardsSectionProps) {
   if (!cards || cards.length === 0) return null
   const isSplit = headerLayout === 'split'
+  const sectionBg = background === 'cream' ? '#F5F5F4' : background === 'white' ? '#FFFFFF' : undefined
 
   return (
-    <section>
+    <section style={sectionBg ? { background: sectionBg, borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4' } : undefined}>
       <div className="rsp-section">
         <SectionHeader
           layout={isSplit ? 'split' : 'stacked'}
