@@ -65,7 +65,7 @@ const megaMenus: (MegaMenuData | null)[] = [
           { label: 'Shopping Ads', href: '/google-shopping-ads-management-for-ecommerce' },
           { label: 'PPC Ads', href: '/ppc-advertising-management-and-performance-marketing' },
           { label: 'Visual Ads', href: '/display-and-visual-advertising-campaign-management' },
-          { label: 'Retargeting', href: '/retargeting-and-remarketing-ad-campaign-services' },
+          { label: 'Retargeting Ads', href: '/retargeting-and-remarketing-ad-campaign-services' },
           { label: 'ChatGPT Ads', href: '/chatgpt-ads-management-services' },
         ],
       },

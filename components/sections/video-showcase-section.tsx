@@ -5,6 +5,7 @@ import { urlFor } from '@/lib/sanity/client'
 import { SectionHeader } from '@/components/section-header'
 
 interface VideoShowcaseSectionProps {
+  eyebrow?: string
   heading?: string
   subtext?: string
   videoUrl?: string
@@ -12,15 +13,25 @@ interface VideoShowcaseSectionProps {
   posterImage?: any
 }
 
-export function VideoShowcaseSection({ heading, subtext, videoUrl, videoFile, posterImage }: VideoShowcaseSectionProps) {
+const sectionEyebrowStyle: React.CSSProperties = {
+  fontFamily: "'Montserrat', sans-serif",
+  fontWeight: 600,
+  fontSize: '11.5px',
+  letterSpacing: '0.1em',
+  textTransform: 'uppercase',
+  color: '#1A6AFF',
+}
+
+export function VideoShowcaseSection({ eyebrow, heading, subtext, videoUrl, videoFile, posterImage }: VideoShowcaseSectionProps) {
   const src = videoFile?.asset?.url || videoUrl
   const posterUrl = posterImage?.asset ? urlFor(posterImage).url() : undefined
   const poster = posterImage?.asset ? urlFor(posterImage).width(2560).quality(90).auto('format').url() : undefined
 
   return (
     <section>
-      <div className="rsp-section">
+      <div className="rsp-section" style={{ paddingBottom: 0 }}>
         <SectionHeader
+          eyebrow={eyebrow ? <span style={sectionEyebrowStyle}>{eyebrow}</span> : undefined}
           heading={heading ? (
             <h2 style={{
               fontFamily: "'Montserrat', sans-serif",

@@ -183,6 +183,7 @@ export const servicePageQuery = groq`
         cards[]{ _key, clientName, badgeColor, resultChartImage{ ..., asset-> }, results }
       },
       _type == "videoShowcaseSection" => {
+        eyebrow,
         heading,
         subtext,
         videoUrl,
