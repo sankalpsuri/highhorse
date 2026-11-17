@@ -22,6 +22,13 @@ export default defineType({
       initialValue: 'stacked',
     }),
     defineField({
+      name: 'variant',
+      title: 'Variant',
+      type: 'string',
+      options: {list: [{title: 'Default', value: 'default'}, {title: 'Featured (larger type, image wrapper)', value: 'featured'}]},
+      description: 'Visual style variant. Featured adds a white image wrapper with shadow and slightly larger typography.',
+    }),
+    defineField({
       name: 'cards',
       title: 'Cards',
       type: 'array',

@@ -18,6 +18,7 @@ interface CaseStudyCardsSectionProps {
   subtext?: string
   headerLayout?: string
   background?: string
+  variant?: string
   cards?: CaseStudyCard[]
   accentStyle?: string
 }
@@ -31,7 +32,8 @@ const sectionEyebrowStyle: React.CSSProperties = {
   color: '#1A6AFF',
 }
 
-export function CaseStudyCardsSection({ eyebrow, heading, subtext, headerLayout, background, cards }: CaseStudyCardsSectionProps) {
+export function CaseStudyCardsSection({ eyebrow, heading, subtext, headerLayout, background, variant, cards }: CaseStudyCardsSectionProps) {
+  const isFeatured = variant === 'featured'
   if (!cards || cards.length === 0) return null
   const isSplit = headerLayout === 'split'
   const sectionBg = background === 'cream' ? '#F5F5F4' : background === 'white' ? '#FFFFFF' : undefined
@@ -76,14 +78,22 @@ export function CaseStudyCardsSection({ eyebrow, heading, subtext, headerLayout,
               key={card._key || idx}
               className="hh-card-hover"
               style={{
-                background: brandColor.bg,
-                border: `1px solid ${brandColor.border}`,
+                background: isFeatured ? '#F1F6FF' : brandColor.bg,
+                border: `1px solid ${isFeatured ? '#C9D8FB' : brandColor.border}`,
                 borderRadius: 18,
-                padding: 20,
+                padding: isFeatured ? 22 : 20,
+                display: 'flex',
+                flexDirection: 'column' as const,
+                gap: isFeatured ? 20 : 0,
               }}
             >
               {card.resultChartImage?.asset ? (
-                <div style={{ marginBottom: 14, borderRadius: 10, overflow: 'hidden' }}>
+                <div style={{
+                  borderRadius: 10,
+                  overflow: 'hidden',
+                  ...(!isFeatured ? { marginBottom: 14 } : {}),
+                  ...(isFeatured ? { background: '#fff', boxShadow: '0 4px 14px rgba(10,10,12,0.06)' } : {}),
+                }}>
                   <Image
                     src={urlFor(card.resultChartImage).url()}
                     alt={`${card.clientName} chart`}
@@ -91,14 +101,14 @@ export function CaseStudyCardsSection({ eyebrow, heading, subtext, headerLayout,
                     height={400}
                     sizes="(max-width: 767px) 100vw, 50vw"
                     quality={90}
-                    style={{ width: '100%', height: 'auto', display: 'block', maxWidth: 600 }}
+                    style={{ width: '100%', height: 'auto', display: 'block' }}
                   />
                 </div>
               ) : (
                 <div style={{
                   height: 70,
                   borderRadius: 10,
-                  marginBottom: 14,
+                  ...(!isFeatured ? { marginBottom: 14 } : {}),
                   background: '#E4E4E4',
                   display: 'flex',
                   alignItems: 'center',
@@ -111,25 +121,36 @@ export function CaseStudyCardsSection({ eyebrow, heading, subtext, headerLayout,
                 </div>
               )}
 
-              <h4 style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 700,
-                fontSize: 15,
-                margin: '14px 0 8px',
-                color: '#161616',
-              }}>
-                For {card.clientName}
-              </h4>
-              {card.results && card.results.length > 0 && (
-                <ul style={{ listStyle: 'none', fontSize: '13px', color: '#5c5c5c', fontFamily: "'Poppins', sans-serif", padding: 0, margin: 0 }}>
-                  {card.results.map((r, i) => (
-                    <li key={i} style={{ marginBottom: 4, paddingLeft: 14, position: 'relative' }}>
-                      <span style={{ position: 'absolute', left: 0 }}>&mdash;</span>
-                      {r}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <div style={isFeatured ? { padding: '0 4px 4px', display: 'flex', flexDirection: 'column' as const, gap: 10 } : undefined}>
+                <h4 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 700,
+                  fontSize: isFeatured ? 17 : 15,
+                  lineHeight: 1.3,
+                  margin: isFeatured ? 0 : '14px 0 8px',
+                  color: '#0A0A0C',
+                }}>
+                  For {card.clientName}
+                </h4>
+                {card.results && card.results.length > 0 && (
+                  isFeatured ? (
+                    <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 6, fontFamily: "'Poppins', sans-serif", fontSize: 14.5, lineHeight: 1.55, color: '#55555A' }}>
+                      {card.results.map((r, i) => (
+                        <span key={i}>&mdash; {r}</span>
+                      ))}
+                    </div>
+                  ) : (
+                    <ul style={{ listStyle: 'none', fontSize: '13px', color: '#5c5c5c', fontFamily: "'Poppins', sans-serif", padding: 0, margin: 0 }}>
+                      {card.results.map((r, i) => (
+                        <li key={i} style={{ marginBottom: 4, paddingLeft: 14, position: 'relative' }}>
+                          <span style={{ position: 'absolute', left: 0 }}>&mdash;</span>
+                          {r}
+                        </li>
+                      ))}
+                    </ul>
+                  )
+                )}
+              </div>
             </div>
           ))}
         </div>

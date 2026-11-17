@@ -199,19 +199,37 @@ async function main() {
       ],
     },
 
-    // 9. CASE STUDY
+    // 9. CASE STUDY (featured variant)
     {
       _key: 'pp-results',
       _type: 'caseStudyCardsSection',
       eyebrow: 'Case study',
       heading: 'Real Campaign Data. Real Growth. No Guesswork',
-      cards: resultCards.map((card: any) => ({
-        _key: card._key,
-        clientName: card.clientName,
-        badgeColor: card.badgeColor,
-        ...(card.resultChartImage ? { resultChartImage: card.resultChartImage } : {}),
-        results: card.results,
-      })),
+      variant: 'featured',
+      cards: [
+        {
+          _key: resultCards[0]?._key || 'cs1',
+          clientName: 'Bawa',
+          badgeColor: resultCards[0]?.badgeColor || 'blue',
+          ...(resultCards[0]?.resultChartImage ? { resultChartImage: resultCards[0].resultChartImage } : {}),
+          results: [
+            'Organic traffic tripled within 12 months for Bawa',
+            'Significant lift in qualified visitors',
+            'Sustained month-on-month traffic growth',
+          ],
+        },
+        {
+          _key: resultCards[1]?._key || 'cs2',
+          clientName: 'Fech Moving & Cleaning',
+          badgeColor: resultCards[1]?.badgeColor || 'blue',
+          ...(resultCards[1]?.resultChartImage ? { resultChartImage: resultCards[1].resultChartImage } : {}),
+          results: [
+            'For Fech Moving & Cleaning we drove 351 conversions from 2.98K high-intent clicks',
+            'Achieved strong reach with 39.1K impressions consistently',
+            'Maintained efficient cost per conversion at $59.70',
+          ],
+        },
+      ],
     },
 
     // 10. PROCESS (unified container, gray bg)
@@ -264,7 +282,10 @@ async function main() {
 
   await client
     .patch(PAGE_ID)
-    .set({ pageBuilder: newPageBuilder })
+    .set({
+      pageBuilder: newPageBuilder,
+      faqHeading: 'Frequently Asked Questions',
+    })
     .commit()
 
   console.log('\n✓ pageBuilder replaced successfully')

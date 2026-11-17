@@ -18,7 +18,7 @@ interface CaseStudyListItem {
   slug: string
   industry?: string
   summary?: string
-  logo?: any
+  logo?: any & { aspectRatio?: number }
   coverImage?: any
   results?: { value: string; label: string }[]
 }
@@ -56,73 +56,37 @@ export default async function CaseStudiesPage() {
               <Link
                 key={cs._id}
                 href={`/${cs.slug}`}
-                className="cs-listing-card hh-card-hover"
+                className="hh-card-hover"
+                style={{ textDecoration: 'none', color: 'inherit' }}
               >
-                <div
-                  style={{
-                    height: 26,
-                    marginBottom: 20,
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  {cs.logo?.asset ? (
+                {cs.coverImage?.asset ? (
+                  <div className="cs-cover-wrap">
                     <Image
-                      src={urlFor(cs.logo).url()}
+                      src={urlFor(cs.coverImage).url()}
                       alt={cs.clientName}
-                      width={160}
-                      height={52}
+                      fill
+                      sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 860px) calc(50vw - 37px), 347px"
+                      style={{ objectFit: 'cover' }}
                       quality={90}
-                      style={{
-                        objectFit: 'contain',
-                        objectPosition: 'left',
-                        width: 80,
-                        height: 26,
-                      }}
                     />
-                  ) : (
-                    <div
-                      style={{
-                        width: 36,
-                        height: 26,
-                        borderRadius: 4,
-                        background: '#f5f5f4',
-                        border: '1px solid #e4e4e4',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: 'Montserrat, sans-serif',
-                          fontWeight: 800,
-                          fontSize: 9,
-                          color: '#8a8a86',
-                          letterSpacing: '0.02em',
-                        }}
-                      >
-                        {cs.clientName
-                          .split(' ')
-                          .map((w) => w[0])
-                          .join('')
-                          .toUpperCase()
-                          .slice(0, 3)}
-                      </span>
-                    </div>
-                  )}
-                </div>
+                  </div>
+                ) : (
+                  <div className="cs-cover-wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 11, fontWeight: 700, color: '#8a8a86' }}>
+                      HIGH HORSE
+                    </span>
+                  </div>
+                )}
 
                 <h3
                   style={{
                     fontFamily: 'Montserrat, sans-serif',
-                    fontSize: 16.5,
+                    fontSize: 15,
                     fontWeight: 700,
-                    lineHeight: 1.3,
+                    lineHeight: 1.35,
                     letterSpacing: '-0.02em',
                     color: '#111111',
-                    marginBottom: 16,
-                    flex: 1,
+                    marginBottom: 12,
                   }}
                 >
                   {cs.summary}
@@ -193,19 +157,17 @@ export default async function CaseStudiesPage() {
             .cs-listing-grid {
               display: grid;
               grid-template-columns: repeat(3, 1fr);
-              gap: 22px;
+              gap: 24px 26px;
             }
-            .cs-listing-card {
-              border: 1px solid #e4e4e4;
-              border-radius: 16px;
-              padding: 24px 22px;
-              display: flex;
-              flex-direction: column;
-              min-height: 190px;
-              text-decoration: none;
-              color: inherit;
+            .cs-cover-wrap {
+              position: relative;
+              aspect-ratio: 16 / 9;
+              border-radius: 12px;
+              margin-bottom: 14px;
+              background: #f5f5f4;
+              overflow: hidden;
             }
-            .cs-listing-card:hover .cs-see-link span[aria-hidden] {
+            .cs-listing-grid a:hover .cs-see-link span[aria-hidden] {
               transform: translateX(3px);
             }
             .cs-newsletter-panel {
@@ -220,12 +182,10 @@ export default async function CaseStudiesPage() {
             @media (max-width: 560px) {
               .cs-listing-grid { grid-template-columns: 1fr; }
               .cs-newsletter-panel { padding: 40px 22px; }
-              .cs-listing-card { padding: 20px 18px; min-height: 160px; }
             }
             @media (max-width: 374px) {
-              .cs-listing-card { padding: 18px 16px; min-height: auto; }
+              .cs-listing-grid { gap: 20px 0; }
               .cs-newsletter-panel { padding: 32px 16px; }
-              .cs-listing-grid { gap: 16px; }
             }
           `,
         }}

@@ -179,6 +179,7 @@ export const servicePageQuery = groq`
         subtext,
         headerLayout,
         background,
+        variant,
         cards[]{ _key, clientName, badgeColor, resultChartImage{ ..., asset-> }, results }
       },
       _type == "videoShowcaseSection" => {
@@ -274,7 +275,7 @@ export const caseStudiesListingQuery = groq`
     "slug": slug.current,
     industry,
     summary,
-    logo{ ..., asset-> },
+    logo{ ..., asset->, "aspectRatio": asset->metadata.dimensions.aspectRatio },
     coverImage{ ..., asset-> },
     results[]{ value, label }
   }
