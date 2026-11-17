@@ -6,7 +6,7 @@ const FRIENDLY_ERROR =
   "Something went wrong. Please try again or email contact@highhorse.in."
 
 export interface LandingLeadPayload {
-  landing_page: "landing" | "seo-landing"
+  landing_page: "landing" | "seo-landing" | "sem-landing"
   form_location: string
   name: string
   email: string

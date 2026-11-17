@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import WhatsAppChatWidget from "@/components/whatsapp-chat-widget"
 
 const SEO_LANDING_SLUG = "seo-landing"
 
@@ -17,5 +18,10 @@ export default function SeoLandingLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return (
+    <>
+      {children}
+      <WhatsAppChatWidget landingPage="seo-landing" />
+    </>
+  )
 }

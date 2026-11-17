@@ -89,6 +89,30 @@
   box-shadow: 0 10px 22px rgba(26, 106, 255, 0.3);
 }
 
+.btnBlueQuote {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: 600 15px 'Montserrat', sans-serif;
+  background: #1A6AFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 17px 30px;
+  border-radius: 6px;
+  box-shadow: 0 10px 26px rgba(26, 106, 255, 0.32);
+  transition: transform 0.18s, box-shadow 0.18s;
+  text-decoration: none;
+}
+.btnBlueQuote:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(26, 106, 255, 0.4);
+}
+
+.riseIn {
+  animation: hhrise 0.5s ease both;
+}
+
 .btnDarkClose {
   font: 600 13.5px 'Montserrat', sans-serif;
   background: #0A0A0C;
@@ -462,6 +486,15 @@
 .stepGrid {
   --step-fill: #1A6AFF;
   --step-active: #0A0A0C;
+}
+
+/* Case studies header: title + CTA on one row */
+.caseHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 40px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 767.98px) {

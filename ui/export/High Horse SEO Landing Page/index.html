@@ -75,6 +75,7 @@
           <span style="font:400 16px 'Poppins',sans-serif;color:#E6E6E4">90% referral business rate</span>
         </div>
       </div>
+      <button onClick="{{ openForm }}" style="align-self:flex-start;margin-top:34px;display:inline-flex;align-items:center;gap:10px;font:600 15px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;border:none;cursor:pointer;padding:17px 30px;border-radius:6px;box-shadow:0 10px 26px rgba(26,106,255,0.32);transition:transform .18s,box-shadow .18s" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(26,106,255,0.4)">Get a Quote<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg></button>
     </div>
     <div style="flex:1 1 440px;min-width:300px;max-width:560px;position:relative">
       <div style="position:relative;background:rgba(255,255,255,0.96);color:#0A0A0C;border:1px solid rgba(255,255,255,0.6);border-radius:20px;box-shadow:0 40px 80px rgba(0,0,0,0.45);padding:26px;overflow:hidden">
@@ -125,6 +126,7 @@
       <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.12em;text-transform:uppercase;color:#1A6AFF">Get Found in AI Answers</div>
       <h2 style="font:700 clamp(2rem,3.6vw,3.2rem)/1.14 'Montserrat',sans-serif;margin:0;color:#0A0A0C;letter-spacing:-0.01em;text-wrap:pretty">AEO Services by High Horse: Get Found in AI Answers</h2>
       <p style="font:400 clamp(1rem,1.3vw,1.15rem)/1.7 'Poppins',sans-serif;color:#55555A;margin:0;max-width:640px;text-wrap:pretty">High Horse helps businesses optimise their digital presence through Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO). We ensure your brand appears in AI-generated responses, knowledge panels, and conversational search results so you stay visible, relevant, and ahead where modern search decisions happen.</p>
+      <button onClick="{{ openForm }}" style="align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;gap:10px;font:600 15px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;border:none;cursor:pointer;padding:17px 30px;border-radius:6px;box-shadow:0 10px 26px rgba(26,106,255,0.32);transition:transform .18s,box-shadow .18s" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(26,106,255,0.4)">Get a Quote<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg></button>
     </div>
     <div style="flex:1 1 520px;min-width:280px;border-radius:18px;overflow:hidden;box-shadow:0 24px 50px rgba(10,10,12,0.14);transition:transform .25s,box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 32px 64px rgba(10,10,12,0.2)">
       <img src="./assets/aeo-geo-graphic.jpg" alt="AEO and GEO: brands appearing in AI answers" style="width:100%;height:auto;display:block">
@@ -133,11 +135,14 @@
 </div>
 
 <!-- CASE STUDIES -->
-<div style="background:#FFFFFF">
+<div id="work" style="background:#FFFFFF;scroll-margin-top:74px">
   <div style="max-width:1280px;margin:0 auto;padding:96px 32px;display:flex;flex-direction:column;gap:48px">
-    <div style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px 40px;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:18px;flex:1 1 520px;min-width:0">
       <div style="font:600 13px 'Montserrat',sans-serif;letter-spacing:0.12em;text-transform:uppercase;color:#1A6AFF">Evidence Over Claims</div>
       <h2 style="font:700 clamp(2rem,3.6vw,3.2rem)/1.14 'Montserrat',sans-serif;margin:0;color:#0A0A0C;letter-spacing:-0.01em;max-width:820px;text-wrap:balance">Search and digital growth work across industries.</h2>
+      </div>
+      <button onClick="{{ openForm }}" style="flex-shrink:0;white-space:nowrap;display:inline-flex;align-items:center;gap:10px;font:600 15px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;border:none;cursor:pointer;padding:17px 30px;border-radius:6px;box-shadow:0 10px 26px rgba(26,106,255,0.32);transition:transform .18s,box-shadow .18s" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(26,106,255,0.4)">Get a Quote<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg></button>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:26px">
       <sc-for list="{{ caseCards }}" as="c" hint-placeholder-count="11">
@@ -331,25 +336,25 @@
         <form onSubmit="{{ submitFooter }}" style="display:flex;flex-direction:column;gap:16px">
           <div style="display:flex;gap:16px;flex-wrap:wrap">
             <label style="display:flex;flex-direction:column;gap:7px;flex:1 1 220px;min-width:200px">
-            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">Name</span>
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">Name<span style="color:#E5484D;margin-left:3px">*</span></span>
             <input name="name" type="text" required="required" placeholder="Your full name" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)">
           </label>
             <label style="display:flex;flex-direction:column;gap:7px;flex:1 1 220px;min-width:200px">
-            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">Email</span>
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">Email<span style="color:#E5484D;margin-left:3px">*</span></span>
             <input name="email" type="email" required="required" placeholder="you@company.com" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)">
           </label>
           </div>
           <div style="display:flex"><label style="display:flex;flex-direction:column;gap:7px;flex:1 1 220px;min-width:200px">
-            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">Phone Number</span>
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">Phone Number<span style="color:#E5484D;margin-left:3px">*</span></span>
             <input name="phone" type="tel" required="required" placeholder="+91 00000 00000" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)">
           </label></div>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">What problem are you facing?</span>
-            <input name="problem" type="text" required="required" placeholder="e.g. Low leads, high ad costs, poor rankings" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">What problem are you facing?<span style="font-weight:400;color:#8A8A90;margin-left:5px;letter-spacing:0">(optional)</span></span>
+            <input name="problem" type="text" placeholder="e.g. Low leads, high ad costs, poor rankings" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)">
           </label>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">What do you want from us?</span>
-            <textarea name="message" rows="4" required="required" placeholder="Describe your goals or the help you’re looking for" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s;line-height:1.55;resize:vertical" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)"></textarea>
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#D4D4D1">What do you want from us?<span style="font-weight:400;color:#8A8A90;margin-left:5px;letter-spacing:0">(optional)</span></span>
+            <textarea name="message" rows="4" placeholder="Describe your goals or the help you’re looking for" style="font:400 15px 'Poppins',sans-serif;color:#F5F5F4;border:1px solid #2E2E31;border-radius:8px;padding:13px 14px;outline:none;background:rgba(255,255,255,0.04);transition:border-color .15s,box-shadow .15s;line-height:1.55;resize:vertical" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.22)"></textarea>
           </label>
           <button type="submit" style="font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;border:none;cursor:pointer;padding:16px 24px;border-radius:6px;margin-top:4px;box-shadow:0 10px 26px rgba(26,106,255,0.32);transition:transform .18s,box-shadow .18s" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(26,106,255,0.4)">Submit</button>
         </form>
@@ -382,24 +387,24 @@
             <p style="font:400 14.5px/1.6 'Poppins',sans-serif;color:#55555A;margin:0">We’ll get back to you within one business day.</p>
           </div>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">Name</span>
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">Name<span style="color:#E5484D;margin-left:3px">*</span></span>
             <input name="name" type="text" required="required" placeholder="Your full name" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
           </label>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">Email</span>
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">Email<span style="color:#E5484D;margin-left:3px">*</span></span>
             <input name="email" type="email" required="required" placeholder="you@company.com" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
           </label>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">Phone Number</span>
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">Phone Number<span style="color:#E5484D;margin-left:3px">*</span></span>
             <input name="phone" type="tel" required="required" placeholder="+91 00000 00000" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
           </label>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">What problem are you facing?</span>
-            <input name="problem" type="text" required="required" placeholder="e.g. Low leads, high ad costs, poor rankings" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">What problem are you facing?<span style="font-weight:400;color:#8A8A90;margin-left:5px;letter-spacing:0">(optional)</span></span>
+            <input name="problem" type="text" placeholder="e.g. Low leads, high ad costs, poor rankings" style="font:400 15px 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)">
           </label>
           <label style="display:flex;flex-direction:column;gap:7px">
-            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">What do you want from us?</span>
-            <textarea name="message" rows="3" required="required" placeholder="Describe your goals or the help you’re looking for" style="font:400 15px/1.55 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;resize:vertical;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)"></textarea>
+            <span style="font:600 12px 'Montserrat',sans-serif;letter-spacing:0.04em;color:#3A3A3E">What do you want from us?<span style="font-weight:400;color:#8A8A90;margin-left:5px;letter-spacing:0">(optional)</span></span>
+            <textarea name="message" rows="3" placeholder="Describe your goals or the help you’re looking for" style="font:400 15px/1.55 'Poppins',sans-serif;color:#0A0A0C;border:1px solid #E6E6E4;border-radius:8px;padding:13px 14px;outline:none;resize:vertical;background:#fff;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.14)"></textarea>
           </label>
           <button type="submit" style="font:600 14px 'Montserrat',sans-serif;background:#1A6AFF;color:#fff;border:none;cursor:pointer;padding:16px 24px;border-radius:6px;margin-top:4px;box-shadow:0 10px 26px rgba(26,106,255,0.32);transition:transform .18s,box-shadow .18s" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(26,106,255,0.4)">Submit</button>
         </form>
@@ -643,8 +648,8 @@ class Component extends DCLogic {
         ] },
         { title: 'Performance Marketing', items: [
           { label: 'Search Ads', href: './Search Ads Services.dc.html' },
-          { label: 'Shopping Ads', href: '#capabilities' },
-          { label: 'PPC Ads', href: '#capabilities' },
+          { label: 'Shopping Ads', href: './Shopping Ads Services.dc.html' },
+          { label: 'PPC Ads', href: './PPC Services.dc.html' },
           { label: 'Visual Ads', href: '#capabilities' },
           { label: 'Retargeting', href: '#capabilities' },
         ] },
@@ -879,7 +884,7 @@ class Component extends DCLogic {
       openFormLink: (e) => { e.preventDefault(); this.setState({ formOpen: true, sent: null, menuOpen: false }); },
       closeForm: () => this.setState({ formOpen: false }),
       stop: (e) => e.stopPropagation(),
-      submitForm: (e) => { e.preventDefault(); const d = new FormData(e.target); this.setState({ sent: String(d.get('name') || '').trim().split(' ')[0] || 'there' }); },
+      submitForm: (e) => { e.preventDefault(); window.location.href = './Thank You.dc.html'; },
       testimonials: [
         { img: './assets/client-vishwanath.png', pos: '50% 40%', zoom: 1, name: 'Vishwanath Kapoor', company: 'Setmi India', quote: 'If you\u2019re looking for SEO support that actually delivers, High Horse is the real deal. We saw consistent month-over-month growth in traffic and conversions.' },
         { img: './assets/client-prabhnoor.jpg', pos: '52% 24%', zoom: 2, name: 'Prabhnoor Bawa', company: 'BAWA Polymers', quote: 'Was referred to High Horse by a friend and glad I gave them a shot. From keyword research to content strategy, everything was done thoughtfully.' },
@@ -916,12 +921,12 @@ class Component extends DCLogic {
       heroIdle: !this.state.heroSent,
       heroSent: !!this.state.heroSent,
       heroName: this.state.heroSent || '',
-      submitHero: (e) => { e.preventDefault(); const d = new FormData(e.target); this.setState({ heroSent: String(d.get('name') || '').trim().split(' ')[0] || 'there' }); },
+      submitHero: (e) => { e.preventDefault(); window.location.href = './Thank You.dc.html'; },
       logoLoop: (() => { const l = ['HIOKI', 'EASY ACCESS', 'Terra', '5 MINUTES TO DELHI', 'PARTY RACK', 'VISIOWORLD', 'GURUKUL', 'FECH']; return l.concat(l); })(),
       footIdle: !this.state.footSent,
       footSent: !!this.state.footSent,
       footName: this.state.footSent || '',
-      submitFooter: (e) => { e.preventDefault(); const d = new FormData(e.target); this.setState({ footSent: String(d.get('name') || '').trim().split(' ')[0] || 'there' }); },
+      submitFooter: (e) => { e.preventDefault(); window.location.href = './Thank You.dc.html'; },
       menuOpen: this.state.menuOpen,
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false }),

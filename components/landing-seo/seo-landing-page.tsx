@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, type FormEvent } from "react"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { submitLandingLead, type LandingLeadResult } from "@/lib/submit-landing-lead"
 import {
@@ -42,16 +43,6 @@ function MailSvg({ stroke = "#1A6AFF" }: { stroke?: string }) {
   )
 }
 
-function SuccessIcon() {
-  return (
-    <div style={{ width: 48, height: 48, borderRadius: 12, background: "#EAF1FF", border: "1px solid #C9D8FB", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A6AFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M5 12.5l4.5 4.5L19 7.5" />
-      </svg>
-    </div>
-  )
-}
-
 const fieldErrStyle = { font: "400 12px 'Poppins', sans-serif", color: "#D93636", margin: 0 } as const
 
 function FieldErr({ msg }: { msg?: string }) {
@@ -67,6 +58,14 @@ function Honeypot() {
   )
 }
 
+function ArrowSvg() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12h14 M13 6l6 6-6 6" />
+    </svg>
+  )
+}
+
 function hexToRgba(hex: string, alpha: number) {
   if (typeof hex !== "string" || !/^#?[0-9a-fA-F]{6}$/.test(hex)) return `rgba(26,106,255,${alpha})`
   const h = hex.replace("#", "")
@@ -75,9 +74,8 @@ function hexToRgba(hex: string, alpha: number) {
 }
 
 export default function SeoLandingPage() {
+  const router = useRouter()
   const [formOpen, setFormOpen] = useState(false)
-  const [footerSent, setFooterSent] = useState<string | null>(null)
-  const [popupSent, setPopupSent] = useState<string | null>(null)
   const [footerErrors, setFooterErrors] = useState<Record<string, string>>({})
   const [popupErrors, setPopupErrors] = useState<Record<string, string>>({})
   const [footerSubmitting, setFooterSubmitting] = useState(false)
@@ -137,7 +135,7 @@ export default function SeoLandingPage() {
     return () => { clearTimeout(timer); clearInterval(blink) }
   }, [])
 
-  const openForm = () => { setFormOpen(true); setPopupSent(null); setPopupErrors({}) }
+  const openForm = () => { setFormOpen(true); setPopupErrors({}) }
   const closeForm = () => setFormOpen(false)
 
   function applyResult(r: LandingLeadResult, setErr: (e: Record<string, string>) => void): boolean {
@@ -162,7 +160,7 @@ export default function SeoLandingPage() {
     })
     setFooterSubmitting(false)
     if (applyResult(result, setFooterErrors)) {
-      setFooterSent(String(fd.get("name") || "").trim().split(" ")[0] || "there")
+      router.push("/seo-landing/thank-you")
     }
   }
 
@@ -181,8 +179,7 @@ export default function SeoLandingPage() {
     })
     setPopupSubmitting(false)
     if (applyResult(result, setPopupErrors)) {
-      setPopupSent(String(fd.get("name") || "").trim().split(" ")[0] || "there")
-      setTimeout(() => setFormOpen(false), 2000)
+      router.push("/seo-landing/thank-you")
     }
   }
 
@@ -244,6 +241,10 @@ export default function SeoLandingPage() {
                 </div>
               ))}
             </div>
+            <button type="button" className={s.btnBlueQuote} style={{ alignSelf: "flex-start", marginTop: 34 }} onClick={openForm}>
+              Get a Quote
+              <ArrowSvg />
+            </button>
           </div>
 
           {/* Interactive search demo card */}
@@ -306,6 +307,10 @@ export default function SeoLandingPage() {
             <div style={{ font: "600 13px 'Montserrat', sans-serif", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "#1A6AFF" }}>Get Found in AI Answers</div>
             <h2 style={{ font: "700 clamp(2rem,3.6vw,3.2rem)/1.14 'Montserrat', sans-serif", margin: 0, color: "#0A0A0C", letterSpacing: "-0.01em" }}>AEO Services by High Horse: Get Found in AI Answers</h2>
             <p style={{ font: "400 clamp(1rem,1.3vw,1.15rem)/1.7 'Poppins', sans-serif", color: "#55555A", margin: 0, maxWidth: 640 }}>High Horse helps businesses optimise their digital presence through Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO). We ensure your brand appears in AI-generated responses, knowledge panels, and conversational search results so you stay visible, relevant, and ahead where modern search decisions happen.</p>
+            <button type="button" className={s.btnBlueQuote} style={{ alignSelf: "flex-start", marginTop: 6 }} onClick={openForm}>
+              Get a Quote
+              <ArrowSvg />
+            </button>
           </div>
           <div className={s.aeoImage} style={{ flex: "1 1 520px", minWidth: 280, borderRadius: 18, overflow: "hidden", boxShadow: "0 24px 50px rgba(10,10,12,0.14)" }}>
             <Image src={`${IMG}/aeo-geo-v2.jpg`} alt="AI-generated answer featuring a High Horse client's product — demonstrating AEO and GEO optimisation results" width={2115} height={1364} quality={85} sizes="(max-width: 768px) 100vw, 520px" style={{ width: "100%", height: "auto", display: "block" }} />
@@ -316,9 +321,15 @@ export default function SeoLandingPage() {
       {/* ═══ CASE STUDIES ═══ */}
       <section style={{ background: "#FFFFFF" }}>
         <div className={s.seoSec} style={{ maxWidth: 1280, margin: "0 auto", padding: "96px 32px", display: "flex", flexDirection: "column", gap: 48 }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-            <div style={{ font: "600 13px 'Montserrat', sans-serif", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "#1A6AFF" }}>Evidence Over Claims</div>
-            <h2 style={{ font: "700 clamp(2rem,3.6vw,3.2rem)/1.14 'Montserrat', sans-serif", margin: 0, color: "#0A0A0C", letterSpacing: "-0.01em", maxWidth: 820 }}>Search and digital growth work across industries.</h2>
+          <div className={s.caseHeader}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 18, flex: "1 1 520px", minWidth: 0 }}>
+              <div style={{ font: "600 13px 'Montserrat', sans-serif", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "#1A6AFF" }}>Evidence Over Claims</div>
+              <h2 style={{ font: "700 clamp(2rem,3.6vw,3.2rem)/1.14 'Montserrat', sans-serif", margin: 0, color: "#0A0A0C", letterSpacing: "-0.01em", maxWidth: 820 }}>Search and digital growth work across industries.</h2>
+            </div>
+            <button type="button" className={s.btnBlueQuote} style={{ flexShrink: 0, whiteSpace: "nowrap" }} onClick={openForm}>
+              Get a Quote
+              <ArrowSvg />
+            </button>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,320px),1fr))", gap: 26 }}>
             {CASE_CARDS.map((c) => (
@@ -515,34 +526,33 @@ export default function SeoLandingPage() {
 
           {/* Footer form */}
           <div style={{ flex: "1 1 520px", minWidth: 300, border: "1px solid #232326", borderRadius: 16, background: "rgba(255,255,255,0.03)", padding: 30 }}>
-            {!footerSent ? (
               <form onSubmit={handleFooterSubmit} style={{ display: "flex", flexDirection: "column", gap: 16, position: "relative" }}>
                 <Honeypot />
                 <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
                   <label style={{ display: "flex", flexDirection: "column", gap: 7, flex: "1 1 220px", minWidth: 200 }}>
-                    <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#D4D4D1" }}>Name</span>
+                    <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#D4D4D1" }}>Name<span style={{ color: "#E5484D", marginLeft: 3 }}>*</span></span>
                     <input name="name" type="text" required placeholder="Your full name" className={s.inputDark} />
                     <FieldErr msg={footerErrors.name} />
                   </label>
                   <label style={{ display: "flex", flexDirection: "column", gap: 7, flex: "1 1 220px", minWidth: 200 }}>
-                    <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#D4D4D1" }}>Email</span>
+                    <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#D4D4D1" }}>Email<span style={{ color: "#E5484D", marginLeft: 3 }}>*</span></span>
                     <input name="email" type="email" required placeholder="you@company.com" className={s.inputDark} />
                     <FieldErr msg={footerErrors.email} />
                   </label>
                 </div>
                 <label style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#D4D4D1" }}>Phone Number</span>
+                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#D4D4D1" }}>Phone Number<span style={{ color: "#E5484D", marginLeft: 3 }}>*</span></span>
                   <input name="phone" type="tel" required placeholder="+91 00000 00000" className={s.inputDark} />
                   <FieldErr msg={footerErrors.phone} />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#D4D4D1" }}>What problem are you facing?</span>
-                  <input name="problem" type="text" required placeholder="e.g. Low leads, high ad costs, poor rankings" className={s.inputDark} />
+                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#D4D4D1" }}>What problem are you facing?<span style={{ fontWeight: 400, color: "#8A8A90", marginLeft: 5, letterSpacing: 0 }}>(optional)</span></span>
+                  <input name="problem" type="text" placeholder="e.g. Low leads, high ad costs, poor rankings" className={s.inputDark} />
                   <FieldErr msg={footerErrors.problem} />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#D4D4D1" }}>What do you want from us?</span>
-                  <textarea name="message" rows={4} required placeholder="Describe your goals or the help you're looking for" className={s.textareaDark} />
+                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#D4D4D1" }}>What do you want from us?<span style={{ fontWeight: 400, color: "#8A8A90", marginLeft: 5, letterSpacing: 0 }}>(optional)</span></span>
+                  <textarea name="message" rows={4} placeholder="Describe your goals or the help you're looking for" className={s.textareaDark} />
                   <FieldErr msg={footerErrors.message} />
                 </label>
                 {footerErrors._ && <p style={fieldErrStyle}>{footerErrors._}</p>}
@@ -550,15 +560,6 @@ export default function SeoLandingPage() {
                   {footerSubmitting ? "Sending…" : "Submit"}
                 </button>
               </form>
-            ) : (
-              <div style={{ padding: "24px 4px", display: "flex", flexDirection: "column", gap: 14, alignItems: "flex-start" }}>
-                <div style={{ width: 48, height: 48, borderRadius: 12, background: "rgba(26,106,255,0.14)", border: "1px solid #1A6AFF", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A6AFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
-                </div>
-                <h3 style={{ font: "700 22px/1.2 'Montserrat', sans-serif", margin: 0 }}>Thank you, {footerSent}.</h3>
-                <p style={{ font: "400 15px/1.6 'Poppins', sans-serif", color: "#9A9A97", margin: 0 }}>Your message has been received. Our team will contact you shortly.</p>
-              </div>
-            )}
           </div>
         </div>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "20px 32px", borderTop: "1px solid #232326", font: "400 12px 'Poppins', sans-serif", color: "#5a5a57" }}>
@@ -572,7 +573,6 @@ export default function SeoLandingPage() {
           <div className={s.popupCard} onClick={(e) => e.stopPropagation()}>
             <div style={{ height: 4, background: "#1A6AFF" }} />
             <button type="button" className={s.popupClose} onClick={closeForm} aria-label="Close">×</button>
-            {!popupSent ? (
               <form onSubmit={handlePopupSubmit} style={{ padding: "28px 28px 26px", display: "flex", flexDirection: "column", gap: 14, position: "relative" }}>
                 <Honeypot />
                 <div>
@@ -581,28 +581,28 @@ export default function SeoLandingPage() {
                   <p style={{ font: "400 14.5px/1.6 'Poppins', sans-serif", color: "#55555A", margin: 0 }}>We&apos;ll get back to you within one business day.</p>
                 </div>
                 <label style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#3A3A3E" }}>Name</span>
+                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#3A3A3E" }}>Name<span style={{ color: "#E5484D", marginLeft: 3 }}>*</span></span>
                   <input name="name" type="text" required placeholder="Your full name" className={s.inputPopup} />
                   <FieldErr msg={popupErrors.name} />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#3A3A3E" }}>Email</span>
+                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#3A3A3E" }}>Email<span style={{ color: "#E5484D", marginLeft: 3 }}>*</span></span>
                   <input name="email" type="email" required placeholder="you@company.com" className={s.inputPopup} />
                   <FieldErr msg={popupErrors.email} />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#3A3A3E" }}>Phone Number</span>
+                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#3A3A3E" }}>Phone Number<span style={{ color: "#E5484D", marginLeft: 3 }}>*</span></span>
                   <input name="phone" type="tel" required placeholder="+91 00000 00000" className={s.inputPopup} />
                   <FieldErr msg={popupErrors.phone} />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#3A3A3E" }}>What problem are you facing?</span>
-                  <input name="problem" type="text" required placeholder="e.g. Low leads, high ad costs, poor rankings" className={s.inputPopup} />
+                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#3A3A3E" }}>What problem are you facing?<span style={{ fontWeight: 400, color: "#8A8A90", marginLeft: 5, letterSpacing: 0 }}>(optional)</span></span>
+                  <input name="problem" type="text" placeholder="e.g. Low leads, high ad costs, poor rankings" className={s.inputPopup} />
                   <FieldErr msg={popupErrors.problem} />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#3A3A3E" }}>What do you want from us?</span>
-                  <textarea name="message" rows={3} required placeholder="Describe your goals or the help you're looking for" className={s.textareaPopup} />
+                  <span style={{ font: "600 12px 'Montserrat', sans-serif", letterSpacing: "0.04em", color: "#3A3A3E" }}>What do you want from us?<span style={{ fontWeight: 400, color: "#8A8A90", marginLeft: 5, letterSpacing: 0 }}>(optional)</span></span>
+                  <textarea name="message" rows={3} placeholder="Describe your goals or the help you're looking for" className={s.textareaPopup} />
                   <FieldErr msg={popupErrors.message} />
                 </label>
                 {popupErrors._ && <p style={fieldErrStyle}>{popupErrors._}</p>}
@@ -610,14 +610,6 @@ export default function SeoLandingPage() {
                   {popupSubmitting ? "Sending…" : "Submit"}
                 </button>
               </form>
-            ) : (
-              <div style={{ padding: "44px 32px 40px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 14 }}>
-                <SuccessIcon />
-                <h3 style={{ font: "700 24px/1.2 'Montserrat', sans-serif", margin: 0 }}>Thank you, {popupSent}.</h3>
-                <p style={{ font: "400 15px/1.6 'Poppins', sans-serif", color: "#55555A", margin: 0 }}>Your message has been received. Our team will contact you shortly.</p>
-                <button type="button" className={s.btnDarkClose} onClick={closeForm}>Close</button>
-              </div>
-            )}
           </div>
         </div>
       )}
